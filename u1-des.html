@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Grammar Quest B1 — Present Tenses</title>
+<style>
+  :root{
+    --bg:#08111f; --panel:#101b31; --panel2:#14223d; --text:#f7fbff; --muted:#a9b8d0;
+    --cyan:#22d3ee; --blue:#60a5fa; --violet:#a78bfa; --pink:#f472b6; --green:#34d399;
+    --yellow:#fbbf24; --red:#fb7185; --white:#ffffff; --shadow:0 20px 60px rgba(0,0,0,.25);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:
+    radial-gradient(circle at 10% 10%,rgba(34,211,238,.16),transparent 30%),
+    radial-gradient(circle at 90% 15%,rgba(167,139,250,.18),transparent 26%),
+    radial-gradient(circle at 50% 100%,rgba(244,114,182,.12),transparent 25%),
+    var(--bg);color:var(--text);min-height:100vh}
+  button,input{font:inherit}
+  .shell{display:grid;grid-template-columns:270px 1fr;min-height:100vh}
+  aside{padding:22px 16px;border-right:1px solid rgba(255,255,255,.08);background:rgba(7,14,27,.8);backdrop-filter:blur(16px);position:sticky;top:0;height:100vh}
+  .brand{display:flex;gap:12px;align-items:center;margin:4px 8px 22px}
+  .logo{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,var(--cyan),var(--violet),var(--pink));display:grid;place-items:center;font-weight:900;color:#07111f;box-shadow:0 12px 30px rgba(96,165,250,.3)}
+  .brand h1{font-size:18px;margin:0;line-height:1.1}.brand small{color:var(--muted)}
+  nav{display:grid;gap:8px}
+  .navbtn{border:0;color:var(--muted);background:transparent;text-align:left;padding:12px 14px;border-radius:14px;cursor:pointer;display:flex;gap:10px;align-items:center;transition:.2s}
+  .navbtn:hover,.navbtn.active{background:linear-gradient(90deg,rgba(34,211,238,.14),rgba(167,139,250,.14));color:var(--white);transform:translateX(2px)}
+  .sidecard{margin-top:20px;padding:14px;border-radius:16px;background:linear-gradient(145deg,rgba(96,165,250,.11),rgba(244,114,182,.09));border:1px solid rgba(255,255,255,.08)}
+  .minirow{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-bottom:8px}
+  .bar{height:9px;background:#0b1425;border-radius:999px;overflow:hidden}.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));width:0%;border-radius:inherit;transition:.35s}
+  main{padding:28px;max-width:1400px;width:100%;margin:auto}
+  .hero{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(20,34,61,.97),rgba(14,25,45,.95));border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:26px;box-shadow:var(--shadow)}
+  .hero:after{content:"";position:absolute;right:-50px;top:-60px;width:240px;height:240px;border-radius:50%;background:linear-gradient(135deg,rgba(34,211,238,.26),rgba(167,139,250,.2));filter:blur(10px)}
+  .eyebrow{display:inline-flex;gap:8px;align-items:center;padding:7px 11px;border:1px solid rgba(255,255,255,.12);border-radius:999px;color:#dffcff;font-size:12px;background:rgba(255,255,255,.04)}
+  .hero h2{font-size:clamp(30px,5vw,58px);line-height:.98;margin:14px 0 10px;max-width:780px}
+  .grad{background:linear-gradient(90deg,var(--cyan),#7dd3fc,var(--violet),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{max-width:760px;color:var(--muted);font-size:16px;line-height:1.7}
+  .heroactions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+  .btn{border:0;border-radius:14px;padding:11px 15px;font-weight:800;cursor:pointer;transition:.2s}
+  .btn.primary{background:linear-gradient(135deg,var(--cyan),var(--violet));color:#07111f}.btn.primary:hover{transform:translateY(-2px)}
+  .btn.ghost{background:rgba(255,255,255,.06);color:var(--text);border:1px solid rgba(255,255,255,.08)}
+  .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}
+  .stat{padding:16px;border-radius:18px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.07)}
+  .stat b{font-size:25px;display:block}.stat span{color:var(--muted);font-size:12px}
+  section{display:none;margin-top:20px}.section.active{display:block}
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+  .card{grid-column:span 4;background:linear-gradient(145deg,rgba(17,29,52,.98),rgba(13,23,42,.98));border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:20px;box-shadow:0 12px 35px rgba(0,0,0,.15)}
+  .card h3{margin:0 0 8px;font-size:18px}.card p{color:var(--muted);line-height:1.6}
+  .tag{display:inline-block;font-size:11px;font-weight:800;padding:6px 9px;border-radius:999px;background:rgba(34,211,238,.12);color:#a5f3fc;margin-bottom:10px}
+  .formula{font-size:18px;font-weight:800;background:#081425;border-radius:14px;padding:13px;margin:12px 0;border-left:4px solid var(--cyan)}
+  .timeline{height:58px;margin:12px 0;position:relative}
+  .timeline .line{position:absolute;left:5%;right:5%;top:29px;height:4px;background:rgba(255,255,255,.14);border-radius:9px}
+  .timeline .dot{position:absolute;top:20px;width:21px;height:21px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 7px rgba(34,211,238,.12)}
+  .timeline .pulse{position:absolute;top:12px;width:38px;height:38px;border-radius:50%;border:3px solid var(--pink);animation:pulse 1.5s infinite}
+  @keyframes pulse{50%{transform:scale(1.18);opacity:.55}}
+  .compare{grid-column:span 12;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .panel{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:16px}
+  .chipwrap{display:flex;flex-wrap:wrap;gap:8px}.chip{padding:8px 10px;border-radius:999px;background:#0b172a;color:#d9e6f7;border:1px solid rgba(255,255,255,.08);font-size:13px}
+  .gamehead{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .gamebox{background:linear-gradient(145deg,rgba(17,29,52,.98),rgba(10,18,33,.98));border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:20px;box-shadow:var(--shadow)}
+  .qcard{min-height:180px;display:grid;place-items:center;text-align:center;border-radius:22px;background:
+    radial-gradient(circle at 30% 20%,rgba(34,211,238,.14),transparent 28%),
+    radial-gradient(circle at 80% 90%,rgba(244,114,182,.12),transparent 25%),
+    #0c182d;padding:22px;border:1px solid rgba(255,255,255,.08)}
+  .qtext{font-size:clamp(22px,4vw,34px);font-weight:900;max-width:900px}
+  .options{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+  .opt{padding:14px;border-radius:15px;border:1px solid rgba(255,255,255,.08);background:#101e36;color:var(--text);cursor:pointer;text-align:left;font-weight:700;transition:.18s}
+  .opt:hover{transform:translateY(-2px);border-color:rgba(34,211,238,.45)}.opt.correct{background:rgba(52,211,153,.15);border-color:var(--green)}.opt.wrong{background:rgba(251,113,133,.14);border-color:var(--red)}
+  .feedback{margin-top:12px;min-height:54px;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.045);color:#dbe7f7;line-height:1.55}
+  .sortarea{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .bin{min-height:180px;border:2px dashed rgba(255,255,255,.13);border-radius:20px;padding:15px;background:rgba(255,255,255,.025)}
+  .bin h4{margin:0 0 8px}.sortcard{padding:15px;border-radius:17px;background:#101f3a;border:1px solid rgba(255,255,255,.08);box-shadow:0 10px 20px rgba(0,0,0,.18);margin:10px 0;cursor:pointer}
+  .sortchoices{display:flex;gap:10px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+  .pillbtn{border:0;border-radius:999px;padding:10px 14px;font-weight:900;cursor:pointer}.simple{background:rgba(34,211,238,.18);color:#a5f3fc}.cont{background:rgba(244,114,182,.18);color:#fbcfe8}
+  .stative-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .verbcard{min-height:84px;border-radius:16px;display:grid;place-items:center;background:#0e1b31;border:1px solid rgba(255,255,255,.08);font-size:18px;font-weight:900;cursor:pointer;transition:.18s;padding:10px;text-align:center}.verbcard:hover{transform:translateY(-3px)}
+  .verbcard.ok{background:rgba(52,211,153,.12);border-color:var(--green)}.verbcard.no{background:rgba(251,113,133,.12);border-color:var(--red)}
+  .repair{display:grid;gap:10px}.repairitem{padding:15px;border-radius:17px;background:#0d1a2f;border:1px solid rgba(255,255,255,.08)}
+  .repairline{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.repair input{flex:1;min-width:220px;background:#081425;border:1px solid rgba(255,255,255,.12);color:#fff;border-radius:12px;padding:11px 12px}
+  .mini{font-size:12px;color:var(--muted)}
+  .questmap{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}.level{padding:14px;border-radius:16px;background:#0d1a2f;border:1px solid rgba(255,255,255,.08);text-align:center;cursor:pointer}.level.done{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.45)}
+  .toast{position:fixed;right:22px;bottom:22px;max-width:320px;background:#0f1f39;border:1px solid rgba(255,255,255,.1);box-shadow:var(--shadow);border-radius:16px;padding:14px 16px;transform:translateY(120px);opacity:0;transition:.25s;z-index:50}.toast.show{transform:translateY(0);opacity:1}
+  .footerhint{margin:18px 0 0;color:var(--muted);font-size:12px;text-align:center}
+  @media(max-width:980px){.shell{grid-template-columns:1fr}aside{position:relative;height:auto;border-right:0;border-bottom:1px solid rgba(255,255,255,.08)}nav{grid-template-columns:repeat(3,1fr)}.navbtn{justify-content:center;text-align:center}.sidecard{display:none}.card{grid-column:span 6}.stats{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:650px){main{padding:16px}.card{grid-column:span 12}.compare{grid-template-columns:1fr}.options,.sortarea{grid-template-columns:1fr}.stative-grid{grid-template-columns:repeat(2,1fr)}.questmap{grid-template-columns:repeat(3,1fr)}nav{grid-template-columns:repeat(2,1fr)}.navbtn{padding:10px 8px;font-size:13px}.hero{padding:20px}.stats{gap:8px}.stat{padding:12px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside>
+    <div class="brand">
+      <div class="logo">GQ</div>
+      <div><h1>Grammar Quest B1</h1><small>Unit 1 • Present Tenses</small></div>
+    </div>
+    <nav id="nav">
+      <button class="navbtn active" data-target="dashboard">🏠 Dashboard</button>
+      <button class="navbtn" data-target="learn">🧠 Learn Lab</button>
+      <button class="navbtn" data-target="signal">⚡ Signal Sort</button>
+      <button class="navbtn" data-target="stative">🧩 Stative Scan</button>
+      <button class="navbtn" data-target="quiz">🎯 Grammar Battle</button>
+      <button class="navbtn" data-target="repair">🛠️ Fix the Bug</button>
+    </nav>
+    <div class="sidecard">
+      <div class="minirow"><span>Mastery</span><b id="masteryText">0%</b></div>
+      <div class="bar"><i id="masteryBar"></i></div>
+      <div class="minirow" style="margin-top:12px"><span>🔥 Streak</span><b id="streakSide">0</b></div>
+      <div class="minirow"><span>⭐ XP</span><b id="xpSide">0</b></div>
+    </div>
+  </aside>
+
+  <main>
+    <section id="dashboard" class="section active">
+      <div class="hero">
+        <span class="eyebrow">🚀 B1 Grammar • Offline Learning App</span>
+        <h2>Master <span class="grad">Present Simple</span>, <span class="grad">Present Continuous</span> & Stative Verbs</h2>
+        <p>Học bằng hình ảnh, tín hiệu thời gian và tình huống. Mỗi câu sai sẽ được giải thích theo cách “vì sao” — không chỉ báo đáp án.</p>
+        <div class="heroactions">
+          <button class="btn primary" onclick="go('quiz')">Bắt đầu Grammar Battle</button>
+          <button class="btn ghost" onclick="go('learn')">Ôn lý thuyết 5 phút</button>
+          <button class="btn ghost" onclick="resetProgress()">Reset tiến độ</button>
+        </div>
+        <div class="stats">
+          <div class="stat"><b id="xp">0</b><span>XP đã tích lũy</span></div>
+          <div class="stat"><b id="accuracy">0%</b><span>Độ chính xác</span></div>
+          <div class="stat"><b id="streak">0</b><span>Chuỗi đúng hiện tại</span></div>
+          <div class="stat"><b id="completed">0</b><span>Nhiệm vụ đã hoàn thành</span></div>
+        </div>
+      </div>
+      <div class="grid" style="margin-top:14px">
+        <div class="card"><span class="tag">MISSION 01</span><h3>⚡ Signal Hunter</h3><p>Nhìn dấu hiệu như <b>every day</b>, <b>now</b>, <b>at the moment</b> và chọn đúng thì.</p><button class="btn ghost" onclick="go('signal')">Chơi ngay</button></div>
+        <div class="card"><span class="tag">MISSION 02</span><h3>🧩 Stative Detector</h3><p>Phân biệt động từ trạng thái với động từ hành động và nhận ra khi nghĩa thay đổi.</p><button class="btn ghost" onclick="go('stative')">Mở game</button></div>
+        <div class="card"><span class="tag">MISSION 03</span><h3>🎯 Grammar Battle</h3><p>40 câu trắc nghiệm ngẫu nhiên, có streak, XP và giải thích tức thì.</p><button class="btn ghost" onclick="go('quiz')">Vào trận</button></div>
+      </div>
+      <div class="gamebox" style="margin-top:14px">
+        <div class="gamehead"><div><h3 style="margin:0">🗺️ Quest Map</h3><div class="mini">Mỗi mốc hoàn thành khi bạn đạt 70% trở lên ở game tương ứng.</div></div><b id="rank">Rookie</b></div>
+        <div class="questmap" id="questMap"></div>
+      </div>
+    </section>
+
+    <section id="learn" class="section">
+      <div class="gamehead"><div><h2>🧠 Learn Lab</h2><div class="mini">Nhìn thời gian trước, chia động từ sau.</div></div></div>
+      <div class="grid">
+        <div class="card">
+          <span class="tag">PRESENT SIMPLE</span><h3>“Ảnh chụp thói quen”</h3>
+          <div class="formula">I/You/We/They + V<br>He/She/It + V-s/es</div>
+          <p><b>Dùng cho:</b> thói quen, tình huống lâu dài, trạng thái, sự thật chung.</p>
+          <div class="timeline"><div class="line"></div><div class="dot" style="left:15%"></div><div class="dot" style="left:45%"></div><div class="dot" style="left:75%"></div></div>
+          <div class="chipwrap"><span class="chip">always</span><span class="chip">usually</span><span class="chip">often</span><span class="chip">every day</span><span class="chip">once a week</span></div>
+        </div>
+        <div class="card">
+          <span class="tag" style="background:rgba(244,114,182,.12);color:#fbcfe8">PRESENT CONTINUOUS</span><h3>“Video đang chạy”</h3>
+          <div class="formula">am / is / are + V-ing</div>
+          <p><b>Dùng cho:</b> việc đang diễn ra, tình huống tạm thời, thói quen gây khó chịu với <b>always</b>.</p>
+          <div class="timeline"><div class="line"></div><div class="pulse" style="left:48%"></div></div>
+          <div class="chipwrap"><span class="chip">now</span><span class="chip">right now</span><span class="chip">at the moment</span><span class="chip">this week</span><span class="chip">today</span></div>
+        </div>
+        <div class="card">
+          <span class="tag" style="background:rgba(167,139,250,.14);color:#ddd6fe">STATIVE VERBS</span><h3>“Trạng thái, không phải hành động”</h3>
+          <div class="formula">know • like • love • need • prefer • understand • want...</div>
+          <p>Thông thường không dùng ở thì tiếp diễn. Nhưng một số động từ như <b>think, have, be</b> có thể chuyển sang nghĩa hành động.</p>
+          <div class="chipwrap"><span class="chip">I think = tôi cho rằng</span><span class="chip">I'm thinking = tôi đang suy nghĩ</span></div>
+        </div>
+        <div class="compare">
+          <div class="panel"><h3>🔎 Câu hỏi 1: Đây là “thói quen/lâu dài”?</h3><p>Nếu có <b>every, usually, often, never, once/twice...</b> → nghiêng mạnh về Present Simple.</p></div>
+          <div class="panel"><h3>🔎 Câu hỏi 2: Đây là “đang diễn ra/tạm thời”?</h3><p>Nếu có <b>now, at the moment, this week, today</b> → nghiêng mạnh về Present Continuous.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="signal" class="section">
+      <div class="gamehead"><div><h2>⚡ Signal Sort</h2><div class="mini">Phân loại câu vào Present Simple hoặc Present Continuous.</div></div><div><b id="signalScore">0</b> điểm</div></div>
+      <div class="gamebox">
+        <div class="qcard"><div><div class="mini">ROUND <span id="signalRound">1</span>/18</div><div class="qtext" id="signalText">...</div></div></div>
+        <div class="sortchoices">
+          <button class="pillbtn simple" onclick="answerSignal('simple')">📸 Present Simple</button>
+          <button class="pillbtn cont" onclick="answerSignal('cont')">🎥 Present Continuous</button>
+        </div>
+        <div class="feedback" id="signalFeedback">Mẹo: tìm “tín hiệu thời gian” trước khi nhìn động từ.</div>
+      </div>
+    </section>
+
+    <section id="stative" class="section">
+      <div class="gamehead"><div><h2>🧩 Stative Scan</h2><div class="mini">Bấm vào những động từ thường là stative verbs.</div></div><div><b id="stativeCount">0</b>/<span id="stativeTotal">0</span></div></div>
+      <div class="gamebox">
+        <div class="stative-grid" id="verbGrid"></div>
+        <div class="feedback" id="stativeFeedback">Mục tiêu: tìm tất cả stative verbs mà không bấm nhầm động từ hành động.</div>
+      </div>
+    </section>
+
+    <section id="quiz" class="section">
+      <div class="gamehead"><div><h2>🎯 Grammar Battle</h2><div class="mini">40 câu • đáp án được xáo trộn • có giải thích.</div></div><div><b id="quizProgress">1/40</b></div></div>
+      <div class="gamebox">
+        <div class="bar" style="margin-bottom:14px"><i id="quizBar"></i></div>
+        <div class="qcard"><div><div class="mini" id="quizType">Choose the best form</div><div class="qtext" id="quizQuestion">...</div></div></div>
+        <div class="options" id="quizOptions"></div>
+        <div class="feedback" id="quizFeedback">Chọn đáp án rồi đọc lý do.</div>
+        <div style="display:flex;justify-content:flex-end;margin-top:12px"><button class="btn primary" id="nextQuiz" onclick="nextQuiz()" disabled>Câu tiếp theo →</button></div>
+      </div>
+    </section>
+
+    <section id="repair" class="section">
+      <div class="gamehead"><div><h2>🛠️ Fix the Bug</h2><div class="mini">Tìm lỗi thì và viết lại đoạn sai. Không phân biệt hoa/thường.</div></div><div><b id="repairScore">0</b>/10</div></div>
+      <div class="gamebox">
+        <div class="repair" id="repairList"></div>
+      </div>
+    </section>
+
+    <p class="footerhint">Grammar Quest B1 • Tiến độ lưu tự động bằng localStorage • Hoạt động offline</p>
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const state = JSON.parse(localStorage.getItem('gq_b1_state') || '{"xp":0,"correct":0,"answered":0,"streak":0,"completed":0,"missions":{}}');
+function save(){ localStorage.setItem('gq_b1_state', JSON.stringify(state)); renderStats(); }
+function renderStats(){
+  const acc = state.answered ? Math.round(state.correct/state.answered*100) : 0;
+  const mastery = Math.min(100, Math.round((state.xp/700)*100));
+  document.querySelector('#xp').textContent=state.xp;
+  document.querySelector('#accuracy').textContent=acc+'%';
+  document.querySelector('#streak').textContent=state.streak;
+  document.querySelector('#completed').textContent=state.completed;
+  document.querySelector('#masteryText').textContent=mastery+'%';
+  document.querySelector('#masteryBar').style.width=mastery+'%';
+  document.querySelector('#streakSide').textContent=state.streak;
+  document.querySelector('#xpSide').textContent=state.xp;
+  const ranks=['Rookie','Explorer','Grammar Ranger','Tense Master','B1 Champion'];
+  document.querySelector('#rank').textContent=ranks[Math.min(4,Math.floor(mastery/25))];
+  renderQuestMap();
+}
+function toast(msg){const el=document.querySelector('#toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1800)}
+function go(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelector('#'+id).classList.add('active');
+  document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.target===id));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.navbtn').forEach(b=>b.onclick=()=>go(b.dataset.target));
+
+function award(ok, xp=10){
+  state.answered++;
+  if(ok){state.correct++;state.streak++;state.xp+=xp;} else state.streak=0;
+  save();
+}
+function completeMission(name, passed){
+  if(passed && !state.missions[name]){state.missions[name]=true;state.completed++;state.xp+=30;save();toast('🏆 Mission complete! +30 XP');}
+}
+function renderQuestMap(){
+  const arr=[['Learn Lab','learn'],['Signal Sort','signal'],['Stative Scan','stative'],['Grammar Battle','quiz'],['Fix the Bug','repair']];
+  document.querySelector('#questMap').innerHTML=arr.map(([n,k],i)=>`<div class="level ${state.missions[k]?'done':''}" onclick="go('${k}')"><b>${state.missions[k]?'✅':'🔒'} ${i+1}</b><div class="mini">${n}</div></div>`).join('');
+}
+function resetProgress(){
+  if(confirm('Xóa toàn bộ XP và tiến độ?')){localStorage.removeItem('gq_b1_state');location.reload();}
+}
+
+// ---------- Signal Sort ----------
+const signalData=[
+ ['I usually walk to school.','simple','“usually” = thói quen lặp lại.'],
+ ['Mia is studying in her room right now.','cont','“right now” = đang diễn ra.'],
+ ['My dad works at a bank.','simple','Tình huống tương đối lâu dài.'],
+ ['We are staying with our cousins this week.','cont','“this week” = tình huống tạm thời.'],
+ ['Water boils at 100°C.','simple','Sự thật chung.'],
+ ['Leo is talking on the phone at the moment.','cont','“at the moment” = đang diễn ra.'],
+ ['I never drink coffee after 8 p.m.','simple','“never” mô tả thói quen.'],
+ ['They are building a new sports centre near my house.','cont','Hoạt động đang trong quá trình diễn ra.'],
+ ['Sara plays tennis twice a week.','simple','“twice a week” = tần suất.'],
+ ['Be quiet! The baby is sleeping.','cont','Tình huống đang xảy ra lúc nói.'],
+ ['Our teacher gives us homework every Friday.','simple','“every Friday” = lịch lặp lại.'],
+ ['I am using my brother’s laptop until mine is repaired.','cont','Tình huống tạm thời.'],
+ ['Cats need water every day.','simple','Trạng thái/sự thật chung; “need” thường là stative.'],
+ ['Why are you laughing?','cont','Hành động đang xảy ra.'],
+ ['The museum opens at nine every day.','simple','Lịch/sự việc lặp lại.'],
+ ['Nina is always borrowing my pens!','cont','“always” + continuous có thể diễn tả thói quen gây khó chịu.'],
+ ['I think this answer is correct.','simple','“think” = opinion → stative meaning.'],
+ ['I am thinking about the next question.','cont','“think” = quá trình suy nghĩ → action meaning.']
+];
+let signalIndex=0, signalScore=0;
+function renderSignal(){
+  if(signalIndex>=signalData.length){
+    document.querySelector('#signalText').textContent=`Hoàn thành! ${signalScore}/${signalData.length}`;
+    document.querySelector('#signalFeedback').innerHTML= signalScore>=13 ? '🌟 Rất tốt. Bạn đã đọc tín hiệu thời gian khá chắc.' : '🔁 Hãy quay lại Learn Lab và nhìn marker trước.';
+    completeMission('signal',signalScore>=13); return;
+  }
+  document.querySelector('#signalRound').textContent=signalIndex+1;
+  document.querySelector('#signalText').textContent=signalData[signalIndex][0];
+}
+function answerSignal(ans){
+  if(signalIndex>=signalData.length)return;
+  const [,correct,why]=signalData[signalIndex];
+  const ok=ans===correct;
+  if(ok)signalScore++;
+  document.querySelector('#signalScore').textContent=signalScore;
+  document.querySelector('#signalFeedback').innerHTML=(ok?'✅ Chính xác. ':'❌ Chưa đúng. ')+why;
+  award(ok,8); signalIndex++; setTimeout(renderSignal,650);
+}
+
+// ---------- Stative Scan ----------
+const verbData=[
+ ['know',1],['run',0],['like',1],['build',0],['need',1],['want',1],['dance',0],['believe',1],
+ ['understand',1],['jump',0],['prefer',1],['belong to',1],['hate',1],['cook',0],['seem',1],['love',1],
+ ['write',0],['appear',1],['taste',1],['play',0]
+];
+let stativeHits=0, stativeMiss=0;
+function renderStative(){
+  const grid=document.querySelector('#verbGrid'); grid.innerHTML='';
+  verbData.forEach(([v,isS],i)=>{
+    const d=document.createElement('button'); d.className='verbcard';d.textContent=v;
+    d.onclick=()=>{
+      if(d.dataset.done)return;
+      d.dataset.done='1';
+      if(isS){d.classList.add('ok');stativeHits++;award(true,6);document.querySelector('#stativeFeedback').textContent=`✅ “${v}” thường mô tả trạng thái.`}
+      else{d.classList.add('no');stativeMiss++;award(false,0);document.querySelector('#stativeFeedback').textContent=`❌ “${v}” là động từ hành động điển hình.`}
+      document.querySelector('#stativeCount').textContent=stativeHits;
+      const total=verbData.filter(x=>x[1]).length;
+      if(stativeHits===total)completeMission('stative',stativeMiss<=3);
+    };
+    grid.appendChild(d);
+  });
+  document.querySelector('#stativeTotal').textContent=verbData.filter(x=>x[1]).length;
+}
+
+// ---------- Quiz ----------
+const quizBank=[
+ q('My sister ___ to school by bus every day.',['goes','is going','go','going'],0,'“every day” → thói quen; chủ ngữ số ít → goes.'),
+ q('Please be quiet. I ___ to the teacher.',['listen','am listening','listens','listening'],1,'Việc đang xảy ra ngay lúc nói → am listening.'),
+ q('Tom usually ___ breakfast at 7 a.m.',['has','is having','have','having'],0,'“usually” → thói quen → Present Simple.'),
+ q('We ___ at a hotel this week.',['stay','are staying','stays','staying'],1,'“this week” → tình huống tạm thời.'),
+ q('I ___ this song. It’s great!',['am loving','love','loving','loves'],1,'“love” thường là stative verb.'),
+ q('Why ___ you ___ at me?',['do / look','are / looking','does / look','are / look'],1,'Hành động đang diễn ra → are looking.'),
+ q('The Earth ___ around the Sun.',['moves','is moving','move','moving'],0,'Sự thật chung → Present Simple.'),
+ q('Kate ___ her aunt for a few days.',['visits','is visiting','visit','visiting'],1,'“for a few days” ở đây là tạm thời.'),
+ q('I ___ what you mean.',['am understanding','understand','understands','understanding'],1,'“understand” thường là stative.'),
+ q('My brother ___ football twice a week.',['plays','is playing','play','playing'],0,'“twice a week” → tần suất.'),
+ q('Look! It ___.',['rains','is raining','rain','raining'],1,'“Look!” báo hiệu việc đang diễn ra.'),
+ q('She ___ a blue jacket today.',['wears','is wearing','wear','wearing'],1,'“today” nhấn mạnh trạng thái tạm thời hiện tại.'),
+ q('How often ___ you ___ the gym?',['are / going','do / go','does / go','are / go'],1,'“How often” hỏi thói quen → do + V.'),
+ q('Sam ___ to the chess club.',['is belonging','belongs','belong','belonging'],1,'“belong” là stative verb.'),
+ q('I ___ about your idea right now.',['think','am thinking','thinks','thinking'],1,'“think about” = quá trình suy nghĩ đang diễn ra.'),
+ q('I ___ your idea is useful.',['am thinking','think','thinking','thinks'],1,'“think” = opinion → Present Simple.'),
+ q('Mum ___ dinner at the moment.',['cooks','is cooking','cook','cooking'],1,'“at the moment” → Present Continuous.'),
+ q('We ___ TV very often.',['aren’t watching','don’t watch','doesn’t watch','not watch'],1,'“very often” → thói quen → don’t watch.'),
+ q('A good friend ___ when you are upset.',['knows','is knowing','know','knowing'],0,'“know” là stative; chủ ngữ số ít → knows.'),
+ q('The train ___ at 6:30 every morning.',['leaves','is leaving','leave','leaving'],0,'Lịch lặp lại → Present Simple.'),
+ q('Nora ___ ready for school, so she can’t answer.',['gets','is getting','get','getting'],1,'Đang diễn ra lúc nói → is getting.'),
+ q('You ___ the ball against the wall in squash.',['hit','are hitting','hits','hitting'],0,'Mô tả luật chơi/sự thật chung → Present Simple.'),
+ q('I ___ a newspaper at least once a week.',['read','am reading','reads','reading'],0,'“once a week” → Present Simple.'),
+ q('Ben and Lucy ___ well at school at the moment.',['do','are doing','does','doing'],1,'“at the moment” → Present Continuous.'),
+ q('How ___ you ___ your surname?',['are / spelling','do / spell','does / spell','are / spell'],1,'Hỏi cách đánh vần nói chung → Present Simple.'),
+ q('Dad ___ to the local astronomy club.',['belongs','is belonging','belong','belonging'],0,'“belong” = stative.'),
+ q('Regular exercise ___ you stay healthy.',['helps','is helping','help','helping'],0,'Sự thật chung → Present Simple.'),
+ q('___ you ___ this programme, or can I turn off the TV?',['Do / watch','Are / watching','Does / watch','Are / watch'],1,'Đang xem ngay lúc nói → Present Continuous.'),
+ q('I ___ my cousin’s bike until mine is fixed.',['use','am using','uses','using'],1,'“until mine is fixed” → tình huống tạm thời.'),
+ q('The shop ___ at 9 a.m. on weekdays.',['opens','is opening','open','opening'],0,'Lịch cố định → Present Simple.'),
+ q('My neighbour ___ loud music every night.',['plays','is playing','play','playing'],0,'“every night” → thói quen.'),
+ q('You ___ very silly today!',['are being','are','be','is being'],0,'“be” có thể dùng continuous khi nói hành vi tạm thời.'),
+ q('This soup ___ delicious.',['is tasting','tastes','taste','tasting'],1,'“taste” = cảm nhận/trạng thái → Present Simple.'),
+ q('The chef ___ the soup now.',['tastes','is tasting','taste','tasting'],1,'“taste” = nếm thử hành động → Present Continuous.'),
+ q('She ___ two brothers.',['is having','has','have','having'],1,'“have” = sở hữu → stative meaning.'),
+ q('She ___ lunch with a client right now.',['has','is having','have','having'],1,'“have lunch” = hành động đang diễn ra.'),
+ q('I ___ late for school.',['am never','never am','am not never','never be'],0,'Trạng từ tần suất thường đứng sau “be”.'),
+ q('He ___ forgets his homework.',['often','is often','often is','is forgetting often'],0,'Với động từ thường, adverb đứng trước động từ chính.'),
+ q('They ___ a new bridge near the river this month.',['build','are building','builds','building'],1,'“this month” → quá trình tạm thời.'),
+ q('I ___ spicy food.',['don’t like','am not liking','doesn’t like','not like'],0,'“like” là stative → Present Simple.')
+];
+function q(text,opts,ans,why){return {text,opts,ans,why}}
+let quizSet=[], quizIndex=0, quizCorrect=0, quizLocked=false;
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function startQuiz(){
+  quizSet=shuffle(quizBank).slice(0,40); quizIndex=0; quizCorrect=0; quizLocked=false; renderQuiz();
+}
+function renderQuiz(){
+  if(quizIndex>=quizSet.length){
+    document.querySelector('#quizQuestion').textContent=`Kết thúc: ${quizCorrect}/40`;
+    document.querySelector('#quizOptions').innerHTML='';
+    document.querySelector('#quizFeedback').innerHTML=quizCorrect>=28?'🏆 Bạn đã vượt mốc 70%. Hãy thử lại để nâng độ chính xác.':'📚 Hãy ôn lại marker thời gian và stative verbs rồi thử lại.';
+    document.querySelector('#quizProgress').textContent='Hoàn thành';
+    document.querySelector('#quizBar').style.width='100%';
+    document.querySelector('#nextQuiz').disabled=true;
+    completeMission('quiz',quizCorrect>=28);
+    return;
+  }
+  quizLocked=false;
+  const item=quizSet[quizIndex];
+  document.querySelector('#quizQuestion').textContent=item.text;
+  document.querySelector('#quizProgress').textContent=(quizIndex+1)+'/40';
+  document.querySelector('#quizBar').style.width=((quizIndex)/40*100)+'%';
+  document.querySelector('#quizFeedback').textContent='Chọn đáp án rồi đọc lý do.';
+  document.querySelector('#nextQuiz').disabled=true;
+  const box=document.querySelector('#quizOptions');box.innerHTML='';
+  item.opts.forEach((op,i)=>{
+    const b=document.createElement('button');b.className='opt';b.textContent=op;
+    b.onclick=()=>answerQuiz(i,b);box.appendChild(b);
+  });
+}
+function answerQuiz(i,btn){
+  if(quizLocked)return;quizLocked=true;
+  const item=quizSet[quizIndex], ok=i===item.ans;
+  [...document.querySelectorAll('.opt')].forEach((b,idx)=>{if(idx===item.ans)b.classList.add('correct');else if(idx===i&&!ok)b.classList.add('wrong');b.disabled=true;});
+  if(ok)quizCorrect++;
+  award(ok,10);
+  document.querySelector('#quizFeedback').innerHTML=(ok?'✅ Đúng. ':'❌ Sai. ')+item.why;
+  document.querySelector('#nextQuiz').disabled=false;
+}
+function nextQuiz(){quizIndex++;renderQuiz();}
+
+// ---------- Repair ----------
+const repairData=[
+ ['She is knowing the answer.','She knows the answer.','“know” là stative → Present Simple.'],
+ ['I am usually going to bed at 11.','I usually go to bed at 11.','“usually” = thói quen.'],
+ ['Look! The dog runs after the cat.','Look! The dog is running after the cat.','“Look!” → hành động đang diễn ra.'],
+ ['He is belonging to the school chess club.','He belongs to the school chess club.','“belong” là stative.'],
+ ['We watch a film right now.','We are watching a film right now.','“right now” → Present Continuous.'],
+ ['My mum is working at a hospital every day.','My mum works at a hospital every day.','Công việc lâu dài + every day.'],
+ ['I am wanting a new phone.','I want a new phone.','“want” thường là stative.'],
+ ['They play tennis at the moment.','They are playing tennis at the moment.','“at the moment” → đang diễn ra.'],
+ ['How often are you visiting your grandparents?','How often do you visit your grandparents?','“How often” hỏi tần suất/thói quen.'],
+ ['This soup is tasting very salty.','This soup tastes very salty.','“taste” = trạng thái/cảm nhận.']
+];
+function norm(s){return s.toLowerCase().replace(/[.!?]/g,'').replace(/\s+/g,' ').trim()}
+function renderRepair(){
+  const list=document.querySelector('#repairList');list.innerHTML='';
+  repairData.forEach(([bad,good,why],i)=>{
+    const d=document.createElement('div');d.className='repairitem';
+    d.innerHTML=`<div class="mini">BUG ${i+1}</div><b>${bad}</b><div class="repairline" style="margin-top:10px"><input id="r${i}" placeholder="Viết câu đúng..."><button class="btn ghost" onclick="checkRepair(${i})">Kiểm tra</button></div><div class="mini" id="rf${i}" style="margin-top:8px"></div>`;
+    list.appendChild(d);
+  })
+}
+let repairDone=new Set();
+function checkRepair(i){
+  if(repairDone.has(i))return;
+  const val=document.querySelector('#r'+i).value;
+  const [bad,good,why]=repairData[i];
+  const ok=norm(val)===norm(good);
+  const f=document.querySelector('#rf'+i);
+  if(ok){f.innerHTML='✅ '+why;repairDone.add(i);award(true,8);document.querySelector('#repairScore').textContent=repairDone.size;if(repairDone.size>=7)completeMission('repair',true)}
+  else{f.innerHTML=`❌ Gợi ý: ${why} <span style="color:#a5f3fc">Đáp án mẫu: ${good}</span>`;award(false,0)}
+}
+
+// init
+renderStats(); renderSignal(); renderStative(); startQuiz(); renderRepair();
+state.missions.learn=true; save();
+</script>
+</body>
+</html>
