@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Punctuality Vocabulary Lab - IELTS 8.5+</title>
+<style>
+  :root{
+    --bg:#f7f7fb;--card:#ffffff;--ink:#172033;--muted:#667085;
+    --accent:#6c63ff;--accent2:#ff7aa2;--good:#18a66a;--bad:#d64545;--gold:#f4b942;
+    --line:#e9e9f2;--soft:#f0efff;--blue:#dfefff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:
+      radial-gradient(circle at top left,#fce8f0 0,transparent 28%),
+      radial-gradient(circle at top right,#e8ecff 0,transparent 26%),
+      var(--bg);color:var(--ink)}
+  .app{max-width:1280px;margin:auto;padding:20px}
+  .hero{display:grid;grid-template-columns:1.5fr .8fr;gap:18px;align-items:stretch}
+  .heroCard,.statCard,.panel{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:24px;box-shadow:0 16px 40px rgba(50,50,90,.08)}
+  .heroCard{padding:28px;position:relative;overflow:hidden}
+  .heroCard:after{content:"⏰";position:absolute;right:24px;top:12px;font-size:88px;opacity:.13;transform:rotate(-8deg)}
+  h1{margin:0 0 10px;font-size:clamp(30px,5vw,54px);line-height:1.02}
+  .tag{display:inline-block;padding:7px 12px;border-radius:999px;background:var(--soft);color:var(--accent);font-weight:800;margin-bottom:14px}
+  .hero p{color:var(--muted);font-size:16px;max-width:760px}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .statCard{padding:18px}
+  .statCard b{font-size:28px;display:block}
+  .statCard span{color:var(--muted);font-size:13px}
+  .progress{height:10px;background:#ececf5;border-radius:99px;overflow:hidden;margin-top:8px}
+  .progress i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0%}
+  nav{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+  nav button,.btn{border:0;border-radius:14px;padding:11px 15px;font-weight:800;cursor:pointer;transition:.2s;background:white;box-shadow:0 4px 14px rgba(20,20,50,.06);color:var(--ink)}
+  nav button.active,.btn.primary{background:linear-gradient(135deg,var(--accent),#8f76ff);color:#fff}
+  .btn.good{background:var(--good);color:white}.btn.bad{background:var(--bad);color:white}
+  .btn:hover,nav button:hover{transform:translateY(-2px)}
+  .view{display:none}.view.active{display:block}
+  .panel{padding:22px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .sectionTitle{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+  .sectionTitle h2{margin:0}
+  .small{font-size:13px;color:var(--muted)}
+  input,select,textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit}
+  .vocabTable{width:100%;border-collapse:collapse;font-size:14px}
+  .vocabTable th,.vocabTable td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+  .vocabTable th{position:sticky;top:0;background:#fff;z-index:2}
+  .chip{display:inline-block;background:var(--soft);color:var(--accent);padding:5px 8px;border-radius:999px;font-size:12px;font-weight:800}
+  .flash{min-height:320px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:30px;border-radius:22px;background:linear-gradient(135deg,#fff,#f7f4ff);border:1px solid var(--line)}
+  .flash .word{font-size:42px;font-weight:900}.flash .meaning{font-size:24px;color:var(--accent);margin:12px 0}.flash .example{color:var(--muted);max-width:700px}
+  .hidden{display:none!important}
+  .quizQ{font-size:22px;font-weight:900;margin:12px 0 18px}
+  .answers{display:grid;gap:10px}
+  .answer{padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:#fff;cursor:pointer;font-weight:700}
+  .answer:hover{border-color:var(--accent);background:#f9f8ff}
+  .answer.correct{background:#e9fbf3;border-color:var(--good)}.answer.wrong{background:#fff0f0;border-color:var(--bad)}
+  .feedback{margin-top:14px;padding:14px;border-radius:14px;background:#f8f8fd;line-height:1.6}
+  .gameCard{padding:16px;border:1px solid var(--line);border-radius:16px;background:#fff}
+  .gameCard h3{margin:0 0 8px}
+  .matchBoard{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .matchItem{padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff;cursor:pointer}
+  .matchItem.sel{border-color:var(--accent);background:var(--soft)}
+  .matchItem.done{opacity:.4;text-decoration:line-through}
+  .socratic{background:linear-gradient(135deg,#fff9e8,#fff);border:1px solid #f7e2a3}
+  .feynman{background:linear-gradient(135deg,#eaf8ff,#fff);border:1px solid #cfefff}
+  .errorItem{padding:14px;border:1px solid var(--line);border-radius:14px;margin:10px 0;background:#fff}
+  .badge{font-weight:900;color:var(--good)}
+  .streak{color:#ff7a00;font-weight:900}
+  canvas{width:100%;height:240px;border-radius:14px;background:#fff}
+  .footer{padding:24px 0 8px;text-align:center;color:var(--muted);font-size:13px}
+  @media(max-width:900px){.hero,.grid2,.grid3{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.vocabTable{font-size:12px}.vocabTable th:nth-child(4),.vocabTable td:nth-child(4){display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+  <section class="hero">
+    <div class="heroCard">
+      <div class="tag">IELTS Speaking • Punctuality • Band 8.5+</div>
+      <h1>Punctuality Vocabulary Lab</h1>
+      <p>Học 50 từ/cụm từ bằng flashcards, quiz, matching, sentence builder, shadow speaking và sổ lỗi sai. Mỗi câu sai sẽ được giải thích theo cách thật đơn giản và đặt câu hỏi gợi mở để em tự sửa.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+        <button class="btn primary" onclick="go('flash')">Bắt đầu học</button>
+        <button class="btn" onclick="go('quiz')">Làm quiz</button>
+        <button class="btn" onclick="go('speak')">Luyện Speaking</button>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="statCard"><b id="mastered">0/50</b><span>Từ đã làm chủ</span><div class="progress"><i id="masterBar"></i></div></div>
+      <div class="statCard"><b id="accuracy">0%</b><span>Độ chính xác</span></div>
+      <div class="statCard"><b class="streak" id="streak">0 🔥</b><span>Chuỗi đúng liên tiếp</span></div>
+      <div class="statCard"><b id="xp">0 XP</b><span>Điểm luyện tập</span></div>
+    </div>
+  </section>
+
+  <nav id="nav">
+    <button class="active" data-view="dashboard">Dashboard</button>
+    <button data-view="vocab">50 từ vựng</button>
+    <button data-view="flash">Flashcards</button>
+    <button data-view="quiz">Quiz thích nghi</button>
+    <button data-view="match">Matching</button>
+    <button data-view="builder">Sentence Builder</button>
+    <button data-view="speak">IELTS Speaking</button>
+    <button data-view="errors">Sổ lỗi sai</button>
+  </nav>
+
+  <main>
+    <section id="dashboard" class="view active">
+      <div class="grid3">
+        <div class="panel gameCard"><h3>⚡ Học nhanh 10 từ</h3><p class="small">Flashcards ngẫu nhiên + tự đánh giá nhớ/chưa nhớ.</p><button class="btn primary" onclick="startFlash(10)">Bắt đầu</button></div>
+        <div class="panel gameCard"><h3>🎯 Quiz thông minh</h3><p class="small">Ưu tiên những từ em sai nhiều nhất.</p><button class="btn primary" onclick="go('quiz')">Làm quiz</button></div>
+        <div class="panel gameCard"><h3>🗣️ Speaking Challenge</h3><p class="small">Tạo câu trả lời IELTS với từ vựng nâng cao.</p><button class="btn primary" onclick="go('speak')">Luyện nói</button></div>
+      </div>
+      <div class="grid2" style="margin-top:18px">
+        <div class="panel">
+          <div class="sectionTitle"><h2>Nhóm từ cần ưu tiên</h2><span class="small">Dựa trên lỗi sai</span></div>
+          <div id="weakWords"></div>
+        </div>
+        <div class="panel">
+          <div class="sectionTitle"><h2>Tư duy trả lời Speaking</h2></div>
+          <div class="socratic gameCard">
+            <b>Bước 1 — Ý kiến:</b> Em có nghĩ đúng giờ quan trọng không?<br>
+            <b>Bước 2 — Vì sao?</b> Nó thể hiện respect, responsibility hay reliability?<br>
+            <b>Bước 3 — Hệ quả:</b> Nếu thường xuyên đi muộn, điều gì xảy ra?<br>
+            <b>Bước 4 — Ví dụ cá nhân:</b> Em từng phải plan ahead hay factor in traffic chưa?<br>
+            <b>Bước 5 — Ngoại lệ:</b> Khi nào đến muộn là có thể chấp nhận?
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="vocab" class="view">
+      <div class="panel">
+        <div class="sectionTitle">
+          <h2>50 từ/cụm từ chủ đề Punctuality</h2>
+          <input id="search" placeholder="Tìm từ, nghĩa hoặc ví dụ..." style="max-width:360px" oninput="renderTable()">
+        </div>
+        <div style="overflow:auto;max-height:650px">
+          <table class="vocabTable">
+            <thead><tr><th>#</th><th>Từ/cụm từ</th><th>Loại</th><th>Nghĩa</th><th>Ví dụ</th></tr></thead>
+            <tbody id="vocabBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="flash" class="view">
+      <div class="panel">
+        <div class="sectionTitle"><h2>Flashcards</h2><span id="flashCount" class="small"></span></div>
+        <div id="flashCard" class="flash"></div>
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:14px">
+          <button class="btn bad" onclick="rateFlash(false)">Chưa nhớ</button>
+          <button class="btn" onclick="flipFlash()">Lật thẻ</button>
+          <button class="btn good" onclick="rateFlash(true)">Đã nhớ</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="quiz" class="view">
+      <div class="grid2">
+        <div class="panel">
+          <div class="sectionTitle"><h2>Quiz thích nghi</h2><span class="small" id="quizMeta"></span></div>
+          <div id="quizBox"></div>
+        </div>
+        <div class="panel feynman">
+          <h3>🧠 Giải thích siêu đơn giản</h3>
+          <div id="teachBox">Chọn đáp án. Sau mỗi câu, phần này sẽ chỉ ra vì sao đúng/sai và hỏi em một câu ngắn để tự kiểm tra lại.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="match" class="view">
+      <div class="panel">
+        <div class="sectionTitle"><h2>Matching Game</h2><button class="btn" onclick="newMatch()">Ván mới</button></div>
+        <p class="small">Ghép từ với nghĩa đúng. Chọn một ô bên trái và một ô bên phải.</p>
+        <div class="matchBoard"><div id="matchLeft"></div><div id="matchRight"></div></div>
+      </div>
+    </section>
+
+    <section id="builder" class="view">
+      <div class="grid2">
+        <div class="panel">
+          <h2>Sentence Builder</h2>
+          <p class="small">Dùng từ nâng cao để tự viết câu. App sẽ kiểm tra cấu trúc cơ bản và gợi ý nâng cấp.</p>
+          <label>Từ mục tiêu</label>
+          <select id="builderWord"></select>
+          <label style="display:block;margin-top:10px">Câu của em</label>
+          <textarea id="builderInput" rows="6" placeholder="Ví dụ: I always plan ahead because..."></textarea>
+          <div style="display:flex;gap:10px;margin-top:10px">
+            <button class="btn primary" onclick="checkSentence()">Kiểm tra</button>
+            <button class="btn" onclick="randomBuilder()">Đổi từ</button>
+          </div>
+        </div>
+        <div class="panel socratic"><h3>🔎 Tự kiểm tra trước khi nộp</h3><div id="builderFeedback">
+          1. Em đã dùng đúng từ mục tiêu chưa?<br>
+          2. Câu có chủ ngữ + động từ chính chưa?<br>
+          3. Em đã thêm lý do hoặc ví dụ chưa?<br>
+          4. Có thể thay “important/good/bad” bằng từ cụ thể hơn không?
+        </div></div>
+      </div>
+    </section>
+
+    <section id="speak" class="view">
+      <div class="grid2">
+        <div class="panel">
+          <h2>IELTS Speaking Challenge</h2>
+          <div class="gameCard"><b>Câu hỏi:</b><div class="quizQ" id="speakPrompt">Do you think it is important to be punctual?</div></div>
+          <div style="margin:12px 0">
+            <button class="btn" onclick="newPrompt()">Câu hỏi khác</button>
+            <button class="btn primary" onclick="newSpeakingWords()">Gợi ý 5 từ</button>
+          </div>
+          <div id="speakingWords"></div>
+          <textarea id="speakingAnswer" rows="8" placeholder="Viết hoặc nói rồi ghi lại câu trả lời của em..."></textarea>
+          <button class="btn primary" style="margin-top:10px" onclick="evaluateSpeaking()">Phân tích câu trả lời</button>
+        </div>
+        <div class="panel">
+          <h3>Khung 5 bước</h3>
+          <div class="gameCard socratic">
+            <b>1. Opinion:</b> Trả lời trực tiếp.<br>
+            <b>2. Reason:</b> Vì sao?<br>
+            <b>3. Explain:</b> Nó thể hiện điều gì?<br>
+            <b>4. Example:</b> Ví dụ học tập/công việc/cá nhân.<br>
+            <b>5. Contrast:</b> Thêm ngoại lệ hoặc mặt ngược lại.
+          </div>
+          <div id="speakingFeedback" class="feedback">Mục tiêu: dùng ít nhất 3 cụm từ nâng cao một cách tự nhiên, không nhồi từ.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="errors" class="view">
+      <div class="panel">
+        <div class="sectionTitle"><h2>Sổ lỗi sai</h2><button class="btn" onclick="clearErrors()">Xóa lịch sử lỗi</button></div>
+        <div id="errorList"></div>
+      </div>
+    </section>
+  </main>
+  <div class="footer">Offline • Single-file HTML • Lưu tiến độ bằng localStorage</div>
+</div>
+
+<script>
+const vocab = [
+["punctual","adj","đúng giờ","I always try to be punctual for important appointments."],
+["punctuality","noun","sự đúng giờ","Punctuality reflects a person's professionalism."],
+["time-conscious","adj","có ý thức về thời gian","I've become more time-conscious since starting high school."],
+["time-efficient","adj","sử dụng thời gian hiệu quả","Planning ahead helps me become more time-efficient."],
+["time management","collocation","quản lý thời gian","Good time management skills are essential for students."],
+["manage one's time effectively","collocation","quản lý thời gian hiệu quả","I try to manage my time effectively during exam periods."],
+["be on time","collocation","đến đúng giờ","I make an effort to be on time for every class."],
+["arrive promptly","collocation","đến đúng giờ / nhanh chóng","Employees are expected to arrive promptly."],
+["show up on time","phrase","xuất hiện đúng giờ","I think people should show up on time for meetings."],
+["turn up late","phrasal verb","đến muộn","I hate turning up late because it makes me feel embarrassed."],
+["run late","phrase","bị chậm, muộn giờ","I was running late because of heavy traffic."],
+["fall behind schedule","collocation","chậm tiến độ","If one person is late, the whole meeting may fall behind schedule."],
+["stay on schedule","collocation","đúng tiến độ","Being punctual helps everyone stay on schedule."],
+["stick to a schedule","collocation","tuân thủ lịch trình","I try to stick to a schedule during weekdays."],
+["keep to a timetable","collocation","tuân theo thời gian biểu","Students need to keep to a timetable before exams."],
+["meet a deadline","collocation","hoàn thành đúng hạn","Good planning allows me to meet deadlines without stress."],
+["miss a deadline","collocation","lỡ hạn","Procrastination can cause people to miss deadlines."],
+["tight deadline","collocation","thời hạn gấp","I sometimes have to work under a tight deadline."],
+["time constraint","collocation","giới hạn về thời gian","Students often work under serious time constraints."],
+["time pressure","collocation","áp lực thời gian","Being late creates unnecessary time pressure."],
+["plan ahead","phrasal verb","lên kế hoạch trước","I usually plan ahead to avoid being late."],
+["allow extra time","collocation","dành thêm thời gian dự phòng","I allow extra time when travelling during rush hour."],
+["factor in","phrasal verb","tính đến","I always factor in traffic when planning my journey."],
+["set aside time","phrasal verb","dành thời gian cho việc gì","I set aside time for revision every evening."],
+["make time for","phrase","dành thời gian cho","I always make time for my family despite my schedule."],
+["fit something in","phrasal verb","sắp xếp chen một việc vào lịch","I try to fit exercise into my daily routine."],
+["free up time","phrasal verb","giải phóng thời gian","Finishing homework early frees up time for relaxation."],
+["waste precious time","collocation","lãng phí thời gian quý giá","Being disorganized can waste precious time."],
+["make the most of one's time","idiom","tận dụng tối đa thời gian","I try to make the most of my time after school."],
+["make good use of time","collocation","sử dụng thời gian hợp lý","Commuting gives me a chance to make good use of my time."],
+["value other people's time","collocation","coi trọng thời gian của người khác","Being punctual shows that you value other people's time."],
+["show respect for someone","collocation","thể hiện sự tôn trọng","Arriving on time shows respect for others."],
+["a sign of respect","collocation","dấu hiệu của sự tôn trọng","Punctuality is often regarded as a sign of respect."],
+["a sense of responsibility","collocation","tinh thần trách nhiệm","Being punctual demonstrates a sense of responsibility."],
+["professional etiquette","collocation","phép lịch sự nơi làm việc","Punctuality is part of basic professional etiquette."],
+["professionalism","noun","tính chuyên nghiệp","Being punctual reflects your professionalism."],
+["reliability","noun","sự đáng tin cậy","Punctuality is closely associated with reliability."],
+["dependable","adj","đáng tin cậy","A punctual person is often seen as dependable."],
+["build trust","collocation","xây dựng lòng tin","Consistently being on time can build trust."],
+["make a good impression","collocation","tạo ấn tượng tốt","Being punctual helps you make a good impression."],
+["leave a lasting impression","collocation","để lại ấn tượng lâu dài","Professional behaviour can leave a lasting impression."],
+["get off on the right foot","idiom","khởi đầu thuận lợi","Arriving early helps you get off on the right foot at a job interview."],
+["against the clock","idiom","chạy đua với thời gian","I hate working against the clock because it makes me anxious."],
+["in the nick of time","idiom","vừa kịp lúc","I reached the station in the nick of time."],
+["at the eleventh hour","idiom","vào phút chót","Some students start assignments at the eleventh hour."],
+["race against time","idiom","chạy đua với thời gian","I sometimes race against time when I leave home too late."],
+["pressed for time","idiom","thiếu thời gian","I'm often pressed for time during exam season."],
+["time is of the essence","idiom","thời gian là yếu tố cực kỳ quan trọng","In emergencies, time is of the essence."],
+["procrastinate","verb","trì hoãn","People who procrastinate often struggle with deadlines."],
+["a last-minute rush","collocation","sự cuống cuồng phút chót","Planning ahead prevents a last-minute rush."]
+];
+
+let state = JSON.parse(localStorage.getItem('punctualityLab')||'null') || {
+  correct:0,total:0,streak:0,xp:0,mastered:{},wrong:{},errors:[]
+};
+const save=()=>{localStorage.setItem('punctualityLab',JSON.stringify(state));updateStats();renderWeak();}
+
+function updateStats(){
+  let m=Object.keys(state.mastered).length;
+  mastered.textContent=`${m}/50`;
+  masterBar.style.width=(m/50*100)+'%';
+  accuracy.textContent=state.total?Math.round(state.correct/state.total*100)+'%':'0%';
+  streak.textContent=state.streak+' 🔥'; xp.textContent=state.xp+' XP';
+}
+function go(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===id));
+  if(id==='quiz') newQuiz();
+  if(id==='errors') renderErrors();
+  if(id==='match') newMatch();
+}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>go(b.dataset.view));
+
+function renderTable(){
+  const q=(search.value||'').toLowerCase();
+  vocabBody.innerHTML=vocab.map((v,i)=>({v,i})).filter(x=>x.v.join(' ').toLowerCase().includes(q)).map(({v,i})=>`
+    <tr><td>${i+1}</td><td><b>${v[0]}</b><br><span class="chip">${state.mastered[i]?'mastered':'learning'}</span></td><td>${v[1]}</td><td>${v[2]}</td><td>${v[3]}</td></tr>`).join('');
+}
+
+let flashDeck=[],flashIndex=0,flipped=false;
+function startFlash(n=50){flashDeck=[...Array(vocab.length).keys()].sort(()=>Math.random()-.5).slice(0,n);flashIndex=0;flipped=false;go('flash');renderFlash();}
+function renderFlash(){
+  if(!flashDeck.length) flashDeck=[...Array(vocab.length).keys()];
+  if(flashIndex>=flashDeck.length){flashCard.innerHTML='<div class="word">Hoàn thành 🎉</div><div class="meaning">Em đã đi hết bộ thẻ này.</div>';return;}
+  const i=flashDeck[flashIndex],v=vocab[i];
+  flashCount.textContent=`${flashIndex+1}/${flashDeck.length}`;
+  flashCard.innerHTML=flipped?`<div class="word">${v[0]}</div><div class="meaning">${v[2]}</div><div class="example">${v[3]}</div><div class="chip">${v[1]}</div>`:`<div class="word">${v[0]}</div><div class="small">Hãy tự nhớ nghĩa trước khi lật thẻ.</div>`;
+}
+function flipFlash(){flipped=!flipped;renderFlash()}
+function rateFlash(ok){
+  let i=flashDeck[flashIndex];
+  if(ok){state.mastered[i]=true;state.xp+=5}else{state.wrong[i]=(state.wrong[i]||0)+1}
+  flashIndex++;flipped=false;save();renderFlash();
+}
+
+function weightedIndex(){
+  let bag=[];
+  vocab.forEach((v,i)=>{let w=1+(state.wrong[i]||0)*3;for(let k=0;k<w;k++)bag.push(i)});
+  return bag[Math.floor(Math.random()*bag.length)];
+}
+let currentQuiz=null;
+function newQuiz(){
+  const i=weightedIndex(),v=vocab[i];
+  let opts=[i];
+  while(opts.length<4){let x=Math.floor(Math.random()*vocab.length);if(!opts.includes(x))opts.push(x)}
+  opts.sort(()=>Math.random()-.5);
+  currentQuiz={i,opts,answered:false};
+  quizMeta.textContent=`Ưu tiên từ yếu • ${state.total+1} câu đã làm`;
+  quizBox.innerHTML=`<div class="chip">${v[1]}</div><div class="quizQ">“${v[0]}” có nghĩa gần nhất là gì?</div>
+  <div class="answers">${opts.map(x=>`<div class="answer" onclick="answerQuiz(${x},this)">${vocab[x][2]}</div>`).join('')}</div>
+  <button class="btn primary hidden" id="nextQuiz" style="margin-top:12px" onclick="newQuiz()">Câu tiếp theo</button>`;
+}
+function answerQuiz(x,el){
+  if(currentQuiz.answered)return; currentQuiz.answered=true;
+  const ok=x===currentQuiz.i; state.total++;
+  if(ok){state.correct++;state.streak++;state.xp+=10;state.mastered[x]=true;el.classList.add('correct')}
+  else{
+    state.streak=0;state.wrong[currentQuiz.i]=(state.wrong[currentQuiz.i]||0)+1;el.classList.add('wrong');
+    [...document.querySelectorAll('.answer')].forEach(a=>{if(a.textContent===vocab[currentQuiz.i][2])a.classList.add('correct')});
+    state.errors.unshift({i:currentQuiz.i,chosen:x,time:new Date().toLocaleString()});
+  }
+  const v=vocab[currentQuiz.i];
+  teachBox.innerHTML= ok
+  ? `<b>Đúng.</b> “${v[0]}” = <b>${v[2]}</b>.<br><br><b>Giải thích đơn giản:</b> ${v[3]}<br><br><b>Tự hỏi:</b> Em có thể thay chủ ngữ trong ví dụ bằng “I” và nói lại câu theo trải nghiệm của mình không?`
+  : `<b>Chưa đúng.</b> Đáp án là <b>${v[0]} = ${v[2]}</b>.<br><br><b>Hình dung đơn giản:</b> ${v[3]}<br><br><b>Tự kiểm tra:</b> Trong tình huống này, từ này nói về “đúng giờ”, “lịch trình”, hay “áp lực thời gian”?`;
+  nextQuiz.classList.remove('hidden'); save();
+}
+
+let selL=null,selR=null,matchPairs=[];
+function newMatch(){
+  let ids=[...Array(vocab.length).keys()].sort(()=>Math.random()-.5).slice(0,8);matchPairs=ids;
+  matchLeft.innerHTML=ids.map(i=>`<div class="matchItem" data-i="${i}" onclick="pickMatch('L',${i},this)">${vocab[i][0]}</div>`).join('');
+  matchRight.innerHTML=[...ids].sort(()=>Math.random()-.5).map(i=>`<div class="matchItem" data-i="${i}" onclick="pickMatch('R',${i},this)">${vocab[i][2]}</div>`).join('');
+  selL=selR=null;
+}
+function pickMatch(side,i,el){
+  document.querySelectorAll(side==='L'?'#matchLeft .matchItem':'#matchRight .matchItem').forEach(x=>x.classList.remove('sel'));
+  el.classList.add('sel'); if(side==='L')selL={i,el};else selR={i,el};
+  if(selL&&selR){
+    if(selL.i===selR.i){selL.el.classList.add('done');selR.el.classList.add('done');state.xp+=5;save();}
+    else{state.wrong[selL.i]=(state.wrong[selL.i]||0)+1;save();}
+    setTimeout(()=>{selL&&selL.el.classList.remove('sel');selR&&selR.el.classList.remove('sel');selL=selR=null},300)
+  }
+}
+
+function fillBuilder(){
+  builderWord.innerHTML=vocab.map((v,i)=>`<option value="${i}">${v[0]} — ${v[2]}</option>`).join('');
+}
+function randomBuilder(){builderWord.value=Math.floor(Math.random()*vocab.length);builderInput.value='';builderFeedback.innerHTML='Hãy tự viết một câu có lý do hoặc ví dụ.'}
+function checkSentence(){
+  const i=+builderWord.value,w=vocab[i][0].toLowerCase(),s=builderInput.value.trim(),has=s.toLowerCase().includes(w.split("'")[0]);
+  let score=0;if(has)score++;if(s.split(/\s+/).length>=10)score++;if(/\b(because|so|which|when|although|while|for example|personally)\b/i.test(s))score++;
+  builderFeedback.innerHTML=`<b>Kết quả: ${score}/3</b><br>${has?'✅':'❌'} Có dùng từ mục tiêu.<br>${s.split(/\s+/).length>=10?'✅':'⚠️'} Độ dài đủ để phát triển ý.<br>${/\b(because|so|which|when|although|while|for example|personally)\b/i.test(s)?'✅':'⚠️'} Có từ nối/giải thích.<br><br><b>Mẫu tham khảo:</b> ${vocab[i][3]}<br><br><b>Tự hỏi:</b> Câu này có nói rõ “vì sao” hoặc “hệ quả” chưa?`;
+  if(score>=2){state.xp+=8;state.mastered[i]=true}else state.wrong[i]=(state.wrong[i]||0)+1;save();
+}
+
+const prompts=[
+"Do you think it is important to be punctual?",
+"Why are some people often late?",
+"Is punctuality more important at work or at school?",
+"How can people improve their time management?",
+"Do young people and older people view punctuality differently?",
+"Should people be punished for being late?",
+"How does technology affect the way people manage their time?"
+];
+function newPrompt(){speakPrompt.textContent=prompts[Math.floor(Math.random()*prompts.length)];newSpeakingWords()}
+let speakingSet=[];
+function newSpeakingWords(){
+  speakingSet=[...Array(vocab.length).keys()].sort(()=>Math.random()-.5).slice(0,5);
+  speakingWords.innerHTML=speakingSet.map(i=>`<span class="chip" style="margin:3px">${vocab[i][0]}</span>`).join('');
+}
+function evaluateSpeaking(){
+  const s=speakingAnswer.value.toLowerCase();let used=speakingSet.filter(i=>s.includes(vocab[i][0].split("'")[0].toLowerCase()));
+  let structure=0; if(/\b(i think|i believe|in my opinion|personally)\b/.test(s))structure++;
+  if(/\b(because|since|as)\b/.test(s))structure++;
+  if(/\b(for example|for instance)\b/.test(s))structure++;
+  if(/\b(however|although|that said|on the other hand)\b/.test(s))structure++;
+  speakingFeedback.innerHTML=`<b>Dùng từ mục tiêu:</b> ${used.length}/5<br><b>Cấu trúc ý:</b> ${structure}/4<br><br>
+  ${used.length>=3?'✅ Từ vựng khá đa dạng.':'⚠️ Hãy cố dùng ít nhất 3 từ mục tiêu.'}<br>
+  ${structure>=3?'✅ Câu trả lời có phát triển ý tốt.':'⚠️ Hãy thêm reason + example + contrast.'}<br><br>
+  <b>Tự hỏi:</b> Em có đang chỉ “liệt kê từ hay”, hay mỗi từ đều phục vụ một ý rõ ràng?`;
+  state.xp+=used.length*3+structure*2;used.forEach(i=>state.mastered[i]=true);save();
+}
+
+function renderWeak(){
+  let arr=[...Array(vocab.length).keys()].sort((a,b)=>(state.wrong[b]||0)-(state.wrong[a]||0)).slice(0,6);
+  weakWords.innerHTML=arr.map(i=>`<div class="errorItem"><b>${vocab[i][0]}</b> — ${vocab[i][2]} <span class="small">• sai ${state.wrong[i]||0} lần</span></div>`).join('');
+}
+function renderErrors(){
+  if(!state.errors.length){errorList.innerHTML='<p class="small">Chưa có lỗi sai nào. Làm quiz để bắt đầu ghi nhận.</p>';return}
+  errorList.innerHTML=state.errors.slice(0,40).map(e=>`<div class="errorItem"><b>${vocab[e.i][0]}</b> = ${vocab[e.i][2]}<br><span class="small">Em chọn: ${vocab[e.chosen][2]} • ${e.time}</span><br><br>${vocab[e.i][3]}</div>`).join('');
+}
+function clearErrors(){if(confirm('Xóa toàn bộ lịch sử lỗi sai?')){state.errors=[];state.wrong={};save();renderErrors()}}
+
+renderTable();fillBuilder();newSpeakingWords();updateStats();renderWeak();startFlash(50);go('dashboard');
+</script>
+</body>
+</html>
