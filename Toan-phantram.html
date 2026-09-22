@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MathLab 5 - Tỷ số phần trăm</title>
+<style>
+:root{
+  --bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#667085;--line:#e5e7eb;
+  --blue:#2563eb;--green:#16a34a;--orange:#f59e0b;--red:#dc2626;--purple:#7c3aed;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+button,input,select{font:inherit}
+.app{display:block;min-height:100vh}
+.sidebar{background:#101828;color:#fff;padding:14px 22px;position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:10px;overflow-x:auto;white-space:nowrap;box-shadow:0 4px 16px rgba(16,24,40,.14)}
+.brand{font-size:22px;font-weight:900;margin-right:4px}.brand span{color:#60a5fa}
+.sub{font-size:13px;color:#98a2b3;margin-right:14px}
+.navbtn{flex:0 0 auto;width:auto;text-align:center;border:0;background:transparent;color:#d0d5dd;padding:10px 14px;border-radius:12px;margin:0;cursor:pointer}
+.navbtn:hover,.navbtn.active{background:#1d2939;color:#fff}
+.sidebar .stat{flex:0 0 210px;margin:0 0 0 auto;padding:10px 12px;background:#1d2939;border-radius:14px}
+.progress{height:8px;background:#344054;border-radius:99px;overflow:hidden;margin-top:8px}
+.progress>div{height:100%;background:#60a5fa;width:0%}
+.main{padding:28px;max-width:1280px;width:100%;margin:auto}
+.hero{background:linear-gradient(135deg,#dbeafe,#ede9fe);padding:26px;border-radius:22px;border:1px solid #dbeafe;margin-bottom:24px}
+.hero h1{margin:0 0 8px;font-size:30px}.hero p{margin:0;color:#475467}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 8px 28px rgba(16,24,40,.05)}
+.topic-card{cursor:pointer;transition:.18s}.topic-card:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(16,24,40,.1)}
+.badge{display:inline-block;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:700;background:#eff6ff;color:#1d4ed8}
+.formula{font-size:20px;font-weight:800;background:#f8fafc;padding:14px;border-radius:12px;border-left:4px solid var(--blue);margin:12px 0}
+.step{padding:10px 12px;background:#f9fafb;border-radius:10px;margin:8px 0}
+.socratic{background:#fff7ed;border:1px solid #fed7aa;padding:14px;border-radius:14px;margin-top:12px}
+.quiz-wrap{display:grid;grid-template-columns:1fr 330px;gap:18px}
+.qbox{font-size:20px;font-weight:750;line-height:1.45;margin-bottom:16px}
+.answer-input{width:100%;padding:14px;border:1px solid #cbd5e1;border-radius:12px;outline:none}
+.answer-input:focus{border-color:#60a5fa;box-shadow:0 0 0 3px #dbeafe}
+.btn{border:0;border-radius:12px;padding:12px 16px;font-weight:750;cursor:pointer}
+.btn-primary{background:var(--blue);color:#fff}.btn-secondary{background:#eef2ff;color:#3730a3}.btn-danger{background:#fee2e2;color:#b91c1c}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.feedback{margin-top:14px;padding:14px;border-radius:12px;display:none}
+.feedback.ok{display:block;background:#ecfdf3;border:1px solid #abefc6;color:#067647}
+.feedback.bad{display:block;background:#fef3f2;border:1px solid #fecdca;color:#b42318}
+.sidepanel h3{margin-top:0}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.kpi div{background:#f8fafc;padding:12px;border-radius:12px;text-align:center}.kpi b{display:block;font-size:21px}
+.qnav{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;max-height:300px;overflow:auto}
+.qnum{padding:8px 0;border:0;border-radius:8px;background:#f2f4f7;cursor:pointer}.qnum.done{background:#dcfce7}.qnum.wrong{background:#fee2e2}.qnum.current{outline:2px solid #2563eb}
+.hidden{display:none!important}
+.section-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0 12px}
+.table{width:100%;border-collapse:collapse}.table th,.table td{padding:11px;border-bottom:1px solid var(--line);text-align:left}
+.small{font-size:13px;color:var(--muted)}
+.pill{padding:4px 8px;border-radius:999px;font-size:12px;font-weight:700}
+.pill.green{background:#dcfce7;color:#166534}.pill.red{background:#fee2e2;color:#991b1b}
+@media(max-width:980px){.sidebar{position:sticky;top:0;align-items:center}.grid{grid-template-columns:1fr 1fr}.quiz-wrap{grid-template-columns:1fr}.sidebar .stat{display:none}}
+@media(max-width:640px){.sidebar{padding:10px 12px;gap:6px}.brand{font-size:18px}.sub{display:none}.navbtn{padding:9px 11px;font-size:13px}.main{padding:16px}.grid{grid-template-columns:1fr}.hero h1{font-size:24px}.kpi{grid-template-columns:1fr 1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">Math<span>Lab 5</span></div>
+    <div class="sub">Phòng luyện Tỷ số phần trăm</div>
+    <button class="navbtn active" onclick="showPage('home',this)">🏠 Tổng quan</button>
+    <button class="navbtn" onclick="showPage('theory',this)">📘 Công thức</button>
+    <button class="navbtn" onclick="showPage('practice',this)">🧠 Luyện tập</button>
+    <button class="navbtn" onclick="showPage('mistakes',this)">📕 Sổ câu sai</button>
+    <button class="navbtn" onclick="resetProgress()">♻️ Đặt lại tiến độ</button>
+    <div class="stat">
+      <div><b id="sidebarDone">0</b> câu đã làm / 600</div>
+      <div class="progress"><div id="globalProgress"></div></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <section id="homePage">
+      <div class="hero">
+        <span class="badge">LỚP 5 • TOÁN</span>
+        <h1>Tỷ số phần trăm từ nền tảng đến vận dụng</h1>
+        <p>6 dạng × 100 câu = 600 bài. Học công thức → tự hỏi đúng câu → làm bài → xem giải thích → ôn lỗi sai.</p>
+      </div>
+      <div class="grid" id="topicGrid"></div>
+    </section>
+
+    <section id="theoryPage" class="hidden">
+      <div class="section-title"><h2>📘 Bản đồ công thức</h2></div>
+      <div class="grid" id="theoryGrid"></div>
+    </section>
+
+    <section id="practicePage" class="hidden">
+      <div class="section-title">
+        <div><h2 id="practiceTitle" style="margin:0">Luyện tập</h2><div class="small" id="practiceSubtitle"></div></div>
+        <select id="topicSelect" onchange="loadTopic(+this.value)"></select>
+      </div>
+      <div class="quiz-wrap">
+        <div class="card">
+          <span class="badge" id="qBadge">Câu 1/100</span>
+          <div class="qbox" id="questionText"></div>
+          <input id="answerInput" class="answer-input" placeholder="Nhập đáp án...">
+          <div class="actions">
+            <button class="btn btn-primary" onclick="checkAnswer()">Kiểm tra</button>
+            <button class="btn btn-secondary" onclick="showHint()">Gợi ý</button>
+            <button class="btn btn-secondary" onclick="nextQuestion()">Câu tiếp</button>
+          </div>
+          <div id="feedback" class="feedback"></div>
+          <div id="hintBox" class="socratic hidden"></div>
+        </div>
+        <div class="card sidepanel">
+          <h3>Tiến độ dạng này</h3>
+          <div class="kpi">
+            <div><b id="doneKpi">0</b><span class="small">Đã làm</span></div>
+            <div><b id="correctKpi">0</b><span class="small">Đúng</span></div>
+            <div><b id="scoreKpi">0%</b><span class="small">Chính xác</span></div>
+          </div>
+          <h3 style="margin-top:18px">Chọn câu</h3>
+          <div class="qnav" id="qnav"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="mistakesPage" class="hidden">
+      <div class="section-title"><h2>📕 Sổ câu sai</h2><button class="btn btn-danger" onclick="clearMistakes()">Xóa sổ sai</button></div>
+      <div class="card">
+        <table class="table">
+          <thead><tr><th>Dạng</th><th>Câu</th><th>Đáp án</th><th>Trạng thái</th></tr></thead>
+          <tbody id="mistakeBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+const topics = [
+ {id:0,name:"Dạng 1. Tìm tỷ số phần trăm của hai số",color:"#2563eb",
+  formula:"Tỷ số % = (Số thứ nhất ÷ Số thứ hai) × 100%",
+  explain:"Muốn biết A bằng bao nhiêu phần trăm của B, hãy chia A cho B rồi nhân 100.",
+  steps:["Xác định số cần so sánh A và số gốc B.","Tính A ÷ B.","Nhân kết quả với 100 và viết thêm %."],
+  ask:["Mình đang so sánh số nào với số nào?","Số gốc là số đứng ở mẫu hay tử?","Sau phép chia, mình cần làm gì để đổi sang phần trăm?"]},
+ {id:1,name:"Dạng 2. Tìm giá trị phần trăm của một số",color:"#16a34a",
+  formula:"p% của A = A × p ÷ 100",
+  explain:"p% nghĩa là p phần trong 100 phần bằng nhau. Vì vậy lấy A chia thành 100 phần rồi lấy p phần.",
+  steps:["Xác định số gốc A.","Đổi p% thành p/100.","Tính A × p ÷ 100."],
+  ask:["100% tương ứng với số nào?","1% của số đó bằng bao nhiêu?","Vậy p% sẽ gấp mấy lần 1%?"]},
+ {id:2,name:"Dạng 3. Tìm một số khi biết giá trị phần trăm",color:"#7c3aed",
+  formula:"Số cần tìm = Giá trị đã biết × 100 ÷ p",
+  explain:"Nếu p% ứng với một lượng đã biết, ta tìm 1% trước rồi nhân 100.",
+  steps:["Xác định p% ứng với giá trị nào.","Tìm 1% bằng cách chia cho p.","Tìm 100% bằng cách nhân 100."],
+  ask:["Đề cho mình biết mấy phần trăm?","Nếu p% đã biết thì 1% là bao nhiêu?","100% sẽ bằng bao nhiêu lần 1%?"]},
+ {id:3,name:"Dạng 4. Tăng một số lên p%",color:"#ea580c",
+  formula:"Giá trị mới = A × (100 + p) ÷ 100",
+  explain:"Tăng p% nghĩa là giữ nguyên 100% ban đầu rồi cộng thêm p%.",
+  steps:["Coi số ban đầu là 100%.","Sau khi tăng p%, ta có 100% + p%.","Nhân A với (100+p)/100."],
+  ask:["Số ban đầu tương ứng bao nhiêu %?","Tăng thêm p% thì tổng mới là bao nhiêu %?","Có thể tính phần tăng rồi cộng lại không?"]},
+ {id:4,name:"Dạng 5. Giảm một số đi p%",color:"#dc2626",
+  formula:"Giá trị mới = A × (100 - p) ÷ 100",
+  explain:"Giảm p% nghĩa là từ 100% ban đầu bỏ đi p%, còn lại 100%-p%.",
+  steps:["Coi số ban đầu là 100%.","Tính phần trăm còn lại 100%-p%.","Nhân A với (100-p)/100."],
+  ask:["Sau khi giảm, còn lại bao nhiêu %?","Ta đang tìm phần bị giảm hay phần còn lại?","Có thể tính số bị giảm trước rồi lấy A trừ đi không?"]},
+ {id:5,name:"Dạng 6. Bài toán thực tế: giảm giá – tăng giá – số học sinh",color:"#0891b2",
+  formula:"Đọc đề → xác định 100% → chọn công thức phù hợp",
+  explain:"Bài thực tế không khó hơn công thức. Điều quan trọng là nhận ra số nào là 100% và đề đang hỏi 'phần', 'tỷ lệ' hay 'toàn bộ'.",
+  steps:["Khoanh dữ kiện phần trăm.","Xác định đại lượng ứng với 100%.","Chọn dạng 1, 2, 3, 4 hoặc 5.","Kiểm tra xem đáp án có hợp lý với thực tế không."],
+  ask:["Đại lượng nào là toàn bộ 100%?","Đề hỏi một phần, một tỷ lệ hay toàn bộ?","Kết quả nên lớn hơn hay nhỏ hơn số ban đầu?"]}
+];
+
+function round2(n){return Math.round((n+Number.EPSILON)*100)/100}
+function fmt(n){return Number.isInteger(n)? String(n): String(round2(n))}
+function makeQuestions(topic){
+ const qs=[];
+ const contexts = {
+  ratio:[
+   (a,b)=>`Một thư viện có ${b} cuốn sách, trong đó ${a} cuốn là truyện thiếu nhi. Truyện thiếu nhi chiếm bao nhiêu phần trăm số sách?`,
+   (a,b)=>`Một lớp có ${b} học sinh, trong đó ${a} bạn tham gia câu lạc bộ thể thao. Tỉ lệ học sinh tham gia là bao nhiêu phần trăm?`,
+   (a,b)=>`Một cửa hàng có ${b} sản phẩm, đã bán được ${a} sản phẩm. Cửa hàng đã bán được bao nhiêu phần trăm số hàng?`,
+   (a,b)=>`Một bình nước có sức chứa ${b} ml, hiện có ${a} ml nước. Bình đang chứa bao nhiêu phần trăm dung tích?`,
+   (a,b)=>`Một bạn đặt mục tiêu đi ${b} km trong tuần và đã đi được ${a} km. Bạn ấy hoàn thành bao nhiêu phần trăm mục tiêu?`,
+   (a,b)=>`Pin điện thoại có dung lượng đầy tương ứng ${b} đơn vị, hiện còn ${a} đơn vị. Pin còn bao nhiêu phần trăm?`,
+   (a,b)=>`Một vườn có ${b} cây, trong đó ${a} cây đã ra hoa. Số cây ra hoa chiếm bao nhiêu phần trăm?`,
+   (a,b)=>`Một quyển sách có ${b} trang, Minh đã đọc ${a} trang. Minh đã đọc bao nhiêu phần trăm quyển sách?`
+  ],
+  part:[
+   (p,a)=>`Một lớp có ${a} học sinh. Có ${p}% học sinh tham gia văn nghệ. Hỏi có bao nhiêu học sinh tham gia?`,
+   (p,a)=>`Một cửa hàng có ${a} chiếc bút. ${p}% số bút là bút màu. Hỏi có bao nhiêu bút màu?`,
+   (p,a)=>`Một khu vườn có ${a} cây. ${p}% số cây là cây ăn quả. Hỏi có bao nhiêu cây ăn quả?`,
+   (p,a)=>`Một thư viện có ${a} cuốn sách. ${p}% là sách khoa học. Hỏi có bao nhiêu cuốn sách khoa học?`,
+   (p,a)=>`Một bể chứa được ${a} lít nước. Hiện lượng nước bằng ${p}% dung tích bể. Hỏi có bao nhiêu lít nước?`,
+   (p,a)=>`Một cửa hàng nhập ${a} kg gạo. Trong ngày đã bán ${p}% số gạo. Hỏi đã bán bao nhiêu kg?`,
+   (p,a)=>`Một bạn có ${a} phút tự học cuối tuần. ${p}% thời gian dành cho môn Toán. Hỏi bạn học Toán bao nhiêu phút?`,
+   (p,a)=>`Một trang trại có ${a} con gà. ${p}% là gà mái. Hỏi có bao nhiêu con gà mái?`
+  ],
+  whole:[
+   (p,a)=>`${p}% số học sinh của một khối là ${a} bạn tham gia câu lạc bộ. Hỏi khối đó có bao nhiêu học sinh?`,
+   (p,a)=>`Một cửa hàng đã bán ${a} chiếc áo, bằng ${p}% số áo ban đầu. Hỏi ban đầu có bao nhiêu chiếc áo?`,
+   (p,a)=>`Một bạn đã đọc ${a} trang, bằng ${p}% quyển sách. Hỏi quyển sách có bao nhiêu trang?`,
+   (p,a)=>`Một bể đang có ${a} lít nước, bằng ${p}% dung tích bể. Hỏi bể chứa đầy được bao nhiêu lít?`,
+   (p,a)=>`Một đội đã trồng được ${a} cây, bằng ${p}% kế hoạch. Hỏi kế hoạch là trồng bao nhiêu cây?`,
+   (p,a)=>`Một gia đình đã tiết kiệm được ${a} nghìn đồng, bằng ${p}% mục tiêu. Hỏi mục tiêu tiết kiệm là bao nhiêu nghìn đồng?`,
+   (p,a)=>`Một vận động viên đã chạy ${a} km, bằng ${p}% quãng đường dự định. Hỏi quãng đường dự định dài bao nhiêu km?`,
+   (p,a)=>`Có ${a} sản phẩm đạt chuẩn, bằng ${p}% tổng số sản phẩm. Hỏi có tất cả bao nhiêu sản phẩm?`
+  ],
+  increase:[
+   (a,p)=>`Giá một chiếc balo là ${a.toLocaleString('vi-VN')} đồng. Giá tăng ${p}%. Giá mới là bao nhiêu đồng?`,
+   (a,p)=>`Một cửa hàng bán được ${a} sản phẩm trong tháng trước. Tháng này doanh số tăng ${p}%. Hỏi bán được bao nhiêu sản phẩm?`,
+   (a,p)=>`Một bạn chạy được ${a} m trong tuần trước. Tuần này quãng đường tăng ${p}%. Hỏi bạn chạy được bao nhiêu mét?`,
+   (a,p)=>`Một thư viện có ${a} cuốn sách. Sau khi bổ sung, số sách tăng ${p}%. Hỏi thư viện có bao nhiêu cuốn sách?`,
+   (a,p)=>`Một cây cao ${a} cm. Sau một thời gian, chiều cao tăng ${p}%. Cây cao bao nhiêu cm?`,
+   (a,p)=>`Số tiền tiết kiệm của Lan là ${a} nghìn đồng. Tháng này tăng thêm ${p}%. Hỏi Lan có bao nhiêu nghìn đồng?`
+  ],
+  decrease:[
+   (a,p)=>`Một chiếc áo giá ${a.toLocaleString('vi-VN')} đồng được giảm ${p}%. Giá sau giảm là bao nhiêu đồng?`,
+   (a,p)=>`Một bể có ${a} lít nước. Sau khi sử dụng, lượng nước giảm ${p}%. Hỏi còn lại bao nhiêu lít?`,
+   (a,p)=>`Một kho có ${a} kg gạo. Sau một ngày, lượng gạo giảm ${p}%. Hỏi còn lại bao nhiêu kg?`,
+   (a,p)=>`Pin điện thoại đang ở mức tương ứng ${a} đơn vị. Sau khi dùng, lượng pin giảm ${p}%. Còn lại bao nhiêu đơn vị?`,
+   (a,p)=>`Một đội có ${a} điểm thưởng. Sau khi bị trừ, số điểm giảm ${p}%. Hỏi còn lại bao nhiêu điểm?`,
+   (a,p)=>`Một cửa hàng có ${a} sản phẩm tồn kho. Sau đợt bán hàng, số lượng giảm ${p}%. Hỏi còn lại bao nhiêu sản phẩm?`
+  ]
+ };
+ for(let i=1;i<=100;i++){
+   let a,b,p,ans,text,hint,sol;
+   if(topic===0){
+     b = 20 + (i%20)*5; p = 10 + (i%9)*5; a = b*p/100;
+     ans=p; text=contexts.ratio[i%contexts.ratio.length](fmt(a),fmt(b));
+     hint=`Hãy xác định: phần đang xét là ${fmt(a)}, toàn bộ là ${fmt(b)}. Tính ${fmt(a)} ÷ ${fmt(b)} rồi đổi sang %.`;
+     sol=`${fmt(a)} ÷ ${fmt(b)} × 100 = ${fmt(ans)}%.`;
+   } else if(topic===1){
+     a=100+(i%25)*20; p=5+(i%10)*5; ans=a*p/100;
+     text=contexts.part[i%contexts.part.length](p,a); 
+     hint=`100% là ${a}. Vậy 1% là ${a} ÷ 100. Từ đó tìm ${p}%.`;
+     sol=`${a} × ${p} ÷ 100 = ${fmt(ans)}.`;
+   } else if(topic===2){
+     p=10+(i%9)*5; a=8+(i%20)*4; let whole=a*100/p; 
+     if(!Number.isInteger(whole)){ a=p*(2+(i%10)); whole=a*100/p; }
+     ans=whole; text=contexts.whole[i%contexts.whole.length](p,fmt(a));
+     hint=`Nếu ${p}% = ${fmt(a)}, hãy tìm 1% trước: ${fmt(a)} ÷ ${p}.`;
+     sol=`${fmt(a)} × 100 ÷ ${p} = ${fmt(ans)}.`;
+   } else if(topic===3){
+     a=100+(i%20)*25; p=5+(i%8)*5; ans=a*(100+p)/100;
+     text=contexts.increase[i%contexts.increase.length](a,p);
+     hint=`Sau khi tăng ${p}%, giá trị mới bằng ${100+p}% giá trị ban đầu.`;
+     sol=`${a} × ${100+p} ÷ 100 = ${fmt(ans)}.`;
+   } else if(topic===4){
+     a=200+(i%20)*25; p=5+(i%8)*5; ans=a*(100-p)/100;
+     text=contexts.decrease[i%contexts.decrease.length](a,p);
+     hint=`Sau khi giảm ${p}%, còn lại ${100-p}% giá trị ban đầu.`;
+     sol=`${a} × ${100-p} ÷ 100 = ${fmt(ans)}.`;
+   } else {
+     const mode=i%8;
+     if(mode===0){ a=200000+(i%10)*50000;p=10+(i%5)*5;ans=a*(100-p)/100;
+       text=`Một chiếc cặp giá ${a.toLocaleString('vi-VN')} đồng, được giảm ${p}%. Giá sau giảm là bao nhiêu đồng?`;
+       hint=`Giảm ${p}% nghĩa là còn ${100-p}% giá ban đầu.`; sol=`${a.toLocaleString('vi-VN')} × ${100-p} ÷ 100 = ${ans.toLocaleString('vi-VN')} đồng.`;
+     } else if(mode===1){a=20+(i%10)*5;p=40+(i%5)*10;ans=a*p/100;
+       text=`Lớp có ${a} học sinh. Có ${p}% học sinh tham gia câu lạc bộ. Hỏi có bao nhiêu học sinh tham gia?`;
+       hint=`Đây là bài tìm ${p}% của ${a}.`;sol=`${a} × ${p} ÷ 100 = ${fmt(ans)} học sinh.`;
+     } else if(mode===2){a=12+(i%10)*3;p=20+(i%6)*10;ans=a*100/p;
+       text=`Một nhóm đã hoàn thành ${a} sản phẩm, bằng ${p}% kế hoạch. Hỏi kế hoạch là bao nhiêu sản phẩm?`;
+       hint=`Đã biết ${p}% ứng với ${a}. Muốn tìm 100%, hãy tìm 1% rồi nhân 100.`;sol=`${a} × 100 ÷ ${p} = ${fmt(ans)} sản phẩm.`;
+     } else if(mode===3){a=300+(i%10)*50;p=10+(i%4)*5;ans=a*(100+p)/100;
+       text=`Một gia đình tiết kiệm được ${a} nghìn đồng trong tháng trước. Tháng này số tiền tiết kiệm tăng ${p}%. Hỏi tháng này tiết kiệm được bao nhiêu nghìn đồng?`;
+       hint=`Tăng ${p}% nghĩa là bằng ${100+p}% số tiền cũ.`;sol=`${a} × ${100+p} ÷ 100 = ${fmt(ans)} nghìn đồng.`;
+     } else if(mode===4){a=100+(i%10)*20;p=10+(i%4)*5;ans=a*(100-p)/100;
+       text=`Một bể có ${a} lít nước. Sau một ngày sử dụng, lượng nước giảm ${p}%. Hỏi còn lại bao nhiêu lít?`;
+       hint=`Còn lại ${100-p}% lượng nước ban đầu.`;sol=`${a} × ${100-p} ÷ 100 = ${fmt(ans)} lít.`;
+     } else if(mode===5){a=40+(i%10)*5;p=20+(i%5)*10;ans=a*p/100;
+       text=`Một người dự định đọc ${a} trang sách trong tuần. Đến giữa tuần đã đọc được ${p}% kế hoạch. Hỏi đã đọc bao nhiêu trang?`;
+       hint=`Tìm ${p}% của ${a}.`;sol=`${a} × ${p} ÷ 100 = ${fmt(ans)} trang.`;
+     } else if(mode===6){a=50+(i%10)*10;p=20+(i%4)*10;ans=a*p/100;
+       text=`Một khu vườn có ${a} cây. Có ${p}% số cây đã ra hoa. Hỏi có bao nhiêu cây đã ra hoa?`;
+       hint=`Tìm ${p}% của ${a}.`;sol=`${a} × ${p} ÷ 100 = ${fmt(ans)} cây.`;
+     } else {a=500+(i%10)*100;p=10+(i%5)*5;ans=a*(100-p)/100;
+       text=`Một cửa hàng có ${a} sản phẩm. Sau đợt khuyến mãi, lượng hàng tồn giảm ${p}%. Hỏi còn lại bao nhiêu sản phẩm?`;
+       hint=`Sau khi giảm ${p}%, còn ${100-p}% lượng ban đầu.`;sol=`${a} × ${100-p} ÷ 100 = ${fmt(ans)} sản phẩm.`;
+     }
+   }
+   qs.push({id:i,text,answer:round2(ans),hint,solution:sol});
+ }
+ return qs;
+}
+const bank=topics.map(t=>makeQuestions(t.id));
+let state=JSON.parse(localStorage.getItem('mathlab5_state')||'{"answers":{},"mistakes":[]}');
+let currentTopic=0,currentQ=0;
+
+function save(){localStorage.setItem('mathlab5_state',JSON.stringify(state)); updateGlobal()}
+function key(t,q){return `${t}-${q}`}
+function renderHome(){
+ const g=document.getElementById('topicGrid');g.innerHTML='';
+ topics.forEach(t=>{
+   const done=bank[t.id].filter((_,idx)=>state.answers[key(t.id,idx)]).length;
+   const c=document.createElement('div');c.className='card topic-card';
+   c.innerHTML=`<span class="badge">100 câu</span><h3>${t.name}</h3><div class="formula" style="border-left-color:${t.color}">${t.formula}</div><div class="small">${done}/100 câu đã làm</div>`;
+   c.onclick=()=>{showPage('practice');loadTopic(t.id)};g.appendChild(c);
+ });
+}
+function renderTheory(){
+ const g=document.getElementById('theoryGrid');g.innerHTML='';
+ topics.forEach(t=>{
+  const c=document.createElement('div');c.className='card';
+  c.innerHTML=`<span class="badge">DẠNG ${t.id+1}</span><h3>${t.name}</h3><div class="formula" style="border-left-color:${t.color}">${t.formula}</div>
+  <p>${t.explain}</p>${t.steps.map((s,i)=>`<div class="step"><b>Bước ${i+1}:</b> ${s}</div>`).join('')}
+  <div class="socratic"><b>Tự hỏi trước khi tính:</b><br>${t.ask.map(x=>'• '+x).join('<br>')}</div>`;
+  g.appendChild(c);
+ });
+}
+function showPage(name,btn){
+ ['home','theory','practice','mistakes'].forEach(x=>document.getElementById(x+'Page').classList.add('hidden'));
+ document.getElementById(name+'Page').classList.remove('hidden');
+ document.querySelectorAll('.navbtn').forEach(b=>b.classList.remove('active')); if(btn)btn.classList.add('active');
+ if(name==='home')renderHome(); if(name==='mistakes')renderMistakes();
+}
+function loadTopic(t){
+ currentTopic=t;currentQ=0;
+ document.getElementById('topicSelect').value=t;
+ renderQuestion();
+ setTimeout(()=>document.getElementById('answerInput').focus(),0);
+}
+function renderQuestion(){
+ const t=topics[currentTopic],q=bank[currentTopic][currentQ];
+ document.getElementById('practiceTitle').textContent=t.name;
+ document.getElementById('practiceSubtitle').textContent=t.formula;
+ document.getElementById('qBadge').textContent=`Câu ${currentQ+1}/100`;
+ document.getElementById('questionText').textContent=q.text;
+ document.getElementById('answerInput').value='';
+ document.getElementById('feedback').className='feedback';document.getElementById('feedback').innerHTML='';
+ document.getElementById('hintBox').classList.add('hidden');
+ renderQnav(); updateKpi();
+}
+function normalizeInput(v){return parseFloat(String(v).replace(/\./g,'').replace(',','.').replace('%','').replace(/\s/g,''))}
+function checkAnswer(){
+ const q=bank[currentTopic][currentQ], v=normalizeInput(document.getElementById('answerInput').value);
+ const ok=Math.abs(v-q.answer)<0.011;
+ state.answers[key(currentTopic,currentQ)]={correct:ok,value:v};
+ if(!ok){
+   const exists=state.mistakes.some(m=>m.t===currentTopic&&m.q===currentQ);
+   if(!exists)state.mistakes.push({t:currentTopic,q:currentQ});
+ }
+ const fb=document.getElementById('feedback');
+ fb.className='feedback '+(ok?'ok':'bad');
+ fb.innerHTML=ok?`✅ Chính xác!<br><b>Cách làm:</b> ${q.solution}`:`❌ Chưa đúng. Đáp án đúng: <b>${fmt(q.answer)}</b><br><b>Cách làm:</b> ${q.solution}`;
+ save();renderQnav();updateKpi();
+}
+document.getElementById('answerInput').addEventListener('keydown', function(e){
+ if(e.key==='Enter'){
+   e.preventDefault();
+   const fb=document.getElementById('feedback');
+   const hasChecked = fb.classList.contains('ok') || fb.classList.contains('bad');
+   if(hasChecked){
+     nextQuestion();
+   }else{
+     checkAnswer();
+   }
+ }
+});
+function showHint(){const q=bank[currentTopic][currentQ],b=document.getElementById('hintBox');b.innerHTML=`<b>Gợi ý tư duy:</b> ${q.hint}`;b.classList.remove('hidden')}
+function nextQuestion(){currentQ=(currentQ+1)%100;renderQuestion();setTimeout(()=>document.getElementById('answerInput').focus(),0)}
+function goQ(i){currentQ=i;renderQuestion()}
+function renderQnav(){
+ const n=document.getElementById('qnav');n.innerHTML='';
+ for(let i=0;i<100;i++){const b=document.createElement('button');b.className='qnum';b.textContent=i+1;
+  const a=state.answers[key(currentTopic,i)]; if(a)b.classList.add(a.correct?'done':'wrong');if(i===currentQ)b.classList.add('current');
+  b.onclick=()=>goQ(i);n.appendChild(b);}
+}
+function updateKpi(){
+ let done=0,correct=0;
+ for(let i=0;i<100;i++){const a=state.answers[key(currentTopic,i)];if(a){done++;if(a.correct)correct++;}}
+ document.getElementById('doneKpi').textContent=done;document.getElementById('correctKpi').textContent=correct;
+ document.getElementById('scoreKpi').textContent=(done?Math.round(correct/done*100):0)+'%';
+}
+function updateGlobal(){
+ const vals=Object.values(state.answers),done=vals.length;
+ document.getElementById('sidebarDone').textContent=done;document.getElementById('globalProgress').style.width=(done/600*100)+'%';
+}
+function renderMistakes(){
+ const body=document.getElementById('mistakeBody');body.innerHTML='';
+ if(!state.mistakes.length){body.innerHTML='<tr><td colspan="4">Chưa có câu sai nào. Tuyệt vời!</td></tr>';return}
+ state.mistakes.forEach(m=>{const q=bank[m.t][m.q],tr=document.createElement('tr');
+ tr.innerHTML=`<td>${topics[m.t].name}</td><td>${q.text}</td><td>${fmt(q.answer)}</td><td><span class="pill red">Cần ôn</span></td>`;body.appendChild(tr)})
+}
+function clearMistakes(){state.mistakes=[];save();renderMistakes()}
+function resetProgress(){if(confirm('Xóa toàn bộ tiến độ và sổ câu sai?')){state={answers:{},mistakes:[]};save();renderHome();renderQuestion()}}
+const sel=document.getElementById('topicSelect');
+topics.forEach(t=>{const o=document.createElement('option');o.value=t.id;o.textContent=t.name;sel.appendChild(o)});
+renderHome();renderTheory();renderQuestion();updateGlobal();
+</script>
+</body>
+</html>
