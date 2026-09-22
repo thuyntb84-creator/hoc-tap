@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammar Thinking Lab - Past Simple, Past Continuous, Used to</title>
+<style>
+:root{
+  --ink:#1f2a44; --blue:#2f80ed; --blue2:#56ccf2; --red:#ff6b6b; --green:#36c98f;
+  --yellow:#ffd166; --purple:#8f6cff; --paper:#fffdf8; --muted:#6b7280; --line:#dfe7f3;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;color:var(--ink);
+background:
+radial-gradient(circle at 10% 0%,#eaf6ff 0 18%,transparent 19%),
+linear-gradient(180deg,#f8fbff,#fffaf1);}
+button,input{font:inherit}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);
+border-bottom:1px solid #e9eef6}
+.nav{max-width:1180px;margin:auto;display:flex;align-items:center;gap:14px;padding:12px 18px;flex-wrap:wrap}
+.brand{font-family:Georgia,serif;font-weight:800;font-size:24px;display:flex;gap:9px;align-items:center}
+.brand b{color:var(--blue)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{border:0;background:#eef4ff;color:#26344d;padding:11px 16px;border-radius:16px;font-weight:800;cursor:pointer}
+.tab.active{background:var(--blue);color:white;box-shadow:0 6px 16px #2f80ed33}
+main{max-width:1180px;margin:auto;padding:22px 18px 80px}
+.hero{background:linear-gradient(120deg,#dff3ff,#fff1f4 48%,#e8fff3);border:1px solid #dce7f5;border-radius:28px;
+padding:28px;box-shadow:0 16px 35px #5b7fa21c;position:relative;overflow:hidden}
+.hero h1{margin:0 0 8px;font-size:clamp(28px,4vw,48px);font-family:Georgia,serif;color:#123f73}
+.hero p{font-size:18px;margin:0;max-width:800px}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.badge{background:white;border:1px solid #dce8f3;border-radius:999px;padding:8px 12px;font-weight:700}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+.card{background:#fff;border:1px solid #dfe7ef;border-radius:24px;padding:20px;box-shadow:0 10px 24px #6882a014}
+.red{background:linear-gradient(#fff,#fff5f5);border-top:7px solid var(--red)}
+.blue{background:linear-gradient(#fff,#f3fbff);border-top:7px solid var(--blue)}
+.green{background:linear-gradient(#fff,#f2fff8);border-top:7px solid var(--green)}
+.card h2{margin:0 0 8px;font-size:27px}
+.formula{font-family:"Comic Sans MS","Segoe Print",cursive;background:#fff8d8;border:2px dashed #e7c64e;padding:10px 12px;border-radius:16px;margin:8px 0;font-weight:800}
+.highlight{background:linear-gradient(transparent 55%,#ffe680 56% 92%,transparent 93%);font-weight:800}
+.mini{font-size:14px;color:var(--muted)}
+.note{font-family:"Comic Sans MS","Segoe Print",cursive;background:#fff7b8;transform:rotate(-1deg);padding:12px;border-radius:10px;
+box-shadow:0 5px 12px #0001;margin-top:10px}
+.section{display:none}.section.active{display:block}
+.title{font-family:Georgia,serif;font-size:32px;margin:26px 0 12px}
+.think{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.step{background:white;border:1px solid #e2e8f0;border-radius:18px;padding:16px}
+.step .n{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#1f6feb;color:#fff;font-weight:900}
+.game-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.game{background:#fff;border-radius:24px;border:1px solid #e4e9f2;padding:20px;box-shadow:0 12px 24px #50608010}
+.game h3{font-size:23px;margin:0 0 6px}
+.option{width:100%;text-align:left;padding:14px;border-radius:16px;border:2px solid #e4e8f0;background:white;margin:8px 0;cursor:pointer;font-weight:700}
+.option:hover{transform:translateY(-1px);border-color:#8bbcff}
+.option.correct{background:#eafbf3;border-color:#2fb67c}
+.option.wrong{background:#fff0f0;border-color:#ef6b6b}
+.btn{border:0;border-radius:14px;padding:11px 15px;font-weight:900;cursor:pointer;background:#1f6feb;color:white}
+.btn.alt{background:#edf3ff;color:#1f4f96}
+.scorebar{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.stat{background:white;border:1px solid #dfe7ef;border-radius:14px;padding:9px 12px;font-weight:800}
+.quizbox{background:#fff;border-radius:24px;border:1px solid #dfe7ef;padding:22px;box-shadow:0 12px 28px #3b5c8415}
+.qhead{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.qtext{font-size:24px;font-weight:800;margin:18px 0}
+.explain{display:none;margin-top:14px;background:#eef8ff;border-left:5px solid #2f80ed;padding:14px;border-radius:12px}
+.progress{height:12px;background:#e9eef6;border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;background:linear-gradient(90deg,#2f80ed,#36c98f);width:0}
+.error-item{background:#fff;border:1px solid #e7eaf0;border-left:6px solid #ff6b6b;border-radius:16px;padding:14px;margin:10px 0}
+.timeline{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.scene{border-radius:22px;padding:18px;background:linear-gradient(135deg,#101c35,#2a4d78);color:white;min-height:170px;position:relative;overflow:hidden}
+.scene:after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;background:#ffffff16;right:-20px;top:-30px}
+.tag{display:inline-block;padding:5px 9px;border-radius:999px;background:#ffffff1c}
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.match-card{border:2px solid #dce4ee;border-radius:14px;padding:12px;background:white;cursor:pointer}
+.match-card.sel{border-color:#8f6cff;background:#f3efff}
+.match-card.done{border-color:#36c98f;background:#effcf6;opacity:.7}
+@media(max-width:850px){
+ .grid3,.think,.game-grid,.timeline{grid-template-columns:1fr}
+ .match-wrap{grid-template-columns:1fr}
+ .brand{font-size:21px}
+ .tab{padding:9px 12px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <div class="brand">🧠 Grammar <b>Thinking Lab</b></div>
+    <div class="tabs">
+      <button class="tab active" data-tab="overview">Tổng quan</button>
+      <button class="tab" data-tab="formula">Công thức</button>
+      <button class="tab" data-tab="games">Game tư duy</button>
+      <button class="tab" data-tab="practice">Luyện 300 câu</button>
+      <button class="tab" data-tab="errors">Sổ câu sai</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="overview" class="section active">
+  <div class="hero">
+    <h1>UNIT 2 — Past Simple, Past Continuous, Used to</h1>
+    <p>Học bằng hình ảnh thời gian, câu hỏi dẫn dắt và giải thích đơn giản: <b>“ảnh chụp”</b> cho hành động đã xong, <b>“đoạn phim”</b> cho hành động đang diễn ra trong quá khứ, và <b>“thói quen cũ”</b> cho <i>used to</i>.</p>
+    <div class="badges">
+      <span class="badge">🎯 Công thức rõ ràng</span><span class="badge">🎮 4 game tương tác</span>
+      <span class="badge">📚 300 câu luyện</span><span class="badge">💾 Lưu tiến độ</span>
+    </div>
+  </div>
+
+  <h2 class="title">Ảnh công thức tổng hợp</h2>
+  <div class="grid3">
+    <div class="card red"><h2>1. Past Simple</h2>
+      <div class="formula">(+)&nbsp; S + V₂ / V-ed</div>
+      <div class="formula">(-)&nbsp; S + didn't + V</div>
+      <div class="formula">(?)&nbsp; Did + S + V ...?</div>
+      <p><span class="highlight">Dùng khi:</span> hành động đã hoàn thành; hành động lặp lại trong quá khứ; sự thật trong quá khứ; sự kiện chính trong câu chuyện.</p>
+      <div class="note">🧠 Hình dung như một <b>tấm ảnh đã chụp xong</b>. Việc đó kết thúc rồi.</div>
+    </div>
+    <div class="card blue"><h2>2. Past Continuous</h2>
+      <div class="formula">(+)&nbsp; S + was/were + V-ing</div>
+      <div class="formula">(-)&nbsp; S + wasn't/weren't + V-ing</div>
+      <div class="formula">(?)&nbsp; Was/Were + S + V-ing ...?</div>
+      <p><span class="highlight">Dùng khi:</span> hành động đang diễn ra tại một thời điểm quá khứ; hai hành động đang song song; tạo bối cảnh.</p>
+      <div class="note">🎥 Hình dung như một <b>đoạn phim đang chạy</b> ở một mốc trong quá khứ.</div>
+    </div>
+    <div class="card green"><h2>3. Used to</h2>
+      <div class="formula">(+)&nbsp; S + used to + V</div>
+      <div class="formula">(-)&nbsp; S + didn't use to + V</div>
+      <div class="formula">(?)&nbsp; Did + S + use to + V ...?</div>
+      <p><span class="highlight">Dùng khi:</span> thói quen hoặc trạng thái ở quá khứ xa, và nay không còn như trước.</p>
+      <div class="note">🕰️ Tự hỏi: “<b>Ngày xưa có thế, bây giờ còn không?</b>” Nếu không → nghĩ đến <b>used to</b>.</div>
+    </div>
+  </div>
+
+  <h2 class="title">4 bước tư duy trước khi chọn thì</h2>
+  <div class="think">
+    <div class="step"><div class="n">1</div><h3>Tìm mốc thời gian</h3><p>yesterday, last..., ... ago, at 9 o'clock, while...</p></div>
+    <div class="step"><div class="n">2</div><h3>Việc đã xong hay đang diễn ra?</h3><p>Đã xong → Past Simple. Đang diễn ra tại mốc đó → Past Continuous.</p></div>
+    <div class="step"><div class="n">3</div><h3>Có hành động chen ngang?</h3><p>Việc nền đang diễn ra → Past Continuous; việc chen vào → Past Simple.</p></div>
+    <div class="step"><div class="n">4</div><h3>Có “ngày xưa... giờ không còn”?</h3><p>Nếu là thói quen/trạng thái cũ → Used to.</p></div>
+  </div>
+</section>
+
+<section id="formula" class="section">
+  <h2 class="title">Công thức + dấu hiệu nhận biết</h2>
+  <div class="grid3">
+    <div class="card red">
+      <h2>Past Simple</h2>
+      <p class="formula">S + V₂/V-ed</p>
+      <p class="formula">S + didn't + V</p>
+      <p class="formula">Did + S + V...?</p>
+      <p><b>Dấu hiệu:</b> yesterday, last week/summer/year, in 2001, an hour/a week/a year ago.</p>
+      <p><b>Ví dụ:</b> I saw the film yesterday.</p>
+    </div>
+    <div class="card blue">
+      <h2>Past Continuous</h2>
+      <p class="formula">S + was/were + V-ing</p>
+      <p class="formula">S + wasn't/weren't + V-ing</p>
+      <p class="formula">Was/Were + S + V-ing...?</p>
+      <p><b>Dấu hiệu:</b> at that moment, at 9 o'clock, while.</p>
+      <p><b>Ví dụ:</b> At nine o'clock last night, I was watching TV.</p>
+    </div>
+    <div class="card green">
+      <h2>Used to</h2>
+      <p class="formula">S + used to + V</p>
+      <p class="formula">S + didn't use to + V</p>
+      <p class="formula">Did + S + use to + V...?</p>
+      <p><b>Ý nghĩa:</b> thói quen/trạng thái quá khứ không còn đúng ở hiện tại.</p>
+      <p><b>Ví dụ:</b> When I was four, I used to eat ice cream every day.</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <h2>⚡ Quy tắc “chen ngang”</h2>
+    <p style="font-size:20px"><span class="highlight">Hành động dài đang diễn ra</span> → Past Continuous &nbsp; + &nbsp; <span class="highlight">hành động ngắn chen vào</span> → Past Simple</p>
+    <div class="formula">The phone <b>rang</b> while I <b>was watching</b> a DVD.</div>
+  </div>
+</section>
+
+<section id="games" class="section">
+  <h2 class="title">Game tư duy trực quan</h2>
+  <div class="game-grid">
+    <div class="game">
+      <h3>🎥 Camera thời gian</h3>
+      <p>Nhìn tình huống và chọn “ảnh chụp”, “đoạn phim”, hay “thói quen cũ”.</p>
+      <div class="scene" id="sceneBox"><span class="tag">Tình huống</span><h2 id="sceneText"></h2></div>
+      <div id="sceneOpts"></div><button class="btn alt" onclick="nextScene()">Câu khác</button>
+    </div>
+    <div class="game">
+      <h3>🧩 Ghép cặp siêu tốc</h3>
+      <p>Ghép dấu hiệu với loại thì phù hợp.</p>
+      <div class="match-wrap" id="matchArea"></div>
+      <p id="matchMsg" class="mini"></p>
+      <button class="btn alt" onclick="buildMatch()">Chơi lại</button>
+    </div>
+    <div class="game">
+      <h3>🕵️ Thợ săn lỗi sai</h3>
+      <p id="errorSentence" class="qtext"></p>
+      <div id="errorOpts"></div>
+      <button class="btn alt" onclick="nextError()">Câu khác</button>
+    </div>
+    <div class="game">
+      <h3>🧠 Hỏi trước – chọn sau</h3>
+      <p>Trả lời 3 câu hỏi tư duy rồi mới chọn đáp án.</p>
+      <div id="socraticBox"></div>
+      <button class="btn" onclick="buildSocratic()">Tình huống mới</button>
+    </div>
+  </div>
+</section>
+
+<section id="practice" class="section">
+  <h2 class="title">Luyện 300 câu</h2>
+  <div class="scorebar">
+    <span class="stat">✅ Đúng: <b id="correctN">0</b></span>
+    <span class="stat">❌ Sai: <b id="wrongN">0</b></span>
+    <span class="stat">🔥 Streak: <b id="streakN">0</b></span>
+    <span class="stat">⭐ Điểm: <b id="scoreN">0</b></span>
+  </div>
+  <div class="progress"><i id="prog"></i></div>
+  <div class="quizbox" style="margin-top:14px">
+    <div class="qhead"><span id="qnum">Câu 1/300</span><span id="qtype" class="badge"></span></div>
+    <div id="qtext" class="qtext"></div>
+    <div id="qopts"></div>
+    <div id="explain" class="explain"></div>
+    <div style="margin-top:14px;display:flex;gap:10px">
+      <button class="btn" onclick="nextQuestion()">Câu tiếp theo</button>
+      <button class="btn alt" onclick="resetProgress()">Làm lại tiến độ</button>
+    </div>
+  </div>
+</section>
+
+<section id="errors" class="section">
+  <h2 class="title">Sổ câu sai</h2>
+  <p>Những câu em chọn sai sẽ tự động được lưu để luyện lại.</p>
+  <div id="errorBook"></div>
+  <button class="btn" onclick="clearErrors()">Xóa sổ câu sai</button>
+</section>
+</main>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+$$('.tab').forEach(b=>b.onclick=()=>{
+  $$('.tab').forEach(x=>x.classList.remove('active')); b.classList.add('active');
+  $$('.section').forEach(x=>x.classList.remove('active')); $('#'+b.dataset.tab).classList.add('active');
+  if(b.dataset.tab==='errors') renderErrors();
+});
+
+const scenes=[
+ {t:'At 9 p.m. last night, Lan ___ TV.', a:'was watching', opts:['watched','was watching','used to watch'], why:'Có một mốc cụ thể trong quá khứ và hành động đang diễn ra tại mốc đó → Past Continuous.'},
+ {t:'We ___ to the theatre four times last month.', a:'went', opts:['went','were going','used to go'], why:'Hành động lặp lại nhưng nằm trong một khoảng quá khứ đã kết thúc → Past Simple.'},
+ {t:'When I was four, I ___ ice cream every day.', a:'used to eat', opts:['ate','was eating','used to eat'], why:'Một thói quen xa trong quá khứ, nay không còn được xem là thói quen hiện tại → used to.'},
+ {t:'The phone ___ while I was watching a DVD.', a:'rang', opts:['rang','was ringing','used to ring'], why:'Hành động ngắn chen vào một hành động đang diễn ra → Past Simple.'}
+];
+let sceneI=0;
+function nextScene(){sceneI=(sceneI+1)%scenes.length;drawScene()}
+function drawScene(){
+ const s=scenes[sceneI]; $('#sceneText').textContent=s.t; $('#sceneOpts').innerHTML='';
+ s.opts.forEach(o=>{let b=document.createElement('button');b.className='option';b.textContent=o;b.onclick=()=>{[...$('#sceneOpts').children].forEach(x=>x.disabled=true);b.classList.add(o===s.a?'correct':'wrong');if(o!==s.a)[...$('#sceneOpts').children].find(x=>x.textContent===s.a)?.classList.add('correct');$('#sceneText').innerHTML=s.t+'<br><small>'+s.why+'</small>';};$('#sceneOpts').appendChild(b);});
+}
+drawScene();
+
+const pairs=[
+ ['yesterday','Past Simple'],['at 9 o’clock last night','Past Continuous'],['while','Past Continuous'],
+ ['last year','Past Simple'],['when I was four + habit','Used to'],['an hour ago','Past Simple']
+];
+let first=null;
+function buildMatch(){
+ const arr=[...pairs.map((p,i)=>({txt:p[0],id:i})),...pairs.map((p,i)=>({txt:p[1],id:i}))].sort(()=>Math.random()-.5);
+ $('#matchArea').innerHTML=''; first=null; $('#matchMsg').textContent='';
+ arr.forEach(x=>{let d=document.createElement('div');d.className='match-card';d.textContent=x.txt;d.dataset.id=x.id;d.onclick=()=>{
+   if(d.classList.contains('done'))return;
+   if(!first){first=d;d.classList.add('sel');}
+   else{
+     if(first!==d && first.dataset.id===d.dataset.id){first.classList.add('done');d.classList.add('done');first.classList.remove('sel');$('#matchMsg').textContent='✅ Ghép đúng!';}
+     else {first.classList.remove('sel');$('#matchMsg').textContent='❌ Chưa đúng, thử lại.';}
+     first=null;
+   }
+ };$('#matchArea').appendChild(d);});
+}
+buildMatch();
+
+const errorQs=[
+ {s:'Last year, I was going to the cinema every weekend.', a:'went', opts:['went','was going','used to going'], why:'Nguồn lưu ý không dùng Past Continuous cho hành động lặp lại thường xuyên trong quá khứ.'},
+ {s:'When the phone rang, I watched a DVD.', a:'was watching', opts:['watched','was watching','used to watch'], why:'Hành động xem DVD đang diễn ra thì điện thoại reo.'},
+ {s:'Did you used to live here?', a:'use to', opts:['used to','use to','using to'], why:'Sau did dùng động từ nguyên thể: Did + S + use to + V?'}
+];
+let eI=0;
+function nextError(){eI=(eI+1)%errorQs.length;drawError()}
+function drawError(){
+ let q=errorQs[eI];$('#errorSentence').textContent=q.s;$('#errorOpts').innerHTML='';
+ q.opts.forEach(o=>{let b=document.createElement('button');b.className='option';b.textContent=o;b.onclick=()=>{b.classList.add(o===q.a?'correct':'wrong');alert(q.why)};$('#errorOpts').appendChild(b)})
+}
+drawError();
+
+function buildSocratic(){
+ const q=scenes[Math.floor(Math.random()*scenes.length)];
+ $('#socraticBox').innerHTML=`
+ <div class="step"><b>1. Câu này có mốc thời gian nào?</b><input id="s1" placeholder="Ví dụ: yesterday / at 9 p.m." style="width:100%;padding:10px;border-radius:10px;border:1px solid #ccd6e2;margin-top:6px"></div>
+ <div class="step"><b>2. Hành động đã xong hay đang diễn ra tại mốc đó?</b><input id="s2" placeholder="đã xong / đang diễn ra / thói quen cũ" style="width:100%;padding:10px;border-radius:10px;border:1px solid #ccd6e2;margin-top:6px"></div>
+ <div class="step"><b>3. Có ý “ngày xưa... giờ không còn” không?</b><input id="s3" placeholder="có / không" style="width:100%;padding:10px;border-radius:10px;border:1px solid #ccd6e2;margin-top:6px"></div>
+ <p class="qtext">${q.t}</p>
+ <div>${q.opts.map(o=>`<button class="option" onclick="checkSoc(this,'${o.replaceAll("'","\\'")}','${q.a.replaceAll("'","\\'")}','${q.why.replaceAll("'","\\'")}')">${o}</button>`).join('')}</div>`;
+}
+function checkSoc(el,o,a,why){el.classList.add(o===a?'correct':'wrong');alert((o===a?'✅ ':'❌ ')+why)}
+buildSocratic();
+
+const baseQs=[
+ ['When we were in Canada, we ___ skiing almost every day.','went',['went','were going','used to go'],'Past Simple','Một hành động lặp lại trong một chuyến đi quá khứ đã kết thúc.'],
+ ['About four years ago, I ___ to become a chef.','decided',['decided','was deciding','used to decide'],'Past Simple','Quyết định là một hành động hoàn tất tại thời điểm quá khứ.'],
+ ['Georgia ___ a shower when someone knocked at the door.','was having',['had','was having','used to have'],'Past Continuous','Hành động tắm đang diễn ra thì có hành động khác chen vào.'],
+ ['Holly and I ran to the taxi because it ___ heavily.','was raining',['rained','was raining','used to rain'],'Past Continuous','Mưa là bối cảnh đang diễn ra.'],
+ ['We ___ breakfast when a letter came through the letter box.','were eating',['ate','were eating','used to eat'],'Past Continuous','Bữa sáng đang diễn ra thì lá thư đến.'],
+ ['When I was younger, I ___ pizza almost every day.','used to eat',['ate','was eating','used to eat'],'Used to','Thói quen trong quá khứ xa.'],
+ ['___ there ___ be a supermarket on the corner?','Did / use to',['Did / use to','Was / using to','Did / used to'],'Used to','Câu hỏi: Did + S + use to + V?'],
+ ['At midnight, I ___, but Jane was listening to music.','was sleeping',['slept','was sleeping','used to sleep'],'Past Continuous','Mốc thời gian cụ thể trong quá khứ.'],
+ ['I got to the post office just before it closed and ___ the letter.','sent',['sent','was sending','used to send'],'Past Simple','Chuỗi hành động hoàn tất trong câu chuyện.'],
+ ['Penny ___ to catch the bus when she slipped and fell.','was running',['ran','was running','used to run'],'Past Continuous','Hành động đang chạy bị chen ngang bởi slipped/fell.']
+];
+let questions=[];
+for(let i=0;i<300;i++){
+ let q=baseQs[i%baseQs.length];
+ questions.push({t:q[0],a:q[1],opts:[...q[2]].sort(()=>Math.random()-.5),type:q[3],why:q[4]});
+}
+let state=JSON.parse(localStorage.getItem('gtl_state')||'{"i":0,"correct":0,"wrong":0,"streak":0,"score":0,"errors":[]}');
+function save(){localStorage.setItem('gtl_state',JSON.stringify(state))}
+function drawQ(){
+ let i=state.i%300,q=questions[i];
+ $('#qnum').textContent=`Câu ${i+1}/300`;$('#qtype').textContent=q.type;$('#qtext').textContent=q.t;$('#qopts').innerHTML='';$('#explain').style.display='none';
+ q.opts.forEach(o=>{let b=document.createElement('button');b.className='option';b.textContent=o;b.onclick=()=>answerQ(b,o,q);$('#qopts').appendChild(b)});
+ $('#correctN').textContent=state.correct;$('#wrongN').textContent=state.wrong;$('#streakN').textContent=state.streak;$('#scoreN').textContent=state.score;$('#prog').style.width=((i)/300*100)+'%';
+}
+function answerQ(btn,o,q){
+ [...$('#qopts').children].forEach(x=>x.disabled=true);
+ if(o===q.a){btn.classList.add('correct');state.correct++;state.streak++;state.score+=10+Math.min(state.streak,10)}
+ else{btn.classList.add('wrong');[...$('#qopts').children].find(x=>x.textContent===q.a)?.classList.add('correct');state.wrong++;state.streak=0;state.errors.unshift({q:q.t,chosen:o,a:q.a,why:q.why});state.errors=state.errors.slice(0,100)}
+ $('#explain').innerHTML=`<b>${o===q.a?'✅ Chính xác':'❌ Chưa đúng'}</b><br>${q.why}<br><b>Đáp án:</b> ${q.a}`;$('#explain').style.display='block';save();
+ $('#correctN').textContent=state.correct;$('#wrongN').textContent=state.wrong;$('#streakN').textContent=state.streak;$('#scoreN').textContent=state.score;
+}
+function nextQuestion(){state.i=(state.i+1)%300;save();drawQ()}
+function resetProgress(){if(confirm('Xóa tiến độ luyện 300 câu?')){state.i=0;state.correct=0;state.wrong=0;state.streak=0;state.score=0;save();drawQ()}}
+function renderErrors(){
+ let box=$('#errorBook');box.innerHTML=state.errors.length?'':'<div class="card">🎉 Chưa có câu sai nào được lưu.</div>';
+ state.errors.forEach((e,i)=>box.innerHTML+=`<div class="error-item"><b>${i+1}. ${e.q}</b><br>Em chọn: <s>${e.chosen}</s><br>Đúng: <b>${e.a}</b><br><span class="mini">${e.why}</span></div>`);
+}
+function clearErrors(){if(confirm('Xóa toàn bộ sổ câu sai?')){state.errors=[];save();renderErrors()}}
+drawQ();
+</script>
+</body>
+</html>
