@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tiếng Việt 5 – Học theo từng bài</title>
+<style>
+:root{--bg:#f4f8ff;--card:#fff;--ink:#172033;--muted:#667085;--pri:#3157d5;--pri2:#7b61ff;--ok:#118a55;--bad:#c83e4d;--line:#dfe7f4;--warm:#fff5cf}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:linear-gradient(135deg,#eef5ff,#fbf7ff);color:var(--ink)}
+button,input,textarea,select{font:inherit}.app{display:grid;grid-template-columns:280px 1fr;min-height:100vh}
+aside{background:#14213d;color:#fff;padding:20px;position:sticky;top:0;height:100vh;overflow:auto}
+.brand{font-weight:900;font-size:22px}.sub{opacity:.75;font-size:13px;margin:6px 0 18px}
+.lesson{width:100%;text-align:left;border:0;background:transparent;color:#dbe7ff;padding:10px 12px;border-radius:12px;cursor:pointer;margin:2px 0}
+.lesson:hover,.lesson.active{background:#294273;color:#fff}.lesson small{display:block;opacity:.7;margin-top:3px}
+main{padding:26px;max-width:1200px;width:100%;margin:auto}.hero{background:linear-gradient(120deg,#3157d5,#7b61ff);color:white;padding:24px;border-radius:22px;box-shadow:0 14px 35px #3157d52a}
+.hero h1{margin:0 0 6px;font-size:30px}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.chip{background:#ffffff25;padding:7px 10px;border-radius:999px;font-size:13px}
+.tabs{display:flex;gap:8px;overflow:auto;padding:18px 0 10px;position:sticky;top:0;background:linear-gradient(#f5f8ff 75%,transparent);z-index:4}
+.tab{border:1px solid var(--line);background:white;padding:10px 14px;border-radius:12px;cursor:pointer;white-space:nowrap}.tab.active{background:#172b5d;color:#fff}
+.panel{display:none}.panel.active{display:block}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 8px 25px #1b2d5010;margin-top:14px}
+.card h3{margin:0 0 10px}.note{background:var(--warm);border-left:5px solid #f1b600;padding:12px;border-radius:12px}.steps{counter-reset:s}.step{display:flex;gap:10px;margin:12px 0}.step b{min-width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#e9eeff;color:var(--pri)}
+.q{padding:14px;border:1px solid var(--line);border-radius:14px;margin:12px 0}.opts{display:grid;gap:8px;margin-top:10px}.opt{border:1px solid var(--line);background:white;border-radius:10px;padding:10px;text-align:left;cursor:pointer}.opt.good{border-color:var(--ok);background:#eaf9f1}.opt.bad{border-color:var(--bad);background:#fff0f2}
+.feedback{font-size:14px;margin-top:8px}.btn{border:0;background:var(--pri);color:#fff;padding:10px 14px;border-radius:11px;cursor:pointer;font-weight:700}.btn.alt{background:#eef2ff;color:#2844a4}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+textarea{width:100%;min-height:260px;border:1px solid var(--line);border-radius:14px;padding:14px;line-height:1.6;resize:vertical}.score{font-size:34px;font-weight:900;color:var(--pri)}.meter{height:10px;background:#edf1f7;border-radius:20px;overflow:hidden}.meter i{display:block;height:100%;background:linear-gradient(90deg,#3157d5,#7b61ff)}
+mark{background:#fff09b;padding:1px 4px;border-radius:5px}.search{width:100%;padding:10px 12px;border-radius:12px;border:0;margin-bottom:10px}
+@media(max-width:820px){.app{grid-template-columns:1fr}aside{position:relative;height:auto;max-height:310px}.grid{grid-template-columns:1fr}main{padding:14px}.hero h1{font-size:24px}}
+</style></head>
+<body><div class="app">
+<aside><div class="brand">📘 TIẾNG VIỆT 5</div><div class="sub">Tập một • Học theo từng bài</div><input id="search" class="search" placeholder="Tìm bài..."><div id="lessonList"></div></aside>
+<main>
+<section class="hero"><div id="theme">CHỦ ĐỀ</div><h1 id="title"></h1><div id="lessonNo"></div><div class="chips"><span class="chip" id="grammarChip"></span><span class="chip" id="writingChip"></span><span class="chip">✓ Có đáp án</span><span class="chip">✍ Có chấm bài viết</span></div></section>
+<div class="tabs">
+<button class="tab active" data-p="overview">Bản đồ bài học</button>
+<button class="tab" data-p="practice">Đọc hiểu SGK</button>
+<button class="tab" data-p="grammar">Luyện ngữ pháp</button>
+<button class="tab" data-p="challenge">Nâng cao</button>
+<button class="tab" data-p="writing">Làm văn & chấm chữa</button>
+<button class="tab" data-p="errors">Sổ câu sai</button>
+</div>
+
+<section id="overview" class="panel active">
+<div class="grid">
+<div class="card"><h3>🎯 Hôm nay cần nắm gì?</h3><div id="objectives"></div></div>
+<div class="card"><h3>🧠 Tự hỏi trước khi trả lời</h3>
+<div class="step"><b>1</b><div><strong>Đề đang hỏi gì?</strong><br><span class="muted">Khoanh từ khóa: ai, cái gì, vì sao, tác dụng, cảm xúc...</span></div></div>
+<div class="step"><b>2</b><div><strong>Bằng chứng nằm ở đâu?</strong><br>Quay lại chi tiết/câu liên quan, không đoán theo cảm giác.</div></div>
+<div class="step"><b>3</b><div><strong>Em giải thích lại bằng lời của mình được không?</strong><br>Nếu chưa, em chưa thật sự hiểu.</div></div>
+</div></div>
+<div class="card note"><b>Mẹo:</b> Hãy trả lời ngắn trước → tìm bằng chứng → sau đó mới viết câu hoàn chỉnh. Từ khóa quan trọng được <mark>highlight</mark> để em chú ý.</div>
+</section>
+
+<section id="practice" class="panel">
+<div class="card"><h3>📖 Đọc hiểu bài đọc trong SGK</h3>
+<p id="readingIntro">Đọc lại văn bản trong sách rồi làm câu hỏi. Chọn đáp án để <b>check ngay</b>; câu sai được lưu vào Sổ câu sai.</p>
+<div id="readingQuiz"></div></div></section>
+<section id="grammar" class="panel">
+<div class="card"><h3>🔤 Luyện tập ngữ pháp</h3>
+<p id="grammarIntro">Bài tập bám theo nội dung Luyện từ và câu của bài đang học, có kiểm tra đáp án và giải thích.</p>
+<div id="grammarQuiz"></div><button class="btn alt" onclick="regenGrammar()">Tạo lượt ngữ pháp mới</button></div></section>
+<section id="challenge" class="panel"><div class="card"><h3>🚀 Bộ câu hỏi nâng cao</h3><p>Câu hỏi thiên về phân tích ngữ pháp, lựa chọn cách diễn đạt và tư duy viết.</p><div id="hardQuiz"></div><button class="btn alt" onclick="regen(true)">Tạo lượt nâng cao mới</button></div></section>
+
+<section id="writing" class="panel">
+<div class="card"><h3>✍️ Nhiệm vụ làm văn</h3><div id="writingPrompt" class="note"></div>
+<div class="grid"><div><h4>Khung tự hỏi</h4><div id="writingGuide"></div></div><div><h4>Tiêu chí chấm</h4><p>Nội dung 4đ • Bố cục 2đ • Từ/câu 2đ • Chính tả 1đ • Sáng tạo/cảm xúc 1đ</p><div class="meter"><i style="width:100%"></i></div></div></div>
+<textarea id="essay" placeholder="Viết bài của em ở đây..."></textarea>
+<div class="row" style="margin-top:10px"><button class="btn" onclick="gradeEssay()">Chấm & chữa bài</button><button class="btn alt" onclick="saveEssay()">Lưu bài</button><span id="saveMsg"></span></div>
+</div>
+<div class="card" id="gradeBox" style="display:none"><h3>📋 Phiếu chấm bài</h3><div class="score" id="score"></div><div id="gradeDetail"></div></div>
+</section>
+
+<section id="errors" class="panel"><div class="card"><h3>📒 Sổ câu sai</h3><div id="errorList"></div><button class="btn alt" onclick="clearErrors()">Xóa sổ câu sai</button></div></section>
+</main></div>
+<script>
+const lessons=[{"n": 1, "title": "Thanh âm của gió", "theme": "Thế giới tuổi thơ", "grammar": "Danh từ – Động từ – Tính từ", "writing": "Kể chuyện sáng tạo"}, {"n": 2, "title": "Cánh đồng hoa", "theme": "Thế giới tuổi thơ", "grammar": "Ôn danh từ – động từ – tính từ", "writing": "Kể chuyện sáng tạo"}, {"n": 3, "title": "Tuổi Ngựa", "theme": "Thế giới tuổi thơ", "grammar": "Đại từ", "writing": "Lập dàn ý kể chuyện sáng tạo"}, {"n": 4, "title": "Bên sông tuổi thơ", "theme": "Thế giới tuổi thơ", "grammar": "Từ ngữ và cảm thụ", "writing": "Viết bài kể chuyện sáng tạo"}, {"n": 5, "title": "Tiếng hạt nảy mầm", "theme": "Thế giới tuổi thơ", "grammar": "Đại từ", "writing": "Đánh giá, chỉnh sửa bài kể chuyện"}, {"n": 6, "title": "Ngôi sao sân cỏ", "theme": "Thế giới tuổi thơ", "grammar": "Đại từ thay thế", "writing": "Tìm hiểu cách viết báo cáo công việc"}, {"n": 7, "title": "Bộ sưu tập độc đáo", "theme": "Thế giới tuổi thơ", "grammar": "Đại từ", "writing": "Viết báo cáo công việc"}, {"n": 8, "title": "Hành tinh kì lạ", "theme": "Thế giới tuổi thơ", "grammar": "Đại từ", "writing": "Đánh giá, chỉnh sửa báo cáo công việc"}, {"n": 9, "title": "Trước cổng trời", "theme": "Thiên nhiên kì thú", "grammar": "Từ đồng nghĩa", "writing": "Tìm hiểu cách viết bài văn tả phong cảnh"}, {"n": 10, "title": "Kì diệu rừng xanh", "theme": "Thiên nhiên kì thú", "grammar": "Từ đồng nghĩa", "writing": "Tìm hiểu cách viết bài văn tả phong cảnh"}, {"n": 11, "title": "Hang Sơn Đoòng – những điều kì thú", "theme": "Thiên nhiên kì thú", "grammar": "Từ đồng nghĩa", "writing": "Viết mở bài và kết bài cho bài văn tả phong cảnh"}, {"n": 12, "title": "Những hòn đảo trên vịnh Hạ Long", "theme": "Thiên nhiên kì thú", "grammar": "Từ đồng nghĩa", "writing": "Quan sát phong cảnh"}, {"n": 13, "title": "Mầm non", "theme": "Thiên nhiên kì thú", "grammar": "Từ đa nghĩa", "writing": "Lập dàn ý cho bài văn tả phong cảnh"}, {"n": 14, "title": "Những ngọn núi nóng rẫy", "theme": "Thiên nhiên kì thú", "grammar": "Từ đa nghĩa", "writing": "Viết đoạn văn tả phong cảnh"}, {"n": 15, "title": "Bài ca về mặt trời", "theme": "Thiên nhiên kì thú", "grammar": "Từ đa nghĩa", "writing": "Viết bài văn tả phong cảnh"}, {"n": 16, "title": "Xin chào, Xa-ha-ra", "theme": "Thiên nhiên kì thú", "grammar": "Từ đa nghĩa", "writing": "Đánh giá, chỉnh sửa bài văn tả phong cảnh"}, {"n": 17, "title": "Thư gửi các học sinh", "theme": "Trên con đường học tập", "grammar": "Từ điển", "writing": "Tìm hiểu cách viết đoạn văn giới thiệu nhân vật trong sách"}, {"n": 18, "title": "Tấm gương tự học", "theme": "Trên con đường học tập", "grammar": "Từ điển", "writing": "Tìm ý cho đoạn văn giới thiệu nhân vật trong sách"}, {"n": 19, "title": "Trải nghiệm để sáng tạo", "theme": "Trên con đường học tập", "grammar": "Từ điển", "writing": "Viết đoạn văn giới thiệu nhân vật trong sách"}, {"n": 20, "title": "Khổ luyện thành tài", "theme": "Trên con đường học tập", "grammar": "Từ điển", "writing": "Đánh giá, chỉnh sửa đoạn văn giới thiệu nhân vật trong sách"}, {"n": 21, "title": "Thế giới trong trang sách", "theme": "Trên con đường học tập", "grammar": "Dấu gạch ngang", "writing": "Tìm hiểu cách viết đoạn văn thể hiện tình cảm, cảm xúc về một câu chuyện"}, {"n": 22, "title": "Từ những câu chuyện ấu thơ", "theme": "Trên con đường học tập", "grammar": "Từ ngữ và cảm thụ", "writing": "Tìm ý cho đoạn văn thể hiện tình cảm, cảm xúc về một câu chuyện"}, {"n": 23, "title": "Giới thiệu sách Dế Mèn phiêu lưu kí", "theme": "Trên con đường học tập", "grammar": "Dấu gạch ngang", "writing": "Viết đoạn văn thể hiện tình cảm, cảm xúc về một câu chuyện"}, {"n": 24, "title": "Tinh thần học tập của nhà Phi-lít", "theme": "Trên con đường học tập", "grammar": "Dấu gạch ngang", "writing": "Đánh giá, chỉnh sửa đoạn văn thể hiện tình cảm, cảm xúc về một câu chuyện"}, {"n": 25, "title": "Tiếng đàn ba-la-lai-ca trên sông Đà", "theme": "Nghệ thuật muôn màu", "grammar": "Điệp từ, điệp ngữ", "writing": "Tìm hiểu cách viết đoạn văn thể hiện tình cảm, cảm xúc về một bài thơ"}, {"n": 26, "title": "Trí tưởng tượng phong phú", "theme": "Nghệ thuật muôn màu", "grammar": "Từ ngữ và cảm thụ", "writing": "Tìm ý cho đoạn văn thể hiện tình cảm, cảm xúc về một bài thơ"}, {"n": 27, "title": "Tranh làng Hồ", "theme": "Nghệ thuật muôn màu", "grammar": "Điệp từ, điệp ngữ", "writing": "Viết đoạn văn thể hiện tình cảm, cảm xúc về một bài thơ"}, {"n": 28, "title": "Tập hát quan họ", "theme": "Nghệ thuật muôn màu", "grammar": "Từ ngữ và cảm thụ", "writing": "Đánh giá, chỉnh sửa đoạn văn thể hiện tình cảm, cảm xúc về một bài thơ"}, {"n": 29, "title": "Phim hoạt hình Chú ốc sên bay", "theme": "Nghệ thuật muôn màu", "grammar": "Từ ngữ và cảm thụ", "writing": "Tìm hiểu cách viết đoạn văn giới thiệu nhân vật trong một bộ phim hoạt hình"}, {"n": 30, "title": "Cánh diều tuổi thơ", "theme": "Nghệ thuật muôn màu", "grammar": "Từ ngữ và cảm thụ", "writing": "Tìm ý cho đoạn văn giới thiệu nhân vật trong một bộ phim hoạt hình"}, {"n": 31, "title": "Một ngày của Đô-rê-mon", "theme": "Nghệ thuật muôn màu", "grammar": "Từ ngữ và cảm thụ", "writing": "Viết đoạn văn giới thiệu nhân vật trong một bộ phim hoạt hình"}, {"n": 32, "title": "Sự tích chú Tễu", "theme": "Nghệ thuật muôn màu", "grammar": "Từ ngữ và cảm thụ", "writing": "Đánh giá, chỉnh sửa đoạn văn giới thiệu nhân vật trong một bộ phim hoạt hình"}];
+let current=0;
+const bank={
+"Đại từ":[
+["Trong câu “Lan học rất chăm. Bạn ấy luôn hoàn thành bài tập.”, “bạn ấy” có tác dụng gì?",["Thay thế cho Lan","Chỉ thời gian","Chỉ hoạt động","Nêu đặc điểm"],0,"Đại từ giúp thay thế từ ngữ đã dùng, tránh lặp."],
+["Từ nào có thể dùng để hỏi về người?",["ai","đâu","bao giờ","vì sao"],0,"“Ai” là đại từ nghi vấn dùng để hỏi về người."]
+],
+"Từ đồng nghĩa":[
+["Cặp từ nào gần nghĩa nhất?",["to lớn – lớn lao","cao – thấp","nhanh – chậm","vui – buồn"],0,"Hai từ cùng gợi mức độ lớn, nhưng cần chọn theo ngữ cảnh."],
+["Khi dùng từ đồng nghĩa, điều quan trọng nhất là gì?",["Phù hợp ngữ cảnh","Từ càng dài càng tốt","Luôn thay được cho nhau","Chỉ cần giống âm"],0,"Từ đồng nghĩa không phải lúc nào cũng thay thế cho nhau; phải xét sắc thái và ngữ cảnh."]
+],
+"Từ đa nghĩa":[
+["Một từ đa nghĩa thường có đặc điểm nào?",["Có nghĩa gốc và một hay nhiều nghĩa chuyển","Chỉ có đúng một nghĩa","Các nghĩa hoàn toàn không liên quan","Luôn là danh từ"],0,"Các nghĩa của từ đa nghĩa có mối liên hệ với nhau."],
+["Muốn xác định nghĩa của một từ đa nghĩa trong câu, em nên làm gì trước?",["Đọc cả ngữ cảnh","Chỉ nhìn riêng từ đó","Đếm số chữ","Đổi sang từ trái nghĩa"],0,"Ngữ cảnh giúp xác định từ đang được dùng theo nghĩa nào."]
+],
+"Điệp từ, điệp ngữ":[
+["Điệp từ, điệp ngữ là gì?",["Lặp lại có chủ ý từ/ngữ để nhấn mạnh","Dùng nhiều từ trái nghĩa","Bỏ bớt từ trong câu","Đổi trật tự mọi từ"],0,"Phép điệp lặp có chủ ý để nhấn mạnh ý, cảm xúc hoặc tạo nhịp điệu."]
+],
+"Dấu gạch ngang":[
+["Dấu gạch ngang có thể được dùng để làm gì?",["Đánh dấu lời nói trực tiếp của nhân vật","Kết thúc mọi câu kể","Thay cho mọi dấu phẩy","Chỉ dùng trong tiêu đề"],0,"Một công dụng quen thuộc là đánh dấu lời nói trực tiếp trong hội thoại."]
+],
+"Từ điển":[
+["Khi tra từ điển, thao tác hợp lí là gì?",["Xác định từ cần tra và tìm theo thứ tự chữ cái","Đoán nghĩa rồi bỏ qua","Chỉ đọc ví dụ đầu tiên","Tìm theo độ dài của từ"],0,"Tra cứu hiệu quả bắt đầu bằng việc xác định mục từ và vị trí theo hệ thống của từ điển."]
+],
+"default":[
+["Muốn trả lời câu hỏi đọc hiểu “Vì sao...?”, em nên ưu tiên điều gì?",["Tìm chi tiết làm bằng chứng trong bài","Đoán theo cảm xúc","Chép nguyên cả bài","Chỉ đọc nhan đề"],0,"Câu trả lời cần dựa vào chi tiết liên quan trong văn bản."],
+["Khi câu hỏi yêu cầu nêu cảm nhận, câu trả lời tốt nên có gì?",["Ý kiến và chi tiết giải thích","Chỉ một từ “hay”","Chép lại câu hỏi","Không cần lí do"],0,"Cảm nhận thuyết phục cần có ý kiến và căn cứ/giải thích."]
+]};
+
+const readingBank={
+1:[
+["Trong bài “Thanh âm của gió”, nhóm trẻ ra suối vào thời điểm nào?",["Ngày nào cũng qua suối","Chỉ ngày chủ nhật","Chỉ buổi tối","Chỉ khi trời mưa"],0,"Mở đầu bài đọc cho biết chúng thường đi chơi và ngày nào cũng qua suối."],
+["Bống phát hiện ra trò chơi gì?",["Bịt tai để nghe tiếng gió","Ném sỏi xuống suối","Thi chạy qua cầu","Bắt cá dưới suối"],0,"Bống nói bịt tai lại thì nghe được gió; các bạn thử làm theo."],
+["Khi bịt tai, các bạn nghe âm thanh của gió như thế nào?",["Mỗi người nghe và tưởng tượng theo một cách","Tất cả nghe giống hệt nhau","Không ai nghe thấy gì","Chỉ Bống nghe thấy"],0,"Bài đọc cho thấy mỗi bạn cảm nhận âm thanh khác nhau và dùng trí tưởng tượng để diễn tả."],
+["Chi tiết các bạn vừa đi vừa chơi cho thấy điều gì nổi bật?",["Niềm vui và trí tưởng tượng của tuổi thơ","Các bạn rất sợ thiên nhiên","Các bạn muốn về nhà ngay","Các bạn không thích con suối"],0,"Trò chơi nghe gió thể hiện sự hồn nhiên, tò mò và giàu tưởng tượng của trẻ nhỏ."]
+],
+2:[
+["Trong “Cánh đồng hoa”, điều gì khiến các bạn nhỏ lo lắng?",["Đồng cỏ có nguy cơ trở thành bãi rác","Trời sắp có bão lớn","Không còn ai chơi cùng","Cây cầu bị hỏng"],0,"Các bạn phát hiện rác xuất hiện trên đồng cỏ và lo nơi vui chơi sẽ thành bãi rác."],
+["Các bạn đã làm gì để cải tạo đồng cỏ?",["Trồng hoa và chăm sóc cánh đồng","Xây một ngôi nhà","Đào một cái ao","Rời sang nơi khác chơi"],0,"Nhóm bạn quyết định cải tạo, trồng hoa để biến nơi đó thành cánh đồng hoa."],
+["Kết quả của việc cải tạo đồng cỏ là gì?",["Cánh đồng hoa đẹp, thu hút mọi người","Đồng cỏ bị bỏ hoang","Các bạn không quay lại nữa","Bãi rác lớn hơn"],0,"Cánh đồng hoa trở nên đẹp và được nhiều người biết đến, ghé thăm."],
+["Câu chuyện gợi cho em bài học nào phù hợp nhất?",["Biết chung tay bảo vệ và làm đẹp môi trường","Chỉ người lớn mới bảo vệ được môi trường","Không nên chơi ngoài trời","Muốn đẹp phải mua nhiều đồ"],0,"Hành động của nhóm bạn cho thấy trẻ em cũng có thể góp sức bảo vệ môi trường sống."]
+],
+3:[
+["Trong bài thơ “Tuổi Ngựa”, bạn nhỏ tưởng tượng mình là gì?",["Một chú ngựa con rong ruổi","Một chú chim nhỏ","Một con thuyền","Một đám mây"],0,"Bạn nhỏ tự nhận mình tuổi Ngựa và tưởng tượng sẽ phi đi nhiều nơi."],
+["Dù muốn đi khắp nơi, bạn nhỏ vẫn nhớ điều gì?",["Đường về với mẹ","Một món đồ chơi","Trường học cũ","Con sông nhỏ"],0,"Cuối bài, hình ảnh ngựa con vẫn nhớ đường thể hiện tình cảm gắn bó với mẹ."],
+["Những chuyến đi trong tưởng tượng của bạn nhỏ cho thấy điều gì?",["Khát vọng khám phá thế giới","Sợ phải đi xa","Không thích thiên nhiên","Chỉ muốn ở nhà"],0,"Các hình ảnh rong ruổi qua nhiều miền cho thấy trí tưởng tượng và mong muốn khám phá."],
+["Tình cảm nổi bật của bạn nhỏ đối với mẹ là gì?",["Yêu thương và gắn bó","Giận dỗi","Thờ ơ","Sợ hãi"],0,"Dù tưởng tượng đi xa, bạn nhỏ vẫn hướng về mẹ và nhớ đường trở về."]
+],
+4:[
+["Trong “Bên sông tuổi thơ”, hình ảnh nào gắn với trò chơi của trẻ em?",["Bến sông và những trò vui bên sông","Một sân vận động lớn","Một rạp chiếu phim","Một khu mua sắm"],0,"Bài đọc gợi lại những trò chơi và kỉ niệm tuổi thơ gắn với bến sông quê."],
+["Người kể nhớ bến sông chủ yếu vì điều gì?",["Nơi lưu giữ nhiều kỉ niệm tuổi thơ","Nơi có nhiều cửa hàng","Nơi thường tổ chức thi đấu","Nơi có nhiều xe cộ"],0,"Bến sông hiện lên như một phần thân thuộc của tuổi thơ và quê hương."],
+["Cách xưng hô “tôi”, “chúng tôi” trong bài giúp thể hiện điều gì?",["Kỉ niệm và trải nghiệm trực tiếp của người kể","Một bản hướng dẫn","Một thông báo","Một cuộc phỏng vấn"],0,"Ngôi kể này làm cho hồi ức tuổi thơ trở nên gần gũi và chân thực."],
+["Cảm xúc nổi bật của người kể đối với quê hương là gì?",["Yêu mến, gắn bó","Chán ghét","Lo sợ","Lạnh nhạt"],0,"Những hình ảnh được nhớ lại với sự trìu mến cho thấy tình yêu và sự gắn bó với quê hương."]
+],
+5:[
+["Trong “Tiếng hạt nảy mầm”, lớp học có điểm gì đặc biệt?",["Các bạn học sinh cảm nhận âm thanh theo cách riêng","Lớp chỉ học ngoài trời","Không có giáo viên","Chỉ học môn thể thao"],0,"Bài thơ tập trung vào cách các bạn nhỏ cảm nhận thế giới âm thanh và sự hướng dẫn của cô giáo."],
+["Cô giáo giúp học trò hình dung âm thanh bằng cách nào?",["Gợi ra hình ảnh và cảm nhận gần gũi","Yêu cầu các bạn im lặng hoàn toàn","Chỉ cho chép bài","Cho các bạn về nhà"],0,"Các câu hỏi và gợi ý của cô giúp học trò liên tưởng âm thanh với hình ảnh, sự vật."],
+["Nhan đề “Tiếng hạt nảy mầm” gợi điều gì?",["Sự sống và những cảm nhận đang lớn lên","Một trận bóng đá","Một chuyến du lịch","Một bản báo cáo"],0,"Hình ảnh hạt nảy mầm gợi sự sống, sự phát triển và những cảm nhận tinh tế được đánh thức."],
+["Điều đáng quý ở lớp học trong bài là gì?",["Sự thấu hiểu và cách học giàu cảm nhận","Ai cũng phải trả lời giống nhau","Chỉ cần học thuộc lòng","Không cần giao tiếp"],0,"Bài thơ nhấn mạnh sự cảm thông và việc giúp mỗi học sinh cảm nhận thế giới theo khả năng của mình."]
+],
+6:[
+["Trong “Ngôi sao sân cỏ”, Mạnh và Việt cùng tham gia hoạt động nào?",["Một trận bóng đá","Một cuộc thi vẽ","Một buổi cắm trại","Một buổi biểu diễn"],0,"Câu chuyện diễn ra trong một trận bóng đá của các bạn học sinh."],
+["Vì sao có lúc Mạnh cảm thấy khó chịu?",["Việt có cơ hội ghi bàn và được chú ý","Trận đấu bị hủy","Không có bóng để chơi","Trời mưa quá lớn"],0,"Diễn biến cho thấy cảm xúc của Mạnh thay đổi khi Việt có cơ hội thể hiện trong trận đấu."],
+["Cuối cùng, hành động của Mạnh cho thấy điều gì?",["Biết vượt qua cảm xúc cá nhân để hướng tới tập thể","Không muốn chơi cùng đội","Muốn trận đấu kết thúc","Không quan tâm đến bạn"],0,"Mạch câu chuyện hướng tới tinh thần đồng đội và cách ứng xử tích cực trong thi đấu."],
+["Bài đọc phù hợp nhất với thông điệp nào?",["Tinh thần đồng đội quan trọng hơn việc chỉ nghĩ đến bản thân","Chỉ người ghi bàn mới có giá trị","Không nên chơi thể thao","Phải luôn thi đấu một mình"],0,"Câu chuyện đặt các nhân vật trong tình huống thi đấu để làm nổi bật cách ứng xử với bạn và tập thể."]
+]
+};
+
+const generic=[
+["Trước khi chọn đáp án đọc hiểu, bước nào nên làm trước?",["Xác định từ khóa của câu hỏi","Chọn đáp án dài nhất","Đọc đáp án trước rồi đoán","Bỏ qua văn bản"],0,"Xác định từ khóa giúp biết mình cần tìm thông tin nào."],
+["Khi đề hỏi “tác dụng”, em cần trả lời theo hướng nào?",["Nêu hiệu quả của chi tiết/cách dùng từ","Chỉ chép lại chi tiết","Nêu tên tác giả","Đếm số câu"],0,"“Tác dụng” yêu cầu nói chi tiết đó làm nổi bật điều gì hoặc tạo hiệu quả gì."]
+];
+function normGrammar(g){for(const k of Object.keys(bank)) if(g.includes(k)) return k; return "default"}
+function renderList(filter=""){const box=document.getElementById("lessonList");box.innerHTML="";lessons.forEach((l,i)=>{if(!l.title.toLowerCase().includes(filter.toLowerCase()))return;let b=document.createElement("button");b.className="lesson"+(i===current?" active":"");b.innerHTML=`<b>Bài ${l.n}. ${l.title}</b><small>${l.theme}</small>`;b.onclick=()=>load(i);box.appendChild(b)})}
+function load(i){current=i;const l=lessons[i];document.getElementById("theme").textContent=l.theme.toUpperCase();document.getElementById("title").textContent=l.title;document.getElementById("lessonNo").textContent=`Bài ${l.n} / 32`;document.getElementById("grammarChip").textContent="🔤 "+l.grammar;document.getElementById("writingChip").textContent="✍ "+l.writing;
+document.getElementById("objectives").innerHTML=`<p>• Đọc và trả lời câu hỏi theo bài <b>${l.title}</b>.</p><p>• Nhận biết và vận dụng <mark>${l.grammar}</mark>.</p><p>• Thực hành: <mark>${l.writing}</mark>.</p>`;
+document.getElementById("writingPrompt").innerHTML=`<b>Đề luyện:</b> ${makePrompt(l)}`;
+document.getElementById("writingGuide").innerHTML=guide(l);
+document.getElementById("essay").value=localStorage.getItem("essay_"+l.n)||"";
+renderReading();regenGrammar();regen(true);renderErrors();renderList(document.getElementById("search").value)}
+function makePrompt(l){let w=l.writing.toLowerCase();if(w.includes("phong cảnh"))return "Viết một bài/đoạn văn tả một phong cảnh em yêu thích. Hãy giúp người đọc có thể hình dung cảnh vật bằng nhiều giác quan và thể hiện cảm xúc của em.";
+if(w.includes("kể chuyện"))return "Viết một bài kể chuyện sáng tạo từ một câu chuyện em đã đọc hoặc một kỉ niệm đáng nhớ. Có thể thêm chi tiết, lời thoại hoặc đổi góc kể nhưng phải hợp lí.";
+if(w.includes("báo cáo"))return "Viết báo cáo ngắn về một hoạt động của tổ hoặc lớp: nêu thời gian, công việc đã làm, kết quả và điều cần cải thiện.";
+if(w.includes("bài thơ"))return "Viết đoạn văn nêu tình cảm, cảm xúc của em về một bài thơ em yêu thích; nêu ít nhất một hình ảnh hoặc từ ngữ khiến em ấn tượng.";
+if(w.includes("câu chuyện"))return "Viết đoạn văn thể hiện tình cảm, cảm xúc của em về một câu chuyện đã đọc; giải thích rõ chi tiết nào làm em có cảm xúc đó.";
+if(w.includes("nhân vật"))return "Viết đoạn văn giới thiệu một nhân vật em yêu thích; nêu đặc điểm nổi bật và chi tiết làm em nhớ nhất.";
+return "Viết một đoạn văn 8–12 câu liên quan đến nội dung bài học, có mở ý, triển khai và kết ý rõ ràng."}
+function guide(l){return `<div class="step"><b>1</b><div><b>Em định viết về đối tượng nào?</b><br>Ghi 3–5 ý chính trước khi viết.</div></div><div class="step"><b>2</b><div><b>Chi tiết nào chứng minh ý của em?</b><br>Chọn chi tiết cụ thể thay vì kể chung chung.</div></div><div class="step"><b>3</b><div><b>Người đọc có hình dung/cảm nhận được không?</b><br>Thêm từ gợi tả, cảm xúc hoặc lời thoại khi phù hợp.</div></div><div class="step"><b>4</b><div><b>Đọc lại như một người khác.</b><br>Kiểm tra lặp từ, câu quá dài, dấu câu và chính tả.</div></div>`}
+
+function renderReading(){
+ const l=lessons[current], qs=readingBank[l.n]||[
+ ["Sau khi đọc văn bản “"+l.title+"”, bước nào giúp em trả lời câu hỏi chính xác nhất?",["Tìm chi tiết liên quan trong bài","Đoán theo cảm giác","Chọn câu dài nhất","Bỏ qua văn bản"],0,"Hãy quay lại văn bản và dùng chi tiết làm bằng chứng."],
+ ["Khi đề hỏi về nội dung chính của bài đọc, em nên làm gì?",["Xem các sự việc/hình ảnh quan trọng lặp lại và ý kết thúc","Chỉ nhìn một từ bất kì","Đếm số dòng","Chọn đáp án dài nhất"],0,"Nội dung chính được rút ra từ các chi tiết trọng tâm và ý bao quát của văn bản."]
+ ];
+ draw("readingQuiz",qs);
+ document.getElementById("readingIntro").innerHTML=`Đọc lại <b>${l.title}</b> trong SGK rồi làm ${qs.length} câu dưới đây. Chọn đáp án để <b>check ngay</b>; câu sai tự vào Sổ câu sai.`;
+}
+function regenGrammar(){
+ const l=lessons[current];
+ const qs=getQs(l,false);
+ draw("grammarQuiz",qs);
+ document.getElementById("grammarIntro").innerHTML=`Nội dung đang luyện: <mark>${l.grammar}</mark>. Mỗi câu có đáp án và giải thích sau khi chọn.`;
+}
+function getQs(l,hard){let arr=[...(bank[normGrammar(l.grammar)]||bank.default),...generic]; if(hard)arr=arr.map((q,idx)=>[q[0].replace("?"," và giải thích lựa chọn hợp lí nhất?"),q[1],q[2],q[3]+" Hãy tự giải thích lại bằng một câu của em."]);return arr.sort(()=>Math.random()-.5).slice(0,4)}
+function draw(boxId,qs){const box=document.getElementById(boxId);box.innerHTML="";qs.forEach((q,qi)=>{let d=document.createElement("div");d.className="q";d.innerHTML=`<b>Câu ${qi+1}.</b> ${q[0]}<div class="opts">${q[1].map((x,oi)=>`<button class="opt" onclick="answer(this,${oi},${q[2]},${JSON.stringify(q[0])},${JSON.stringify(q[3])})">${String.fromCharCode(65+oi)}. ${x}</button>`).join("")}</div><div class="feedback"></div>`;box.appendChild(d)})}
+function regen(hard){const l=lessons[current];draw(hard?"hardQuiz":"quiz",getQs(l,hard))}
+function answer(btn,chosen,correct,q,exp){let root=btn.closest(".q"),opts=[...root.querySelectorAll(".opt")];opts.forEach((o,i)=>{o.disabled=true;if(i===correct)o.classList.add("good");});let fb=root.querySelector(".feedback");if(chosen===correct){fb.innerHTML="✅ <b>Đúng.</b> "+exp}else{btn.classList.add("bad");fb.innerHTML="❌ <b>Chưa đúng.</b> "+exp;let es=JSON.parse(localStorage.getItem("errors")||"[]");es.unshift({lesson:lessons[current].n,title:lessons[current].title,q,exp,time:new Date().toLocaleString("vi-VN")});localStorage.setItem("errors",JSON.stringify(es.slice(0,50)));renderErrors()}}
+function saveEssay(){localStorage.setItem("essay_"+lessons[current].n,document.getElementById("essay").value);document.getElementById("saveMsg").textContent="Đã lưu ✓"}
+function gradeEssay(){const t=document.getElementById("essay").value.trim();if(t.length<40){alert("Em hãy viết thêm một chút để app có đủ dữ liệu chấm.");return}
+let words=t.split(/\s+/).length,sents=(t.match(/[.!?]+/g)||[]).length,paras=t.split(/\n+/).filter(x=>x.trim()).length;
+let connectors=(t.match(/\b(vì|nên|nhưng|tuy|sau đó|cuối cùng|đầu tiên|ngoài ra|đặc biệt|khi|nếu)\b/gi)||[]).length;
+let expressive=(t.match(/\b(em thấy|em cảm thấy|em thích|ấn tượng|đẹp|vui|xúc động|tự hào|yêu thích|rực rỡ|trong xanh|êm đềm)\b/gi)||[]).length;
+let content=Math.min(4,1.5+words/70+Math.min(connectors,4)*.25),structure=Math.min(2,.8+Math.min(sents,8)*.1+(paras>1?.4:0)),lang=Math.min(2,.8+Math.min(expressive+connectors,6)*.18),spell=Math.min(1,.6+(sents>=3?.2:0)+(t[0]===t[0].toUpperCase()?.2:0)),creative=Math.min(1,.4+Math.min(expressive,4)*.15);
+let score=Math.round((content+structure+lang+spell+creative)*10)/10;
+let tips=[];if(words<90)tips.push("Bài còn ngắn: hãy bổ sung chi tiết cụ thể hoặc bằng chứng.");if(sents<5)tips.push("Nên chia ý thành nhiều câu rõ ràng hơn.");if(connectors<2)tips.push("Thử dùng từ nối để các ý liên kết tự nhiên hơn.");if(expressive<2)tips.push("Thêm từ ngữ gợi tả hoặc câu thể hiện cảm xúc.");if(paras<2&&words>120)tips.push("Bài khá dài; nên chia đoạn để bố cục rõ hơn.");
+document.getElementById("gradeBox").style.display="block";document.getElementById("score").textContent=score+"/10";
+document.getElementById("gradeDetail").innerHTML=`<p><b>Nội dung:</b> ${content.toFixed(1)}/4 • <b>Bố cục:</b> ${structure.toFixed(1)}/2 • <b>Từ & câu:</b> ${lang.toFixed(1)}/2 • <b>Trình bày/chính tả:</b> ${spell.toFixed(1)}/1 • <b>Cảm xúc/sáng tạo:</b> ${creative.toFixed(1)}/1</p><p><b>Phân tích:</b> khoảng ${words} từ, ${sents} câu, ${paras} đoạn.</p><div class="note"><b>Gợi ý chữa:</b><br>${(tips.length?tips:["Bố cục khá rõ. Hãy đọc lại từng câu và thay những từ lặp bằng cách diễn đạt tự nhiên hơn."]).map(x=>"• "+x).join("<br>")}<br><br><b>Tự kiểm tra:</b> “Chi tiết nào trong bài của em khiến người đọc nhìn thấy hoặc cảm nhận được điều em muốn nói?”</div><p><small>Điểm là phản hồi tự động theo dấu hiệu hình thức và cấu trúc, dùng để luyện tập; giáo viên vẫn là người đánh giá chính xác nhất về nội dung và sự sáng tạo.</small></p>`;saveEssay()}
+function renderErrors(){let es=JSON.parse(localStorage.getItem("errors")||"[]");document.getElementById("errorList").innerHTML=es.length?es.map(e=>`<div class="q"><b>Bài ${e.lesson}: ${e.title}</b><br>${e.q}<div class="feedback">💡 ${e.exp}</div><small>${e.time}</small></div>`).join(""):"<p>Chưa có câu sai. Hãy luyện tập để app tự ghi lại lỗi cần ôn.</p>"}
+function clearErrors(){localStorage.removeItem("errors");renderErrors()}
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab,.panel").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.getElementById(b.dataset.p).classList.add("active")});
+document.getElementById("search").oninput=e=>renderList(e.target.value);
+load(0);
+</script></body></html>
