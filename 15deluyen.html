@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>15 Đề luyện tập Tiếng Anh 5</title>
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--ink:#15243a;--muted:#6d7a90;--accent:#3157d5;--accent2:#06a77d;--bad:#d04444;--line:#dce4f1;--warn:#f0a21b}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{position:sticky;top:0;z-index:20;background:linear-gradient(120deg,#203f9f,#6b18df);color:#fff;padding:14px 22px;box-shadow:0 5px 18px #1b3f8f33}
+.hrow{display:flex;gap:14px;align-items:center;justify-content:space-between}.brand{font-weight:900;font-size:21px}.sub{opacity:.88;font-size:12px}
+main{display:grid;grid-template-columns:250px 1fr;min-height:calc(100vh - 66px)}
+aside{background:#fff;border-right:1px solid var(--line);padding:14px;position:sticky;top:66px;height:calc(100vh - 66px);overflow:auto}
+.content{padding:20px;max-width:1120px;width:100%;margin:auto}
+.navbtn{width:100%;text-align:left;border:0;background:transparent;padding:10px 12px;border-radius:10px;color:var(--ink);cursor:pointer;margin:2px 0;font-size:14px}
+.navbtn:hover,.navbtn.active{background:#eef3ff;color:var(--accent);font-weight:800}
+.sectionTitle{font-size:12px;color:var(--muted);font-weight:900;letter-spacing:.08em;margin:15px 8px 6px;text-transform:uppercase}
+.hero{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin-bottom:16px;box-shadow:0 7px 20px #27477a0d}
+.hero h1{margin:0 0 6px;font-size:25px}.hero p{margin:4px 0;color:var(--muted)}
+.gridstats{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:10px;margin-top:14px}
+.stat{background:#f8faff;border:1px solid var(--line);border-radius:14px;padding:12px}.stat b{font-size:20px;display:block}.stat span{font-size:12px;color:var(--muted)}
+.testGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.testTile{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 4px 15px #27477a0b}
+.testTile h3{margin:0 0 6px;color:#244ab8}.testTile p{font-size:13px;color:var(--muted)}
+.exercise{margin:18px 0}.exercise h2{font-size:19px;margin:0 0 10px;padding:10px 12px;background:#eef5ff;border-left:5px solid var(--accent);border-radius:10px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 15px;margin:10px 0;box-shadow:0 4px 16px #28466e0a}
+.qtop{display:flex;gap:10px;align-items:flex-start}.qnum{min-width:34px;height:34px;border-radius:10px;background:#eef3ff;color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800}
+.qtext{line-height:1.55;white-space:pre-wrap;flex:1;font-size:15px}.answerRow{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.ans{flex:1;min-width:220px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:14px}
+.btn{border:0;border-radius:10px;padding:10px 13px;font-weight:800;cursor:pointer;background:var(--accent);color:white}
+.btn.secondary{background:#eef3ff;color:var(--accent)}.btn.good{background:var(--accent2)}.btn.ghost{background:#f2f4f8;color:#43506a}
+.feedback{margin-top:8px;font-size:13px;padding:9px 11px;border-radius:10px;display:none}
+.feedback.ok{display:block;background:#e9fbf5;color:#08785b}.feedback.bad{display:block;background:#fff0f0;color:#a22828}.feedback.warn{display:block;background:#fff7e7;color:#96600a}
+.key{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;white-space:pre-wrap}
+.mcopts{display:grid;grid-template-columns:repeat(2,minmax(180px,1fr));gap:8px;margin-top:11px}
+.opt{border:1px solid var(--line);background:#fff;border-radius:11px;padding:10px 11px;text-align:left;cursor:pointer;line-height:1.35}
+.opt:hover{border-color:#9db1ed}.opt.sel{border-color:var(--accent);background:#eef3ff}
+.progress{height:8px;background:#e9eef7;border-radius:999px;overflow:hidden}.progress>div{height:100%;background:var(--accent2);width:0}
+.note{font-size:12px;color:var(--muted)}.wrongtag{color:var(--bad);font-weight:700;font-size:12px}
+.badge{display:inline-flex;padding:4px 8px;border-radius:999px;background:#eef3ff;color:var(--accent);font-size:11px;font-weight:700;margin-right:6px}
+@media(max-width:900px){.testGrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:820px){
+main{grid-template-columns:1fr}
+aside{
+  position:static;
+  height:auto;
+  border-right:0;
+  border-bottom:1px solid var(--line);
+  display:block;
+  overflow:visible;
+  padding:10px 12px
+}
+.sectionTitle{display:block}
+.navbtn{
+  display:block;
+  width:100%;
+  min-width:0;
+  margin:3px 0
+}
+.content{padding:12px}
+.gridstats{grid-template-columns:repeat(2,1fr)}
+.mcopts,.testGrid{grid-template-columns:1fr}
+}
+
+.feynman{
+  margin-top:10px;padding:12px 14px;border-radius:13px;
+  background:linear-gradient(180deg,#fff8dc,#fffdf3);
+  border:1px solid #ead58b;color:#5d4705
+}
+.feynman b{color:#724f00}
+.feynman .step{margin:6px 0}
+.topicBadge{
+  display:inline-flex;align-items:center;padding:4px 9px;border-radius:999px;
+  background:#eef3ff;color:#3157d5;font-size:11px;font-weight:800;margin-top:8px
+}
+.weakPanel{
+  background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;
+  box-shadow:0 7px 20px #27477a0d;margin-bottom:15px
+}
+.weakBars{display:grid;gap:9px;margin-top:12px}
+.weakRow{display:grid;grid-template-columns:185px 1fr 42px;gap:8px;align-items:center;font-size:13px}
+.weakTrack{height:9px;background:#e8edf6;border-radius:999px;overflow:hidden}
+.weakTrack>div{height:100%;background:linear-gradient(90deg,#3157d5,#06a77d)}
+.practiceCard{background:white;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 7px 20px #27477a0d}
+.practiceTitle{font-size:13px;color:var(--muted);font-weight:800;margin-bottom:7px}
+.practiceQ{font-size:20px;line-height:1.5;font-weight:700;margin:8px 0}
+
+</style>
+</head>
+<body>
+<header><div class="hrow"><div><div class="brand">15 ĐỀ LUYỆN TẬP · ENGLISH 5</div><div class="sub">Đề 1 → Đề 15 xếp dọc · chọn/nhập đáp án rồi nhấn Enter để kiểm tra</div></div><div id="globalScore" class="badge" style="background:#fff;color:#203f9f">0 đã làm</div></div></header>
+<main><aside id="sidebar"></aside><section class="content"><div id="app"></div></section></main>
+
+<script>
+const DATA={"bank": {"tests": [{"test": 1, "pages": [78, 81], "sections": {"I": {"heading": "I, Circle the odd one out. (1 point)", "items": [{"n": 1, "q": "A. tennis B. sport C. football D. badminton", "answer": "B"}, {"n": 2, "q": "A. bread B. pizza C. food D. sandwich", "answer": "C"}, {"n": 3, "q": "A. giraffe B. panda C. dolphin D. animal", "answer": "D"}, {"n": 4, "q": "A. Maths B. subject C. Vietnamese D. English", "answer": "B"}, {"n": 5, "q": "A. black B. white C. colour D. pink", "answer": "C"}]}, "II": {"heading": "0) 11. Circle the word which has the underlined part pronounced differently from the", "items": [{"n": 1, "q": "A. weather B. really C. head D. feather SD", "answer": "B"}, {"n": 2, "q": "A. fun B. lunch C. January D. summer ' @ =", "answer": "C"}, {"n": 3, "q": ".A.song B. together C. on D. not = 3", "answer": "B"}, {"n": 4, "q": "A. foot B. school C.cool D. food 7 oO", "answer": "A"}, {"n": 5, "q": "A.stand B. basketball C. animal D. grade", "answer": "D"}]}, "III": {"heading": "WG | III. Circle the word or phrase that best completes the sentence. (1 point)", "items": [{"n": 1, "q": "We often for picnics in the summer. © 2 A. are going B. goes C. go D. went #", "answer": "C"}, {"n": 2, "q": "She a break from work at the moment. i o A. is taking B. takes C. take D. taked :", "answer": "A"}, {"n": 3, "q": "Does she go to school in the afternoon? - g A. No, she doesn’t. B. No, she does. & C. Yes, she does not. D. Yes, she do. E a", "answer": "A"}, {"n": 4, "q": "He ______ coffee at the moment. A. is drinking B. drinks C. drink D. drank", "answer": "A"}, {"n": 5, "q": "He ______ dinner for us last night. A. is cooking B. cooks C. cook D. cooked", "answer": "D"}, {"n": 6, "q": "August is the month of the year. A. eighth B. ninth C. tenth D. twelfth d", "answer": "A"}, {"n": 7, "q": "1________my friend for lunch tomorrow. A. meets B, meet C. met D. am meeting", "answer": "D"}, {"n": 8, "q": "Thecat on the bed yesterday. A. is sleeping B. sleeps C. sleep D. slept", "answer": "D"}, {"n": 9, "q": "Isher teacher young? - A. Yes, she is not. B. No, she does not. C. Yes, she is. D. No, she is.", "answer": "C"}, {"n": 10, "q": "What is the date today? - It’s the of February. A. twenty B. twentieth C. twentyth D. the twentieth", "answer": "B"}]}, "IV": {"heading": "IV. Put the verbs in brackets into the correct form. (2 points)", "items": [{"n": 1, "q": "She (rink) a glass of water now. for |", "answer": ""}, {"n": 2, "q": "We (watch) a film last night.", "answer": ""}, {"n": 3, "q": "The children (swing) in the park now. 5", "answer": ""}, {"n": 4, "q": "Mum (prepare) food tomorrow. hs.", "answer": ""}, {"n": 5, "q": "They usually (go) to the swimming pool. 2", "answer": ""}, {"n": 6, "q": "The children (have) a picnic next Saturday. o", "answer": ""}, {"n": 7, "q": "He never (have) burgers for dinner. 9", "answer": ""}, {"n": 8, "q": "She (have) some soup at the moment. 2", "answer": ""}, {"n": 9, "q": "(we/ see) you tomorrow evening? =", "answer": ""}, {"n": 10, "q": "How far (be) it from here to Ha Noi? fe", "answer": ""}]}, "V": {"heading": "Y. Find and correct the mistake in each sentence. (1 point) 7,", "items": [{"n": 1, "q": "What your hometown like? 0)", "answer": ""}, {"n": 2, "q": "What did the accident happen? - Last night. :", "answer": ""}, {"n": 3, "q": "Will he visits his grandpa next month? =", "answer": ""}, {"n": 4, "q": "Have you got much friends in this town? .", "answer": ""}, {"n": 5, "q": "I went to the supermarket so there wasn’t any milk.", "answer": ""}]}, "VI": {"heading": "VI. Read the passage. Then, fill in the blanks with suitable words in the box. (1 point)", "items": []}, "VII": {"heading": "VIL. Write questions for the underlined parts. (1 point)", "items": [{"n": 2, "q": "——— oo aes) The children were at school last Saturday. : 8 Amy is sending an email to Tom at the moment. Se 4. a 2Z She is going to make a birthday cake for me. z", "answer": ""}, {"n": 5, "q": "— : Ec Tusually go swimming on Sundays.", "answer": ""}]}, "VIII": {"heading": "ia ‘VIII. Reorder the words to make correct sentences. (1 point)", "items": [{"n": 1, "q": "Did/use/a/calculator/you/ at/ yesterday? / school C ee ee ee ee ee £", "answer": ""}, {"n": 2, "q": "City/evening, /in/the/in/ Ho Chi Minh/ They / hotel / in/ stayed /a 5", "answer": ""}, {"n": 3, "q": "What/ free / do / your / you/ like / in/ doing / time? ee te ee", "answer": ""}, {"n": 4, "q": "to/usually / the / go/ pool. / swimming / She / doesn’t ey ee a |", "answer": ""}, {"n": 5, "q": "because/ didn’t /to/ yesterday / he / class / He / go / was/ ill. a « RRR Sane Mg Sa Sa SY gle Vhs ee ¥ 7 * lan", "answer": ""}]}, "IX": {"heading": "IX. Rewrite the following sentence in such another way which has the same meaning", "items": [{"n": 1, "q": "My mother works as a teacher. Mymotheris—", "answer": ""}, {"n": 2, "q": "My house has four floors. There", "answer": ""}, {"n": 3, "q": ".. We didn’t fly to Da Nang. We didn’t go", "answer": ""}, {"n": 4, "q": "The music room is to the right of the gym. a 83", "answer": ""}, {"n": 5, "q": "Jim goes to school on foot. | | | c", "answer": ""}]}}}, {"test": 2, "pages": [82, 85], "sections": {"I": {"heading": "1. Circle the odd one out. (1 point) |", "items": [{"n": 1, "q": "A.active B. friendly C. helpful D. nationality |", "answer": "D"}, {"n": 2, "q": "A. cook B. dish C. wash D. invite |", "answer": "B"}, {"n": 3, "q": "A.age B. appearance C. personality D. foreign", "answer": "D"}, {"n": 4, "q": "A. flute B. cartoon C. violin D. piano", "answer": "B"}, {"n": 5, "q": "A. always B. never C. weekend D. sometimes", "answer": "C"}]}, "II": {"heading": "en =e 4 II. Cirele the word which has the underlined part pronounced differently from the", "items": [{"n": 1, "q": "A.ride B.bike C. time D. listen i", "answer": "D"}, {"n": 2, "q": "A.never B. help C. clever D. often =|", "answer": "D"}, {"n": 3, "q": "A. loves B. classmates C. invites D. likes", "answer": "A"}, {"n": 4, "q": "A. pupil B. surf C. student D. usually 2", "answer": "B"}, {"n": 5, "q": "A.watch B. walk C. water D. always j", "answer": "A"}]}, "III": {"heading": "= III. Circle the word or phrase that best completes the sentence. (1 point) |", "items": [{"n": 1, "q": "You should listen the teacher. 5 A. up B. to C. about D.on 3", "answer": "B"}, {"n": 2, "q": "What about to the cinema tonight? = A. go B. to go C. going D. goes 5", "answer": "C"}, {"n": 3, "q": "I think the lessons difficult. e A.is B. will C.be D. are 2", "answer": "D"}, {"n": 4, "q": "Harry watches television evening. A.on B. every C.at Dain", "answer": "B"}, {"n": 5, "q": "Yes, they don’t like playing football. They’re not very good it. A. at B.in C. about D. for", "answer": "A"}, {"n": 6, "q": "My brother and I ______ my homework at the moment. A. do B. am doing C. doing D. are doing", "answer": "D"}, {"n": 7, "q": "______ do you go to the park? – I never go to the park. A. How long B. How often C. How many D. How much", "answer": "B"}, {"n": 8, "q": "Let’s to the movies. A. to go B. going C. play D. go", "answer": "D"}, {"n": 9, "q": "Weare going to stay a hotel. A. for B. at C.on D. up", "answer": "B"}, {"n": 10, "q": "How often does Vinh go to the library? - A. Twice a week. B. Yes, he does. C.No, he doesn’t. _D. Yes, he is.", "answer": "A"}]}, "IV": {"heading": "IV. Put the verbs in brackets into the correct form. (2 points)", "items": [{"n": 1, "q": "(paint) a picture yesterday.", "answer": ""}, {"n": 2, "q": "The teacher (talk) about Africa at the moment. |", "answer": ""}, {"n": 3, "q": "We (not watch) a film last night.", "answer": ""}, {"n": 4, "q": "All the students in the class want (listen) toaCD. tos", "answer": ""}, {"n": 5, "q": "He (like) the lesson at school this morning. 2", "answer": ""}, {"n": 6, "q": "I think Bob (help) you with your homework. iS ,", "answer": ""}, {"n": 7, "q": "Will can (speak) English very well. Oo", "answer": ""}, {"n": 8, "q": "I (phone) my grandma to say “Happy birthday” next week. 3", "answer": ""}, {"n": 9, "q": "She went into the kitchen (eat) some food. &", "answer": ""}, {"n": 10, "q": "What (this sign/ mean) ay =", "answer": ""}]}, "V": {"heading": "V. Find and correct the mistake in each sentence. (1 point) o", "items": [{"n": 1, "q": "How many people there are in your family? FI", "answer": ""}, {"n": 2, "q": "Hurry up! We haven’t got many time. oO", "answer": ""}, {"n": 3, "q": "I went to the supermarket yesterday to buy any food, 3", "answer": ""}, {"n": 4, "q": "What time you usually get up? =", "answer": ""}, {"n": 5, "q": "Are you know the answer? zu", "answer": ""}]}, "VI": {"heading": "VI. Read the passage. Then, fill in the blanks with suitable words in the box. (1 point) ee", "items": []}, "VII": {"heading": "VIL. Write questions for the underlined parts. (1 point)", "items": []}, "VIII": {"heading": "Sa § VIII. Reorder the words to make correct sentences. (1 point)", "items": [{"n": 1, "q": "the/was/ city / but/ tired, / very / tour / They / interesting. / were 2 =", "answer": ""}, {"n": 2, "q": "tomorrow/ your /be/ Will / home / night? / mother | Re ree | fiers 3", "answer": ""}, {"n": 3, "q": "Jack/us/movie/ going / and / theatre. / are / Mary / the / at / meet / to | a", "answer": ""}, {"n": 4, "q": "1/on/some/to/ like /would/her / give / flowers / her / birthday.", "answer": ""}, {"n": 5, "q": "_is/about/ worried / always / daughter. / She / her ivi stb shart atta oe oleic ovate irre ht eae 8 hs", "answer": ""}]}, "IX": {"heading": "IX. Rewrite the following sentence in such another way which has the same meaning", "items": [{"n": 1, "q": "How much is your smartphone? (price)", "answer": ""}, {"n": 2, "q": "Sue enjoys jogging in the park in the morning. (interested)", "answer": ""}, {"n": 3, "q": "My grandfather spends 30 minutes watching the news every day. (takes) PPS ae Sc Seana ics Fe eee = ts", "answer": ""}, {"n": 4, "q": "Could you please tell me how to get to the airport? (way) a", "answer": ""}, {"n": 5, "q": "Tomis 160 cm tall. His sister is 140 cm tall. (than) a Q o | A] |", "answer": ""}]}}}, {"test": 3, "pages": [86, 89], "sections": {"I": {"heading": "I, Cirele the odd one out. (1 point) |", "items": [{"n": 1, "q": "A.along B. turn C. past D. left", "answer": "B"}, {"n": 2, "q": "A.room B. class C. gym D. library", "answer": "A"}, {"n": 3, "q": "A. third B. first C. second D. one", "answer": "D"}, {"n": 4, "q": "A.run B. tell C. right D. show |", "answer": "C"}, {"n": 5, "q": "Ain B. go C.on D. at 88 |", "answer": "B"}]}, "II": {"heading": "—— II. Circle the word which has the underlined part pronounced differently from the |", "items": [{"n": 1, "q": "A.job B. doctor C. reporter D. shop B", "answer": "C"}, {"n": 2, "q": "A.address B. artist C. farmer D. gardener | a | <", "answer": "A"}, {"n": 3, "q": "A. writer B. grow : C. who D. walk | S", "answer": "D"}, {"n": 4, "q": "A.enjoy B. dentist C. because D. elephant T", "answer": "B"}, {"n": 5, "q": "A.firefighter B. children C. interesting D. corridor", "answer": "A"}]}, "III": {"heading": "= Ul. Circle the word or phrase that best completes the sentence. (1 point)", "items": [{"n": 1, "q": "He looks different his father. 5 5 A. at B. with C. from D. for / ®", "answer": "C"}, {"n": 2, "q": "Mr.Bahas days off than Mr.Trung. § A. much B. many C. less D. fewer i |", "answer": "D"}, {"n": 3, "q": "Hungis in his room. He the guitar now, i ft é A. play B. plays C. will play D. is playing I § =", "answer": "D"}, {"n": 4, "q": "a lovely house they have! A. What B. How C. When D. Where |", "answer": "A"}, {"n": 5, "q": "My brother is than me. A. more intelligent B. intelligent C. most intelligent D. much intelligent", "answer": "A"}, {"n": 6, "q": "A ______ works in a hospital. A. teacher B. doctor C. farmer D. firefighter", "answer": "B"}, {"n": 7, "q": "______ do you usually do after school? – I read books and watch TV. A. How B. What C. When D. Why", "answer": "B"}, {"n": 8, "q": "Lan lives 20 Ham Nghi Street. A. on B. to C.at D. in |", "answer": "C"}, {"n": 9, "q": "beef noodles last night? | A. Did you eat B. Were you eat C. Did you ate D. Do you ate", "answer": "A"}, {"n": 10, "q": "Every country its national flag. A. is B, are C. has D. have", "answer": "C"}]}, "IV": {"heading": "IV. Put the verbs in brackets into the correct form. (2 points)", "items": [{"n": 1, "q": "Could you (tell) me the way to the computer room?", "answer": ""}, {"n": 2, "q": "My brother likes (act) and telling stories to lots of people. js9 |", "answer": ""}, {"n": 3, "q": "What (you / look) for, Sam?", "answer": ""}, {"n": 4, "q": "Tdlike (be) awriter. 2", "answer": ""}, {"n": 5, "q": "What (she / do) at the weekends? §", "answer": ""}, {"n": 6, "q": "(see) my teacher at school last week. &", "answer": ""}, {"n": 7, "q": "She (love) helping other people. = |", "answer": ""}, {"n": 8, "q": "The police officer spent 30 minutes (check) the car. 9", "answer": ""}, {"n": 9, "q": "Peter shouldn’t (copy) his friends’ exercise. Zz", "answer": ""}, {"n": 10, "q": "The plane (cost) much more than the bike. g", "answer": ""}]}, "V": {"heading": "V. Find and correct the mistake in each sentence. (1 point) 3", "items": [{"n": 1, "q": "How many is that carton of milk? aI", "answer": ""}, {"n": 2, "q": "He are going to have a picnic tomorrow. =", "answer": ""}, {"n": 3, "q": "Mr. Ba teach in a primary school. =", "answer": ""}, {"n": 4, "q": "I read to music in the evening. $", "answer": ""}, {"n": 5, "q": "Would he want to buy some oranges? s", "answer": ""}]}, "VI": {"heading": "VI. Read the passage. Then, fill in the blanks with suitable words in the box. (1 point)", "items": []}, "VII": {"heading": "VII. Write questions for the underlined parts. (1 point)", "items": [{"n": 1, "q": "a ee Molly and her friends listened to music yesterday. 23 Neen nn Ee ‘We ride bicycles in our free time. | yy 36 = as Lan has English on Wednesdays and Fridays. IR Ta PR Pe ec > My birthday is on 15\" March. | a | i 2 3 I went to my hometown by taxi.", "answer": ""}]}, "VIII": {"heading": "a VIII. Reorder the words to make correct sentences. (1 point)", "items": [{"n": 1, "q": "Day/your/ school? will /be / When /in Teachers’ D 5 g", "answer": ""}, {"n": 2, "q": "going/ beach. / sandcastles / the / on/ children / to / are / The / make o", "answer": ""}, {"n": 3, "q": "the / my / cousins. / to / with / shopping / mall /1/ go / sometimes an", "answer": ""}, {"n": 4, "q": "garden/ front / in / house. / of /be/ the / There / will/a re ee A", "answer": ""}, {"n": 5, "q": "holiday / did / summer / on/ go / Where / last / you? ee a et Se pe St ee", "answer": ""}]}, "IX": {"heading": "IX. Rewrite the following sentence in such another way which has the same meaning", "items": [{"n": 1, "q": "Playing the violin is not easy. ' It", "answer": ""}, {"n": 2, "q": "Our picnic was cancelled because it rained heavily. Itrained", "answer": ""}, {"n": 3, "q": "Although she was tired, she managed to finish her work. She wasted, ¢_ ee 2 iis", "answer": ""}, {"n": 4, "q": "Whatis the price of this necklace? : How much fo |", "answer": ""}, {"n": 5, "q": "Hisuncleisa fluent speaker. His uncle speaks O 19} ° : ", "answer": ""}]}}}, {"test": 4, "pages": [90, 93], "sections": {"I": {"heading": "I. Circle the odd one out. (1 point)", "items": [{"n": 1, "q": "A-help B. solve C. read D. activity", "answer": "D"}, {"n": 2, "q": "A. violin B. piano C. football D. guitar", "answer": "C"}, {"n": 3, "q": "A. think B. interesting C. useful D. difficult", "answer": "A"}, {"n": 4, "q": "A. dancing B. morning C. drawing D. swimming 3]", "answer": "B"}, {"n": 5, "q": "A. story B. book C. Maths. D. newspaper", "answer": "C"}]}, "II": {"heading": "~ II. Circle the word which has the underlined part pronounced differently from the", "items": [{"n": 1, "q": "A.sing B. write C. think D. drink RB", "answer": "B"}, {"n": 2, "q": "A. famous B. baseball C. favourite D. champion 4", "answer": "D"}, {"n": 3, "q": "A. guitar B. great C. giant D. group 2", "answer": "C"}, {"n": 4, "q": "A. future B. fun C. student D. huge F £", "answer": "B"}, {"n": 5, "q": "A. break B. team C. seat D. repeat", "answer": "A"}]}, "III": {"heading": "e III. Circle the word or phrase that best completes the sentence. (1 point)", "items": [{"n": 1, "q": "Iam planting some trees in the garden. help me get some water? & A. Have you B. Can you C. Should you D. Do you Q- ; Q", "answer": "B"}, {"n": 2, "q": "Can the teacher these questions? Ss a a ‘ a a A. asked B. ask C. asking D. asks L ; 8", "answer": "B"}, {"n": 3, "q": "He wanted to see ______ yesterday afternoon. A. [OCR unclear] B. me C. my D. [OCR unclear]", "answer": "B"}, {"n": 4, "q": "She ______ up early this morning. A. waking B. wakes C. woke D. is waking", "answer": "C"}, {"n": 5, "q": "Herbirthdayis _——_—February 10%. Ain B.on C.at D. during", "answer": "B"}, {"n": 6, "q": "Mostpeople_——_on Sundays. A.aren’t working B. doesn’t work C. don’t work D. not work", "answer": "C"}, {"n": 7, "q": "She usually has at 6am. A. dinner B. lunch C. breakfast D. supper", "answer": "C"}, {"n": 8, "q": "Sophia enjoys listening music every night. A.at B. to C. by D.on", "answer": "B"}, {"n": 9, "q": "Mr. Jones to work by motorbike every day. A. walks B. goes C. arrives D. flies F", "answer": "B"}, {"n": 10, "q": "did she go on holiday? - She went by train. A. Which B. What C. How D. Where", "answer": "C"}]}, "IV": {"heading": "| IV. Put the verbs in brackets into the correct form. (2 points)", "items": [{"n": 1, "q": "The waiter usually (bring) the bill after the meal.", "answer": ""}, {"n": 2, "q": "Bob usually (stay) at home in the evening. fos |", "answer": ""}, {"n": 3, "q": "My mum always (make) cakes on special days. o", "answer": ""}, {"n": 4, "q": "We usually sit by the window, but today we (sit) inthecomer, 2\"", "answer": ""}, {"n": 5, "q": "They (be) fifteen next February. §", "answer": ""}, {"n": 6, "q": "I like reading comic books and (watch) TV. a", "answer": ""}, {"n": 7, "q": "Molly and her friends (not listen) to music an hour ago. Fa)", "answer": ""}, {"n": 8, "q": "Probably she (take) her friends to the moon. a", "answer": ""}, {"n": 9, "q": "(you / visit) your cousins last week? = |", "answer": ""}, {"n": 10, "q": "Igo (swim) with Charlie every Friday. a", "answer": ""}]}, "V": {"heading": "V. Find and correct the mistake in each sentence. (1 point) =", "items": [{"n": 1, "q": "They live in a house near to the lake. 2", "answer": ""}, {"n": 2, "q": "Let’s drinking some lemonade. >", "answer": ""}, {"n": 3, "q": "My brother had a problem with his teeths. =", "answer": ""}, {"n": 4, "q": "Linh often go camping with her family once a month. z", "answer": ""}, {"n": 5, "q": "We often go to school on bus.", "answer": ""}]}, "VI": {"heading": "VI. Read the passage. Then, fill in the blanks with suitable words in the box. (1 point)", "items": []}, "VII": {"heading": "VIL. Write questions for the underlined parts. (1 point)", "items": [{"n": 1, "q": " He never has a holiday because he is very busy. Dy meet ee ss) I’m going to help him wash the car. um 3. i Their sandwiches are in the plastic box. 2 AN ee 2 een ceeaesteciead Seiad enue lo i J went to visit my grandparents in Ho Chi Minh City. No. Paul will not come to our party tomorrow.", "answer": ""}]}, "VIII": {"heading": "& VIII. Reorder the words to make correct sentences. (1 point)", "items": [{"n": 1, "q": "in/Ha Long Bay./ a/ We're / stay / hotel / at / going / to oO 2", "answer": ""}, {"n": 2, "q": "games /and/ playing /I/ enjoy / video / reading / adventure / books. c ia i a SITS &", "answer": ""}, {"n": 3, "q": "for/How/late often / you school? / are |", "answer": ""}, {"n": 4, "q": "skiing / sister /in / goes / mountains, / My / the 1", "answer": ""}, {"n": 5, "q": "We/French/ studying / not / school / this / year. / at / are pbb) ay silo lee austen sates [ont teas oe Se 4", "answer": ""}]}, "IX": {"heading": "IX. Rewrite the following sentence in such another way which has the same meaning", "items": [{"n": 1, "q": "My daughter likes drinking milk. My daughter’s", "answer": ""}, {"n": 2, "q": "Minh’s hair is short and black. Minh has", "answer": ""}, {"n": 3, "q": "How high is that building? What th", "answer": ""}, {"n": 4, "q": "She always cycles to work every morning. howls Bites ence r hg e Se", "answer": ""}, {"n": 5, "q": "How many classrooms are there in your school? How many classrooms does __— 3 M 6 re my", "answer": ""}]}}}, {"test": 5, "pages": [94, 97], "sections": {"I": {"heading": "I. Circle the odd one out. (1 point) |", "items": [{"n": 1, "q": "A.desk B. tidy C. table D. chair", "answer": "B"}, {"n": 2, "q": "A. beside B. front C. far D. are", "answer": "D"}, {"n": 3, "q": "A. after B. picture C. board D. window", "answer": "A"}, {"n": 4, "q": "A. campsite B. place C. theatre D. funfair", "answer": "B"}, {"n": 5, "q": "A. listened B. watched C. need D. played", "answer": "C"}]}, "II": {"heading": "II. Circle the word which has the underlined part pronounced differently from the |", "items": [{"n": 1, "q": "A.round B, about C. aloud D. cousin i)", "answer": "D"}, {"n": 2, "q": "A.cinema B. cook C. come D. music | S", "answer": "A"}, {"n": 3, "q": "A.chess B. school C. watch D. which | 4", "answer": "B"}, {"n": 4, "q": "A.home B. over C. together D. close 8", "answer": "C"}, {"n": 5, "q": "A. think B. thank C. thin D. this", "answer": "D"}]}, "III": {"heading": "8 III. Circle the word or phrase that best completes the sentence. (1 point)", "items": [{"n": 1, "q": "Tomorrow my brother ______ a new DVD player. A. buy B. buying C. to buy D. will buy", "answer": "D"}, {"n": 2, "q": "______ do you go to bed? – At 10 p.m. A. What B. When C. What time D. Where", "answer": "C"}, {"n": 3, "q": "storybooks are very interesting. c A. These B. This C. That D.lt 9", "answer": "A"}, {"n": 4, "q": "Mrs, Hanks to work yesterday, « A.wasn’tdrive —_B, not drive C. didn’t drove D. didn’t drive oy", "answer": "D"}, {"n": 5, "q": "I don’t want too much salt in my soup. Just please. A.afew B. alittle C. fewer D. less", "answer": "B"}, {"n": 6, "q": "is he going to spend her summer vacation? A. Where B. Which C. What D. Who", "answer": "A"}, {"n": 7, "q": "Ishe good Art? A. for B.at C.on Doin Dugc quét bang consi", "answer": "B"}, {"n": 8, "q": "My mother always wants me the guitar well. A. to play B. playing C. play D. to playing", "answer": "A"}, {"n": 9, "q": "Wearewaiting Sa taxi. A.to B. of C. for D.at", "answer": "C"}, {"n": 10, "q": "BillandAlex____————_—English at the moment. A. learns B. to learn C. are learning D. is learning", "answer": "C"}]}, "IV": {"heading": "IV. Put the verbs in brackets into the correct form. (2 points)", "items": [{"n": 1, "q": "My father (work) for a construction company.", "answer": ""}, {"n": 2, "q": "When [arrive there tomorrow, I (phone) you.", "answer": ""}, {"n": 3, "q": "(she/listen)__——SSS to the news on the radio now?", "answer": ""}, {"n": 4, "q": "We (not go) to the campsite yesterday moming.", "answer": ""}, {"n": 5, "q": "Who (clean) the kitchen yesterday evening?", "answer": ""}, {"n": 6, "q": "Every year, thousands of people(come) to Portsmouth for 6. sightseeing and for sailing. oO", "answer": ""}, {"n": 7, "q": "Shh! The baby (sleep) ‘i ¢", "answer": ""}, {"n": 8, "q": "We (be) very happy to see you. 6 :", "answer": ""}, {"n": 9, "q": "Yesterday, we (visit). -~—~—~————_the aquarium near my school. 8 -", "answer": ""}, {"n": 10, "q": "Weare going (play) .-_~=~=—~———_tennis this afternoon. a", "answer": ""}]}, "V": {"heading": "\\V. Find and correct the mistake in each sentence. (1 point) 2", "items": [{"n": 1, "q": "The museum opens from 7 a.m at 5 p.m. oO", "answer": ""}, {"n": 2, "q": "I gave her a beautiful dress in her birthday. Fe", "answer": ""}, {"n": 3, "q": "The children will happy if she teaches them English. 6", "answer": ""}, {"n": 4, "q": "How muchis your new shoes? 3", "answer": ""}, {"n": 5, "q": "We doesn’t eat in class. 5", "answer": ""}]}, "VI": {"heading": "VI. Read the passage. Then, fill in the blanks with suitable words in the box. 2", "items": []}, "VII": {"heading": "VII. Write questions for the underlined parts. (1 point)", "items": []}, "VIII": {"heading": "= VIII. Reorder the words to make correct sentences. (1 point)", "items": [{"n": 1, "q": "John/and/ going /aren’t/ Mandy / beach. / the / to g", "answer": ""}, {"n": 2, "q": "his/to/of/ invite / didn’t / people / Quang / lots / party. oO &", "answer": ""}, {"n": 3, "q": "am/to/play/ games. /1/not / computer / going oO = 4 by/ you / last / When / train? / did / travel", "answer": ""}, {"n": 5, "q": "I/ souvenirs. / some / bought / photos / took / and | rp tea aL ae ee B # i. ie wf rhe Ba trae s aah we = =| _GIO@BAL SUCCESS eee", "answer": ""}]}, "IX": {"heading": "IX. Rewrite the following sentence in such another way which has the same meaning", "items": [{"n": 1, "q": "My mother always goes to work at seven fifteen. Mysiothien- xe", "answer": ""}, {"n": 2, "q": "His house has a living room, three bedrooms, and a kitchen. dl There ;", "answer": ""}, {"n": 3, "q": "| What’s your sister’s weight? How much", "answer": ""}, {"n": 4, "q": "_ Itis important for you to arrive at the airport on time. You must ———————————_——————— fos | 99", "answer": ""}, {"n": 5, "q": "What would she like for her birthday? F What does abeote i 2 j ( | a } = | | | | | | |", "answer": ""}]}}}, {"test": 6, "pages": [98, 99], "sections": {"I": {"heading": "I. Circle the odd one out. (1 point)", "items": [{"n": 1, "q": "A.park B. trip C. farm D. hill", "answer": "B"}, {"n": 2, "q": "A. flower B. tree C. grow D. vegetables", "answer": "C"}, {"n": 3, "q": "A.riding B, hiking C. skating D. shopping", "answer": "D"}, {"n": 4, "q": "A.cable B. boat C. ship D. car", "answer": "A"}, {"n": 5, "q": "A.yesterday B. usually C. tomorrow D. today", "answer": "B"}]}, "II": {"heading": "met a Il. Circle the word which has the underlined part pronounced differently from the", "items": [{"n": 1, "q": "A. walked B. cycled C. danced D. liked a", "answer": "B"}, {"n": 2, "q": "A.cakes B. kites C. restaurants D. days =", "answer": "D"}, {"n": 3, "q": "Avisit B. house C.sun D. start ‘", "answer": "A"}, {"n": 4, "q": "A.row B. snow C. show D. tower e", "answer": "D"}, {"n": 5, "q": "A.past B. plant C. panda D. glass", "answer": "C"}]}, "III": {"heading": "5 IIL. Circle the word or phrase that best completes the sentence. (1 point)", "items": [{"n": 2, "q": "Wewent horse together. = A.cycling B. taking C.riding D. biking S", "answer": "C"}, {"n": 3, "q": "Where did you play games? - the amusement park. e A.At B. Under C.On D.By a", "answer": "A"}, {"n": 4, "q": "How was ______ school trip last weekend? A. you B. your C. you’re D. yours", "answer": "B"}, {"n": 5, "q": "______ storybook is in her school bag? – It’s Kien’s. A. Who B. Which C. Whose D. Where", "answer": "C"}, {"n": 6, "q": "Is the picture the window? A.on B. behind C. above D.in", "answer": "C"}, {"n": 7, "q": "What's the favourite school of your brother? A. active B. activity C. actor D. acting", "answer": "B"}, {"n": 8, "q": "Mysister likes playing chess, she wants to be a world chess champion. A. because B. and C. but D.or", "answer": "B"}, {"n": 9, "q": "Where is your friend? He Maths problems in the library. A. solves B. is solving C. solving D. solved", "answer": "B"}, {"n": 10, "q": "Jane likes playing violin. A. the Ba C.an D.-", "answer": "A"}]}, "IV": {"heading": "IV. Put the verbs in brackets into the correct form, (2 points)", "items": [{"n": 1, "q": "You should (take) arest at home.", "answer": ""}, {"n": 2, "q": "Henry is ina lot of pain now because he (have) atoothache. hor |", "answer": ""}, {"n": 3, "q": "(Listen) to music gives him pleasure. =", "answer": ""}, {"n": 4, "q": "You mustn’t (eat) food in the classroom. 2", "answer": ""}, {"n": 5, "q": "Look! The plane (fly) towards the airport. §", "answer": ""}, {"n": 6, "q": "He(notbe)_ Ss at Maths, 6", "answer": ""}, {"n": 7, "q": "Youcan (see) the library on the right. Fr}", "answer": ""}, {"n": 8, "q": "Go along the corridor and (turn) right. a", "answer": ""}, {"n": 9, "q": "(Be) __—‘Trrang’s pencils on the desk? Zz", "answer": ""}, {"n": 10, "q": "We (not see) you at the campsite yesterday morning. Q", "answer": ""}]}, "V": {"heading": "Vy. Find and correct the mistake in each sentence. (1 point) =", "items": [{"n": 1, "q": "Are you and Linh at the cinema last Sunday? Zz", "answer": ""}, {"n": 2, "q": "What did you there? >", "answer": ""}, {"n": 3, "q": "He wanted watch a film on TV. =", "answer": ""}, {"n": 4, "q": "We had such wonderful day! ay _", "answer": ""}, {"n": 5, "q": "They goed to Ba Na Hills yesterday afternoon. q", "answer": ""}]}, "VI": {"heading": "VI. Read the passage. Then decide if each of the following statements is True or", "items": []}}}, {"test": 7, "pages": [100, 103], "sections": {"I": {"heading": "I. Circle the odd one out. (1 point)", "items": [{"n": 1, "q": "A. beautiful B. easy C. news D. interesting", "answer": "C"}, {"n": 2, "q": "A.often B. always C. sometimes D. beside", "answer": "D"}, {"n": 3, "q": "A. writer B. walk C. visit D. travel", "answer": "A"}, {"n": 4, "q": "A. lake B. land C.river D. sea", "answer": "B"}, {"n": 5, "q": "A. board B. bookcase C. cousin D. crayon", "answer": "C"}]}, "II": {"heading": "a) Il. Circle the word which has the underlined part pronounced differently from the", "items": [{"n": 1, "q": "A. England B. example C.enjoy D. clever bg i 1 a", "answer": "D"}, {"n": 2, "q": "A. just B. survey C. fun D. under SS i z", "answer": "B"}, {"n": 3, "q": "A.set B. start C.sure D. story : ic}", "answer": "C"}, {"n": 4, "q": "A. groups B. queens (ey kings” D. grades i g", "answer": "A"}, {"n": 5, "q": "A. lasted B. arrived C.needed D. wanted", "answer": "B"}]}, "III": {"heading": "ei i = \"IIL. Circle the word or phrase that best completes the sentence. (1 point)", "items": [{"n": 1, "q": "What they do tomorrow afternoon? Neer Loge Ss y A. ate B.will C. do D. did a = 3", "answer": "B"}, {"n": 2, "q": "We enjoyed the food and drink at the party : pee as A.everyday _B. tonight C. yesterday D. tomorrow H", "answer": "C"}, {"n": 3, "q": "Didtheygetthere__—_plane? § A.by B.on C.at Dain a", "answer": "A"}, {"n": 4, "q": "She will play volleyball the beach. Avunder B.on C.in D.to", "answer": "B"}, {"n": 5, "q": "How lessons does Hung have on Wednesday? A. far B. often C. many D. much", "answer": "C"}, {"n": 6, "q": "Are you at home? - Yes, I : A.do B.am C.are D. will { Maitre 1/19", "answer": "B"}, {"n": 7, "q": "Lwillinvite friends to my party tomorrow, A. my B. mine C. me D, yours", "answer": "A"}, {"n": 8, "q": "How often do you Vietnamese? A. get B. do C. have D. take", "answer": "C"}, {"n": 9, "q": "There is a bank next the park. A. from B. of C.in D. to", "answer": "D"}, {"n": 10, "q": "Loften listen to music in English and many English songs. A. say B. sing C. speak D. talk", "answer": "B"}]}, "IV": {"heading": "IV. Put the verbs in brackets into the correct form. (2 points)", "items": [{"n": 1, "q": "How do you practise (write) in English?", "answer": ""}, {"n": 2, "q": "Let’s (sing) some folk songs. 105 |", "answer": ""}, {"n": 3, "q": "She learns English by (read) English newspapers.", "answer": ""}, {"n": 4, "q": "Does she often learn (speak) by talking with her friends? o", "answer": ""}, {"n": 5, "q": "When come across a new word, I always try (guess) its meaning. tS)", "answer": ""}, {"n": 6, "q": "We (read) Aladdin and the Magic Lamp now. fe", "answer": ""}, {"n": 7, "q": "May I (borrow) your book? o", "answer": ""}, {"n": 8, "q": "I went (hike) with my classmates yesterday. ig", "answer": ""}, {"n": 9, "q": "Thope that they (win) the prize. $", "answer": ""}, {"n": 10, "q": "What are they going (do) on Sports Day? =", "answer": ""}]}, "V": {"heading": "V. Find and correct the mistake in each sentence. (1 point) °", "items": [{"n": 1, "q": "Were you go to the zoo yesterday ? =.", "answer": ""}, {"n": 2, "q": "Sue and Mike are good for English. G", "answer": ""}, {"n": 3, "q": "Toften don’t read comic books at home. 2", "answer": ""}, {"n": 4, "q": "Does she go to school in Saturday? 5", "answer": ""}, {"n": 5, "q": "What’s Linh favorite subject? x", "answer": ""}]}, "VI": {"heading": "VI. Read the passage. Then decide if each of the following statements is True or", "items": [{"n": 1, "q": "Jack played basketball at school.", "answer": ""}, {"n": 2, "q": "He always kicked the ball hard.", "answer": ""}, {"n": 3, "q": "Playing sports made Jack happy.", "answer": ""}, {"n": 4, "q": "Jack likes swimming alone.", "answer": ""}, {"n": 5, "q": "He hates that people get mad at him when he’s slow.", "answer": ""}]}, "VII": {"heading": "VII. Write questions for the underlined parts. (1 point)", "items": [{"n": 1, "q": "Ne = There will be a Singing Contest on the school playground on Sunday. ‘iG = They are going to play football. 36 Da =} We had seafood for lunch. 7 ; In the morning, we planted many trees. q", "answer": ""}, {"n": 5, "q": "—— oa 5 The cakes were delicious. =", "answer": ""}]}, "VIII": {"heading": "5 VIII. Reorder the words to make correct sentences. (1 point)", "items": [{"n": 1, "q": "afternoon, /In/on/ the / boat / her /a/ cruise. / parents / go / will a crn emcee Dk pag Se ee Oe g", "answer": ""}, {"n": 2, "q": "DaNang City / go/ family / won’t/ My / next / to / week. :", "answer": ""}, {"n": 3, "q": "toothache. / her / this / mother / took / to / had /a/ morning / because / she / dentist‘ the / Trang’s seek Le teat Se iE et SerUT Sheetal sented SS) rel", "answer": ""}, {"n": 4, "q": "build/ they / sea? / Will / and / the / sandcastles / in/ swim oh Soi ERE Re Bae Nth EE", "answer": ""}, {"n": 5, "q": "and/a/quiet/ parents / small / village. / in / His / live", "answer": ""}]}, "IX": {"heading": "IX. Rewrite the following sentence in such another way which has the same meaning", "items": [{"n": 1, "q": "That motorbike belongs to Mr. Clarkson. \"Phatmotorbike 18:5 ge ce ea", "answer": ""}, {"n": 2, "q": "He often flies to Nha Trang. He often travels", "answer": ""}, {"n": 3, "q": "He leaves home at six forty-five. ; He leaves home at a F107 |", "answer": ""}, {"n": 4, "q": "My father is a careful driver. My father drives oO", "answer": ""}, {"n": 5, "q": "Children like storybooks very much. e Qi Chittenwe: ee 2 n 0", "answer": ""}]}}}, {"test": 8, "pages": [104, 107], "sections": {"I": {"heading": "I. Circle the odd one out. (1 point)", "items": [{"n": 1, "q": "A. seashell B. beach C. swim D. bay", "answer": "C"}, {"n": 2, "q": "A. family B. father C. brother D. mother", "answer": "A"}, {"n": 3, "q": "A.seafood B. around C. postcard D. souvenir", "answer": "B"}, {"n": 4, "q": "A. Sydney B. Singapore C. Thailand D. place", "answer": "D"}, {"n": 5, "q": "A.sunbathed §B.swam C. took D. bought", "answer": "A"}]}, "II": {"heading": "iD Il. Circle the word which has the underlined part pronounced differently from the", "items": [{"n": 1, "q": "A. pagoda B. hotel C. some D. photo f Se oe", "answer": "C"}, {"n": 2, "q": "A.explore B. long C. lot D. blossom ; 2 |", "answer": "A"}, {"n": 3, "q": "A.cave B. family C. take D. late | r.] -", "answer": "B"}, {"n": 4, "q": "A.around B. about C. journey D. cloud rT}", "answer": "C"}, {"n": 5, "q": "A.climb B. back C. boat D. buy", "answer": "A"}]}, "III": {"heading": "i F: | IIL. Circle the word or phrase that best completes the sentence. (1 point)", "items": [{"n": 1, "q": "You should warm water. 3 E A. drinks B. drinking C. drink D. to drink of", "answer": "C"}, {"n": 2, "q": "Phuong: “I have a backache.” ~ Thang: “ a £ k A.No problem. B.Oh,pooryou! _C. It’s a goodidea. D. You’re welcome! a", "answer": "B"}, {"n": 3, "q": "You should go to bed early because it is good your health. 2 A. at B. to C. for D. of a 4", "answer": "C"}, {"n": 4, "q": "He shouldn’t climb the wall he may fall down and break his arm. a A. because B. so C. and D. but", "answer": "A"}, {"n": 5, "q": "Does he often skating in his free time? A.do B. go C. take D. have", "answer": "B"}, {"n": 6, "q": "She goes hiking a week. A. twin B. second C. twice D. two “", "answer": "C"}, {"n": 7, "q": "They worked the garden yesterday, q Avat B. in C. by D. on", "answer": "B"}, {"n": 8, "q": "He often the Internet to chat with his friends. A. is surfing B. surf C. surfs D. surfing", "answer": "C"}, {"n": 9, "q": "Hisfatherlikes going _in the river. d A. fishing B. fish C. to fish D. fishes", "answer": "A"}, {"n": 10, "q": "My mother is going to take me to the zoo__ weekend. | A. for B. ago C. last D. this", "answer": "D"}]}, "IV": {"heading": "IV. Put the verbs in brackets into the correct form. (2 points)", "items": [{"n": 1, "q": "We (take) a boat trip around the bay last summer.", "answer": ""}, {"n": 2, "q": "They (not eat) any seafood last night. 0 |", "answer": ""}, {"n": 3, "q": "The children (go) to Lang Co Beach tomorrow morning. i", "answer": ""}, {"n": 4, "q": "What will you do for Tet?-I(buy)__——__ a branch of peach blossoms. o", "answer": ""}, {"n": 5, "q": "They usually (make) banh chung and spring rolls. fet", "answer": ""}, {"n": 6, "q": "Weill go toa flower festival (buy) __—=—= SS Some roses. 5 Us (you/ swim) in the sea? — Yes, I did. 0", "answer": ""}, {"n": 8, "q": "Trang andher parents (decorate) _—=—=—SSSS the house at the moment. gy", "answer": ""}, {"n": 9, "q": "We (go) to a fireworks show last night. =", "answer": ""}, {"n": 10, "q": "(you/ have) Children’s Day in your country? 5", "answer": ""}]}, "V": {"heading": "V. Find and correct the mistake in each sentence. (1 point) =", "items": [{"n": 1, "q": "How I can get to the museum? wt Taeeee cle tl G", "answer": ""}, {"n": 2, "q": "It’s among the bank and the post office. z", "answer": ""}, {"n": 3, "q": "The restaurant is on the comer in the street. &", "answer": ""}, {"n": 4, "q": "You can take a bus get to the cinema. Me", "answer": ""}, {"n": 5, "q": "How many water do you drink every day, Alex?", "answer": ""}]}, "VI": {"heading": "VI. Read the passage. Then decide if each of the following statements is True or", "items": [{"n": 1, "q": "Nga lives in Ho Chi Minh City. |", "answer": ""}, {"n": 2, "q": "They took a bus to Ben Thanh Market.", "answer": ""}, {"n": 3, "q": "They did not visit Nha Rong Wharf.", "answer": ""}, {"n": 4, "q": "They stayed in a hotel in Ho Chi Minh city in the evening.", "answer": ""}, {"n": 5, "q": "They were very tired, but the city tour was interesting.", "answer": ""}]}, "VII": {"heading": "| 10} VII. Write questions for the underlined parts. (1 point)", "items": [{"n": 2, "q": "There are four seasons in a year in their country. | | 8 ee a 9 4 | ££. Tung went to Thu Le Zoo with his cousins. |", "answer": ""}]}, "VIII": {"heading": "8 VIII. Reorder the words to make correct sentences. (1 point)", "items": [{"n": 2, "q": "will /and/have / We / milk / tea. / fruit / juice a", "answer": ""}, {"n": 3, "q": "eat/stay/I/lot/ water / drink / vegetables / healthy. / and/a/ to / of ek Ti i Rt gee De SN at ot ge a meres GLEZBAL SUCCESS Ba", "answer": ""}, {"n": 4, "q": "son/My/the/join/ school. / swimming / wants / team /at/ to / his", "answer": ""}, {"n": 5, "q": "is/the /My/member/ sister / aerobics /a/ club. / of", "answer": ""}]}, "IX": {"heading": "IX. Rewrite the following sentence in such another way which has the same meaning", "items": [{"n": 1, "q": "What’s wrong with your mother? What’s the", "answer": ""}, {"n": 2, "q": "Hehas a pain in his tooth. § He has fa |", "answer": ""}, {"n": 3, "q": "They took a bus to the city centre. & We went =", "answer": ""}, {"n": 4, "q": "You should wash your hands before meals. ral 4 EV OMA 9 ck Le °", "answer": ""}, {"n": 5, "q": "_ Let’s go to the beach together. - EWU DAY ink hy he ta area eee ee 2", "answer": ""}]}}}, {"test": 9, "pages": [108, 109], "sections": {"I": {"heading": "I. Cirele the odd one out. (1 point)", "items": [{"n": 1, "q": "A. climate B, season C. weather D. windy", "answer": "D"}, {"n": 2, "q": "A.cool B. cold C. fog D. sunny", "answer": "C"}, {"n": 3, "q": "A. butter B. burger C. meal D. sandwich", "answer": "C"}, {"n": 4, "q": "A. matter B. headache C. toothache D. fever", "answer": "A"}, {"n": 5, "q": "A. pants B. jumper C. clothes D. dress", "answer": "C"}]}, "II": {"heading": "II. Circle the word which has the underlined part pronounced differently from the", "items": [{"n": 1, "q": "A. water B. warm C. walk D. wake a", "answer": "D"}, {"n": 2, "q": "A.island B. spring C. kind D. time a", "answer": "B"}, {"n": 3, "q": "A. trips B. sports C. jeans D. boats ic}", "answer": "C"}, {"n": 4, "q": "A.cave B. carrot C.com D. twice =", "answer": "D"}, {"n": 5, "q": "A.square B, salt C. rose D. special", "answer": "C"}]}, "III": {"heading": "2 III. Circle the word or phrase that best completes the sentence. (1 point)", "items": [{"n": 1, "q": "We Hue Imperial City before we went back home. 3 A. are going to visit B. visited C. visit D. visits £", "answer": "B"}, {"n": 2, "q": "What did she learn after the trip? 5 A, about B. at C.on D. of 2", "answer": "A"}, {"n": 3, "q": "She usually watches cartoons to practise : = A. speaks B, speaking C. to speak D. speak", "answer": "B"}, {"n": 4, "q": "I like English best it is very interesting. A. but B. so C. because D. and", "answer": "C"}, {"n": 5, "q": "Huyen: “What do you think of Phu Quoc?” — Minh: “. ” A. It’s on the right. B, It’s fantastic. C. Phu Quoc is an island, D. I went to the night market. Dugc quét bang caritithner ibn seca SUCCESS", "answer": "B"}, {"n": 6, "q": "I like ______ stories because they are very scary. A. adventure B. history C. spooky D. mystery", "answer": "C"}, {"n": 7, "q": "I usually ______ jeans and a T-shirt in summer. A. put B. wear C. take D. have", "answer": "B"}, {"n": 8, "q": "Phu Quoc is about 390 kilometres Ho Chi Minh City. A. far B. by C.in D. from", "answer": "D"}, {"n": 9, "q": "Who the main characters in the story? A. is B. are C.do D. does", "answer": "B"}, {"n": 10, "q": "Weareexcited____the local food in Da Lat. ; A. explore B. explored C. to explore D. exploring", "answer": "C"}]}, "IV": {"heading": "IV. Put the verbs in brackets into the correct form. (2 points) t", "items": [{"n": 1, "q": "[like (learn) foreign languages.", "answer": ""}, {"n": 2, "q": "We (watch) a film last night.", "answer": ""}, {"n": 3, "q": "The children (grow) vegetables on a farm with their grandparents last week.", "answer": ""}, {"n": 4, "q": "Helen is going (take) some guitar lessons this month.", "answer": ""}, {"n": 5, "q": "They usually (go) back to their hometown in summer.", "answer": ""}, {"n": 6, "q": "Excuseme,howcanI (get) _—Ss—s——SS—sto the local market?", "answer": ""}, {"n": 7, "q": "Are you going to leam (play) the violin?", "answer": ""}, {"n": 8, "q": "What are you going to do this summer? — I (visit) a farm.", "answer": ""}, {"n": 9, "q": "Our summer holidays (start) _ next week.", "answer": ""}, {"n": 10, "q": "Sentosa Island (be) a famous place in Singapore.", "answer": ""}]}, "V": {"heading": "_ ¥. Find and correct the mistake in each sentence. (1 point)", "items": [{"n": 1, "q": "We were stay at a beautiful hotel by the sea last week. _", "answer": ""}, {"n": 2, "q": "How far it is from Long An to Can Tho?", "answer": ""}, {"n": 3, "q": "Do you want to come to us?", "answer": ""}, {"n": 4, "q": "How do you think of Ban Gioc Waterfall?", "answer": ""}, {"n": 5, "q": "You can get to Circular Quay on coach.", "answer": ""}]}}}, {"test": 10, "pages": [110, 111], "sections": {"I": {"heading": "1. Cirele the odd one out. (1 point) |", "items": [{"n": 1, "q": "A. tortoise B. hare C. crow D. character |", "answer": "D"}, {"n": 2, "q": "A. first B. second C. five D. third |", "answer": "C"}, {"n": 3, "q": "A. jeans B. blouse C. pants D. trousers | |", "answer": "B"}, {"n": 4, "q": "A.kind B. greedy C. brave D. main |", "answer": "D"}, {"n": 5, "q": "A. cave B. bay C. quay D. port", "answer": "A"}]}, "II": {"heading": "ye oe ee Il. Circle the word which has the underlined part pronounced differently from the", "items": [{"n": 1, "q": "A. ant B. taxi C. past D. panda", "answer": "C"}, {"n": 2, "q": "A.pity B. rinse C. finish D. lifestyle ayy", "answer": "D"}, {"n": 3, "q": "A.menu B. summer C. club D. butter i", "answer": "A"}, {"n": 4, "q": "A. show B. flower C. crow D. slow Q", "answer": "B"}, {"n": 5, "q": "A. dwarf B. start C. sharpener D. hard", "answer": "A"}]}, "III": {"heading": "= III. Circle the word or phrase that best completes the sentence. (1 point)", "items": [{"n": 1, "q": "Do you want to visit Ngo Mon 2 5 A. Museum B, Square C. Bridge D. House 9", "answer": "B"}, {"n": 2, "q": "Which of transport do you prefer? = A. sort B. type C. kind D. means 8", "answer": "D"}, {"n": 3, "q": "The fox and the crow lived a forest. § A. at B. in C.on D. by @", "answer": "B"}, {"n": 4, "q": "Wasthe intelligent? — Yes, he was. A. parrot B. hare C. princess D. prince", "answer": "D"}, {"n": 5, "q": "The ant worked hard gather food for the winter. A. and B.to C. for D.with", "answer": "B"}, {"n": 6, "q": "What do you usually wear each season? Ain B.all C.at D.on a", "answer": "A"}, {"n": 7, "q": "Insouthern Viet Nam, thereare main seasons. A. one B. two C. three D. four", "answer": "B"}, {"n": 8, "q": "_____ the end of the party, we will get a lot of presents. A. By B, With C.In D.At", "answer": "D"}, {"n": 9, "q": "Doyouhavea throat? A. pain B. hurt C. sore D, ache", "answer": "C"}, {"n": 10, "q": "How does your brother stay 2 A. health B. healthy C. healthily D. unhealthy", "answer": "B"}]}, "IV": {"heading": "IV. Put the verbs in brackets into the correct form. (2 points)", "items": [{"n": 1, "q": "You (have) new friends soon.", "answer": ""}, {"n": 2, "q": "They often go (swim) on Sundays. Ga", "answer": ""}, {"n": 3, "q": "What subjects (we/ have) today, Minh? :", "answer": ""}, {"n": 4, "q": "The class (start) at 7 o’clock in the moming. =", "answer": ""}, {"n": 5, "q": "Phuong (go) to school five times a week. 6", "answer": ""}, {"n": 6, "q": "Last summer, I (visit) Da Nang with my uncle. 6", "answer": ""}, {"n": 7, "q": "Why shouldn't (play) with the matches? 9", "answer": ""}, {"n": 8, "q": "It’sa good idea (drink) juice between meals. a", "answer": ""}, {"n": 9, "q": "Weare going to go (camp) tomorrow. > |", "answer": ""}, {"n": 10, "q": "At weekends, my parents often (take) me to the amusement park. 0", "answer": ""}]}, "V": {"heading": "V. Find and correct the mistake in each sentence. (1 point) mr", "items": [{"n": 1, "q": "The park is next the bakery and the movie theater. : >", "answer": ""}, {"n": 2, "q": "They would like buying some souvenirs. 3 |", "answer": ""}, {"n": 3, "q": "My sister have sore eyes, Q", "answer": ""}, {"n": 4, "q": "She should goes to bed early. |", "answer": ""}, {"n": 5, "q": "Where are you yesterday?", "answer": ""}]}, "VI": {"heading": "| VI. Read the passage. Then decide if each of the following statements is True or", "items": []}}}, {"test": 11, "pages": [112, 113], "sections": {"I": {"heading": "1. Circle the odd one out. (1 point) |", "items": [{"n": 1, "q": "A.clothes B, shirt C. dress D. blouse |", "answer": "A"}, {"n": 2, "q": "A. bus B. car C. transport D. coach", "answer": "C"}, {"n": 3, "q": "A. finish B. fireworks C. rinse D. swim |", "answer": "B"}, {"n": 4, "q": "A. stomach B. head C. sore D. eye =", "answer": "C"}, {"n": 5, "q": "A.intelligent —_ B. interesting C. strong D. character", "answer": "D"}]}, "II": {"heading": "s a II. Circle the word which has the underlined part pronounced differently from the", "items": [{"n": 1, "q": "A. stopped B. worked C. preferred D. looked z e a", "answer": "C"}, {"n": 2, "q": "A.once B. fox C. hot D. shop a", "answer": "A"}, {"n": 3, "q": "A. throat B. toothache C. healthy D. sunbathe ry", "answer": "D"}, {"n": 4, "q": "A. medicine B. special C. pretty D. festival =", "answer": "C"}, {"n": 5, "q": "A. burger B. bridge C. grain D. grass", "answer": "B"}]}, "III": {"heading": "2 III. Circle the word or phrase that best completes the sentence. (1 point)", "items": [{"n": 1, "q": "The ant and the grasshopper are the main characters in a(n) story. a A. history B. mystery C. spooky D. adventure | £", "answer": "D"}, {"n": 2, "q": "He’s going to get to the island by 5 | 5: A. bike B. ferry C. plane D. car | a", "answer": "B"}, {"n": 3, "q": "How far is it from Da Lat to Nha Trang? - 2 i = A. For 3 hours B. In the morning iii C. About 135 kilometres D.AtS p.m. |", "answer": "C"}, {"n": 4, "q": "We went to an last summer. A. cave B. eco-farm C. waterfall D. river", "answer": "B"}, {"n": 5, "q": "Trang is going to learn a new language her friends. A. for B. by C. with D.and |", "answer": "C"}, {"n": 6, "q": "We vegetables on a farm with our aunt yesterday, : A. grow B. grew C.are growing —_—D. growed", "answer": "B"}, {"n": 7, "q": "Have you a plan for the summer holidays? A. got B. get C. getting D. gets", "answer": "A"}, {"n": 8, "q": "Taronga Zoo is to over 4,000 animals, A. house B. field C. home D. spot", "answer": "C"}, {"n": 9, "q": "Isa you didn’t come to Hoi An Ancient Town with us. A. luck B. pity C. great D. chance", "answer": "B"}, {"n": 10, "q": "Sentosa Island is a fantastic place in summer. A. to visit B. visit C. visiting D. visited", "answer": "A"}]}, "IV": {"heading": "IV. Put the verbs in brackets into the correct form. (2 points)", "items": [{"n": 1, "q": "I want (walk) to Hoan Kiem Lake. =", "answer": ""}, {"n": 2, "q": "How many seasons are there where you (live) ? 6.", "answer": ""}, {"n": 3, "q": "It(be) rainy and humid yesterday. i]", "answer": ""}, {"n": 4, "q": "Id like (have) fish, green beans and rice. 3", "answer": ""}, {"n": 5, "q": "What (you family/ do) in Sa Pa? — We ate some local food. 2", "answer": ""}, {"n": 6, "q": "Linh (have) a sore throat. She shouldn’t eat ice cream very often. ci", "answer": ""}, {"n": 7, "q": "WhenshouldI(go)___———__to the dentist? 2", "answer": ""}, {"n": 8, "q": "(Thank) for your advice. =a", "answer": ""}, {"n": 9, "q": "Let’s(go) SCout and play today. 8", "answer": ""}, {"n": 10, "q": "John loves (eat) ~~ _hhealthy food. EA", "answer": ""}]}, "V": {"heading": "VY. Find and correct the mistake in each sentence. (1 point) a", "items": [{"n": 1, "q": "My family move to a new house last weekend. z", "answer": ""}, {"n": 2, "q": "Jane should goes to the dentist regularly. oes eT Nee &", "answer": ""}, {"n": 3, "q": "Bill can’t speak so he has a sore throat. See o", "answer": ""}, {"n": 4, "q": "I learn English by speak it every day. pe sy 7", "answer": ""}, {"n": 5, "q": "Her birthday is in June 22\".", "answer": ""}]}, "VI": {"heading": "VI. Read and Choose the correct answer. (1 point)", "items": []}}}, {"test": 12, "pages": [114, 117], "sections": {"I": {"heading": "L. Cirele the odd one out. (1 point) |", "items": [{"n": 1, "q": "A.skiing B. evening C. skating D. hiking", "answer": "B"}, {"n": 2, "q": "A.appearance _ B. short C. tall D. fat", "answer": "A"}, {"n": 3, "q": "A.hill B. mountain C. river D. forest |", "answer": "C"}, {"n": 4, "q": "A. pagoda B. square C. tower D. visit", "answer": "D"}, {"n": 5, "q": "A. yesterday B. time C. tomorrow D. today", "answer": "B"}]}, "II": {"heading": "II. Circle the word which has the underlined part pronounced differently from the", "items": [{"n": 1, "q": "A.sun B. sure C. fun D. just 9", "answer": "B"}, {"n": 2, "q": "A. group B. ground C. loud D. sound 4", "answer": "A"}, {"n": 3, "q": "A. want B. watch C. what D. walk a", "answer": "D"}, {"n": 4, "q": "A. project B. front C. dolphin D. along al ©", "answer": "B"}, {"n": 5, "q": "A.pink B. plant C. land D. sand", "answer": "A"}]}, "III": {"heading": "z III. Circle the word or phrase that best completes the sentence. (1 point)", "items": [{"n": 1, "q": "Whatdid you do inthe morning?-I____ around the lake. 3 A.cycle B. cycled C. cycling D. to cycle 5", "answer": "B"}, {"n": 2, "q": "Thomas _a great example for us. £ A. has B. takes C. does D. sets : 5", "answer": "D"}, {"n": 3, "q": "_____ she eat apples once a day? ee A.Did B. Does Cs D. Will a 4", "answer": "B"}, {"n": 4, "q": "Mysisteris____—_— member of the aerobics club. Aa B.an C. the D.-", "answer": "A"}, {"n": 5, "q": "Tom: “How often do they go to the cinema?” — Sally: “ ” | A. Inthe evening. —_ B. Last Sunday. C. Once a month D. Tonight. |", "answer": "C"}, {"n": 6, "q": "Mymother___ yoga three times a week. A. goes B. does C. plays D. has | Buge quét bang wale ee amy eas", "answer": "B"}, {"n": 7, "q": "Is your brother a strong 2 A. swim B, swimming C. swims D. swimmer", "answer": "D"}, {"n": 8, "q": "What drinks will they have the party? A. at B. on C. with D. until", "answer": "A"}, {"n": 9, "q": "Waiter: “Shall I bring some juice?” — Ann: “ * A. Yes, you shall. B, Not, thanks. C. Can you? D. Yes, please!", "answer": "D"}, {"n": 10, "q": "Children’s Day coming soon. A. does B. will Cis D. be", "answer": "C"}]}, "IV": {"heading": "IV. Put the verbs in brackets into the correct form. (2 points)", "items": [{"n": 1, "q": "Which place (you/ want) to visit?", "answer": ""}, {"n": 2, "q": "We (not visit) Ba Be Lake last week.", "answer": ""}, {"n": 3, "q": "What sights (they/ see) by a hop-on hop-off bus tomorrow? 5", "answer": ""}, {"n": 4, "q": "What about (go) to Ha Noi Opera House? a", "answer": ""}, {"n": 5, "q": "Could the crow (sing) very well? &", "answer": ""}, {"n": 6, "q": "MyclassmatesandI (walk) === _—over Golden Bridge yesterday. Zz", "answer": ""}, {"n": 7, "q": "(they/be)___——_at the amusement park last weekend? =", "answer": ""}, {"n": 8, "q": "(they/go)___————SSSsto Suto Tien Theme Park? — Yes, they will. 9", "answer": ""}, {"n": 9, "q": "Mychildren wanted(buy) === some cakes, z", "answer": ""}, {"n": 10, "q": "Helencan’t(ride) = horse, 9", "answer": ""}]}, "V": {"heading": "Vv. Find and correct the mistake in each sentence, (1 point) E", "items": [{"n": 1, "q": "Did he fall sleep? ipods PS", "answer": ""}, {"n": 2, "q": "Where are you going to visit in your holiday? aieetae BIE, >", "answer": ""}, {"n": 3, "q": "Howhe can get to Hon Thom Island? S", "answer": ""}, {"n": 4, "q": "Weare going to visit some cave this summer, a", "answer": ""}, {"n": 5, "q": "I’mnot going to leam to play guitar. a", "answer": ""}]}, "VI": {"heading": "VI. Read and Choose the correct answer. (1 point)", "items": [{"n": 1, "q": "Tim's favourite hobby is . A, playing badminton B, playing games C. playing the guitar D. playing football", "answer": ""}, {"n": 2, "q": "Who taught him to play the guitar? - : A. His dad B. His teacher C. His friend D. His uncle", "answer": ""}, {"n": 3, "q": "His uncle is very good at ; | 25] A. singing B. dancing C. fishing D. skating", "answer": ""}, {"n": 4, "q": "Where does he keep his little fish? - . 8 t A. Ina bottle B. Ina glass fish tank 3 C. Ina pond D. Ina packet > 1 2", "answer": ""}, {"n": 5, "q": "Does his mom love watching the fish swimming?-__. 4 A. Yes, she doesn’t B. No, she does 3 C. Yes, she does D. Yes, she is | |", "answer": ""}]}, "VII": {"heading": "< VII. Write questions for the underlined parts. (1 point)", "items": [{"n": 1, "q": "way /to / Could / Museum, / Ho Chi Minh / the / please? / me / show / you", "answer": ""}, {"n": 2, "q": "postcards / buy /some/ you / there? / Did", "answer": ""}, {"n": 3, "q": "very/health. / tomatoes / think / our/ good / are / for /I", "answer": ""}, {"n": 4, "q": "your/to/it/ far / How / Ngo Mon/ from / is / Square? / house", "answer": ""}, {"n": 5, "q": "or/is/ larger, / Which / country / Viet Nam / India? fiz |", "answer": ""}]}, "IX": {"heading": "IX. Rewrite the following sentence in such another way which has the same meaning", "items": [{"n": 1, "q": "Dragon Bridge is not far from my house. My house :", "answer": ""}, {"n": 2, "q": "She spends one hour doing her housework. tales ne ere", "answer": ""}, {"n": 3, "q": "They usually walk to school. They usually go", "answer": ""}, {"n": 4, "q": "What subject does she like best? Whatis 729° 2 Uae", "answer": ""}, {"n": 5, "q": "John’s new school is bigger than his old one. John’sold", "answer": ""}]}}}, {"test": 13, "pages": [118, 121], "sections": {"I": {"heading": "I. Circle the odd one out. (1 point)", "items": [{"n": 1, "q": "A. magazine B. story C. television D. book", "answer": "C"}, {"n": 2, "q": "A.windy B, weather C. sunny D. rainy", "answer": "B"}, {"n": 3, "q": "A. firefighter B. pilot C. job D. reporter", "answer": "C"}, {"n": 4, "q": "A. survey B. surf C. travel D. find", "answer": "A"}, {"n": 5, "q": "A. Vietnamese _ B. Japanese C. Malaysian D. nationality", "answer": "D"}]}, "II": {"heading": "IL. Circle the word which has the underlined part pronounced differently from the", "items": [{"n": 1, "q": "A.country B. blouse C. cousin D. southern 6", "answer": "B"}, {"n": 2, "q": "A.healthy B. every C. dairy D. shy 9", "answer": "D"}, {"n": 3, "q": "A. works B. times C. photos D. means 4", "answer": "A"}, {"n": 4, "q": "A.peach B. peaceful C. health D. easy 8", "answer": "C"}, {"n": 5, "q": "A.above B. active C. along D. arrive a", "answer": "B"}]}, "III": {"heading": "2 III. Circle the word or phrase that best completes the sentence. (1 point)", "items": [{"n": 1, "q": "I listen to and repeat English words many times to remember ______. A. it B. they C. them D. their", "answer": "C"}, {"n": 2, "q": "______ was the trip like? A. How B. What C. Where D. Why", "answer": "B"}, {"n": 3, "q": "sometimes go to the centre with my friends in the afternoon. € A. sport B. sporty C. sporting D. sports Q", "answer": "D"}, {"n": 4, "q": "In , we study past and present events in Viet Nam and around the world. 6 A. maths B. English C. history D. Vietnamese | eo _", "answer": "C"}, {"n": 5, "q": "When I see a new word, | try to guess its 7 A. mean B, meaning C. meaningful D. means", "answer": "B"}, {"n": 6, "q": "Iwantto be English teacher. | A.a B. the Cx D.an |", "answer": "D"}, {"n": 7, "q": "Doyou fairy tales? A. like B. likes C. liking D. liked", "answer": "A"}, {"n": 8, "q": "Snow White is beautiful kind. A. or B, and C. but D,s0", "answer": "B"}, {"n": 9, "q": "We explored the caves and in the sea, A.swim B. swims C. swimming D. swam", "answer": "D"}, {"n": 10, "q": "I practise in English by emails to a friend of mine in Singapore. A. write - sending B. writing- sending C.towrite-send _ D. write - send", "answer": "B"}]}, "IV": {"heading": "IV. Put the verbs in brackets into the correct form. (2 points)", "items": [{"n": 1, "q": "We (go) to school from Monday to Friday.", "answer": ""}, {"n": 2, "q": "I (not like) Literature very much.", "answer": ""}, {"n": 3, "q": "Whenyou(have)___—————_a toothache, you shouldn’t eat too many sweets.", "answer": ""}, {"n": 4, "q": "How (you/ feel) today? 129 | :", "answer": ""}, {"n": 5, "q": "You should (take) medicine and have a rest.", "answer": ""}, {"n": 6, "q": "What’s the matter? —I (not feel) very well. 2", "answer": ""}, {"n": 7, "q": "msick.—I’m sorry (hear) that, Anna. =", "answer": ""}, {"n": 8, "q": "My uncle (exercise) every morning. Zz", "answer": ""}, {"n": 9, "q": "(you/ have) bread and milk for breakfast this morning? “ -", "answer": ""}, {"n": 10, "q": "How often (he/ drink) orange juice? 0", "answer": ""}]}, "V": {"heading": "Vv. Find and correct the mistake in each sentence. (1 point) z", "items": [{"n": 1, "q": "Did you enjoyed the holiday? °", "answer": ""}, {"n": 2, "q": "Do you like making photos? Q", "answer": ""}, {"n": 3, "q": "When did you go last month? m", "answer": ""}, {"n": 4, "q": "They went home late on the afternoon. o", "answer": ""}, {"n": 5, "q": "| Who’s storybooks are those? z", "answer": ""}]}, "VI": {"heading": "VI. Read and Choose the correct answer. (1 point) -.", "items": [{"n": 1, "q": "______ won’t make you healthier. A. Getting up early B. Playing computer games C. Playing sports D. Doing the housework", "answer": ""}, {"n": 2, "q": "Regular exercises give you more : A. stress B. energy C. money D. time | _x0]", "answer": ""}, {"n": 3, "q": "Sweets, chocolate and crisps contain too much : ie 4 A. fat B. sugar C. salt D. All are correct ¢ 8", "answer": ""}, {"n": 4, "q": "What should you eat every day? A. Fruit and fast food B. Soft drinks C. Fruit and vegetables D. Snacks", "answer": ""}, {"n": 5, "q": "Healthy food helps you ______. A. become tired B. grow strong C. eat more D. stay unhealthy", "answer": ""}]}, "VII": {"heading": "D VII. Write questions for the underlined parts. (1 point)", "items": [{"n": 1, "q": "Hue/is/ City. / to / This / visit / first / my", "answer": ""}, {"n": 2, "q": "Hien’s/ backache. / grandmother / has /a", "answer": ""}, {"n": 3, "q": "What / Sports / to / going / you / are / Day? / on/ do", "answer": ""}, {"n": 4, "q": "Do/to/emails/ you / write / friends? / foreign / your = Ee", "answer": ""}, {"n": 5, "q": "What / weekend? / will / this / your / cousins / do b oaoauva", "answer": ""}]}, "IX": {"heading": "IX. Rewrite the following sentence in such another way which has the same meaning o", "items": [{"n": 1, "q": "What does your mother do? 7 What is 5 3", "answer": ""}, {"n": 2, "q": "Hemuns very fast. 2 He’s 5", "answer": ""}, {"n": 3, "q": "What subject do you like best? -. ; What is -", "answer": ""}, {"n": 4, "q": "_ [like English. ; | (Cts eee Sei ie con eae eee |", "answer": ""}, {"n": 5, "q": "How tall are you? Whistle cient CS cath sen cat, 5", "answer": ""}]}}}, {"test": 14, "pages": [122, 125], "sections": {"I": {"heading": "I. Cirele the odd one out. (1 point)", "items": [{"n": 1, "q": "A.class B. room C. gym D. library", "answer": "B"}, {"n": 2, "q": "A.clever B. intelligent C. difficult D. smart", "answer": "C"}, {"n": 3, "q": "A. sport B, baseball C. basketball D. volleyball", "answer": "A"}, {"n": 4, "q": "A. gardener B. together C. farmer D. worker", "answer": "B"}, {"n": 5, "q": "A.place B. park C. theatre D. cinema", "answer": "A"}]}, "II": {"heading": "a) II. Circle the word which has the underlined part pronounced differently from the", "items": [{"n": 1, "q": "A. lemonade B. protein C. blossom D. collect", "answer": "B"}, {"n": 2, "q": "A. how B. crow C. show D. snow", "answer": "A"}, {"n": 3, "q": "A.next B. hundred C. decorate D. set 3", "answer": "B"}, {"n": 4, "q": "A. houses B. roses C. choices D. games QO", "answer": "D"}, {"n": 5, "q": "A.collected — B. saved C. prepared D. gained", "answer": "A"}]}, "III": {"heading": "< JII. Circle the word or phrase that best completes the sentence. (1 point)", "items": [{"n": 1, "q": "Willyoutakepart____ the singing contest this weekend? if A. with B. at C. in D.on pees i", "answer": "C"}, {"n": 2, "q": "My daughter isvery___- She can solve any Maths problem. o A. generous B. clever C. brave D. quiet :", "answer": "B"}, {"n": 3, "q": "Whose books are those? — They are E 2 § A.Lan B. Lan’ C. Lan is D. Lan’s 8", "answer": "D"}, {"n": 4, "q": "- foreign languages can he speak? — Three. 2 A. How much B. How many C. What D. How", "answer": "B"}, {"n": 5, "q": "-“ » “Qn Friday.” A. When will Teachers’ Day be? B. What is the date today? C. What time is it? D. Where were you born?", "answer": "A"}, {"n": 6, "q": "—Tom: “Whats the matter with you?” — Linda: “ ST A. It doesn’t matter. B. That’s a good idea. C. No, thanks. D. Ihave a sore throat. i i", "answer": "D"}, {"n": 7, "q": "You look so tired today. I think you should arest, A, do B. take C. make D, get", "answer": "B"}, {"n": 8, "q": "Nowmybrother___eating carrots. A. is liking B. like C. likes D. liked |", "answer": "C"}, {"n": 9, "q": "I borrow your calculator? — Yes. You can have it when I finish using it. A.Will B. Should C. Must D. May", "answer": "D"}, {"n": 10, "q": "Mrs.Tamis____ than that lady. | A. careful B. more careful C. carefuler D. more carefuler", "answer": "B"}]}, "IV": {"heading": "| IV. Put the verbs in brackets into the correct form. (2 points)", "items": [{"n": 1, "q": "Look! Sam (ride) his bike in the park.", "answer": ""}, {"n": 2, "q": "They (not see) many interesting animals at the zoo yesterday. iss |", "answer": ""}, {"n": 3, "q": "Would you like (watch) cartoons on TV tonight?", "answer": ""}, {"n": 4, "q": "How do you practice (speak) English every day? \\.", "answer": ""}, {"n": 5, "q": "Quang (play) badminton with his friends in the garden at the moment. 0", "answer": ""}, {"n": 6, "q": "Jane (go) to the cinema with her friend tonight. 6", "answer": ""}, {"n": 7, "q": "My school (have) five floors and my classroom is on the third floor. 6", "answer": ""}, {"n": 8, "q": "My mother sometimes (go) to the market by bike. re a}", "answer": ""}, {"n": 9, "q": "Life in the city (be) noisier than life in the countryside. 5", "answer": ""}, {"n": 10, "q": "(Be) there six rooms in your house? z", "answer": ""}]}, "V": {"heading": "Vv. Find and correct the mistake in each sentence. (1 point) =", "items": [{"n": 1, "q": "Ryan buyed a sandwich 30 minutes ago. =", "answer": ""}, {"n": 2, "q": "The bakery is next the theatre. ~", "answer": ""}, {"n": 3, "q": "Would he like drinking some apple juice? eure te >", "answer": ""}, {"n": 4, "q": "There are a restaurant and a park near my school. We wiht LHe =", "answer": ""}, {"n": 5, "q": "I want three breads. ee ©", "answer": ""}]}, "VI": {"heading": "VI. Read and Choose the correct answer. (1 point)", "items": [{"n": 1, "q": "Judyis 3 A, in the museum B. at school C. on the train D. at the summer camp", "answer": ""}, {"n": 2, "q": "The museum is about z A. the school B. old things 134' C. the history of the area D. modem life", "answer": ""}, {"n": 3, "q": "How were they when they arrived at the campsite? : A. They were well. B. They were tired. C. They were disappointed. “_- D. They were excited, 3", "answer": ""}, {"n": 4, "q": "How many people are there in Judy’s room? < A. Five people -B.Sevenpeople __C. Six people D. Four people S", "answer": ""}, {"n": 5, "q": "What do the teachers do before Judy and her friends go to bed? ? A. They tidy Judy and her friends’ room. : B. They help to do their homework. oO C. They email some photos. S D. They check Judy and her friends’ room. r=", "answer": ""}]}, "VII": {"heading": "5 VII. Write questions for the underlined parts. (1 point)", "items": [{"n": 3, "q": " We should do morning exercises every day. pce AR NR ae, They played baseball yesterday afternoon. q i Wg Ay Af | °] ‘ Ds $$$ They went to Ben Thanh Market by bus.", "answer": ""}]}, "VIII": {"heading": "i VIIL. Reorder the words to make correct sentences, (1 point)", "items": [{"n": 1, "q": "a/They /are/ going / tomorrow. / have / picnic / to i", "answer": ""}, {"n": 2, "q": "Maths / Vietnamese / and / He / has / today.", "answer": ""}, {"n": 3, "q": "winter. / The / are / the / days / nights / and / long / are / short / in", "answer": ""}, {"n": 4, "q": "How/every/go/you/ school / do/ day? / to", "answer": ""}, {"n": 5, "q": "up/stay / late. / Children / shouldn’t / too =", "answer": ""}]}, "IX": {"heading": "IX. Rewrite the following sentence in such another way which has the same meaning :", "items": [{"n": 2, "q": "Mrs. Lopez has a son, Tim. ° Tim is =", "answer": ""}, {"n": 3, "q": "Tom was late for school because he got up late. » Tom got up late, =", "answer": ""}, {"n": 4, "q": "It isa peaceful country. 2 This country u", "answer": ""}, {"n": 5, "q": "| Whatis the depth of that river? | How | | t", "answer": ""}]}}}, {"test": 15, "pages": [126, 129], "sections": {"I": {"heading": "I. Circle the odd one out. (1 point)", "items": [{"n": 1, "q": "A. interesting —_B. opposite C. intelligent D. greedy", "answer": "B"}, {"n": 2, "q": "A. problem B. flu C. headache D. stomachache", "answer": "A"}, {"n": 3, "q": "A. chocolate B. bank C. sweets D. cake", "answer": "B"}, {"n": 4, "q": "Aone B. second C. third D. fourth", "answer": "A"}, {"n": 5, "q": "A. always B. usually C. yesterday D. sometimes", "answer": "C"}]}, "II": {"heading": "fe{a| II. Circle the word which has the underlined part pronounced differently from the", "items": [{"n": 1, "q": "A. writer B. wise C. winter D. warm : i", "answer": "A"}, {"n": 2, "q": "A. stairs B. forests C. seeds D. legs B", "answer": "B"}, {"n": 3, "q": "Adrive B. diet C. design D. bridge", "answer": "D"}, {"n": 4, "q": "Accarried ——_-B. climbed C. expected D. ordered 9", "answer": "C"}, {"n": 5, "q": "A. lunch B. architect C. chocolate D. armchair", "answer": "B"}]}, "III": {"heading": "g III. Circle the word or phrase that best completes the sentence. (1 point)", "items": [{"n": 1, "q": "_____ the monkeys rode bicycles quickly, my brother liked them so much. o A. Because B. And C. But D.So i", "answer": "A"}, {"n": 2, "q": "I’mvery . I want something to drink. = A. hungry B. thirsty C. sleepy D. full i", "answer": "B"}, {"n": 3, "q": "Is this book ? - Yes, it’s mine. ¢ A.my B. yours C. your D.you i ‘", "answer": "C"}, {"n": 4, "q": "______ do you come to school? – By bus. A. How B. What C. Why D. When", "answer": "A"}, {"n": 5, "q": "______ – She is lovely and talkative. A. How is your new friend like? B. What does your new friend like? C. How old is your new friend? D. What is your new friend like?", "answer": "D"}, {"n": 6, "q": "-Jane: Thank you for your help. - David: F A. That’s a good idea B. You’re welcome C. That’s very kind of you D. That’s great | i\"", "answer": "B"}, {"n": 7, "q": "Heis going to some photos. | A.do B. take C. make D. be |", "answer": "B"}, {"n": 8, "q": "Listen! Someone in the next room. A. sings B. singing C. is singing D. will sing", "answer": "C"}, {"n": 9, "q": "Don’t worry! Everything will be OK. You take a rest. A. must B. shouldn’t C. should D. mustn’t", "answer": "C"}, {"n": 10, "q": "MyKoreanclassis____ than his English class. A. funny B. funnier C. funniest D. the funny", "answer": "B"}]}, "IV": {"heading": "IV. Put the verbs in brackets into the correct form. (2 points)", "items": [{"n": 1, "q": "When she was small, she often (cry) alot.", "answer": ""}, {"n": 2, "q": "We (not / have) French lessons on Tuesdays.", "answer": ""}, {"n": 3, "q": "She'd like (eat) some cherries. =", "answer": ""}, {"n": 4, "q": "Lenjoy (watch) comedies. It’s relaxing. sg", "answer": ""}, {"n": 5, "q": "He(g0) to My Dinh Stadium last Sunday. og", "answer": ""}, {"n": 6, "q": "She (sing) very beautifully and she wants to be a singer. g", "answer": ""}, {"n": 7, "q": "Look! The birds (fly) in the sky. 3", "answer": ""}, {"n": 8, "q": "The teachers (be) at a meeting yesterday afternoon. 3", "answer": ""}, {"n": 9, "q": "Let’s (stop) your work and have something to eat now. & g", "answer": ""}, {"n": 10, "q": "My aunt can (speak) four languages fluently. i", "answer": ""}]}, "V": {"heading": "V. Find and correct the mistake in each sentence. (1 point) 5 oO", "items": [{"n": 1, "q": "Would you like any more tea? z", "answer": ""}, {"n": 2, "q": "Can you tell mea time, please? 5", "answer": ""}, {"n": 3, "q": "I got this book from a very good friend of me. z", "answer": ""}, {"n": 4, "q": "Can you look at the children tonight? i", "answer": ""}, {"n": 5, "q": "My children is having dinner in the kitchen.", "answer": ""}]}, "VI": {"heading": "VI. Read and Choose the correct answer. (1 point)", "items": [{"n": 1, "q": "Bob’s dad likes ‘ A. listening to the radio B. writing emails C. reading newspapers D. reading books", "answer": ""}, {"n": 2, "q": "His mom likes reading magazines about 5 A. planes B. cooking C. the news D. music", "answer": ""}, {"n": 3, "q": "Who loves exploring information about airplanes? 138 A. His friend B. His parents C. His sister D. His brother", "answer": ""}, {"n": 4, "q": "What does his brother do? - 8 1 A. He likes chatting with his friends about his hobby. cn B. He likes cooking. C. He likes making planes. < D. He likes watching TV. Fe eo 2", "answer": ""}, {"n": 5, "q": "How often does Bob listen to music? - = ag = < 4 A. Every night B. Every morning C. Every Sunday D. Every day oo", "answer": ""}]}, "VII": {"heading": "VII. Write questions for the underlined parts. (1 point)", "items": [{"n": 3, "q": " ass My niece loves writing stories. Be ee ee te ee It took us an hour to drive to Da Lat last year. De My mother wants a good pair of shoes to go jogging. eee | Wy itt /f,\\ as ye \" GLEZBAL SUCCESS VULL. Reorder the words to make correet sentences. (1 point)", "answer": ""}, {"n": 1, "q": "dinner, / homework / she / does / After /her / in / her / room, / usually", "answer": ""}, {"n": 2, "q": "Last / hometown / we / car. / to / Sunday, / by / in / Quang Ninh / went / our", "answer": ""}, {"n": 4, "q": "you/ Ho Chi Minh City / than / crowded / Do / is / Da Nang? / more / think", "answer": ""}, {"n": 5, "q": "of/the/a/she/ come /to/won’t/ party / lot / has / because / homework. / to / She / do", "answer": ""}]}, "IX": {"heading": "IX. Rewrite the following sentence in such another way which has the same meaning =", "items": [{"n": 1, "q": "My friends and I often walk to school every morning. = My friends and I often go z", "answer": ""}, {"n": 2, "q": "Ha Noi is more peaceful than New York. Mt ; SING Y Orica ae z", "answer": ""}, {"n": 3, "q": "Wedidn’t fly to Nha Trang. = F Wedidvtg (ted", "answer": ""}, {"n": 4, "q": "The music room is to the left of the gym. The music room is to the right of the ay computer room. > The music room is =", "answer": ""}, {"n": 5, "q": "Barbara goes to work by car. 3 (Barbara", "answer": ""}]}}}]}};
+const state=JSON.parse(localStorage.getItem('hsg5_tests_only_state')||'{"done":{},"wrong":{},"answers":{}}');
+state.topicStats = state.topicStats || {};
+state.wrongTopic = state.wrongTopic || {};
+state.practice = state.practice || {"index":0,"selected":"","checked":false};
+const PRACTICE_BANK=[{"topic": "present_simple", "q": "She ___ to school by bus every day.", "options": ["go", "goes", "went", "going"], "answer": "B", "why": "She = ngôi thứ ba số ít nên động từ thêm -s: goes."}, {"topic": "present_simple", "q": "___ he like English?", "options": ["Do", "Does", "Is", "Did"], "answer": "B", "why": "Hiện tại đơn với he → Does + S + V nguyên thể."}, {"topic": "present_simple", "q": "My parents ___ TV in the evening.", "options": ["watch", "watches", "watched", "watching"], "answer": "A", "why": "My parents = số nhiều → dùng động từ nguyên thể watch."}, {"topic": "present_simple", "q": "He doesn't ___ coffee.", "options": ["likes", "like", "liked", "liking"], "answer": "B", "why": "Sau doesn't, động từ trở về nguyên thể: like."}, {"topic": "present_simple", "q": "What time ___ she get up?", "options": ["do", "does", "is", "did"], "answer": "B", "why": "Hiện tại đơn + she → does."}, {"topic": "present_simple", "q": "I usually ___ my homework after dinner.", "options": ["do", "does", "did", "doing"], "answer": "A", "why": "I + V nguyên thể trong hiện tại đơn."}, {"topic": "present_simple", "q": "Tom ___ football every Sunday.", "options": ["play", "plays", "played", "playing"], "answer": "B", "why": "Tom = he → plays."}, {"topic": "present_simple", "q": "Do they ___ near the school?", "options": ["live", "lives", "lived", "living"], "answer": "A", "why": "Sau Do dùng V nguyên thể."}, {"topic": "present_continuous", "q": "She ___ a book now.", "options": ["reads", "is reading", "read", "reading"], "answer": "B", "why": "Từ 'now' báo hiệu hiện tại tiếp diễn: is reading."}, {"topic": "present_continuous", "q": "They ___ football at the moment.", "options": ["play", "are playing", "played", "plays"], "answer": "B", "why": "at the moment → are playing."}, {"topic": "present_continuous", "q": "What ___ you doing now?", "options": ["do", "are", "did", "does"], "answer": "B", "why": "Cấu trúc: What are you doing?"}, {"topic": "present_continuous", "q": "He is ___ dinner.", "options": ["cook", "cooks", "cooking", "cooked"], "answer": "C", "why": "Sau is trong hiện tại tiếp diễn dùng V-ing."}, {"topic": "present_continuous", "q": "We ___ TV right now.", "options": ["watch", "are watching", "watched", "watches"], "answer": "B", "why": "right now → are watching."}, {"topic": "present_continuous", "q": "Is she ___ to music?", "options": ["listen", "listening", "listens", "listened"], "answer": "B", "why": "Is + S + V-ing."}, {"topic": "past_simple", "q": "Did you ___ seafood yesterday?", "options": ["eat", "ate", "eaten", "eating"], "answer": "A", "why": "Có Did → động từ sau nó phải là nguyên thể: eat."}, {"topic": "past_simple", "q": "She ___ to the zoo last Sunday.", "options": ["go", "goes", "went", "going"], "answer": "C", "why": "Câu khẳng định quá khứ: go → went."}, {"topic": "past_simple", "q": "Where ___ they go last weekend?", "options": ["do", "did", "were", "are"], "answer": "B", "why": "Động từ thường ở quá khứ → did + V nguyên thể."}, {"topic": "past_simple", "q": "We ___ at home yesterday.", "options": ["are", "were", "did", "was"], "answer": "B", "why": "We + be ở quá khứ → were."}, {"topic": "past_simple", "q": "He ___ a new bike two days ago.", "options": ["buy", "bought", "buys", "buying"], "answer": "B", "why": "two days ago → quá khứ; buy → bought."}, {"topic": "past_simple", "q": "Did she ___ a movie?", "options": ["watched", "watch", "watches", "watching"], "answer": "B", "why": "Sau Did dùng V nguyên thể."}, {"topic": "past_simple", "q": "I ___ my homework last night.", "options": ["do", "did", "does", "doing"], "answer": "B", "why": "last night → do → did."}, {"topic": "past_simple", "q": "They didn't ___ to school.", "options": ["went", "go", "goes", "going"], "answer": "B", "why": "Sau didn't dùng V nguyên thể: go."}, {"topic": "future", "q": "I ___ visit Ha Long Bay this summer.", "options": ["am going to", "is going to", "went to", "did"], "answer": "A", "why": "I → am going to + V."}, {"topic": "future", "q": "She ___ buy a new bag tomorrow.", "options": ["is going to", "are going to", "did", "was"], "answer": "A", "why": "She → is going to + V."}, {"topic": "future", "q": "What ___ you going to do?", "options": ["are", "do", "did", "is"], "answer": "A", "why": "Be going to: are you going to...?"}, {"topic": "future", "q": "We will ___ our grandparents.", "options": ["visited", "visit", "visiting", "visits"], "answer": "B", "why": "Sau will dùng V nguyên thể."}, {"topic": "future", "q": "Where ___ you go at Tet?", "options": ["will", "did", "are", "does"], "answer": "A", "why": "Kế hoạch tương lai với will: Where will you go...?"}, {"topic": "future", "q": "He isn't going to ___ football.", "options": ["plays", "played", "play", "playing"], "answer": "C", "why": "Sau going to dùng V nguyên thể."}, {"topic": "future", "q": "Will she come? – Yes, she ___.", "options": ["does", "will", "is", "did"], "answer": "B", "why": "Câu hỏi Will → Yes, she will."}, {"topic": "question_words", "q": "___ do you live? – In Hanoi.", "options": ["When", "Where", "Who", "Why"], "answer": "B", "why": "Câu trả lời là nơi chốn → Where."}, {"topic": "question_words", "q": "___ do you go swimming? – Twice a week.", "options": ["How often", "How much", "How old", "How far"], "answer": "A", "why": "Twice a week là tần suất → How often."}, {"topic": "question_words", "q": "___ is this pen? – 20,000 dong.", "options": ["How many", "How much", "How long", "How old"], "answer": "B", "why": "Hỏi giá tiền → How much."}, {"topic": "question_words", "q": "___ bag is this? – Lan's.", "options": ["Who", "Whose", "Which", "What"], "answer": "B", "why": "Lan's là sở hữu → Whose."}, {"topic": "question_words", "q": "___ did you leave early? – Because I was tired.", "options": ["Where", "When", "Why", "Who"], "answer": "C", "why": "Because trả lời cho Why."}, {"topic": "question_words", "q": "___ books are there? – Ten.", "options": ["How much", "How many", "How long", "How often"], "answer": "B", "why": "Books đếm được số nhiều → How many."}, {"topic": "question_words", "q": "___ is it from school to the park?", "options": ["How far", "How long", "How old", "How often"], "answer": "A", "why": "Hỏi khoảng cách → How far."}, {"topic": "question_words", "q": "___ are you? – I'm eleven.", "options": ["How old", "How much", "How many", "How long"], "answer": "A", "why": "Hỏi tuổi → How old."}, {"topic": "modals", "q": "You should ___ more water.", "options": ["drink", "drinks", "drinking", "to drink"], "answer": "A", "why": "Sau should dùng V nguyên thể."}, {"topic": "modals", "q": "Students mustn't ___ in exams.", "options": ["cheat", "cheats", "cheating", "to cheat"], "answer": "A", "why": "Sau mustn't dùng V nguyên thể."}, {"topic": "modals", "q": "Can she ___ English?", "options": ["speaks", "speak", "speaking", "spoke"], "answer": "B", "why": "Sau can dùng V nguyên thể."}, {"topic": "modals", "q": "When I was five, I ___ swim.", "options": ["can", "could", "should", "must"], "answer": "B", "why": "Khả năng trong quá khứ → could."}, {"topic": "modals", "q": "You look tired. You ___ rest.", "options": ["should", "mustn't", "can't", "couldn't"], "answer": "A", "why": "Đây là lời khuyên → should."}, {"topic": "modals", "q": "Drivers ___ stop at a red light.", "options": ["shouldn't", "must", "could", "can"], "answer": "B", "why": "Quy tắc bắt buộc → must."}, {"topic": "articles_pronouns", "q": "Is this ___ bike?", "options": ["you", "your", "yours", "you're"], "answer": "B", "why": "Trước danh từ bike cần tính từ sở hữu your."}, {"topic": "articles_pronouns", "q": "This book is ___.", "options": ["my", "mine", "me", "I"], "answer": "B", "why": "Đứng một mình thay cho 'my book' → mine."}, {"topic": "articles_pronouns", "q": "___ car is that? – It's Nam's.", "options": ["Who", "Whose", "Who's", "Which"], "answer": "B", "why": "Hỏi sở hữu → Whose."}, {"topic": "articles_pronouns", "q": "I saw ___ elephant at the zoo.", "options": ["a", "an", "the a", "some an"], "answer": "B", "why": "elephant bắt đầu bằng âm nguyên âm → an."}, {"topic": "articles_pronouns", "q": "She is ___ teacher.", "options": ["a", "an", "some", "any"], "answer": "A", "why": "teacher là danh từ số ít, âm đầu /t/ → a."}, {"topic": "articles_pronouns", "q": "These are ___ books.", "options": ["our", "ours", "we", "us"], "answer": "A", "why": "Trước danh từ books → our."}, {"topic": "prepositions", "q": "My birthday is ___ May.", "options": ["in", "on", "at", "from"], "answer": "A", "why": "Tháng → in May."}, {"topic": "prepositions", "q": "The class starts ___ 7:30.", "options": ["in", "on", "at", "from"], "answer": "C", "why": "Giờ cụ thể → at 7:30."}, {"topic": "prepositions", "q": "We go home ___ Friday.", "options": ["in", "on", "at", "from"], "answer": "B", "why": "Ngày trong tuần → on Friday."}, {"topic": "prepositions", "q": "The globe is ___ the table.", "options": ["on", "in", "from", "to"], "answer": "A", "why": "Ở trên bề mặt → on."}, {"topic": "prepositions", "q": "Where will you go ___ Tet?", "options": ["at", "on", "in", "from"], "answer": "A", "why": "Cụm trong bài: at Tet."}, {"topic": "prepositions", "q": "Could you tell me the way ___ the library?", "options": ["to", "at", "of", "for"], "answer": "A", "why": "Cụm cố định: the way to."}, {"topic": "prepositions", "q": "I like reading ___ my free time.", "options": ["in", "on", "at", "from"], "answer": "A", "why": "Cụm cố định: in my free time."}, {"topic": "adj_adverb", "q": "She sings very ___.", "options": ["good", "well", "goodly", "betterly"], "answer": "B", "why": "Bổ nghĩa cho động từ sings → trạng từ well."}, {"topic": "adj_adverb", "q": "He is a ___ driver.", "options": ["careful", "carefully", "care", "carefulness"], "answer": "A", "why": "Trước danh từ driver → tính từ careful."}, {"topic": "adj_adverb", "q": "He drives ___.", "options": ["careful", "carefully", "care", "carefulness"], "answer": "B", "why": "Bổ nghĩa cho drives → carefully."}, {"topic": "adj_adverb", "q": "The soup tastes ___.", "options": ["good", "well", "goodly", "nicely"], "answer": "A", "why": "Sau sensory verb taste dùng tính từ good."}, {"topic": "adj_adverb", "q": "She studies very ___.", "options": ["hard", "hardly", "hardlyly", "hardness"], "answer": "A", "why": "hard = chăm chỉ; hardly = hầu như không."}, {"topic": "adj_adverb", "q": "It is ___ hot today.", "options": ["extreme", "extremely", "extremeness", "extreming"], "answer": "B", "why": "Bổ nghĩa cho tính từ hot → extremely."}, {"topic": "conjunctions", "q": "I like tea, ___ I don't like coffee.", "options": ["and", "but", "or", "so"], "answer": "B", "why": "Hai ý trái ngược → but."}, {"topic": "conjunctions", "q": "It was raining, ___ we stayed home.", "options": ["and", "but", "or", "so"], "answer": "D", "why": "Mưa dẫn đến ở nhà → so."}, {"topic": "conjunctions", "q": "Would you like tea ___ coffee?", "options": ["and", "but", "or", "so"], "answer": "C", "why": "Hai lựa chọn → or."}, {"topic": "conjunctions", "q": "She is kind ___ helpful.", "options": ["and", "but", "or", "so"], "answer": "A", "why": "Hai đặc điểm cùng chiều → and."}, {"topic": "conjunctions", "q": "He studied hard, ___ he passed the test.", "options": ["and", "but", "or", "so"], "answer": "D", "why": "Nguyên nhân → kết quả → so."}, {"topic": "conjunctions", "q": "The film was long, ___ interesting.", "options": ["and", "but", "or", "so"], "answer": "B", "why": "Dài nhưng thú vị → but."}, {"topic": "vocabulary", "q": "A person who works in a hospital and treats sick people is a ___.", "options": ["teacher", "doctor", "farmer", "driver"], "answer": "B", "why": "doctor = bác sĩ."}, {"topic": "vocabulary", "q": "We borrow books from the ___.", "options": ["library", "canteen", "playground", "gym"], "answer": "A", "why": "library = thư viện."}, {"topic": "vocabulary", "q": "A person who puts out fires is a ___.", "options": ["firefighter", "singer", "pilot", "chef"], "answer": "A", "why": "firefighter = lính cứu hỏa."}, {"topic": "vocabulary", "q": "We use an umbrella when it is ___.", "options": ["rainy", "sunny only", "hungry", "thirsty"], "answer": "A", "why": "umbrella liên quan đến trời mưa."}, {"topic": "vocabulary", "q": "If you have a toothache, you should see a ___.", "options": ["dentist", "teacher", "pilot", "farmer"], "answer": "A", "why": "toothache → dentist."}, {"topic": "vocabulary", "q": "A place where planes arrive and leave is an ___.", "options": ["airport", "museum", "library", "stadium"], "answer": "A", "why": "airport = sân bay."}, {"topic": "sentence_structure", "q": "Choose the correct sentence.", "options": ["How far is it from Da Nang to Hoi An?", "How far it is from Da Nang to Hoi An?", "How is far it from Da Nang to Hoi An?", "How far from Da Nang it is Hoi An?"], "answer": "A", "why": "Cấu trúc: How far is it from A to B?"}, {"topic": "sentence_structure", "q": "Choose the correct sentence.", "options": ["What does she like doing?", "What she does like doing?", "What does she likes doing?", "What she like doing does?"], "answer": "A", "why": "Wh-word + does + S + V nguyên thể."}, {"topic": "sentence_structure", "q": "Choose the correct sentence.", "options": ["Could you tell me the way to the library?", "Could you tell the way me to library?", "You could tell me way to library?", "Could tell you me the way?"], "answer": "A", "why": "Mẫu hỏi đường cố định."}, {"topic": "sentence_structure", "q": "Choose the correct sentence.", "options": ["Did they have a picnic last Sunday?", "Did they had a picnic last Sunday?", "They did had a picnic last Sunday?", "Were they have a picnic last Sunday?"], "answer": "A", "why": "Did + S + V nguyên thể."}, {"topic": "sentence_structure", "q": "Choose the correct sentence.", "options": ["I like surfing the Internet in my free time.", "I like surf the Internet in my free time.", "I liking surfing Internet at free time.", "I like surfing Internet on my free time."], "answer": "A", "why": "like + V-ing; in my free time."}];
+
+const TOPIC_NAMES={
+  present_simple:"Hiện tại đơn",
+  present_continuous:"Hiện tại tiếp diễn",
+  past_simple:"Quá khứ đơn",
+  future:"Tương lai / Be going to",
+  question_words:"Từ để hỏi",
+  modals:"Can / Could / Should / Must",
+  articles_pronouns:"Mạo từ / đại từ / sở hữu",
+  prepositions:"Giới từ & cụm cố định",
+  adj_adverb:"Tính từ / trạng từ",
+  conjunctions:"AND / BUT / OR / SO",
+  vocabulary:"Từ vựng theo chủ đề",
+  sentence_structure:"Trật tự / cấu trúc câu",
+  pronunciation:"Phát âm",
+  reading:"Đọc hiểu",
+  other:"Tổng hợp"
+};
+
+function topicName(t){return TOPIC_NAMES[t]||"Tổng hợp";}
+
+function detectTopic(raw,key){
+  const s=norm(raw);
+  const sec=(key||"").split("-")[2]||"";
+  if(sec==="I") return "vocabulary";
+  if(sec==="II") return "pronunciation";
+  if(sec==="VI"||sec==="VII") return "reading";
+  if(sec==="VIII"||sec==="IX") return "sentence_structure";
+
+  if(/how often|how much|how many|how far|how old|how long|whose|where|when|why|who|which|what time/.test(s))
+    return "question_words";
+  if(/did |yesterday|last week|last weekend|ago|were | was /.test(" "+s+" "))
+    return "past_simple";
+  if(/going to|will |tomorrow|next week|next summer|this summer/.test(s))
+    return "future";
+  if(/at the moment|right now| now |is .*ing|are .*ing|am .*ing/.test(" "+s+" "))
+    return "present_continuous";
+  if(/should|must|could|can |can't|cannot|mustn't|shouldn't/.test(s))
+    return "modals";
+  if(/do you|does |don't|doesn't|every day|usually|always|often|never|sometimes/.test(s))
+    return "present_simple";
+  if(/ a | an | the |whose|your |yours|my |mine|our |ours|their |theirs/.test(" "+s+" "))
+    return "articles_pronouns";
+  if(/ in | on | at | from | to | by | under | above | between | next to /.test(" "+s+" "))
+    return "prepositions";
+  if(/careful|carefully|good|well|hardly|hard |extreme|extremely|adjective|adverb/.test(s))
+    return "adj_adverb";
+  if(/ and | but | or | so /.test(" "+s+" "))
+    return "conjunctions";
+  return "vocabulary";
+}
+
+function findItemByKey(key){
+  const m=/^T-(\d+)-([IVX]+)-(\d+)$/.exec(key||"");
+  if(!m)return null;
+  const t=DATA.bank.tests.find(x=>String(x.test)===m[1]);
+  if(!t||!t.sections[m[2]])return null;
+  return t.sections[m[2]].items.find(x=>String(x.n)===m[3])||null;
+}
+
+function rebuildWeakTopics(){
+  Object.keys(state.wrong||{}).forEach(k=>{
+    if(!state.wrongTopic[k]){
+      const it=findItemByKey(k);
+      if(it) state.wrongTopic[k]=detectTopic(it.q,k);
+    }
+  });
+  const c={};
+  Object.values(state.wrongTopic).forEach(t=>c[t]=(c[t]||0)+1);
+  state.topicStats=c;
+}
+rebuildWeakTopics();
+
+function registerWrongTopic(key,raw){
+  const t=detectTopic(raw,key);
+  state.wrongTopic[key]=t;
+  rebuildWeakTopics();
+  return t;
+}
+function clearWrongTopic(key){
+  delete state.wrongTopic[key];
+  rebuildWeakTopics();
+}
+
+function answerTextFromCard(card,ans){
+  if(!ans)return "";
+  if(/^[A-D]$/i.test(ans)){
+    const o=card.querySelector(`.opt[data-letter="${ans.toUpperCase()}"]`);
+    return o ? `${ans.toUpperCase()}. ${o.textContent.replace(/^\s*[A-D]\.\s*/,'').trim()}` : ans;
+  }
+  return ans;
+}
+
+function feynmanExplain(topic,stem,ansText){
+  const simple={
+    present_simple:[
+      "Hãy coi hiện tại đơn như lịch sinh hoạt: việc lặp lại thì dùng dạng hiện tại đơn.",
+      "He/She/It ở câu khẳng định thường thêm -s/-es; nhưng sau do/does thì động từ quay về nguyên thể.",
+      "Ví dụ: She goes to school. → Does she go to school?"
+    ],
+    present_continuous:[
+      "Hãy tưởng tượng camera đang quay ngay lúc này: be + V-ing.",
+      "I → am; he/she/it → is; you/we/they → are.",
+      "Ví dụ: They are playing now. → Are they playing now?"
+    ],
+    past_simple:[
+      "Có 'did' giống như trợ động từ đã mang dấu quá khứ hộ động từ chính.",
+      "Vì did đã mang quá khứ, động từ sau did phải trở về nguyên thể.",
+      "Ví dụ: She went yesterday. → Did she go yesterday? Không dùng 'Did she went'."
+    ],
+    future:[
+      "Tương lai có hai mẫu rất hay gặp: will + V và be going to + V.",
+      "Sau will / going to, động từ chính luôn ở dạng nguyên thể.",
+      "Ví dụ: She will visit. / She is going to visit."
+    ],
+    question_words:[
+      "Đừng học cả câu. Hãy nhìn câu trả lời trước: nó trả lời về người, nơi, thời gian, lý do hay số lượng?",
+      "Nơi → Where; thời gian → When; lý do → Why; người → Who; tần suất → How often; số lượng đếm được → How many.",
+      "Sau khi chọn đúng từ hỏi mới dựng phần còn lại của câu."
+    ],
+    modals:[
+      "Modal verb giống như chiếc 'khung': can/could/should/must + động từ nguyên thể.",
+      "Không thêm -s, không thêm 'to' sau can/could/should/must.",
+      "Ví dụ: She can swim; You should drink water."
+    ],
+    articles_pronouns:[
+      "Hỏi xem từ đứng trước danh từ hay đứng một mình.",
+      "Trước danh từ dùng my/your/our/their; đứng một mình có thể dùng mine/yours/ours/theirs.",
+      "Ví dụ: This is my book. = This book is mine."
+    ],
+    prepositions:[
+      "Giới từ thường đi theo 'cụm đóng gói', nên học cả cụm thay vì học từng từ riêng.",
+      "in + tháng/năm; on + ngày; at + giờ; by + phương tiện; the way to + nơi chốn.",
+      "Ví dụ: in May, on Monday, at 7:30, by bus."
+    ],
+    adj_adverb:[
+      "Tính từ miêu tả người/vật; trạng từ thường miêu tả cách một hành động xảy ra.",
+      "Trước danh từ hoặc sau be/look/taste thường là tính từ; bổ nghĩa cho động từ thường là trạng từ.",
+      "Ví dụ: a careful driver / He drives carefully."
+    ],
+    conjunctions:[
+      "Hãy nhìn quan hệ giữa hai ý.",
+      "and = thêm ý; but = trái ngược; or = lựa chọn; so = kết quả.",
+      "Ví dụ: It rained, so we stayed home."
+    ],
+    pronunciation:[
+      "Với phát âm, đừng nhìn mặt chữ trước; hãy đọc phần âm được hỏi và so sánh từng từ.",
+      "Tìm 3 từ cùng âm rồi khoanh từ có âm khác.",
+      "Nếu bản scan không thể hiện rõ phần gạch chân, nên đối chiếu sách gốc trước khi học thuộc."
+    ],
+    reading:[
+      "Đọc câu hỏi trước, gạch từ khóa, rồi quay lại đoạn văn tìm đúng vùng chứa thông tin.",
+      "Không chọn theo cảm giác; câu đúng phải có bằng chứng trong bài.",
+      "Nếu câu dùng từ khác, hãy tìm từ đồng nghĩa/paraphrase."
+    ],
+    sentence_structure:[
+      "Xem câu như các khối LEGO: từ hỏi → trợ động từ → chủ ngữ → động từ → phần còn lại.",
+      "Nếu có did/does/do, động từ chính dùng nguyên thể.",
+      "Ví dụ: How far is it from A to B? / What does she like doing?"
+    ],
+    vocabulary:[
+      "Đừng học từ tách rời. Hãy đặt từ vào một nhóm nghĩa hoặc tình huống cụ thể.",
+      "Tìm từ khóa trong câu để xác định chủ đề: nghề nghiệp, nơi chốn, sức khỏe, thời tiết...",
+      "Sau đó loại các lựa chọn không cùng ngữ cảnh."
+    ],
+    other:[
+      "Chia câu thành từng phần nhỏ: dấu hiệu thời gian, chủ ngữ, động từ và ý nghĩa.",
+      "Tìm một quy tắc duy nhất quyết định đáp án thay vì đoán cả câu.",
+      "Sau khi sửa, tự tạo một câu mới dùng đúng quy tắc đó."
+    ]
+  };
+  const a=simple[topic]||simple.other;
+  return `<div class="feynman">
+    <b>🧠 Giải thích dễ hiểu kiểu Feynman</b>
+    <div class="step"><b>1. Hiểu bản chất:</b> ${a[0]}</div>
+    <div class="step"><b>2. Quy tắc 1 dòng:</b> ${a[1]}</div>
+    <div class="step"><b>3. Ví dụ mini:</b> ${a[2]}</div>
+    <div class="step"><b>4. Đáp án đúng ở câu này:</b> ${esc(ansText)}</div>
+    <div class="step"><b>Tự kiểm tra:</b> Em có thể nói lại quy tắc này bằng 1 câu thật ngắn mà không nhìn đáp án không?</div>
+  </div>`;
+}
+
+
+function save(){localStorage.setItem('hsg5_tests_only_state',JSON.stringify(state));updateGlobal()}
+function norm(s){return (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’‘]/g,"'").replace(/[^a-z0-9']/g,' ').replace(/\s+/g,' ').trim()}
+function expectedVariants(ans){if(!ans)return[];let a=String(ans).trim();let vs=[a];if(/^([A-D])$/i.test(a))vs.push(a.toUpperCase());a.split(/\bor\b|\/|→|->/i).forEach(x=>{if(x.trim())vs.push(x.trim())});return[...new Set(vs.map(norm).filter(Boolean))]}
+function isCorrect(user,ans){const u=norm(user);if(!u||!ans)return false;return expectedVariants(ans).some(v=>u===v)}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+
+function cleanOCR(s){
+  return String(s||'')
+    .replace(/[§|©@]+/g,' ')
+    .replace(/\s+[=<>]{1,}\s*/g,' ')
+    .replace(/\s+/g,' ')
+    .replace(/^\s*[\.\-_:;]+\s*/,'')
+    .trim();
+}
+function optionMarkers(q){
+  const r=/(?<![A-Za-z])([A-D])[\.,]\s*/g, out=[]; let m;
+  while((m=r.exec(q))!==null) out.push({letter:m[1],start:m.index,end:r.lastIndex});
+  return out;
+}
+function extractOptions(q){
+  const ms=optionMarkers(q);
+  if(ms.length<3)return null;
+  const first4=ms.slice(0,4);
+  return first4.map((m,i)=>{
+    const end=(i<3?first4[i+1].start:q.length);
+    let val=q.slice(m.end,end);
+    if(i===3 && ms.length>4) val=q.slice(m.end,ms[4].start);
+    val=cleanOCR(val).replace(/\s+[a-zA-Z]?\d*[\)\]\}]*\s*$/,'').trim();
+    return [m.letter,val];
+  });
+}
+function extractStem(q){
+  const opts=extractOptions(q);
+  if(!opts)return cleanOCR(q);
+  const ms=optionMarkers(q);
+  let stem=cleanOCR(q.slice(0,ms[0].start));
+  if(!stem)return 'Chọn đáp án đúng.';
+  return stem.replace(/\s*\d+\s*$/,'').trim();
+}
+function cleanHeading(h){
+  return cleanOCR(h)
+    .replace(/^[^A-Za-z]*(I{1,3}|IV|V|VI|VII|VIII|IX)[\.,]?\s*/i,'')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+
+function updateGlobal(){document.getElementById('globalScore').textContent=Object.keys(state.done).length+' đã làm'}
+
+function sidebar(){
+  let s='<div class="sectionTitle">Luyện tập</div>';
+  s+='<button class="navbtn" data-view="home">🏠 Tổng quan 15 đề</button>';
+  s+='<button class="navbtn" data-view="wrong">🧠 Sổ câu sai</button>';
+  s+='<button class="navbtn" data-view="weakpractice">🎯 Luyện phần bị sai</button>';
+  s+='<div class="sectionTitle">15 đề tham khảo</div>';
+  DATA.bank.tests.forEach(t=>s+=`<button class="navbtn" data-view="test" data-id="${t.test}">Đề ${t.test}</button>`);
+  document.getElementById('sidebar').innerHTML=s;
+  document.querySelectorAll('.navbtn').forEach(b=>b.onclick=()=>route(b.dataset.view,b.dataset.id));
+}
+
+let currentPrefix='';
+
+function hero(title,desc,total,answered){
+  let done=0,wrong=0;
+  Object.keys(state.done).forEach(k=>{if(k.startsWith(currentPrefix))done++});
+  Object.keys(state.wrong).forEach(k=>{if(k.startsWith(currentPrefix))wrong++});
+  return `<div class="hero"><h1>${esc(title)}</h1><p>${esc(desc)}</p>
+  <div class="gridstats">
+    <div class="stat"><b>${total}</b><span>Câu đã tách</span></div>
+    <div class="stat"><b>${answered}</b><span>Câu có check tự động</span></div>
+    <div class="stat"><b>${done}</b><span>Đã làm</span></div>
+    <div class="stat"><b>${wrong}</b><span>Cần ôn lại</span></div>
+  </div>
+  <div class="progress" style="margin-top:12px"><div style="width:${total?Math.round(done/total*100):0}%"></div></div>
+  </div>`;
+}
+
+function qcard(it,key){
+  const ans=it.answer||'', saved=state.answers[key]||'', opts=extractOptions(it.q);
+  const stem=extractStem(it.q);
+  const topic=detectTopic(it.q,key);
+  let input='';
+  if(opts){
+    input='<div class="mcopts">'+opts.map(o=>`<button class="opt ${saved===o[0]?'sel':''}" data-letter="${o[0]}"><b>${o[0]}.</b> ${esc(o[1])}</button>`).join('')+'</div>'+
+      `<input class="ans" type="hidden" value="${esc(saved)}">`;
+  }else{
+    input=`<input class="ans" placeholder="Nhập đáp án rồi nhấn Enter" value="${esc(saved)}">`;
+  }
+  return `<div class="qcard" data-key="${key}" data-answer="${esc(ans)}" data-topic="${topic}" data-stem="${esc(stem)}">
+    <div class="qtop"><div class="qnum">${it.n}</div><div class="qtext">${esc(stem)}<div><span class="topicBadge">${topicName(topic)}</span></div></div></div>
+    ${input}
+    <div class="answerRow">
+      <button class="btn check">Kiểm tra</button>
+      ${ans?'<button class="btn secondary show">Xem đáp án</button>':''}
+      <button class="btn ghost mark">${state.wrong[key]?'✓ Đã thêm sổ sai':'Đánh dấu ôn lại'}</button>
+    </div>
+    <div class="feedback"></div>
+    ${!ans?'<div class="note" style="margin-top:8px">✍ Phần này vẫn cho nhập/lưu câu trả lời. App không tự chấm khi đáp án scan chưa được đối chiếu chắc chắn.</div>':''}
+  </div>`;
+}
+
+function wire(){
+  document.querySelectorAll('.qcard').forEach(card=>{
+    const key=card.dataset.key, ans=card.dataset.answer, inp=card.querySelector('.ans'), fb=card.querySelector('.feedback');
+    const topic=card.dataset.topic||"other", stem=card.dataset.stem||"";
+    card.querySelectorAll('.opt').forEach(o=>{
+      o.onclick=()=>{
+        card.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));
+        o.classList.add('sel');
+        inp.value=o.dataset.letter;
+        state.answers[key]=inp.value;
+        save();
+      };
+      o.addEventListener('keydown',e=>{
+        if(e.key==='Enter'){
+          e.preventDefault();
+          // Nếu chưa được chọn bằng chuột, Enter cũng chọn luôn đáp án đang focus.
+          if(!o.classList.contains('sel')){
+            card.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));
+            o.classList.add('sel');
+            inp.value=o.dataset.letter;
+            state.answers[key]=inp.value;
+          }
+          check();
+        }
+      });
+    });
+    function check(){
+      const u=(inp.value||'').trim();
+      state.answers[key]=u;
+      if(!u){fb.className='feedback warn';fb.innerHTML='Hãy chọn hoặc nhập đáp án trước.';save();return}
+      if(!ans){
+        fb.className='feedback warn';
+        fb.innerHTML='Đã lưu câu trả lời. Phần này chưa chấm tự động để tránh dùng đáp án OCR bị lệch.';
+        state.done[key]=true;save();return;
+      }
+      const ok=isCorrect(u,ans);state.done[key]=true;
+      if(ok){
+        delete state.wrong[key];
+        clearWrongTopic(key);
+        fb.className='feedback ok';
+        fb.innerHTML='✓ Chính xác. Em đã sửa được lỗi này.';
+      }else{
+        state.wrong[key]=true;
+        registerWrongTopic(key,stem);
+        const correctText=answerTextFromCard(card,ans);
+        fb.className='feedback bad';
+        fb.innerHTML='✗ Chưa đúng.' + feynmanExplain(topic,stem,correctText);
+      }
+      save();
+    }
+    card.querySelector('.check').onclick=check;
+    if(inp)inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();check()}});
+    // Với câu trắc nghiệm, sau khi đã chọn A/B/C/D, có thể bấm Enter ở bất kỳ nút đáp án nào để check.
+
+    const show=card.querySelector('.show');
+    if(show)show.onclick=()=>{fb.className='feedback warn';fb.innerHTML=`Đáp án: <span class="key">${esc(ans)}</span>`};
+    card.querySelector('.mark').onclick=()=>{
+      state.wrong[key]=!state.wrong[key];
+      if(state.wrong[key]) registerWrongTopic(key,stem); else clearWrongTopic(key);
+      save();
+      card.querySelector('.mark').textContent=state.wrong[key]?'✓ Đã thêm sổ sai':'Đánh dấu ôn lại';
+    };
+  });
+}
+
+function renderTest(id){
+  const t=DATA.bank.tests.find(x=>x.test==id);
+  currentPrefix='T-'+id+'-';
+  let total=0,ansn=0;
+  Object.values(t.sections).forEach(s=>s.items.forEach(i=>{total++;if(i.answer)ansn++}));
+  let h=hero(`Đề tham khảo số ${id}`,'Các phần được trình bày theo đúng thứ tự I → IX. Trắc nghiệm đã tách câu hỏi và đáp án ra riêng.',total,ansn);
+  ['I','II','III','IV','V','VI','VII','VIII','IX'].forEach(sec=>{
+    if(!t.sections[sec])return;
+    const s=t.sections[sec];
+    h+=`<div class="exercise"><h2>${sec}. ${esc(cleanHeading(s.heading||''))}</h2>`;
+    if(!s.items.length)h+='<div class="hero note">Phần này trong bản trích xuất cũ chưa tách được câu riêng.</div>';
+    s.items.sort((a,b)=>Number(a.n)-Number(b.n)).forEach(it=>h+=qcard(it,`T-${id}-${sec}-${it.n}`));
+    h+='</div>';
+  });
+  document.getElementById('app').innerHTML=h;wire();
+}
+
+function renderHome(){
+  currentPrefix='';
+  let total=0,auto=0;
+  DATA.bank.tests.forEach(t=>Object.values(t.sections).forEach(s=>s.items.forEach(i=>{total++;if(i.answer)auto++})));
+  document.getElementById('app').innerHTML=`
+  <div class="hero">
+    <h1>15 đề luyện tập Tiếng Anh lớp 5</h1>
+    <p>Danh mục Đề 1 → Đề 15 xếp <b>theo hàng dọc</b>. Sai câu nào, app giải thích lại thật đơn giản theo kiểu Feynman và tự gom chủ đề yếu để tạo bài luyện bổ trợ. Chọn/nhập đáp án rồi nhấn <b>Enter</b>.</p>
+    <div class="gridstats">
+      <div class="stat"><b>15</b><span>Đề luyện tập</span></div>
+      <div class="stat"><b>${total}</b><span>Câu đã tách</span></div>
+      <div class="stat"><b>${auto}</b><span>Câu check tự động chắc chắn</span></div>
+      <div class="stat"><b>${Object.keys(state.wrong).length}</b><span>Câu cần ôn</span></div>
+    </div>
+  </div>
+  <div class="testGrid">
+    ${DATA.bank.tests.map(t=>`<div class="testTile"><h3>Đề ${t.test}</h3><p>Luyện từng phần I–IX, lưu tiến độ và câu sai.</p><button class="btn" onclick="route('test','${t.test}')">Bắt đầu đề ${t.test}</button></div>`).join('')}
+  </div>`;
+}
+
+function renderWrong(){
+  currentPrefix='';
+  const cards=[];
+  DATA.bank.tests.forEach(t=>Object.entries(t.sections).forEach(([sec,s])=>s.items.forEach(it=>{
+    const k=`T-${t.test}-${sec}-${it.n}`;
+    if(state.wrong[k])cards.push(`<div class="note" style="margin:14px 0 3px"><b>Đề ${t.test} · Phần ${sec}</b></div>`+qcard(it,k));
+  })));
+  document.getElementById('app').innerHTML=`<div class="hero"><h1>Sổ câu sai</h1><p>Chỉ luyện lại những câu đã làm sai hoặc tự đánh dấu.</p></div>${cards.length?cards.join(''):'<div class="hero">Chưa có câu sai.</div>'}`;
+  wire();
+}
+
+
+let weakPracticeList=[], weakPracticeIndex=0, weakPracticeSelected="", weakPracticeChecked=false;
+
+function weakTopicSummary(){
+  rebuildWeakTopics();
+  const entries=Object.entries(state.topicStats||{}).sort((a,b)=>b[1]-a[1]);
+  if(!entries.length) return '<div class="note">Chưa có lỗi sai. Hãy làm một đề trước để app xác định phần cần luyện.</div>';
+  const max=Math.max(...entries.map(x=>x[1]),1);
+  return `<div class="weakBars">${entries.map(([t,n])=>`
+    <div class="weakRow">
+      <b>${topicName(t)}</b>
+      <div class="weakTrack"><div style="width:${Math.round(n/max*100)}%"></div></div>
+      <span>${n} lỗi</span>
+    </div>`).join('')}</div>`;
+}
+
+function buildWeakPractice(){
+  rebuildWeakTopics();
+  let topics=Object.entries(state.topicStats||{}).sort((a,b)=>b[1]-a[1]).map(x=>x[0]);
+  if(!topics.length) topics=["present_simple","past_simple","question_words"];
+  let pool=PRACTICE_BANK.filter(q=>topics.slice(0,4).includes(q.topic));
+
+  // Nếu chủ đề lỗi thuộc nhóm không có bank chuyên biệt, đưa về nhóm gần nhất.
+  if(pool.length<10){
+    pool=[...pool,...PRACTICE_BANK.filter(q=>["present_simple","past_simple","question_words","prepositions","vocabulary"].includes(q.topic))];
+  }
+
+  // Trộn ổn định tương đối bằng sort random ở thời điểm bấm tạo.
+  weakPracticeList=pool.sort(()=>Math.random()-.5).slice(0,20);
+  weakPracticeIndex=0;
+  weakPracticeSelected="";
+  weakPracticeChecked=false;
+}
+
+function renderWeakPractice(){
+  currentPrefix='';
+  rebuildWeakTopics();
+  if(!weakPracticeList.length) buildWeakPractice();
+
+  let h=`<div class="weakPanel">
+    <h1 style="margin:0 0 5px">🎯 Luyện lại phần bị sai</h1>
+    <p class="note">App gom lỗi theo chủ đề và tạo tối đa 20 câu luyện đúng phần em đang yếu.</p>
+    ${weakTopicSummary()}
+    <div style="margin-top:14px"><button class="btn" onclick="buildWeakPractice();renderWeakPractice()">Tạo lại bộ 20 câu</button></div>
+  </div>`;
+
+  if(!weakPracticeList.length){
+    h+='<div class="hero">Chưa có câu phù hợp để luyện.</div>';
+    document.getElementById('app').innerHTML=h;
+    return;
+  }
+
+  const q=weakPracticeList[weakPracticeIndex];
+  h+=`<div class="practiceCard" id="practiceCard">
+    <div class="practiceTitle">${topicName(q.topic)} · Câu ${weakPracticeIndex+1}/${weakPracticeList.length}</div>
+    <div class="progress"><div style="width:${Math.round((weakPracticeIndex)/weakPracticeList.length*100)}%"></div></div>
+    <div class="practiceQ">${esc(q.q)}</div>
+    <div class="mcopts">
+      ${q.options.map((o,i)=>{
+        const l=String.fromCharCode(65+i);
+        return `<button class="opt ${weakPracticeSelected===l?'sel':''}" data-p="${l}"><b>${l}.</b> ${esc(o)}</button>`;
+      }).join('')}
+    </div>
+    <div class="answerRow">
+      <button class="btn" id="practiceCheck">Kiểm tra bằng Enter</button>
+      <button class="btn secondary" id="practiceNext">Câu tiếp →</button>
+    </div>
+    <div class="feedback" id="practiceFb"></div>
+    <div class="note" style="margin-top:8px">Chọn A/B/C/D rồi nhấn <b>Enter</b>. Sau khi check, nhấn Enter lần nữa để sang câu tiếp.</div>
+  </div>`;
+
+  document.getElementById('app').innerHTML=h;
+
+  const card=document.getElementById('practiceCard');
+  const fb=document.getElementById('practiceFb');
+
+  card.querySelectorAll('.opt').forEach(o=>{
+    o.onclick=()=>{
+      card.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));
+      o.classList.add('sel');
+      weakPracticeSelected=o.dataset.p;
+      weakPracticeChecked=false;
+    };
+  });
+
+  function checkPractice(){
+    if(!weakPracticeSelected){
+      fb.className='feedback warn';
+      fb.innerHTML='Hãy chọn một đáp án trước.';
+      return;
+    }
+    const ok=weakPracticeSelected===q.answer;
+    weakPracticeChecked=true;
+    if(ok){
+      fb.className='feedback ok';
+      fb.innerHTML=`✓ Đúng! <div class="feynman"><b>🧠 Nói lại thật đơn giản</b><div class="step">${esc(q.why)}</div><div class="step"><b>Tự kiểm tra:</b> Em hãy tự tạo một câu mới dùng đúng quy tắc này.</div></div>`;
+    }else{
+      const ansText=`${q.answer}. ${q.options[q.answer.charCodeAt(0)-65]}`;
+      fb.className='feedback bad';
+      fb.innerHTML='✗ Chưa đúng.'+feynmanExplain(q.topic,q.q,ansText);
+    }
+  }
+
+  function nextPractice(){
+    weakPracticeIndex=(weakPracticeIndex+1)%weakPracticeList.length;
+    weakPracticeSelected="";
+    weakPracticeChecked=false;
+    renderWeakPractice();
+  }
+
+  document.getElementById('practiceCheck').onclick=checkPractice;
+  document.getElementById('practiceNext').onclick=nextPractice;
+
+  document.addEventListener('keydown',function weakEnter(e){
+    if(document.getElementById('practiceCard')!==card){
+      document.removeEventListener('keydown',weakEnter); return;
+    }
+    if(e.key==='Enter'){
+      e.preventDefault();
+      weakPracticeChecked ? nextPractice() : checkPractice();
+    }
+  });
+}
+
+function route(v,id){
+  document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.view===v&&(!id||b.dataset.id===String(id))));
+  if(v==='home')renderHome();
+  else if(v==='wrong')renderWrong();
+  else if(v==='weakpractice')renderWeakPractice();
+  else if(v==='test')renderTest(id);
+}
+
+sidebar();updateGlobal();route('home');
+</script>
+</body></html>
