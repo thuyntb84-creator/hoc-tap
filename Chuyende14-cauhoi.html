@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Interrogative & W-H Questions Mastery – Chuyên đề 14</title>
+<style>
+:root{
+ --ink:#17324a;--blue:#0f5d99;--line:#d7e8f4;--green:#1f9d55;
+ --red:#d64545;--gold:#f5c84c;--purple:#7058c9
+}
+*{box-sizing:border-box}
+body{
+ margin:0;background:linear-gradient(180deg,#eaf7ff,#f9fcff);
+ color:var(--ink);font-family:"Times New Roman",Times,serif
+}
+.app{display:grid;grid-template-columns:292px 1fr;min-height:100vh}
+.sidebar{
+ background:linear-gradient(180deg,#0f5c98,#0a4068);color:#fff;
+ padding:18px 14px;position:sticky;top:0;height:100vh;overflow:auto;
+ border-right:5px solid #d9efff
+}
+.logo{font-size:25px;font-weight:900;line-height:1.05}
+.sideSub{font-size:14px;opacity:.9;margin:8px 0 16px}
+.groupTitle{font-size:13px;text-transform:uppercase;opacity:.72;margin:17px 8px 8px}
+.menu{display:flex;flex-direction:column;gap:8px}
+.menu button{
+ width:100%;text-align:left;border:0;background:rgba(255,255,255,.09);
+ color:#fff;padding:11px 12px;border-radius:12px;
+ font:700 16px "Times New Roman",serif;cursor:pointer
+}
+.menu button:hover,.menu button.active{background:rgba(255,255,255,.2)}
+.content{min-width:0}
+.topbar{
+ background:linear-gradient(135deg,#91d6ff,#d7f4ff);
+ border-bottom:5px solid #2c83c6;padding:20px 22px
+}
+.topbar h1{margin:0;color:#083a65;font-size:clamp(26px,4vw,43px)}
+.topbar p{margin:7px 0 0;font-size:18px}
+.wrap{max-width:1160px;margin:auto;padding:0 18px 50px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
+.stat{
+ background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;
+ box-shadow:0 8px 18px rgba(25,82,122,.06)
+}
+.stat b{display:block;font-size:29px;color:#0f5d99}
+.view{display:none}.view.active{display:block}
+.section{
+ background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;
+ margin:20px 0;box-shadow:0 10px 22px rgba(20,82,120,.06)
+}
+.secHead{
+ padding:16px 18px;background:linear-gradient(180deg,#f1faff,#e2f3ff);
+ border-bottom:1px solid var(--line)
+}
+.secHead h2{margin:0;color:#0d4d82;font-size:29px}
+.secHead p{margin:5px 0 0;font-size:17px}
+.secBody{padding:18px}
+.notice{
+ background:#fff9df;border:1px solid #f0dfa1;border-radius:13px;
+ padding:12px 14px;font-size:17px
+}
+.posterGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.posterCard{
+ border:1px solid var(--line);border-radius:18px;padding:10px;background:#fff;
+ box-shadow:0 6px 16px rgba(20,82,120,.06)
+}
+.posterCard img{width:100%;display:block;border-radius:12px}
+.posterCap{padding:10px 4px 2px;font-size:18px;font-weight:700;color:#154d79}
+.quickGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.quick{
+ border:1px solid var(--line);background:#f9fcff;border-radius:14px;padding:12px
+}
+.quick b{display:block;color:#0d5d9a;font-size:20px;margin-bottom:5px}
+.exerciseList{display:grid;gap:13px}
+.qCard{
+ border:1px solid #dceaf5;border-radius:15px;padding:14px;
+ background:linear-gradient(180deg,#fff,#fbfdff)
+}
+.qRow{display:flex;gap:12px}
+.num{
+ width:36px;height:36px;min-width:36px;border-radius:50%;background:#207ec4;color:#fff;
+ display:flex;align-items:center;justify-content:center;font-weight:800
+}
+.qMain{flex:1}.prompt{font-size:20px;line-height:1.5}
+.subline{font-size:15px;color:#56738b}
+.textInput{
+ width:100%;padding:11px 13px;border:2px solid #dceaf5;border-radius:11px;
+ font:18px "Times New Roman",serif;margin-top:10px
+}
+.textInput:focus{
+ outline:none;border-color:#4b9de0;box-shadow:0 0 0 4px rgba(75,157,224,.12)
+}
+.options{display:grid;gap:8px;margin-top:10px}
+.option{
+ border:2px solid #dceaf5;border-radius:11px;padding:10px 12px;
+ background:#fff;cursor:pointer;font-size:18px
+}
+.option.sel{border-color:#3d97df;background:#edf7ff}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.btn{
+ border:0;border-radius:11px;padding:9px 13px;
+ font:700 16px "Times New Roman",serif;cursor:pointer
+}
+.primary{background:#0d5d9a;color:#fff}
+.secondary{background:#edf7ff;color:#0d5d9a;border:1px solid #cfe4f5}
+.hintBtn{background:#fff8da;color:#725700;border:1px solid #f0dfa1}
+.feedback{
+ display:none;margin-top:10px;padding:11px 13px;border-radius:11px;font-size:17px
+}
+.feedback.ok{display:block;background:#eefbf2;border:1px solid #c7ebd1;color:#126b33}
+.feedback.bad{display:block;background:#fff1f1;border:1px solid #f1c8c8;color:#9e2424}
+.feedback.hint{display:block;background:#fff9e8;border:1px solid #f0dfa1;color:#765a00}
+.bigActions{
+ display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px;
+ padding-top:14px;border-top:1px dashed #d8e7f2
+}
+.quizBox{max-width:840px;margin:auto}
+.quizMeta{
+ display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+ color:#55738c;margin-bottom:8px
+}
+.quizPrompt{font-size:24px;line-height:1.45;margin:12px 0}
+.progress{height:11px;background:#e5eef5;border-radius:99px;overflow:hidden}
+.progress div{height:100%;background:linear-gradient(90deg,#1e7bc0,#38a169);width:0}
+.topicGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.topicCard{
+ border:1px solid var(--line);border-radius:14px;padding:12px;background:#f9fcff
+}
+.topicCard b{display:block;color:#0b578f;margin-bottom:5px}
+.errorItem{
+ border:1px solid #efcaca;background:#fff7f7;border-radius:13px;padding:12px;margin:9px 0
+}
+.weakChip{
+ display:inline-block;background:#e9f5ff;border:1px solid #cbe7fb;border-radius:999px;
+ padding:7px 10px;margin:4px 4px 0 0;font-weight:700;color:#165a8a
+}
+@media(max-width:930px){
+ .app{grid-template-columns:1fr}
+ .sidebar{position:relative;height:auto}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .posterGrid,.topicGrid,.quickGrid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<aside class="sidebar">
+  <div class="logo">QUESTION<br>MASTERY</div>
+  <div class="sideSub">Chuyên đề 14 · Yes/No & W-H Questions</div>
+
+  <div class="groupTitle">Danh mục</div>
+  <div class="menu">
+    <button class="navBtn active" data-view="images">🖼 Bộ ảnh / lý thuyết</button>
+    <button class="navBtn" data-view="ex1">1. Bài tập 1</button>
+    <button class="navBtn" data-view="ex2">2. Bài tập 2</button>
+    <button class="navBtn" data-view="ex3">3. Bài tập 3</button>
+    <button class="navBtn" data-view="ex4">4. Bài tập 4</button>
+    <button class="navBtn" data-view="ex5">5. Bài tập 5</button>
+    <button class="navBtn" data-view="quiz100">🔥 Quiz 100 câu</button>
+    <button class="navBtn" data-view="weak">🎯 Luyện chủ đề câu sai</button>
+    <button class="navBtn" data-view="errors">📕 Sổ câu sai</button>
+    <button id="resetAll">↺ Xóa tiến độ</button>
+  </div>
+</aside>
+
+<div class="content">
+<header class="topbar">
+  <h1>CHUYÊN ĐỀ 14: INTERROGATIVE QUESTIONS & W-H QUESTIONS</h1>
+  <p>50 câu gốc theo sách + 100 câu quiz mở rộng • check tự động • Enter để kiểm tra/chuyển câu • tự luyện phần sai</p>
+</header>
+
+<main class="wrap">
+
+  <div class="stats">
+    <div class="stat"><span>Đã làm</span><b id="doneStat">0</b><span>câu</span></div>
+    <div class="stat"><span>Đúng</span><b id="correctStat">0</b><span>câu</span></div>
+    <div class="stat"><span>Độ chính xác</span><b id="accStat">0%</b><span>toàn bộ</span></div>
+    <div class="stat"><span>Chủ đề yếu</span><b id="weakStat">0</b><span>chủ đề</span></div>
+  </div>
+
+  <div id="views">
+
+    <section class="view active" id="view-images">
+      <div class="section">
+        <div class="secHead">
+          <h2>Bộ ảnh / lý thuyết</h2>
+          <p>Chỉ hiển thị bộ hình ảnh công thức cấu trúc ngữ pháp của bài.</p>
+        </div>
+        <div class="secBody">
+
+          <div class="quickGrid">
+            <div class="quick"><b>YES/NO</b>Đảo trợ động từ / be / modal lên trước chủ ngữ.</div>
+            <div class="quick"><b>WH-WORD</b>Who, What, Which, Where, When, Why, How...</div>
+            <div class="quick"><b>SUBJECT?</b>Who/What + động từ chia phù hợp; không mượn do/does/did.</div>
+            <div class="quick"><b>OBJECT?</b>WH + trợ động từ + S + V nguyên thể?</div>
+          </div>
+
+          <div class="posterGrid">
+            <div class="posterCard">
+              <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjEyNTAiIHZpZXdCb3g9IjAgMCAxMDAwIDEyNTAiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNlN2Y3ZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmY4ZTgiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiByeD0iMzYiIGZpbGw9InVybCgjYmcpIi8+PHJlY3QgeD0iMzIiIHk9IjI4IiB3aWR0aD0iOTM2IiBoZWlnaHQ9IjEwOCIgcng9IjI2IiBmaWxsPSIjMGY1ZDk5Ii8+PHRleHQgeD0iNTAwIiB5PSI3NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSJ3aGl0ZSI+Q8OCVSBI4buOSSBOR0hJIFbhuqROIOKAkyBZRVMvTk8gUVVFU1RJT05TPC90ZXh0Pjx0ZXh0IHg9IjUwMCIgeT0iMTEyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiNkZmYzZmYiPkludGVycm9nYXRpdmUgUXVlc3Rpb25zPC90ZXh0PjxyZWN0IHg9IjU1IiB5PSIxNTAiIHdpZHRoPSI4OTAiIGhlaWdodD0iMTQ0IiByeD0iMjQiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2JkZGJlYyIgc3Ryb2tlLXdpZHRoPSIzIi8+PHRleHQgeD0iODUiIHk9IjE5MiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMGQ0ZDgyIj4xLiBW4bubaSDEkeG7mW5nIHThu6sgdGjGsOG7nW5nPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIyMzIiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0YSI+RG8vRG9lcy9EaWQgKyBTICsgViBuZ3V5w6puIHRo4buDIC4uLj88L3RleHQ+PHRleHQgeD0iOTAiIHk9IjI2MyIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRhIj5Ww60gZOG7pTogRG8geW91IGxpa2UgYXBwbGVzPyAgLyAgRGlkIFJvc2UgdHJhdmVsIHRvIExvbmRvbj88L3RleHQ+PHJlY3QgeD0iNTUiIHk9IjMxNiIgd2lkdGg9Ijg5MCIgaGVpZ2h0PSIxNDQiIHJ4PSIyNCIgZmlsbD0iI2VlZjlmZiIgc3Ryb2tlPSIjYmRkYmVjIiBzdHJva2Utd2lkdGg9IjMiLz48dGV4dCB4PSI4NSIgeT0iMzU4IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMwZDRkODIiPjIuIFbhu5tpIFRPIEJFPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIzOTgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0YSI+QW0vSXMvQXJlL1dhcy9XZXJlICsgUyArIC4uLj88L3RleHQ+PHRleHQgeD0iOTAiIHk9IjQyOSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRhIj5Ww60gZOG7pTogQXJlIHRoZXkgYXQgaG9tZT8gIC8gIFdlcmUgdGhleSBiYWQgYXQgc2tpaW5nPzwvdGV4dD48cmVjdCB4PSI1NSIgeT0iNDgyIiB3aWR0aD0iODkwIiBoZWlnaHQ9IjE0NCIgcng9IjI0IiBmaWxsPSIjZmZmNWU1IiBzdHJva2U9IiNiZGRiZWMiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9Ijg1IiB5PSI1MjQiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzBkNGQ4MiI+My4gVuG7m2kgxJHhu5luZyB04burIGtodXnhur90IHRoaeG6v3U8L3RleHQ+PHRleHQgeD0iOTAiIHk9IjU2NCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRhIj5Nb2RhbCArIFMgKyBWIG5ndXnDqm4gdGjhu4MgLi4uPzwvdGV4dD48dGV4dCB4PSI5MCIgeT0iNTk1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxNzMyNGEiPmNhbiwgY291bGQsIHdpbGwsIHdvdWxkLCBzaGFsbCwgc2hvdWxkLCBtdXN0LCBtYXksIG1pZ2h0Li4uPC90ZXh0PjxyZWN0IHg9IjU1IiB5PSI2NDgiIHdpZHRoPSI4OTAiIGhlaWdodD0iMTQ0IiByeD0iMjQiIGZpbGw9IiNmNGVlZmYiIHN0cm9rZT0iI2JkZGJlYyIgc3Ryb2tlLXdpZHRoPSIzIi8+PHRleHQgeD0iODUiIHk9IjY5MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMGQ0ZDgyIj40LiBN4bq5byBuaGFuaDwvdGV4dD48dGV4dCB4PSI5MCIgeT0iNzMwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxNzMyNGEiPlTDrG0gxJHhu5luZyB04burIHRyb25nIGPDonUgdHLGsOG7m2MuPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI3NjEiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0YSI+xJDhu5luZyB04burIHRoxrDhu51uZyDihpIgbcaw4bujbiB0cuG7oyDEkeG7mW5nIHThu6suIEJlL21vZGFsIOKGkiDEkeG6o28gdHLhu7FjIHRp4bq/cC48L3RleHQ+PHJlY3QgeD0iNTUiIHk9IjExNDUiIHdpZHRoPSI4OTAiIGhlaWdodD0iNjAiIHJ4PSIyMCIgZmlsbD0iI2ZmZjFhOCIvPjx0ZXh0IHg9IjUwMCIgeT0iMTE4MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIxIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjNmI1MjAwIj5I4buPaSBZRVMvTk8gPSDEkcawYSB0cuG7oyDEkeG7mW5nIHThu6sgLyBiZSAvIG1vZGFsIGzDqm4gdHLGsOG7m2MgY2jhu6cgbmfhu68uPC90ZXh0Pjwvc3ZnPg==">
+              <div class="posterCap">Ảnh 1. Công thức câu hỏi Yes/No</div>
+            </div>
+            <div class="posterCard">
+              <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjEyNTAiIHZpZXdCb3g9IjAgMCAxMDAwIDEyNTAiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNlN2Y3ZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmY4ZTgiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiByeD0iMzYiIGZpbGw9InVybCgjYmcpIi8+PHJlY3QgeD0iMzIiIHk9IjI4IiB3aWR0aD0iOTM2IiBoZWlnaHQ9IjEwOCIgcng9IjI2IiBmaWxsPSIjMGY1ZDk5Ii8+PHRleHQgeD0iNTAwIiB5PSI3NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSJ3aGl0ZSI+VOG7qiDEkOG7giBI4buOSSDigJMgVy1IIFFVRVNUSU9OUzwvdGV4dD48dGV4dCB4PSI1MDAiIHk9IjExMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIyIiBmaWxsPSIjZGZmM2ZmIj5RdWVzdGlvbiBXb3JkczwvdGV4dD48cmVjdCB4PSI1NSIgeT0iMTUwIiB3aWR0aD0iODkwIiBoZWlnaHQ9IjE0NCIgcng9IjI0IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiNiZGRiZWMiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9Ijg1IiB5PSIxOTIiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzBkNGQ4MiI+V0hPIC8gV0hPTSAvIFdIT1NFPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIyMzIiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0YSI+V0hPID0gYWk/IChjaOG7pyBuZ+G7ryAvIHTDom4gbmfhu68pPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIyNjMiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0YSI+V0hPTSA9IGFpPyAodMOibiBuZ+G7rykgICAgIFdIT1NFICsgTiA9IGPhu6dhIGFpPzwvdGV4dD48cmVjdCB4PSI1NSIgeT0iMzE2IiB3aWR0aD0iODkwIiBoZWlnaHQ9IjE0NCIgcng9IjI0IiBmaWxsPSIjZWVmOWZmIiBzdHJva2U9IiNiZGRiZWMiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9Ijg1IiB5PSIzNTgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzBkNGQ4MiI+V0hBVCAvIFdISUNIPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIzOTgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0YSI+V0hBVCA9IGPDoWkgZ8OsPyAvIHZp4buHYyBnw6w/PC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI0MjkiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0YSI+V0hJQ0ggPSBjw6FpIG7DoG8/IChraGkgY8OzIGzhu7FhIGNo4buNbiBj4bulIHRo4buDKTwvdGV4dD48cmVjdCB4PSI1NSIgeT0iNDgyIiB3aWR0aD0iODkwIiBoZWlnaHQ9IjE0NCIgcng9IjI0IiBmaWxsPSIjZmZmNWU1IiBzdHJva2U9IiNiZGRiZWMiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9Ijg1IiB5PSI1MjQiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzBkNGQ4MiI+V0hFUkUgLyBXSEVOIC8gV0hZPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI1NjQiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0YSI+V0hFUkUgPSDhu58gxJHDonU/ICAgICBXSEVOID0ga2hpIG7DoG8/PC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI1OTUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0YSI+V0hZID0gdOG6oWkgc2FvPzwvdGV4dD48cmVjdCB4PSI1NSIgeT0iNjQ4IiB3aWR0aD0iODkwIiBoZWlnaHQ9IjE3OCIgcng9IjI0IiBmaWxsPSIjZjRlZWZmIiBzdHJva2U9IiNiZGRiZWMiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9Ijg1IiB5PSI2OTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzBkNGQ4MiI+SE9XICsgY+G7pW0gbeG7nyBy4buZbmc8L3RleHQ+PHRleHQgeD0iOTAiIHk9IjczMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRhIj5IT1cgPSBuaMawIHRo4bq/IG7DoG8/PC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI3NjEiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0YSI+SG93IG9mdGVuID0gYmFvIGzDonUgbeG7mXQgbOG6p247IEhvdyBtdWNoID0gYmFvIG5oacOqdSB0aeG7gW47PC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI3OTIiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0YSI+SG93IG1hbnkgPSBiYW8gbmhpw6p1OyBIb3cgb2xkID0gYmFvIG5oacOqdSB0deG7lWk7IEhvdyBsb25nID0gYmFvIGzDonUuPC90ZXh0PjxyZWN0IHg9IjU1IiB5PSIxMTQ1IiB3aWR0aD0iODkwIiBoZWlnaHQ9IjYwIiByeD0iMjAiIGZpbGw9IiNmZmYxYTgiLz48dGV4dCB4PSI1MDAiIHk9IjExODMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzZiNTIwMCI+VHLGsOG7m2MgaOG6v3QgeMOhYyDEkeG7i25oIHBo4bqnbiBj4bqnbiBo4buPaSDihpIgY2jhu41uIMSRw7puZyB04burIMSR4buDIGjhu49pLjwvdGV4dD48L3N2Zz4=">
+              <div class="posterCap">Ảnh 2. Hệ thống từ để hỏi W-H</div>
+            </div>
+            <div class="posterCard">
+              <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjEyNTAiIHZpZXdCb3g9IjAgMCAxMDAwIDEyNTAiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNlN2Y3ZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmY4ZTgiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiByeD0iMzYiIGZpbGw9InVybCgjYmcpIi8+PHJlY3QgeD0iMzIiIHk9IjI4IiB3aWR0aD0iOTM2IiBoZWlnaHQ9IjEwOCIgcng9IjI2IiBmaWxsPSIjMGY1ZDk5Ii8+PHRleHQgeD0iNTAwIiB5PSI3NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSJ3aGl0ZSI+Q8OBQ0ggVEjDgE5IIEzhuqxQIFctSCBRVUVTVElPTlM8L3RleHQ+PHRleHQgeD0iNTAwIiB5PSIxMTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMiIgZmlsbD0iI2RmZjNmZiI+QnVpbGQgUXVlc3Rpb25zIFN0ZXAgYnkgU3RlcDwvdGV4dD48cmVjdCB4PSI1NSIgeT0iMTUwIiB3aWR0aD0iODkwIiBoZWlnaHQ9IjE0NCIgcng9IjI0IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiNiZGRiZWMiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9Ijg1IiB5PSIxOTIiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzBkNGQ4MiI+QS4gVuG7m2kgVE8gQkU8L3RleHQ+PHRleHQgeD0iOTAiIHk9IjIzMiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRhIj5XSC13b3JkICsgYmUgKyBTICsgLi4uPzwvdGV4dD48dGV4dCB4PSI5MCIgeT0iMjYzIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxNzMyNGEiPkl0IGlzIG9uIHRoZSB0YWJsZS4g4oaSIFdoZXJlIGlzIGl0PzwvdGV4dD48cmVjdCB4PSI1NSIgeT0iMzE2IiB3aWR0aD0iODkwIiBoZWlnaHQ9IjE0NCIgcng9IjI0IiBmaWxsPSIjZWVmOWZmIiBzdHJva2U9IiNiZGRiZWMiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9Ijg1IiB5PSIzNTgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzBkNGQ4MiI+Qi4gSOG7j2kgQ0jhu6YgTkfhu648L3RleHQ+PHRleHQgeD0iOTAiIHk9IjM5OCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRhIj5XSE8vV0hBVCArIFYoY2hpYSBwaMO5IGjhu6NwKSArIC4uLj88L3RleHQ+PHRleHQgeD0iOTAiIHk9IjQyOSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRhIj5Bbm5hIGF0ZSB0aGlzIGNha2UuIOKGkiBXaG8gYXRlIHRoaXMgY2FrZT88L3RleHQ+PHJlY3QgeD0iNTUiIHk9IjQ4MiIgd2lkdGg9Ijg5MCIgaGVpZ2h0PSIxNDQiIHJ4PSIyNCIgZmlsbD0iI2ZmZjVlNSIgc3Ryb2tlPSIjYmRkYmVjIiBzdHJva2Utd2lkdGg9IjMiLz48dGV4dCB4PSI4NSIgeT0iNTI0IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMwZDRkODIiPkMuIEjhu49pIFTDgk4gTkfhu64gLyBUUuG6oE5HIE5H4buuPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI1NjQiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0YSI+V0gtd29yZCArIHRy4bujIMSR4buZbmcgdOG7qyArIFMgKyBWIG5ndXnDqm4gdGjhu4MgKyAuLi4/PC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI1OTUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0YSI+VGhleSBwbGF5IGZvb3RiYWxsIGV2ZXJ5IGRheS4g4oaSIFdoYXQgZG8gdGhleSBwbGF5IGV2ZXJ5IGRheT88L3RleHQ+PHJlY3QgeD0iNTUiIHk9IjY0OCIgd2lkdGg9Ijg5MCIgaGVpZ2h0PSIxNDQiIHJ4PSIyNCIgZmlsbD0iI2Y0ZWVmZiIgc3Ryb2tlPSIjYmRkYmVjIiBzdHJva2Utd2lkdGg9IjMiLz48dGV4dCB4PSI4NSIgeT0iNjkwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMwZDRkODIiPkQuIFbhu5tpIEJFIC8gTU9EQUw8L3RleHQ+PHRleHQgeD0iOTAiIHk9IjczMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRhIj7EkOG6o28gYmUvbW9kYWwgbMOqbiB0csaw4bubYyBjaOG7pyBuZ+G7ryBzYXUgdOG7qyDEkeG7gyBo4buPaS48L3RleHQ+PHRleHQgeD0iOTAiIHk9Ijc2MSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRhIj5TaGUgaXMgcGxhbnRpbmcgdHJlZXMuIOKGkiBXaGF0IGlzIHNoZSBwbGFudGluZz88L3RleHQ+PHJlY3QgeD0iNTUiIHk9IjExNDUiIHdpZHRoPSI4OTAiIGhlaWdodD0iNjAiIHJ4PSIyMCIgZmlsbD0iI2ZmZjFhOCIvPjx0ZXh0IHg9IjUwMCIgeT0iMTE4MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIxIiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjNmI1MjAwIj5LaMO0bmcgbOG6t3AgbOG6oWkgcGjhuqduIGLhu4sgaOG7j2kgdHJvbmcgY8OidSBo4buPaS48L3RleHQ+PC9zdmc+">
+              <div class="posterCap">Ảnh 3. Cách thành lập câu hỏi từng bước</div>
+            </div>
+            <div class="posterCard">
+              <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjEyNTAiIHZpZXdCb3g9IjAgMCAxMDAwIDEyNTAiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNlN2Y3ZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmY4ZTgiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiByeD0iMzYiIGZpbGw9InVybCgjYmcpIi8+PHJlY3QgeD0iMzIiIHk9IjI4IiB3aWR0aD0iOTM2IiBoZWlnaHQ9IjEwOCIgcng9IjI2IiBmaWxsPSIjMGY1ZDk5Ii8+PHRleHQgeD0iNTAwIiB5PSI3NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSJ3aGl0ZSI+TeG6uE8gTkjhu5ogJmFtcDsgxJDhu5RJIE5Hw5RJIEtISSDEkOG6tlQgQ8OCVSBI4buOSTwvdGV4dD48dGV4dCB4PSI1MDAiIHk9IjExMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIyIiBmaWxsPSIjZGZmM2ZmIj5RdWljayBDaGVjazwvdGV4dD48cmVjdCB4PSI1NSIgeT0iMTUwIiB3aWR0aD0iODkwIiBoZWlnaHQ9IjE3OCIgcng9IjI0IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiNiZGRiZWMiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9Ijg1IiB5PSIxOTIiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzBkNGQ4MiI+xJDhu5VpIG5nw7RpIHRoxrDhu51uZyBn4bq3cDwvdGV4dD48dGV4dCB4PSI5MCIgeT0iMjMyIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxNzMyNGEiPkkgLyB3ZSDihpIgeW91ICAgICAgbWUgLyB1cyDihpIgeW91PC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIyNjMiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0YSI+bXkgLyBvdXIg4oaSIHlvdXIgICBtaW5lIC8gb3VycyDihpIgeW91cnM8L3RleHQ+PHRleHQgeD0iOTAiIHk9IjI5NCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRhIj5zb21lIOKGkiBhbnkgKGtoaSBwaMO5IGjhu6NwIHRyb25nIGPDonUgaOG7j2kpPC90ZXh0PjxyZWN0IHg9IjU1IiB5PSIzNTAiIHdpZHRoPSI4OTAiIGhlaWdodD0iMjEyIiByeD0iMjQiIGZpbGw9IiNlZWY5ZmYiIHN0cm9rZT0iI2JkZGJlYyIgc3Ryb2tlLXdpZHRoPSIzIi8+PHRleHQgeD0iODUiIHk9IjM5MiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMGQ0ZDgyIj5DaGVja2xpc3QgNCBixrDhu5tjPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI0MzIiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0YSI+MSkgWMOhYyDEkeG7i25oIHBo4bqnbiBj4bqnbiBo4buPaS48L3RleHQ+PHRleHQgeD0iOTAiIHk9IjQ2MyIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRhIj4yKSBDaOG7jW4gcXVlc3Rpb24gd29yZC48L3RleHQ+PHRleHQgeD0iOTAiIHk9IjQ5NCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRhIj4zKSBYw6FjIMSR4buLbmggxJHhu5luZyB04burIHRoxrDhu51uZyBoYXkgYmUvbW9kYWwuPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI1MjUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE3MzI0YSI+NCkgxJDhuqNvIC8gbcaw4bujbiB0cuG7oyDEkeG7mW5nIHThu6sgdsOgIGtp4buDbSB0cmEgZOG6oW5nIMSR4buZbmcgdOG7qy48L3RleHQ+PHJlY3QgeD0iNTUiIHk9IjU4NCIgd2lkdGg9Ijg5MCIgaGVpZ2h0PSIxNDQiIHJ4PSIyNCIgZmlsbD0iI2ZmZjVlNSIgc3Ryb2tlPSIjYmRkYmVjIiBzdHJva2Utd2lkdGg9IjMiLz48dGV4dCB4PSI4NSIgeT0iNjI2IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMwZDRkODIiPkzhu5dpIHLhuqV0IGhheSBn4bq3cDwvdGV4dD48dGV4dCB4PSI5MCIgeT0iNjY2IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxNzMyNGEiPldoYXQgdGltZSBoZSB1c3VhbGx5IGhhdmUuLi4/IOKclyDihpIgV2hhdCB0aW1lIGRvZXMgaGUgdXN1YWxseSBoYXZlLi4uPzwvdGV4dD48dGV4dCB4PSI5MCIgeT0iNjk3IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxNzMyNGEiPldobyB5b3UgYXJlIHRhbGtpbmcgd2l0aD8g4pyXIOKGkiBXaG8gYXJlIHlvdSB0YWxraW5nIHdpdGg/PC90ZXh0PjxyZWN0IHg9IjU1IiB5PSI3NTAiIHdpZHRoPSI4OTAiIGhlaWdodD0iMTQ0IiByeD0iMjQiIGZpbGw9IiNmNGVlZmYiIHN0cm9rZT0iI2JkZGJlYyIgc3Ryb2tlLXdpZHRoPSIzIi8+PHRleHQgeD0iODUiIHk9Ijc5MiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMGQ0ZDgyIj7EkOG7q25nIG5o4bqnbTwvdGV4dD48dGV4dCB4PSI5MCIgeT0iODMyIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxNzMyNGEiPkhvdyBtdWNoICsgZGFuaCB04burIGtow7RuZyDEkeG6v20gxJHGsOG7o2MgLyBnacOhIHRp4buBbi48L3RleHQ+PHRleHQgeD0iOTAiIHk9Ijg2MyIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTczMjRhIj5Ib3cgbWFueSArIGRhbmggdOG7qyDEkeG6v20gxJHGsOG7o2Mgc+G7kSBuaGnhu4F1LjwvdGV4dD48cmVjdCB4PSI1NSIgeT0iMTE0NSIgd2lkdGg9Ijg5MCIgaGVpZ2h0PSI2MCIgcng9IjIwIiBmaWxsPSIjZmZmMWE4Ii8+PHRleHQgeD0iNTAwIiB5PSIxMTgzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjEiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiM2YjUyMDAiPkjDo3kgaOG7j2k6IE3DrG5oIMSRYW5nIGjhu49pIEFJPyBDw4FJIEfDjD8g4bueIMSQw4JVPyBLSEkgTsOATz8gVOG6oEkgU0FPPyBOSMavIFRI4bq+IE7DgE8/PC90ZXh0Pjwvc3ZnPg==">
+              <div class="posterCap">Ảnh 4. Đổi ngôi – checklist – lỗi thường gặp</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-ex1"></section>
+    <section class="view" id="view-ex2"></section>
+    <section class="view" id="view-ex3"></section>
+    <section class="view" id="view-ex4"></section>
+    <section class="view" id="view-ex5"></section>
+
+    <section class="view" id="view-quiz100">
+      <div class="section">
+        <div class="secHead">
+          <h2>Quiz 100 câu – Question Mastery</h2>
+          <p>100 câu bổ trợ, tách riêng khỏi 50 câu gốc trong tài liệu.</p>
+        </div>
+        <div class="secBody">
+
+          <div class="topicGrid">
+            <div class="topicCard"><b>25 câu</b>Yes/No Questions</div>
+            <div class="topicCard"><b>25 câu</b>Question Words</div>
+            <div class="topicCard"><b>25 câu</b>Cấu trúc & Subject Questions</div>
+            <div class="topicCard"><b>25 câu</b>Sửa lỗi & tổng hợp</div>
+          </div>
+
+          <div class="quizBox">
+            <div class="quizMeta">
+              <span id="quizCounter"></span>
+              <span id="quizTopic"></span>
+            </div>
+            <div class="progress"><div id="quizBar"></div></div>
+            <div class="quizPrompt" id="quizPrompt"></div>
+            <div class="options" id="quizOptions"></div>
+            <div class="feedback" id="quizFeedback"></div>
+            <div class="actions">
+              <button class="btn primary" id="quizCheck">Kiểm tra</button>
+              <button class="btn secondary" id="quizNext">Câu tiếp →</button>
+              <button class="btn secondary" id="quizRestart">Làm lại 100 câu</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-weak">
+      <div class="section">
+        <div class="secHead">
+          <h2>Luyện chủ đề của những câu sai</h2>
+          <p>App tự nhận diện dạng câu hỏi em hay sai rồi tạo tối đa 20 câu luyện bổ trợ.</p>
+        </div>
+        <div class="secBody">
+          <div id="weakSummary" class="notice">Chưa có dữ liệu lỗi sai. Hãy làm bài trước.</div>
+
+          <div style="margin-top:12px">
+            <button class="btn primary" id="startWeak">Tạo bộ luyện chủ đề yếu</button>
+          </div>
+
+          <div class="quizBox" id="weakQuiz" style="display:none;margin-top:18px">
+            <div class="quizMeta">
+              <span id="weakCounter"></span>
+              <span id="weakTopic"></span>
+            </div>
+            <div class="progress"><div id="weakBar"></div></div>
+            <div class="quizPrompt" id="weakPrompt"></div>
+            <div class="options" id="weakOptions"></div>
+            <div class="feedback" id="weakFeedback"></div>
+            <div class="actions">
+              <button class="btn primary" id="weakCheck">Kiểm tra</button>
+              <button class="btn secondary" id="weakNext">Câu tiếp →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-errors">
+      <div class="section">
+        <div class="secHead">
+          <h2>Sổ câu sai</h2>
+          <p>Mục này chỉ hiển thị những câu em đã trả lời sai.</p>
+        </div>
+        <div class="secBody" id="errorBook"></div>
+      </div>
+    </section>
+
+  </div>
+
+</main>
+</div>
+</div>
+
+<script>
+const ORIGINAL = [{"id": "e1-1", "exercise": 1, "number": 1, "type": "text", "prompt": "They are at home.<br><span class='subline'>Chuyển thành câu hỏi Yes/No.</span>", "answer": "Are they at home?", "explanation": "Với to be: đưa <b>are</b> lên trước chủ ngữ.", "topic": "yesno", "accepted": ["Are they at home?"]}, {"id": "e1-2", "exercise": 1, "number": 2, "type": "text", "prompt": "Andy likes action movies.<br><span class='subline'>Chuyển thành câu hỏi Yes/No.</span>", "answer": "Does Andy like action movies?", "explanation": "Present Simple, Andy = he → <b>Does + Andy + like</b>.", "topic": "yesno", "accepted": ["Does Andy like action movies?"]}, {"id": "e1-3", "exercise": 1, "number": 3, "type": "text", "prompt": "We can make clothes.<br><span class='subline'>Chuyển thành câu hỏi Yes/No.</span>", "answer": "Can we make clothes?", "explanation": "Có modal <b>can</b> → đảo can lên trước chủ ngữ.", "topic": "yesno", "accepted": ["Can we make clothes?", "Can you make clothes?"]}, {"id": "e1-4", "exercise": 1, "number": 4, "type": "text", "prompt": "He should eat healthy food.<br><span class='subline'>Chuyển thành câu hỏi Yes/No.</span>", "answer": "Should he eat healthy food?", "explanation": "Có modal <b>should</b> → đảo should lên trước chủ ngữ.", "topic": "yesno", "accepted": ["Should he eat healthy food?"]}, {"id": "e1-5", "exercise": 1, "number": 5, "type": "text", "prompt": "Rose travelled to London last week.<br><span class='subline'>Chuyển thành câu hỏi Yes/No.</span>", "answer": "Did Rose travel to London last week?", "explanation": "Past Simple với động từ thường → <b>Did + S + V-inf</b>.", "topic": "yesno", "accepted": ["Did Rose travel to London last week?"]}, {"id": "e1-6", "exercise": 1, "number": 6, "type": "text", "prompt": "She often goes to bed late.<br><span class='subline'>Chuyển thành câu hỏi Yes/No.</span>", "answer": "Does she often go to bed late?", "explanation": "Present Simple, she → <b>Does</b>; sau does dùng <b>go</b>.", "topic": "yesno", "accepted": ["Does she often go to bed late?"]}, {"id": "e1-7", "exercise": 1, "number": 7, "type": "text", "prompt": "I will help my parents with the housework tomorrow.<br><span class='subline'>Chuyển thành câu hỏi Yes/No.</span>", "answer": "Will you help your parents with the housework tomorrow?", "explanation": "Có <b>will</b> → đảo will; theo lưu ý của bài, I/my có thể đổi thành you/your khi hỏi người nghe.", "topic": "yesno", "accepted": ["Will you help your parents with the housework tomorrow?", "Will I help my parents with the housework tomorrow?"]}, {"id": "e1-8", "exercise": 1, "number": 8, "type": "text", "prompt": "Her children planted some trees in the garden.<br><span class='subline'>Chuyển thành câu hỏi Yes/No.</span>", "answer": "Did her children plant some trees in the garden?", "explanation": "Past Simple → <b>Did + S + plant</b>.", "topic": "yesno", "accepted": ["Did her children plant some trees in the garden?", "Did her children plant any trees in the garden?"]}, {"id": "e1-9", "exercise": 1, "number": 9, "type": "text", "prompt": "They were very bad at skiing last winter.<br><span class='subline'>Chuyển thành câu hỏi Yes/No.</span>", "answer": "Were they very bad at skiing last winter?", "explanation": "Với to be quá khứ → đưa <b>were</b> lên trước chủ ngữ.", "topic": "yesno", "accepted": ["Were they very bad at skiing last winter?"]}, {"id": "e1-10", "exercise": 1, "number": 10, "type": "text", "prompt": "He’s going to buy a new flat next week.<br><span class='subline'>Chuyển thành câu hỏi Yes/No.</span>", "answer": "Is he going to buy a new flat next week?", "explanation": "Be going to → đảo <b>is</b> lên trước chủ ngữ.", "topic": "yesno", "accepted": ["Is he going to buy a new flat next week?"]}, {"id": "e2-1", "exercise": 2, "number": 1, "type": "text", "prompt": "______ do many birds fly south? – In winter.", "answer": "When", "explanation": "Câu trả lời là thời gian → <b>When</b>.", "topic": "wh_words"}, {"id": "e2-2", "exercise": 2, "number": 2, "type": "text", "prompt": "______ did you do last night? – I saw a movie with my friends.", "answer": "What", "explanation": "Hỏi việc đã làm → <b>What</b>.", "topic": "wh_words"}, {"id": "e2-3", "exercise": 2, "number": 3, "type": "text", "prompt": "______ do you prefer, coffee or tea? – Tea.", "answer": "Which", "explanation": "Có hai lựa chọn cụ thể → <b>Which</b>.", "topic": "wh_words"}, {"id": "e2-4", "exercise": 2, "number": 4, "type": "text", "prompt": "______ are they going this summer holiday? – To Thailand.", "answer": "Where", "explanation": "Câu trả lời là nơi chốn → <b>Where</b>.", "topic": "wh_words"}, {"id": "e2-5", "exercise": 2, "number": 5, "type": "text", "prompt": "______ did you leave the party early last Sunday? – Because I was sick.", "answer": "Why", "explanation": "Because... trả lời cho câu hỏi <b>Why</b>.", "topic": "wh_words"}, {"id": "e2-6", "exercise": 2, "number": 6, "type": "text", "prompt": "______ does she often go to the swimming pool? – Every weekend.", "answer": "How often", "explanation": "Hỏi tần suất → <b>How often</b>.", "topic": "wh_words"}, {"id": "e2-7", "exercise": 2, "number": 7, "type": "text", "prompt": "______ does this movie ticket cost? – $5.", "answer": "How much", "explanation": "Hỏi giá tiền → <b>How much</b>.", "topic": "wh_words"}, {"id": "e2-8", "exercise": 2, "number": 8, "type": "text", "prompt": "______ will you visit next week? – Sally.", "answer": "Who", "explanation": "Câu trả lời là người → <b>Who</b>.", "topic": "wh_words"}, {"id": "e2-9", "exercise": 2, "number": 9, "type": "text", "prompt": "______ are they going to travel to Da Lat? – By plane.", "answer": "How", "explanation": "Hỏi phương tiện/cách thức → <b>How</b>.", "topic": "wh_words"}, {"id": "e2-10", "exercise": 2, "number": 10, "type": "text", "prompt": "______ drawings are those? – My aunt’s.", "answer": "Whose", "explanation": "Hỏi sở hữu → <b>Whose</b>.", "topic": "wh_words"}, {"id": "e3-1", "exercise": 3, "number": 1, "type": "choice", "prompt": "______ did the boys play football yesterday? – In the yard.", "answer": "Where", "explanation": "In the yard = nơi chốn → Where.", "topic": "formation", "options": ["When", "Where", "What", "Why"]}, {"id": "e3-2", "exercise": 3, "number": 2, "type": "choice", "prompt": "Who ______ you to do your homework every day?", "answer": "helps", "explanation": "Who là chủ ngữ → <b>Who helps you...</b>", "topic": "subject_question", "options": ["to help", "helps", "helping", "do help"]}, {"id": "e3-3", "exercise": 3, "number": 3, "type": "choice", "prompt": "______ did Jane buy this morning? – A nice dress.", "answer": "What", "explanation": "A nice dress = vật → What.", "topic": "formation", "options": ["Why", "Who", "How many", "What"]}, {"id": "e3-4", "exercise": 3, "number": 4, "type": "choice", "prompt": "______ you staying with your grandparents this month? – Yes, I am.", "answer": "Are", "explanation": "Present Continuous → <b>Are you staying...?</b>", "topic": "yesno", "options": ["Do", "Are", "Were", "Did"]}, {"id": "e3-5", "exercise": 3, "number": 5, "type": "choice", "prompt": "Does he spend a lot of money every month? –", "answer": "Yes, he does", "explanation": "Câu hỏi với Does → trả lời Yes, he does.", "topic": "yesno", "options": ["Yes, he is", "No, he isn’t", "Yes, he does", "No, he does"]}, {"id": "e3-6", "exercise": 3, "number": 6, "type": "choice", "prompt": "Does he ______ to the news every morning?", "answer": "listen", "explanation": "Sau does dùng V nguyên thể → listen.", "topic": "formation", "options": ["listening", "listen", "listens", "listened"]}, {"id": "e3-7", "exercise": 3, "number": 7, "type": "choice", "prompt": "______ does this novel belong to? – My nephew.", "answer": "Who", "explanation": "Hỏi người mà cuốn tiểu thuyết thuộc về → Who.", "topic": "wh_words", "options": ["Who", "Whose", "What", "Which"]}, {"id": "e3-8", "exercise": 3, "number": 8, "type": "choice", "prompt": "______ high is that building?", "answer": "How", "explanation": "Cụm cố định: <b>How high</b>.", "topic": "wh_words", "options": ["Who", "How", "What", "Why"]}, {"id": "e3-9", "exercise": 3, "number": 9, "type": "choice", "prompt": "______ are you taking these scissors and some paper for? – To make origami.", "answer": "What", "explanation": "Cấu trúc <b>What ... for?</b> hỏi mục đích.", "topic": "wh_words", "options": ["Which", "How", "What", "Why"]}, {"id": "e3-10", "exercise": 3, "number": 10, "type": "choice", "prompt": "______ shirt would you like to choose? – That one over there.", "answer": "Which", "explanation": "Có lựa chọn trong một nhóm cụ thể → Which.", "topic": "wh_words", "options": ["When", "What", "Where", "Which"]}, {"id": "e4-1", "exercise": 4, "number": 1, "type": "text", "prompt": "<u>English</u> is my daughter’s favourite subject.<br><span class='subline'>Đặt câu hỏi cho phần gạch chân.</span>", "answer": "What is your daughter’s favourite subject?", "explanation": "Hỏi môn học → <b>What</b>; theo lưu ý của bài, my → your.", "topic": "formation", "accepted": ["What is your daughter's favourite subject?", "What is your daughter’s favourite subject?", "What is my daughter's favourite subject?", "What is my daughter’s favourite subject?"]}, {"id": "e4-2", "exercise": 4, "number": 2, "type": "text", "prompt": "Our school starts at <u>7:30</u> in the morning.<br><span class='subline'>Đặt câu hỏi cho phần gạch chân.</span>", "answer": "What time does your school start in the morning?", "explanation": "Hỏi giờ → <b>What time</b>; động từ thường → does + start.", "topic": "formation", "accepted": ["What time does your school start in the morning?", "What time does your school start?", "What time does our school start in the morning?", "What time does our school start?"]}, {"id": "e4-3", "exercise": 4, "number": 3, "type": "text", "prompt": "I brush my teeth <u>twice a day</u>.<br><span class='subline'>Đặt câu hỏi cho phần gạch chân.</span>", "answer": "How often do you brush your teeth?", "explanation": "twice a day = tần suất → <b>How often</b>.", "topic": "formation", "accepted": ["How often do you brush your teeth?", "How often do I brush my teeth?"]}, {"id": "e4-4", "exercise": 4, "number": 4, "type": "text", "prompt": "<u>Yes.</u> She went to school late this morning.<br><span class='subline'>Đặt câu hỏi cho phần gạch chân.</span>", "answer": "Did she go to school late this morning?", "explanation": "Câu trả lời Yes → đặt câu hỏi Yes/No ở Past Simple.", "topic": "yesno", "accepted": ["Did she go to school late this morning?"]}, {"id": "e4-5", "exercise": 4, "number": 5, "type": "text", "prompt": "<u>My mother</u> takes me to school every day.<br><span class='subline'>Đặt câu hỏi cho phần gạch chân.</span>", "answer": "Who takes you to school every day?", "explanation": "Hỏi chủ ngữ người → <b>Who + V</b>, không dùng do/does.", "topic": "subject_question", "accepted": ["Who takes you to school every day?", "Who takes me to school every day?"]}, {"id": "e4-6", "exercise": 4, "number": 6, "type": "text", "prompt": "There are <u>a lot of</u> books on the shelf.<br><span class='subline'>Đặt câu hỏi cho phần gạch chân.</span>", "answer": "How many books are there on the shelf?", "explanation": "books là danh từ đếm được số nhiều → <b>How many</b>.", "topic": "formation", "accepted": ["How many books are there on the shelf?"]}, {"id": "e4-7", "exercise": 4, "number": 7, "type": "text", "prompt": "Tracy is going to take an exam <u>next Friday</u>.<br><span class='subline'>Đặt câu hỏi cho phần gạch chân.</span>", "answer": "When is Tracy going to take an exam?", "explanation": "Hỏi thời gian → When; với be going to đảo <b>is</b>.", "topic": "formation", "accepted": ["When is Tracy going to take an exam?"]}, {"id": "e4-8", "exercise": 4, "number": 8, "type": "text", "prompt": "They are making <u>some cookies</u> in the kitchen.<br><span class='subline'>Đặt câu hỏi cho phần gạch chân.</span>", "answer": "What are they making in the kitchen?", "explanation": "Hỏi vật đang làm → What; Present Continuous → are + S + V-ing.", "topic": "formation", "accepted": ["What are they making in the kitchen?"]}, {"id": "e4-9", "exercise": 4, "number": 9, "type": "text", "prompt": "My sister will be <u>fifteen</u> next week.<br><span class='subline'>Đặt câu hỏi cho phần gạch chân.</span>", "answer": "How old will your sister be next week?", "explanation": "Hỏi tuổi → <b>How old</b>; my → your theo lưu ý của bài.", "topic": "formation", "accepted": ["How old will your sister be next week?", "How old will my sister be next week?"]}, {"id": "e4-10", "exercise": 4, "number": 10, "type": "text", "prompt": "My father got up early <u>to do morning exercises</u>.<br><span class='subline'>Đặt câu hỏi cho phần gạch chân.</span>", "answer": "Why did your father get up early?", "explanation": "Cụm to + V chỉ mục đích → hỏi <b>Why</b>; Past Simple → did + get.", "topic": "formation", "accepted": ["Why did your father get up early?", "Why did my father get up early?", "What did your father get up early to do?", "What did my father get up early to do?"]}, {"id": "e5-1", "exercise": 5, "number": 1, "type": "text", "prompt": "Are you clean your house every day?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "Do you clean your house every day?", "explanation": "Động từ thường ở Present Simple → dùng <b>Do</b>, không dùng Are.", "topic": "errors", "accepted": ["Do you clean your house every day?"]}, {"id": "e5-2", "exercise": 5, "number": 2, "type": "text", "prompt": "What time he usually have dinner?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "What time does he usually have dinner?", "explanation": "He → <b>does</b>; sau does dùng have.", "topic": "errors", "accepted": ["What time does he usually have dinner?"]}, {"id": "e5-3", "exercise": 5, "number": 3, "type": "text", "prompt": "What do you play badminton with? – Henry.<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "Who do you play badminton with? – Henry.", "explanation": "Henry là người → hỏi <b>Who</b>.", "topic": "errors", "accepted": ["Who do you play badminton with? - Henry.", "Who do you play badminton with? – Henry.", "Who do you play badminton with?"]}, {"id": "e5-4", "exercise": 5, "number": 4, "type": "text", "prompt": "Which subject does she like, Maths and English?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "Which subject does she like, Maths or English?", "explanation": "Câu hỏi lựa chọn dùng <b>or</b>.", "topic": "errors", "accepted": ["Which subject does she like, Maths or English?"]}, {"id": "e5-5", "exercise": 5, "number": 5, "type": "text", "prompt": "Who are they? – In the park.<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "Where are they? – In the park.", "explanation": "In the park = nơi chốn → hỏi <b>Where</b>.", "topic": "errors", "accepted": ["Where are they? - In the park.", "Where are they? – In the park.", "Where are they?"]}, {"id": "e5-6", "exercise": 5, "number": 6, "type": "text", "prompt": "How much peaches are there on the plate?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "How many peaches are there on the plate?", "explanation": "peaches đếm được số nhiều → <b>How many</b>.", "topic": "errors", "accepted": ["How many peaches are there on the plate?"]}, {"id": "e5-7", "exercise": 5, "number": 7, "type": "text", "prompt": "Who you are talking with?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "Who are you talking with?", "explanation": "Với Present Continuous, đảo <b>are</b> lên trước chủ ngữ.", "topic": "errors", "accepted": ["Who are you talking with?"]}, {"id": "e5-8", "exercise": 5, "number": 8, "type": "text", "prompt": "Does he work as an engineer? – Yes, he is.<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "Does he work as an engineer? – Yes, he does.", "explanation": "Câu hỏi dùng Does → câu trả lời ngắn dùng <b>does</b>.", "topic": "errors", "accepted": ["Does he work as an engineer? - Yes, he does.", "Does he work as an engineer? – Yes, he does.", "Yes, he does."]}, {"id": "e5-9", "exercise": 5, "number": 9, "type": "text", "prompt": "What time are they going to stay there? – For 2 days.<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "How long are they going to stay there? – For 2 days.", "explanation": "For 2 days = khoảng thời gian → hỏi <b>How long</b>.", "topic": "errors", "accepted": ["How long are they going to stay there? - For 2 days.", "How long are they going to stay there? – For 2 days.", "How long are they going to stay there?"]}, {"id": "e5-10", "exercise": 5, "number": 10, "type": "text", "prompt": "Who’s car is that?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "Whose car is that?", "explanation": "Hỏi sở hữu → <b>Whose</b>, không phải Who’s (= Who is).", "topic": "errors", "accepted": ["Whose car is that?"]}];
+const QUIZ = [{"id": "q1", "topic": "yesno", "prompt": "___ you like apples?", "options": ["Do", "Are", "Is", "Does"], "answer": "Do", "explanation": "you + động từ thường → Do."}, {"id": "q2", "topic": "yesno", "prompt": "___ she play tennis every Sunday?", "options": ["Does", "Do", "Is", "Are"], "answer": "Does", "explanation": "she → Does + play."}, {"id": "q3", "topic": "yesno", "prompt": "___ they at home now?", "options": ["Are", "Do", "Does", "Is"], "answer": "Are", "explanation": "to be → Are they...?"}, {"id": "q4", "topic": "yesno", "prompt": "___ he tired yesterday?", "options": ["Was", "Did", "Does", "Is"], "answer": "Was", "explanation": "he + be quá khứ → Was."}, {"id": "q5", "topic": "yesno", "prompt": "___ they travel to Hue last week?", "options": ["Did", "Do", "Were", "Are"], "answer": "Did", "explanation": "Past Simple động từ thường → Did."}, {"id": "q6", "topic": "yesno", "prompt": "___ you swim?", "options": ["Can", "Do can", "Are", "Did"], "answer": "Can", "explanation": "modal can → đảo lên trước chủ ngữ."}, {"id": "q7", "topic": "yesno", "prompt": "___ he open the window?", "options": ["Should", "Does should", "Is", "Do"], "answer": "Should", "explanation": "modal should → Should he...?"}, {"id": "q8", "topic": "yesno", "prompt": "___ she going to buy a bike?", "options": ["Is", "Does", "Do", "Will"], "answer": "Is", "explanation": "be going to → Is she going to...?"}, {"id": "q9", "topic": "yesno", "prompt": "___ they watching TV?", "options": ["Are", "Do", "Does", "Did"], "answer": "Are", "explanation": "Present Continuous → Are they...?"}, {"id": "q10", "topic": "yesno", "prompt": "___ your brother go to school by bus?", "options": ["Does", "Do", "Is", "Are"], "answer": "Does", "explanation": "brother = he → Does."}, {"id": "q11", "topic": "yesno", "prompt": "___ Rose visit London last year?", "options": ["Did", "Does", "Was", "Is"], "answer": "Did", "explanation": "Past Simple → Did + V-inf."}, {"id": "q12", "topic": "yesno", "prompt": "___ the children plant trees yesterday?", "options": ["Did", "Were", "Do", "Are"], "answer": "Did", "explanation": "plant là động từ thường quá khứ."}, {"id": "q13", "topic": "yesno", "prompt": "___ your parents busy yesterday?", "options": ["Were", "Did", "Was", "Do"], "answer": "Were", "explanation": "parents = they → Were."}, {"id": "q14", "topic": "yesno", "prompt": "___ I help you?", "options": ["Can", "Do", "Am", "Did"], "answer": "Can", "explanation": "Can I...?"}, {"id": "q15", "topic": "yesno", "prompt": "___ we leave now?", "options": ["Should", "Do should", "Are", "Did"], "answer": "Should", "explanation": "modal question."}, {"id": "q16", "topic": "yesno", "prompt": "Does Tom ___ action movies?", "options": ["like", "likes", "liked", "liking"], "answer": "like", "explanation": "Sau Does → V-inf."}, {"id": "q17", "topic": "yesno", "prompt": "Did Jane ___ a dress?", "options": ["buy", "bought", "buys", "buying"], "answer": "buy", "explanation": "Sau Did → V-inf."}, {"id": "q18", "topic": "yesno", "prompt": "Is he ___ dinner now?", "options": ["cooking", "cook", "cooks", "cooked"], "answer": "cooking", "explanation": "is + V-ing."}, {"id": "q19", "topic": "yesno", "prompt": "Are they ___ to Da Lat?", "options": ["going", "go", "goes", "went"], "answer": "going", "explanation": "are going."}, {"id": "q20", "topic": "yesno", "prompt": "Will you ___ tomorrow?", "options": ["come", "came", "comes", "coming"], "answer": "come", "explanation": "Sau will dùng V-inf."}, {"id": "q21", "topic": "yesno", "prompt": "Can she ___ English?", "options": ["speak", "speaks", "spoke", "speaking"], "answer": "speak", "explanation": "Sau can dùng V-inf."}, {"id": "q22", "topic": "yesno", "prompt": "Were they ___ at skiing?", "options": ["bad", "badly", "are bad", "did bad"], "answer": "bad", "explanation": "be + adjective."}, {"id": "q23", "topic": "yesno", "prompt": "Is your father ___ to travel?", "options": ["going", "go", "goes", "went"], "answer": "going", "explanation": "is going to."}, {"id": "q24", "topic": "yesno", "prompt": "Do birds ___ south in winter?", "options": ["fly", "flies", "flew", "flying"], "answer": "fly", "explanation": "Sau Do → fly."}, {"id": "q25", "topic": "yesno", "prompt": "Does she ___ late?", "options": ["go", "goes", "went", "going"], "answer": "go", "explanation": "Sau Does → V-inf."}, {"id": "q26", "topic": "wh_words", "prompt": "___ do you live? – In Hanoi.", "options": ["Where", "When", "Who", "Why"], "answer": "Where", "explanation": "Hỏi nơi chốn."}, {"id": "q27", "topic": "wh_words", "prompt": "___ is your birthday? – In May.", "options": ["When", "Where", "Who", "How"], "answer": "When", "explanation": "Hỏi thời gian."}, {"id": "q28", "topic": "wh_words", "prompt": "___ is that man? – My uncle.", "options": ["Who", "Whose", "What", "Which"], "answer": "Who", "explanation": "Hỏi người."}, {"id": "q29", "topic": "wh_words", "prompt": "___ bag is this? – Lan's.", "options": ["Whose", "Who", "Which", "What"], "answer": "Whose", "explanation": "Hỏi sở hữu."}, {"id": "q30", "topic": "wh_words", "prompt": "___ are you sad? – Because I lost my book.", "options": ["Why", "When", "Where", "How"], "answer": "Why", "explanation": "Because → Why."}, {"id": "q31", "topic": "wh_words", "prompt": "___ do you go to school? – By bus.", "options": ["How", "Where", "When", "Why"], "answer": "How", "explanation": "Hỏi cách thức/phương tiện."}, {"id": "q32", "topic": "wh_words", "prompt": "___ do you exercise? – Twice a week.", "options": ["How often", "How much", "How many", "How long"], "answer": "How often", "explanation": "Hỏi tần suất."}, {"id": "q33", "topic": "wh_words", "prompt": "___ is the ticket? – $10.", "options": ["How much", "How many", "How old", "How long"], "answer": "How much", "explanation": "Hỏi giá tiền."}, {"id": "q34", "topic": "wh_words", "prompt": "___ books do you have? – Ten.", "options": ["How many", "How much", "How often", "How long"], "answer": "How many", "explanation": "Danh từ đếm được số nhiều."}, {"id": "q35", "topic": "wh_words", "prompt": "___ is your sister? – Fifteen.", "options": ["How old", "How long", "How much", "How often"], "answer": "How old", "explanation": "Hỏi tuổi."}, {"id": "q36", "topic": "wh_words", "prompt": "___ will you stay? – For three days.", "options": ["How long", "How often", "When", "How old"], "answer": "How long", "explanation": "Hỏi khoảng thời gian."}, {"id": "q37", "topic": "wh_words", "prompt": "___ subject do you prefer, Maths or English?", "options": ["Which", "What time", "Who", "Whose"], "answer": "Which", "explanation": "Lựa chọn cụ thể."}, {"id": "q38", "topic": "wh_words", "prompt": "___ did you buy? – A new pen.", "options": ["What", "Who", "Why", "Where"], "answer": "What", "explanation": "Hỏi vật."}, {"id": "q39", "topic": "wh_words", "prompt": "___ did you meet? – Mr Nam.", "options": ["Who", "What", "Where", "Which"], "answer": "Who", "explanation": "Hỏi người."}, {"id": "q40", "topic": "wh_words", "prompt": "___ time does school start?", "options": ["What", "Which", "Who", "Whose"], "answer": "What", "explanation": "Cụm What time."}, {"id": "q41", "topic": "wh_words", "prompt": "___ high is the building?", "options": ["How", "What", "Which", "Why"], "answer": "How", "explanation": "How high."}, {"id": "q42", "topic": "wh_words", "prompt": "___ are you taking the paper for? – To make origami.", "options": ["What", "Which", "Who", "Where"], "answer": "What", "explanation": "What ... for?"}, {"id": "q43", "topic": "wh_words", "prompt": "___ does this book belong to?", "options": ["Who", "Whose", "What", "Where"], "answer": "Who", "explanation": "belong to + person."}, {"id": "q44", "topic": "wh_words", "prompt": "___ are they going this summer? – Thailand.", "options": ["Where", "When", "How often", "Who"], "answer": "Where", "explanation": "Hỏi nơi chốn."}, {"id": "q45", "topic": "wh_words", "prompt": "___ did you leave early? – Because I was tired.", "options": ["Why", "When", "Where", "How"], "answer": "Why", "explanation": "Because → Why."}, {"id": "q46", "topic": "wh_words", "prompt": "___ do birds fly south? – In winter.", "options": ["When", "Where", "Who", "How"], "answer": "When", "explanation": "Hỏi thời gian."}, {"id": "q47", "topic": "wh_words", "prompt": "___ are those drawings? – My aunt's.", "options": ["Whose", "Who", "Which", "What"], "answer": "Whose", "explanation": "Hỏi sở hữu."}, {"id": "q48", "topic": "wh_words", "prompt": "___ are you talking to? – My teacher.", "options": ["Who", "Where", "When", "How"], "answer": "Who", "explanation": "Hỏi người."}, {"id": "q49", "topic": "wh_words", "prompt": "___ are they staying there? – For two weeks.", "options": ["How long", "How often", "How much", "How many"], "answer": "How long", "explanation": "Hỏi khoảng thời gian."}, {"id": "q50", "topic": "wh_words", "prompt": "___ do you prefer, tea or coffee?", "options": ["Which", "Why", "Where", "Who"], "answer": "Which", "explanation": "Hai lựa chọn cụ thể."}, {"id": "q51", "topic": "formation", "prompt": "Choose the correct question.", "options": ["What do they play every day?", "What they play every day?", "What does they play every day?", "What are they play every day?"], "answer": "What do they play every day?", "explanation": "Động từ thường + they → do."}, {"id": "q52", "topic": "formation", "prompt": "Choose the correct question.", "options": ["What is she planting now?", "What she is planting now?", "What does she planting now?", "What is she plant now?"], "answer": "What is she planting now?", "explanation": "Present Continuous → What + is + S + V-ing."}, {"id": "q53", "topic": "formation", "prompt": "Choose the correct subject question.", "options": ["Who ate this cake?", "Who did eat this cake?", "Who did ate this cake?", "Who was ate this cake?"], "answer": "Who ate this cake?", "explanation": "Hỏi chủ ngữ → không mượn did."}, {"id": "q54", "topic": "formation", "prompt": "Choose the correct question.", "options": ["Where is it?", "Where it is?", "Where does it be?", "Where are it?"], "answer": "Where is it?", "explanation": "Với be → WH + be + S."}, {"id": "q55", "topic": "formation", "prompt": "Choose the correct question.", "options": ["When did Rose travel to London?", "When Rose travelled to London?", "When did Rose travelled to London?", "When was Rose travel to London?"], "answer": "When did Rose travel to London?", "explanation": "Past Simple → did + V-inf."}, {"id": "q56", "topic": "formation", "prompt": "Choose the correct question.", "options": ["What time does he have dinner?", "What time he has dinner?", "What time does he has dinner?", "What time is he have dinner?"], "answer": "What time does he have dinner?", "explanation": "he → does + have."}, {"id": "q57", "topic": "formation", "prompt": "Choose the correct question.", "options": ["Who takes you to school?", "Who does take you to school?", "Who do takes you to school?", "Who is take you to school?"], "answer": "Who takes you to school?", "explanation": "Hỏi chủ ngữ → Who + V-s/es."}, {"id": "q58", "topic": "formation", "prompt": "Choose the correct question.", "options": ["How many books are there?", "How much books are there?", "How many books is there?", "How books many are there?"], "answer": "How many books are there?", "explanation": "How many + plural noun."}, {"id": "q59", "topic": "formation", "prompt": "Choose the correct question.", "options": ["How old will your sister be?", "How old your sister will be?", "How much old will your sister be?", "How old does your sister be?"], "answer": "How old will your sister be?", "explanation": "How old + will + S + be."}, {"id": "q60", "topic": "formation", "prompt": "Choose the correct question.", "options": ["Why did your father get up early?", "Why your father got up early?", "Why did your father got up early?", "Why was your father get up early?"], "answer": "Why did your father get up early?", "explanation": "Past Simple → did + get."}, {"id": "q61", "topic": "formation", "prompt": "Does she ___ to the pool every week?", "options": ["go", "goes", "went", "going"], "answer": "go", "explanation": "Sau Does dùng V-inf."}, {"id": "q62", "topic": "formation", "prompt": "Did he ___ the book yesterday?", "options": ["read", "reads", "reading", "was read"], "answer": "read", "explanation": "Sau Did dùng V-inf."}, {"id": "q63", "topic": "formation", "prompt": "Can they ___ clothes?", "options": ["make", "makes", "made", "making"], "answer": "make", "explanation": "Sau modal dùng V-inf."}, {"id": "q64", "topic": "formation", "prompt": "Should he ___ healthy food?", "options": ["eat", "eats", "ate", "eating"], "answer": "eat", "explanation": "Sau should dùng V-inf."}, {"id": "q65", "topic": "formation", "prompt": "Will you ___ your parents?", "options": ["help", "helps", "helped", "helping"], "answer": "help", "explanation": "Sau will dùng V-inf."}, {"id": "q66", "topic": "formation", "prompt": "Is he going to ___ a flat?", "options": ["buy", "buys", "bought", "buying"], "answer": "buy", "explanation": "going to + V-inf."}, {"id": "q67", "topic": "formation", "prompt": "What ___ she doing?", "options": ["is", "does", "do", "are"], "answer": "is", "explanation": "What is she doing?"}, {"id": "q68", "topic": "formation", "prompt": "Where ___ they going?", "options": ["are", "do", "does", "is"], "answer": "are", "explanation": "Where are they going?"}, {"id": "q69", "topic": "formation", "prompt": "Who ___ this picture?", "options": ["drew", "did draw", "was draw", "draw"], "answer": "drew", "explanation": "Hỏi chủ ngữ ở quá khứ → Who drew...?"}, {"id": "q70", "topic": "formation", "prompt": "Who ___ you every day?", "options": ["helps", "does help", "help", "is help"], "answer": "helps", "explanation": "Who là chủ ngữ → V-s/es."}, {"id": "q71", "topic": "formation", "prompt": "What ___ you buy yesterday?", "options": ["did", "do", "were", "are"], "answer": "did", "explanation": "Past Simple object question."}, {"id": "q72", "topic": "formation", "prompt": "When ___ Tracy going to take the exam?", "options": ["is", "does", "did", "will"], "answer": "is", "explanation": "be going to → is."}, {"id": "q73", "topic": "formation", "prompt": "What are they ___ in the kitchen?", "options": ["making", "make", "makes", "made"], "answer": "making", "explanation": "are + V-ing."}, {"id": "q74", "topic": "formation", "prompt": "Where ___ your school?", "options": ["is", "does", "do", "are"], "answer": "is", "explanation": "Where is your school?"}, {"id": "q75", "topic": "formation", "prompt": "How often ___ you brush your teeth?", "options": ["do", "does", "are", "is"], "answer": "do", "explanation": "you + ordinary verb → do."}, {"id": "q76", "topic": "errors", "prompt": "Fix: Are you clean your room every day?", "options": ["Do you clean your room every day?", "Are you cleaning your room every day?", "Does you clean your room every day?", "Do you cleans your room every day?"], "answer": "Do you clean your room every day?", "explanation": "Present Simple habit → Do + you + clean."}, {"id": "q77", "topic": "errors", "prompt": "Fix: What time he usually have dinner?", "options": ["What time does he usually have dinner?", "What time he usually has dinner?", "What time is he usually have dinner?", "What time do he usually have dinner?"], "answer": "What time does he usually have dinner?", "explanation": "he → does + have."}, {"id": "q78", "topic": "errors", "prompt": "Fix: Who you are talking with?", "options": ["Who are you talking with?", "Who do you are talking with?", "Who you talking with are?", "Who is you talking with?"], "answer": "Who are you talking with?", "explanation": "Đảo are."}, {"id": "q79", "topic": "errors", "prompt": "Fix: How much peaches are there?", "options": ["How many peaches are there?", "How much peach are there?", "How many peach is there?", "How peaches many are there?"], "answer": "How many peaches are there?", "explanation": "peaches đếm được."}, {"id": "q80", "topic": "errors", "prompt": "Fix: Who's car is that?", "options": ["Whose car is that?", "Who car is that?", "Who's the car that?", "Whom car is that?"], "answer": "Whose car is that?", "explanation": "Whose = của ai."}, {"id": "q81", "topic": "errors", "prompt": "For answer 'In the park', ask ___.", "options": ["Where are they?", "Who are they?", "When are they?", "Why are they?"], "answer": "Where are they?", "explanation": "Hỏi nơi chốn."}, {"id": "q82", "topic": "errors", "prompt": "For answer 'For two days', ask ___.", "options": ["How long are they staying?", "What time are they staying?", "How often are they staying?", "How much are they staying?"], "answer": "How long are they staying?", "explanation": "Hỏi khoảng thời gian."}, {"id": "q83", "topic": "errors", "prompt": "For answer '$5', ask ___.", "options": ["How much is it?", "How many is it?", "How long is it?", "How old is it?"], "answer": "How much is it?", "explanation": "Hỏi giá."}, {"id": "q84", "topic": "errors", "prompt": "For answer 'Every weekend', ask ___.", "options": ["How often does she go?", "When time does she go?", "How much does she go?", "How long does she go?"], "answer": "How often does she go?", "explanation": "Hỏi tần suất."}, {"id": "q85", "topic": "errors", "prompt": "For answer 'By plane', ask ___.", "options": ["How are they travelling?", "Where are they travelling?", "When are they travelling?", "Who are they travelling?"], "answer": "How are they travelling?", "explanation": "Hỏi cách thức."}, {"id": "q86", "topic": "errors", "prompt": "Which is correct?", "options": ["Does he work here? – Yes, he does.", "Does he work here? – Yes, he is.", "Is he work here? – Yes, he does.", "Do he work here? – Yes, he do."], "answer": "Does he work here? – Yes, he does.", "explanation": "Does ↔ does."}, {"id": "q87", "topic": "errors", "prompt": "Which is correct?", "options": ["Are you staying here? – Yes, I am.", "Do you staying here? – Yes, I am.", "Are you stay here? – Yes, I do.", "Were you staying here? – Yes, I am."], "answer": "Are you staying here? – Yes, I am.", "explanation": "Present Continuous."}, {"id": "q88", "topic": "errors", "prompt": "Which is correct?", "options": ["Did she go yesterday?", "Did she went yesterday?", "Was she go yesterday?", "Does she went yesterday?"], "answer": "Did she go yesterday?", "explanation": "Did + V-inf."}, {"id": "q89", "topic": "errors", "prompt": "Which is correct?", "options": ["Can we make clothes?", "Do we can make clothes?", "Can we makes clothes?", "Are we can make clothes?"], "answer": "Can we make clothes?", "explanation": "Modal + S + V-inf."}, {"id": "q90", "topic": "errors", "prompt": "Which is correct?", "options": ["Is he going to buy a flat?", "Does he going to buy a flat?", "Is he going buy a flat?", "Do he going to buy a flat?"], "answer": "Is he going to buy a flat?", "explanation": "be going to."}, {"id": "q91", "topic": "errors", "prompt": "What is wrong in 'Does he listens to the news?'", "options": ["listens", "Does", "he", "the news"], "answer": "listens", "explanation": "Sau Does phải dùng listen."}, {"id": "q92", "topic": "errors", "prompt": "What is wrong in 'Did Rose travelled last week?'", "options": ["travelled", "Did", "Rose", "last week"], "answer": "travelled", "explanation": "Sau Did phải dùng travel."}, {"id": "q93", "topic": "errors", "prompt": "What is wrong in 'Who did ate the cake?'", "options": ["did", "Who", "the cake", "ate"], "answer": "did", "explanation": "Hỏi chủ ngữ không dùng did."}, {"id": "q94", "topic": "errors", "prompt": "What is wrong in 'Where they are going?'", "options": ["word order", "Where", "going", "they"], "answer": "word order", "explanation": "Phải là Where are they going?"}, {"id": "q95", "topic": "errors", "prompt": "What is wrong in 'How much books are there?'", "options": ["much", "books", "there", "are"], "answer": "much", "explanation": "books đếm được → many."}, {"id": "q96", "topic": "errors", "prompt": "Choose the best question for 'My aunt's'.", "options": ["Whose drawings are those?", "Who drawings are those?", "Which drawings are those?", "What drawings are those?"], "answer": "Whose drawings are those?", "explanation": "Hỏi sở hữu."}, {"id": "q97", "topic": "errors", "prompt": "Choose the best question for 'Sally'.", "options": ["Who will you visit?", "Where will you visit?", "When will you visit?", "Whose will you visit?"], "answer": "Who will you visit?", "explanation": "Hỏi người."}, {"id": "q98", "topic": "errors", "prompt": "Choose the best question for 'Next Friday'.", "options": ["When is Tracy taking the exam?", "Where is Tracy taking the exam?", "Who is Tracy taking the exam?", "How much is Tracy taking the exam?"], "answer": "When is Tracy taking the exam?", "explanation": "Hỏi thời gian."}, {"id": "q99", "topic": "errors", "prompt": "Choose the best question for 'twice a day'.", "options": ["How often do you brush your teeth?", "How long do you brush your teeth?", "How many do you brush your teeth?", "When time do you brush your teeth?"], "answer": "How often do you brush your teeth?", "explanation": "Hỏi tần suất."}, {"id": "q100", "topic": "errors", "prompt": "Choose the best question for 'to do morning exercises'.", "options": ["Why did he get up early?", "Where did he get up early?", "Who did he get up early?", "How many did he get up early?"], "answer": "Why did he get up early?", "explanation": "Hỏi mục đích/lý do."}];
+
+const STORE_KEY = "questionMasteryChuyenDe14V1";
+let store = JSON.parse(
+  localStorage.getItem(STORE_KEY) ||
+  '{"answers":{},"wrong":{},"quizIndex":0}'
+);
+
+const topicName = {
+  yesno:"Yes/No Questions",
+  wh_words:"Question Words",
+  formation:"Cấu trúc câu hỏi",
+  subject_question:"Subject Questions",
+  errors:"Sửa lỗi câu hỏi"
+};
+
+const exTitles = {
+  1:"Turn the following sentences into Yes-No questions",
+  2:"Fill in the blanks with suitable question words",
+  3:"Circle the correct answers",
+  4:"Make questions for the underlined parts",
+  5:"Find and correct the mistakes"
+};
+
+function normalize(v){
+  return String(v||"").trim().toLowerCase()
+    .replace(/[’‘`]/g,"'")
+    .replace(/\s+/g," ")
+    .replace(/\s+([.,!?])/g,"$1");
+}
+
+function getQuestion(id){
+  return ORIGINAL.find(q=>q.id===id) || QUIZ.find(q=>q.id===id);
+}
+
+function save(){
+  localStorage.setItem(STORE_KEY,JSON.stringify(store));
+  updateStats();
+  renderWeakSummary();
+  renderErrors();
+}
+
+function updateStats(){
+  const vals=Object.values(store.answers||{});
+  const correct=vals.filter(x=>x.correct).length;
+  const weak=new Set(
+    Object.keys(store.wrong||{})
+      .map(id=>getQuestion(id)?.topic)
+      .filter(Boolean)
+  );
+
+  doneStat.textContent=vals.length;
+  correctStat.textContent=correct;
+  accStat.textContent=vals.length ? Math.round(correct/vals.length*100)+"%" : "0%";
+  weakStat.textContent=weak.size;
+}
+
+function feedback(id,kind,html){
+  const e=document.getElementById(id);
+  e.className="feedback "+kind;
+  e.innerHTML=html;
+}
+
+function mark(q,val,ok){
+  store.answers[q.id]={value:val,correct:ok,topic:q.topic};
+  if(ok) delete store.wrong[q.id];
+  else store.wrong[q.id]=true;
+  save();
+}
+
+function hintFor(q){
+  if(q.topic==="yesno")
+    return "Tìm động từ: động từ thường → do/does/did; be/modal → đảo trực tiếp.";
+  if(q.topic==="wh_words")
+    return "Nhìn vào câu trả lời: người → who, nơi → where, thời gian → when, lý do → why, cách thức → how.";
+  if(q.topic==="subject_question")
+    return "Nếu hỏi CHỦ NGỮ: Who/What + động từ chia phù hợp; thường không dùng do/does/did.";
+  if(q.topic==="formation")
+    return "Nếu hỏi tân ngữ/trạng ngữ: WH + trợ động từ/be/modal + S + phần còn lại?";
+  if(q.topic==="errors")
+    return "Kiểm tra 3 điểm: từ để hỏi đúng chưa, trợ động từ đúng chưa, trật tự từ đúng chưa.";
+  return "Xác định phần cần hỏi rồi chọn cấu trúc phù hợp.";
+}
+
+/* Views */
+function showView(name){
+  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+  document.getElementById("view-"+name).classList.add("active");
+  document.querySelectorAll(".navBtn").forEach(b=>{
+    b.classList.toggle("active",b.dataset.view===name);
+  });
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll(".navBtn").forEach(b=>{
+  b.onclick=()=>showView(b.dataset.view);
+});
+
+/* Original exercises */
+const byEx={};
+ORIGINAL.forEach(q=>(byEx[q.exercise]??=[]).push(q));
+
+function originalCard(q){
+  let input="";
+  if(q.type==="choice"){
+    input='<div class="options">'+
+      q.options.map((o,i)=>
+        `<div class="option" data-q="${q.id}" data-v="${o}"
+        onclick="pickOriginal('${q.id}',this)">
+          <b>${String.fromCharCode(65+i)}.</b> ${o}
+        </div>`
+      ).join("")+'</div>';
+  } else {
+    input=`<input class="textInput" id="in-${q.id}"
+      data-id="${q.id}" placeholder="Nhập đáp án...">`;
+  }
+
+  return `
+  <div class="qCard">
+    <div class="qRow">
+      <div class="num">${q.number}</div>
+      <div class="qMain">
+        <div class="prompt">${q.prompt}</div>
+        ${input}
+        <div class="actions">
+          <button class="btn primary" onclick="checkOriginal('${q.id}')">Kiểm tra</button>
+          <button class="btn hintBtn" onclick="showHint('${q.id}')">Gợi ý</button>
+        </div>
+        <div class="feedback" id="fb-${q.id}"></div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function buildExercise(ex){
+  document.getElementById("view-ex"+ex).innerHTML=`
+  <div class="section">
+    <div class="secHead">
+      <h2>Exercise ${ex}</h2>
+      <p>${exTitles[ex]}</p>
+    </div>
+    <div class="secBody">
+      <div class="notice">Mục này chỉ hiển thị Bài tập ${ex} trong tài liệu.</div>
+      <div class="exerciseList" style="margin-top:14px">
+        ${byEx[ex].map(originalCard).join("")}
+      </div>
+      <div class="bigActions">
+        <button class="btn primary" onclick="checkWhole(${ex})">Kiểm tra toàn bài</button>
+        <span id="score-${ex}"></span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function pickOriginal(id,el){
+  document.querySelectorAll(`[data-q="${id}"]`).forEach(x=>x.classList.remove("sel"));
+  el.classList.add("sel");
+}
+
+function originalValue(q){
+  if(q.type==="choice"){
+    const e=document.querySelector(`.option.sel[data-q="${q.id}"]`);
+    return e ? e.dataset.v : "";
+  }
+  return document.getElementById("in-"+q.id).value;
+}
+
+function acceptedCorrect(q,v){
+  if(q.accepted && q.accepted.length){
+    return q.accepted.some(a=>normalize(a)===normalize(v));
+  }
+  return normalize(q.answer)===normalize(v);
+}
+
+function checkOriginal(id){
+  const q=getQuestion(id);
+  const v=originalValue(q);
+
+  if(!normalize(v)){
+    feedback("fb-"+id,"hint","Hãy nhập hoặc chọn đáp án trước.");
+    return false;
+  }
+
+  const ok=acceptedCorrect(q,v);
+  mark(q,v,ok);
+
+  if(ok){
+    feedback("fb-"+id,"ok",`✅ <b>Đúng!</b><br>${q.explanation}`);
+  } else {
+    feedback("fb-"+id,"bad",
+      `❌ <b>Chưa đúng.</b><br>Đáp án mẫu: <b>${q.answer}</b><br>${q.explanation}`);
+  }
+  return ok;
+}
+
+function showHint(id){
+  const q=getQuestion(id);
+  feedback("fb-"+id,"hint","💡 "+hintFor(q));
+}
+
+function checkWhole(ex){
+  let done=0,correct=0;
+  byEx[ex].forEach(q=>{
+    const v=originalValue(q);
+    if(normalize(v)){
+      done++;
+      if(checkOriginal(q.id)) correct++;
+    }
+  });
+  document.getElementById("score-"+ex).innerHTML=
+    `<b>${correct}/${byEx[ex].length}</b> đúng · đã làm ${done}/${byEx[ex].length}`;
+}
+
+/* 100 quiz */
+let qi=Number(store.quizIndex||0);
+let qSel="";
+let qChecked=false;
+
+function renderQuiz(){
+  if(qi<0 || qi>=QUIZ.length) qi=0;
+  const q=QUIZ[qi];
+  qSel="";
+  qChecked=false;
+
+  quizCounter.textContent=`Câu ${qi+1} / 100`;
+  quizTopic.textContent=topicName[q.topic]||q.topic;
+  quizBar.style.width=(qi/100*100)+"%";
+  quizPrompt.innerHTML=q.prompt;
+
+  quizOptions.innerHTML=q.options.map((o,i)=>
+    `<div class="option" data-v="${o}" onclick="pickQuiz(this)">
+      <b>${String.fromCharCode(65+i)}.</b> ${o}
+    </div>`
+  ).join("");
+
+  quizFeedback.className="feedback";
+  quizFeedback.innerHTML="";
+}
+
+function pickQuiz(el){
+  document.querySelectorAll("#quizOptions .option").forEach(x=>x.classList.remove("sel"));
+  el.classList.add("sel");
+  qSel=el.dataset.v;
+}
+
+function checkQuiz(){
+  const q=QUIZ[qi];
+  if(!qSel){
+    feedback("quizFeedback","hint","Hãy chọn một đáp án.");
+    return;
+  }
+
+  const ok=normalize(qSel)===normalize(q.answer);
+  mark(q,qSel,ok);
+  qChecked=true;
+
+  if(ok){
+    feedback("quizFeedback","ok",`✅ <b>Chính xác!</b><br>${q.explanation}`);
+  } else {
+    feedback("quizFeedback","bad",
+      `❌ <b>Chưa đúng.</b><br>Đáp án: <b>${q.answer}</b><br>${q.explanation}`);
+  }
+  quizBar.style.width=((qi+1)/100*100)+"%";
+}
+
+function nextQuiz(){
+  qi=(qi+1)%QUIZ.length;
+  store.quizIndex=qi;
+  save();
+  renderQuiz();
+}
+
+quizCheck.onclick=checkQuiz;
+quizNext.onclick=nextQuiz;
+quizRestart.onclick=()=>{
+  qi=0;
+  store.quizIndex=0;
+  save();
+  renderQuiz();
+};
+
+/* Weak practice */
+let weakSet=[];
+let wi=0;
+let wSel="";
+let wChecked=false;
+
+function wrongTopics(){
+  const c={};
+  Object.keys(store.wrong||{}).forEach(id=>{
+    const q=getQuestion(id);
+    if(q?.topic) c[q.topic]=(c[q.topic]||0)+1;
+  });
+  return c;
+}
+
+function renderWeakSummary(){
+  const c=wrongTopics();
+  const ks=Object.keys(c);
+
+  if(!ks.length){
+    weakSummary.innerHTML="Chưa có dữ liệu lỗi sai. Hãy làm bài trước.";
+    return;
+  }
+
+  weakSummary.innerHTML=
+    "<b>Chủ đề cần luyện:</b><br>"+
+    ks.sort((a,b)=>c[b]-c[a])
+      .map(k=>`<span class="weakChip">${topicName[k]||k} · ${c[k]} lỗi</span>`)
+      .join("");
+}
+
+function startWeakSet(){
+  let ks=Object.keys(wrongTopics());
+
+  if(!ks.length){
+    alert("Chưa có câu sai để xác định chủ đề yếu.");
+    return;
+  }
+
+  if(ks.includes("subject_question")) ks.push("formation");
+  ks=[...new Set(ks)];
+
+  weakSet=QUIZ
+    .filter(q=>ks.includes(q.topic))
+    .sort(()=>Math.random()-.5)
+    .slice(0,20);
+
+  wi=0;
+  weakQuiz.style.display="block";
+  renderWeak();
+}
+
+function renderWeak(){
+  const q=weakSet[wi];
+  wSel="";
+  wChecked=false;
+
+  weakCounter.textContent=`Câu ${wi+1} / ${weakSet.length}`;
+  weakTopic.textContent=topicName[q.topic]||q.topic;
+  weakBar.style.width=(wi/weakSet.length*100)+"%";
+  weakPrompt.innerHTML=q.prompt;
+
+  weakOptions.innerHTML=q.options.map((o,i)=>
+    `<div class="option" data-v="${o}" onclick="pickWeak(this)">
+      <b>${String.fromCharCode(65+i)}.</b> ${o}
+    </div>`
+  ).join("");
+
+  weakFeedback.className="feedback";
+  weakFeedback.innerHTML="";
+}
+
+function pickWeak(el){
+  document.querySelectorAll("#weakOptions .option").forEach(x=>x.classList.remove("sel"));
+  el.classList.add("sel");
+  wSel=el.dataset.v;
+}
+
+function checkWeak(){
+  const q=weakSet[wi];
+  if(!wSel){
+    feedback("weakFeedback","hint","Hãy chọn đáp án.");
+    return;
+  }
+
+  const ok=normalize(wSel)===normalize(q.answer);
+  mark(q,wSel,ok);
+  wChecked=true;
+
+  if(ok){
+    feedback("weakFeedback","ok",`✅ <b>Đúng!</b><br>${q.explanation}`);
+  } else {
+    feedback("weakFeedback","bad",
+      `❌ <b>Chưa đúng.</b><br>Đáp án: <b>${q.answer}</b><br>${q.explanation}`);
+  }
+}
+
+function nextWeak(){
+  if(!weakSet.length) return;
+  wi=(wi+1)%weakSet.length;
+  renderWeak();
+}
+startWeak.onclick=startWeakSet;
+weakCheck.onclick=checkWeak;
+weakNext.onclick=nextWeak;
+
+/* Error notebook */
+function renderErrors(){
+  const ids=Object.keys(store.wrong||{});
+  if(!ids.length){
+    errorBook.innerHTML='<div class="notice">Chưa có câu sai nào.</div>';
+    return;
+  }
+
+  errorBook.innerHTML=ids.map(id=>{
+    const q=getQuestion(id);
+    if(!q) return "";
+    return `
+      <div class="errorItem">
+        <b>${q.id.startsWith("q") ? "Quiz" : "Exercise "+q.exercise}
+        · ${topicName[q.topic]||"Tổng hợp"}</b>
+        <div style="margin-top:6px">${q.prompt}</div>
+        <div style="margin-top:6px"><b>Đáp án đúng:</b> ${q.answer}</div>
+        <div>${q.explanation}</div>
+      </div>`;
+  }).join("");
+}
+
+/* Enter support */
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter") return;
+
+  if(e.target.classList.contains("textInput")){
+    e.preventDefault();
+    checkOriginal(e.target.dataset.id);
+    return;
+  }
+
+  const active=document.querySelector(".view.active")?.id;
+
+  if(active==="view-quiz100"){
+    e.preventDefault();
+    qChecked ? nextQuiz() : checkQuiz();
+  }
+
+  if(active==="view-weak" && weakQuiz.style.display!=="none"){
+    e.preventDefault();
+    wChecked ? nextWeak() : checkWeak();
+  }
+});
+
+/* Reset */
+resetAll.onclick=()=>{
+  if(confirm("Xóa toàn bộ tiến độ và sổ lỗi?")){
+    localStorage.removeItem(STORE_KEY);
+    location.reload();
+  }
+};
+
+/* Build */
+for(let i=1;i<=5;i++) buildExercise(i);
+
+updateStats();
+renderWeakSummary();
+renderErrors();
+renderQuiz();
+</script>
+</body>
+</html>
