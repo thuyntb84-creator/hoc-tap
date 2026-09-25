@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Some Common Structures Mastery – Chuyên đề 15</title>
+<style>
+:root{
+ --ink:#17324a;--blue:#0f5d99;--line:#d7e8f4;--green:#1f9d55;
+ --red:#d64545;--gold:#f5c84c;--purple:#7058c9
+}
+*{box-sizing:border-box}
+body{
+ margin:0;background:linear-gradient(180deg,#eaf7ff,#f9fcff);
+ color:var(--ink);font-family:"Times New Roman",Times,serif
+}
+.app{display:grid;grid-template-columns:292px 1fr;min-height:100vh}
+.sidebar{
+ background:linear-gradient(180deg,#0f5c98,#0a4068);color:#fff;
+ padding:18px 14px;position:sticky;top:0;height:100vh;overflow:auto;
+ border-right:5px solid #d9efff
+}
+.logo{font-size:25px;font-weight:900;line-height:1.05}
+.sideSub{font-size:14px;opacity:.9;margin:8px 0 16px}
+.groupTitle{font-size:13px;text-transform:uppercase;opacity:.72;margin:17px 8px 8px}
+.menu{display:flex;flex-direction:column;gap:8px}
+.menu button{
+ width:100%;text-align:left;border:0;background:rgba(255,255,255,.09);color:#fff;
+ padding:11px 12px;border-radius:12px;font:700 16px "Times New Roman",serif;cursor:pointer
+}
+.menu button:hover,.menu button.active{background:rgba(255,255,255,.2)}
+.content{min-width:0}
+.topbar{
+ background:linear-gradient(135deg,#91d6ff,#d7f4ff);
+ border-bottom:5px solid #2c83c6;padding:20px 22px
+}
+.topbar h1{margin:0;color:#083a65;font-size:clamp(26px,4vw,43px)}
+.topbar p{margin:7px 0 0;font-size:18px}
+.wrap{max-width:1160px;margin:auto;padding:0 18px 50px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
+.stat{
+ background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;
+ box-shadow:0 8px 18px rgba(25,82,122,.06)
+}
+.stat b{display:block;font-size:29px;color:#0f5d99}
+.view{display:none}.view.active{display:block}
+.section{
+ background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;
+ margin:20px 0;box-shadow:0 10px 22px rgba(20,82,120,.06)
+}
+.secHead{
+ padding:16px 18px;background:linear-gradient(180deg,#f1faff,#e2f3ff);
+ border-bottom:1px solid var(--line)
+}
+.secHead h2{margin:0;color:#0d4d82;font-size:29px}
+.secHead p{margin:5px 0 0;font-size:17px}
+.secBody{padding:18px}
+.notice{
+ background:#fff9df;border:1px solid #f0dfa1;border-radius:13px;
+ padding:12px 14px;font-size:17px
+}
+.posterGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.posterCard{
+ border:1px solid var(--line);border-radius:18px;padding:10px;background:#fff;
+ box-shadow:0 6px 16px rgba(20,82,120,.06)
+}
+.posterCard img{width:100%;display:block;border-radius:12px}
+.posterCap{padding:10px 4px 2px;font-size:18px;font-weight:700;color:#154d79}
+.exerciseList{display:grid;gap:13px}
+.qCard{
+ border:1px solid #dceaf5;border-radius:15px;padding:14px;
+ background:linear-gradient(180deg,#fff,#fbfdff)
+}
+.qRow{display:flex;gap:12px}
+.num{
+ width:36px;height:36px;min-width:36px;border-radius:50%;background:#207ec4;color:#fff;
+ display:flex;align-items:center;justify-content:center;font-weight:800
+}
+.qMain{flex:1}.prompt{font-size:20px;line-height:1.5}
+.subline{font-size:15px;color:#56738b}
+.sourceWarn{
+ margin-top:8px;background:#fff5e8;border:1px solid #f0c98b;color:#7b4f12;
+ padding:9px 11px;border-radius:10px;font-size:15px
+}
+.textInput{
+ width:100%;padding:11px 13px;border:2px solid #dceaf5;border-radius:11px;
+ font:18px "Times New Roman",serif;margin-top:10px
+}
+.textInput:focus{
+ outline:none;border-color:#4b9de0;box-shadow:0 0 0 4px rgba(75,157,224,.12)
+}
+.options{display:grid;gap:8px;margin-top:10px}
+.option{
+ border:2px solid #dceaf5;border-radius:11px;padding:10px 12px;
+ background:#fff;cursor:pointer;font-size:18px
+}
+.option.sel{border-color:#3d97df;background:#edf7ff}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.btn{
+ border:0;border-radius:11px;padding:9px 13px;
+ font:700 16px "Times New Roman",serif;cursor:pointer
+}
+.primary{background:#0d5d9a;color:#fff}
+.secondary{background:#edf7ff;color:#0d5d9a;border:1px solid #cfe4f5}
+.hintBtn{background:#fff8da;color:#725700;border:1px solid #f0dfa1}
+.feedback{
+ display:none;margin-top:10px;padding:11px 13px;border-radius:11px;font-size:17px
+}
+.feedback.ok{display:block;background:#eefbf2;border:1px solid #c7ebd1;color:#126b33}
+.feedback.bad{display:block;background:#fff1f1;border:1px solid #f1c8c8;color:#9e2424}
+.feedback.hint{display:block;background:#fff9e8;border:1px solid #f0dfa1;color:#765a00}
+.bigActions{
+ display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px;
+ padding-top:14px;border-top:1px dashed #d8e7f2
+}
+.quizBox{max-width:840px;margin:auto}
+.quizMeta{
+ display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+ color:#55738c;margin-bottom:8px
+}
+.quizPrompt{font-size:24px;line-height:1.45;margin:12px 0}
+.progress{height:11px;background:#e5eef5;border-radius:99px;overflow:hidden}
+.progress div{height:100%;background:linear-gradient(90deg,#1e7bc0,#38a169);width:0}
+.topicGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0}
+.topicCard{
+ border:1px solid var(--line);border-radius:14px;padding:12px;background:#f9fcff
+}
+.topicCard b{display:block;color:#0b578f;margin-bottom:5px}
+.errorItem{
+ border:1px solid #efcaca;background:#fff7f7;border-radius:13px;padding:12px;margin:9px 0
+}
+.weakChip{
+ display:inline-block;background:#e9f5ff;border:1px solid #cbe7fb;border-radius:999px;
+ padding:7px 10px;margin:4px 4px 0 0;font-weight:700;color:#165a8a
+}
+@media(max-width:1000px){
+ .topicGrid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:930px){
+ .app{grid-template-columns:1fr}
+ .sidebar{position:relative;height:auto}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .posterGrid,.topicGrid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<aside class="sidebar">
+  <div class="logo">COMMON STRUCTURES<br>MASTERY</div>
+  <div class="sideSub">Chuyên đề 15 · 22 mẫu câu thường gặp</div>
+
+  <div class="groupTitle">Danh mục</div>
+  <div class="menu">
+    <button class="navBtn active" data-view="images">🖼 Bộ ảnh / lý thuyết</button>
+    <button class="navBtn" data-view="ex1">1. Bài tập 1 – Trắc nghiệm</button>
+    <button class="navBtn" data-view="ex2">2. Bài tập 2 – Sửa lỗi</button>
+    <button class="navBtn" data-view="ex3">3. Bài tập 3 – Sắp xếp câu</button>
+    <button class="navBtn" data-view="quiz100">🔥 Quiz 100 câu</button>
+    <button class="navBtn" data-view="weak">🎯 Luyện chủ đề câu sai</button>
+    <button class="navBtn" data-view="errors">📕 Sổ câu sai</button>
+    <button id="resetAll">↺ Xóa tiến độ</button>
+  </div>
+</aside>
+
+<div class="content">
+<header class="topbar">
+  <h1>CHUYÊN ĐỀ 15: SOME COMMON STRUCTURES</h1>
+  <p>22 mẫu câu trọng tâm • 60 câu gốc trong sách • 100 câu quiz bổ trợ • check tự động • Enter để kiểm tra/chuyển câu</p>
+</header>
+
+<main class="wrap">
+
+  <div class="stats">
+    <div class="stat"><span>Đã làm</span><b id="doneStat">0</b><span>câu</span></div>
+    <div class="stat"><span>Đúng</span><b id="correctStat">0</b><span>câu</span></div>
+    <div class="stat"><span>Độ chính xác</span><b id="accStat">0%</b><span>toàn bộ</span></div>
+    <div class="stat"><span>Chủ đề yếu</span><b id="weakStat">0</b><span>chủ đề</span></div>
+  </div>
+
+  <section class="view active" id="view-images">
+    <div class="section">
+      <div class="secHead">
+        <h2>Bộ ảnh / lý thuyết</h2>
+        <p>Phần này chỉ hiển thị bộ hình ảnh công thức cấu trúc ngữ pháp của bài.</p>
+      </div>
+      <div class="secBody">
+        <div class="posterGrid">
+          <div class="posterCard"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjE1NTAiIHZpZXdCb3g9IjAgMCAxMDAwIDE1NTAiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNlNmY3ZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmY5ZTgiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiByeD0iMzYiIGZpbGw9InVybCgjYmcpIi8+PHJlY3QgeD0iMzAiIHk9IjI4IiB3aWR0aD0iOTQwIiBoZWlnaHQ9IjEwNSIgcng9IjI2IiBmaWxsPSIjMGY1ZDk5Ii8+PHRleHQgeD0iNTAwIiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSJ3aGl0ZSI+Q0hVWcOKTiDEkOG7gCAxNSDigJMgU09NRSBDT01NT04gU1RSVUNUVVJFUzwvdGV4dD48dGV4dCB4PSI1MDAiIHk9IjEwOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIwIiBmaWxsPSIjZGZmNGZmIj5N4bqrdSBjw6J1IDHigJM2OiBi4bqjbiB0aMOibiDigKIgc+G7nyB0aMOtY2gg4oCiIMSR4buLYSBjaOG7iSDigKIgcXXhu5FjIHThu4tjaCDigKIgdMOtbmggY8OhY2gg4oCiIHRo4budaSBnaWFuIHLhuqNuaDwvdGV4dD48cmVjdCB4PSI1NSIgeT0iMTUwIiB3aWR0aD0iODkwIiBoZWlnaHQ9IjEzNCIgcng9IjIyIiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiNiZGRiZWMiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9Ijg1IiB5PSIxOTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzBkNGQ4MiI+MS4gVGjDtG5nIHRpbiBjw6EgbmjDom48L3RleHQ+PHRleHQgeD0iOTAiIHk9IjIyOCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMTczMjRhIj5DYW4geW91IHRlbGwgbWUgYWJvdXQgeW91cnNlbGY/IOKGkiBNeSBuYW1l4oCZcyAuLi4gLyBJ4oCZbSBpbiAuLi4gLyBJIGxpdmUgaW4gLi4uPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIyNTgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzE3MzI0YSI+TXkgYmlydGhkYXkgaXMgaW4gLi4uICAodGjDoW5nIHNpbmgpPC90ZXh0PjxyZWN0IHg9IjU1IiB5PSIzMDIiIHdpZHRoPSI4OTAiIGhlaWdodD0iMTM0IiByeD0iMjIiIGZpbGw9IiNlZWY5ZmYiIHN0cm9rZT0iI2JkZGJlYyIgc3Ryb2tlLXdpZHRoPSIzIi8+PHRleHQgeD0iODUiIHk9IjM0MiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMGQ0ZDgyIj4yLiBT4bufIHRow61jaDwvdGV4dD48dGV4dCB4PSI5MCIgeT0iMzgwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMxNzMyNGEiPldoYXTigJlzIHlvdXIgZmF2b3VyaXRlIHNwb3J0IC8gY29sb3VyIC8gYW5pbWFsIC8gZm9vZCAuLi4/PC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI0MTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzE3MzI0YSI+4oaSIC4uLiBpcyBteSBmYXZvdXJpdGUuPC90ZXh0PjxyZWN0IHg9IjU1IiB5PSI0NTQiIHdpZHRoPSI4OTAiIGhlaWdodD0iMTM0IiByeD0iMjIiIGZpbGw9IiNmZmY2ZTYiIHN0cm9rZT0iI2JkZGJlYyIgc3Ryb2tlLXdpZHRoPSIzIi8+PHRleHQgeD0iODUiIHk9IjQ5NCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMGQ0ZDgyIj4zLiDEkOG7i2EgY2jhu4k8L3RleHQ+PHRleHQgeD0iOTAiIHk9IjUzMiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMTczMjRhIj5EbyB5b3UgbGl2ZSBpbiB0aGlzIC8gdGhhdCAuLi4/IOKGkiBZZXMsIEkgZG8uIC8gTm8sIEkgZG9u4oCZdC48L3RleHQ+PHRleHQgeD0iOTAiIHk9IjU2MiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMTczMjRhIj5XaGF04oCZcyB5b3VyIGFkZHJlc3M/IOKGkiBJdOKAmXMgLi4uPC90ZXh0PjxyZWN0IHg9IjU1IiB5PSI2MDYiIHdpZHRoPSI4OTAiIGhlaWdodD0iMTM0IiByeD0iMjIiIGZpbGw9IiNmNGVmZmYiIHN0cm9rZT0iI2JkZGJlYyIgc3Ryb2tlLXdpZHRoPSIzIi8+PHRleHQgeD0iODUiIHk9IjY0NiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMGQ0ZDgyIj40LiBRdcOqIHF1w6FuIOKAkyBxdeG7kWMgdOG7i2NoPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI2ODQiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzE3MzI0YSI+V2hlcmXigJlzIGhlIC8gc2hlIGZyb20/IOKGkiBIZeKAmXMgLyBTaGXigJlzIGZyb20gLi4uPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI3MTQiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzE3MzI0YSI+V2hhdCBuYXRpb25hbGl0eSBpcyBoZSAvIHNoZT8g4oaSIEhl4oCZcyAvIFNoZeKAmXMgLi4uPC90ZXh0PjxyZWN0IHg9IjU1IiB5PSI3NTgiIHdpZHRoPSI4OTAiIGhlaWdodD0iMTAzIiByeD0iMjIiIGZpbGw9IiNlZWZiZjIiIHN0cm9rZT0iI2JkZGJlYyIgc3Ryb2tlLXdpZHRoPSIzIi8+PHRleHQgeD0iODUiIHk9Ijc5OCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMGQ0ZDgyIj41LiBUw61uaCBjw6FjaDwvdGV4dD48dGV4dCB4PSI5MCIgeT0iODM2IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMxNzMyNGEiPldoYXTigJlzIGhlIC8gc2hlIGxpa2U/IOKGkiBIZeKAmXMgLyBTaGXigJlzIGZyaWVuZGx5LCBmdW5ueSwga2luZCAuLi48L3RleHQ+PHJlY3QgeD0iNTUiIHk9Ijg3OSIgd2lkdGg9Ijg5MCIgaGVpZ2h0PSIxMzQiIHJ4PSIyMiIgZmlsbD0iI2ZmZjBmMCIgc3Ryb2tlPSIjYmRkYmVjIiBzdHJva2Utd2lkdGg9IjMiLz48dGV4dCB4PSI4NSIgeT0iOTE5IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMwZDRkODIiPjYuIFRo4budaSBnaWFuIHLhuqNuaCAvIGN14buRaSB0deG6p248L3RleHQ+PHRleHQgeD0iOTAiIHk9Ijk1NyIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMTczMjRhIj5XaGF0IGRvIHlvdSBsaWtlIGRvaW5nIGluIHlvdXIgZnJlZSB0aW1lPyDihpIgSSBsaWtlIC4uLjwvdGV4dD48dGV4dCB4PSI5MCIgeT0iOTg3IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMxNzMyNGEiPldoYXQgZG8geW91IGRvIGF0IHRoZSB3ZWVrZW5kPyDihpIgSSBvZnRlbiAuLi48L3RleHQ+PHJlY3QgeD0iNTUiIHk9IjE0NTUiIHdpZHRoPSI4OTAiIGhlaWdodD0iNTUiIHJ4PSIxOCIgZmlsbD0iI2ZmZjFhOCIvPjx0ZXh0IHg9IjUwMCIgeT0iMTQ5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE5IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjNmM1MjAwIj5N4bq5bzogbmjDrG4gdsOgbyBsb+G6oWkgdGjDtG5nIHRpbiBj4bqnbiBo4buPaSB0csaw4bubYyDigJQgdMOqbiwgxJHhu4thIGNo4buJLCBz4bufIHRow61jaCwgcXXhu5FjIHThu4tjaCBoYXkgdMOtbmggY8OhY2g/PC90ZXh0Pjwvc3ZnPg=="><div class="posterCap">Ảnh 1. Thông tin cá nhân – sở thích – địa chỉ – quốc tịch – tính cách – thời gian rảnh</div></div>
+          <div class="posterCard"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjE1NTAiIHZpZXdCb3g9IjAgMCAxMDAwIDE1NTAiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNlNmY3ZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmY5ZTgiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiByeD0iMzYiIGZpbGw9InVybCgjYmcpIi8+PHJlY3QgeD0iMzAiIHk9IjI4IiB3aWR0aD0iOTQwIiBoZWlnaHQ9IjEwNSIgcng9IjI2IiBmaWxsPSIjMGY1ZDk5Ii8+PHRleHQgeD0iNTAwIiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSJ3aGl0ZSI+TeG6qlUgQ8OCVSA34oCTMTA6IE5HSOG7gCBOR0hJ4buGUCAmYW1wOyBUUsav4bucTkcgSOG7jEM8L3RleHQ+PHRleHQgeD0iNTAwIiB5PSIxMDgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMCIgZmlsbD0iI2RmZjRmZiI+RnV0dXJlIGpvYiDigKIgU2Nob29sIHBsYWNlcyDigKIgU2Nob29sIGFjdGl2aXRpZXMg4oCiIFNjaG9vbCBvYmplY3RzPC90ZXh0PjxyZWN0IHg9IjU1IiB5PSIxNTAiIHdpZHRoPSI4OTAiIGhlaWdodD0iMTY1IiByeD0iMjIiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2JkZGJlYyIgc3Ryb2tlLXdpZHRoPSIzIi8+PHRleHQgeD0iODUiIHk9IjE5MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMGQ0ZDgyIj43LiBOZ2jhu4EgbmdoaeG7h3AgdMawxqFuZyBsYWk8L3RleHQ+PHRleHQgeD0iOTAiIHk9IjIyOCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMTczMjRhIj5XaGF0IHdvdWxkIHlvdSBsaWtlIHRvIGJlIGluIHRoZSBmdXR1cmU/PC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIyNTgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzE3MzI0YSI+4oaSIEnigJlkIGxpa2UgdG8gYmUgYS9hbiAuLi48L3RleHQ+PHRleHQgeD0iOTAiIHk9IjI4OCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMTczMjRhIj5XaHkgd291bGQgeW91IGxpa2UgdG8gYmUgYS9hbiAuLi4/IOKGkiBCZWNhdXNlIEnigJlkIGxpa2UgdG8gLi4uPC90ZXh0PjxyZWN0IHg9IjU1IiB5PSIzMzMiIHdpZHRoPSI4OTAiIGhlaWdodD0iMTM0IiByeD0iMjIiIGZpbGw9IiNlZWY5ZmYiIHN0cm9rZT0iI2JkZGJlYyIgc3Ryb2tlLXdpZHRoPSIzIi8+PHRleHQgeD0iODUiIHk9IjM3MyIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMGQ0ZDgyIj44LiBQaMOybmcgaOG7jWMgLyBjaOG7iSDEkcaw4budbmc8L3RleHQ+PHRleHQgeD0iOTAiIHk9IjQxMSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMTczMjRhIj5XaGVyZeKAmXMgdGhlIC4uLj8g4oaSIEl04oCZcyBvbiB0aGUgLi4uIGZsb29yLjwvdGV4dD48dGV4dCB4PSI5MCIgeT0iNDQxIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMxNzMyNGEiPkNvdWxkIHlvdSB0ZWxsIG1lIHRoZSB3YXkgdG8gdGhlIC4uLiwgcGxlYXNlPyDihpIgR28gLi4uIC8gVHVybiAuLi48L3RleHQ+PHJlY3QgeD0iNTUiIHk9IjQ4NSIgd2lkdGg9Ijg5MCIgaGVpZ2h0PSIxMzQiIHJ4PSIyMiIgZmlsbD0iI2ZmZjZlNiIgc3Ryb2tlPSIjYmRkYmVjIiBzdHJva2Utd2lkdGg9IjMiLz48dGV4dCB4PSI4NSIgeT0iNTI1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMwZDRkODIiPjkuIEhv4bqhdCDEkeG7mW5nIOG7nyB0csaw4budbmc8L3RleHQ+PHRleHQgeD0iOTAiIHk9IjU2MyIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMTczMjRhIj5XaGF0IHNjaG9vbCBhY3Rpdml0eSBkb2VzIGhlIC8gc2hlIGxpa2U/IOKGkiBIZSAvIFNoZSBsaWtlcyAuLi48L3RleHQ+PHRleHQgeD0iOTAiIHk9IjU5MyIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMTczMjRhIj5XaHkgZG9lcyBoZSAvIHNoZSBsaWtlIC4uLj8g4oaSIEJlY2F1c2UgaGUgLyBzaGUgdGhpbmtzIGl04oCZcyAuLi48L3RleHQ+PHJlY3QgeD0iNTUiIHk9IjYzNyIgd2lkdGg9Ijg5MCIgaGVpZ2h0PSIxNjUiIHJ4PSIyMiIgZmlsbD0iI2Y0ZWZmZiIgc3Ryb2tlPSIjYmRkYmVjIiBzdHJva2Utd2lkdGg9IjMiLz48dGV4dCB4PSI4NSIgeT0iNjc3IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMwZDRkODIiPjEwLiDEkOG7kyBkw7luZyBo4buNYyB04bqtcDwvdGV4dD48dGV4dCB4PSI5MCIgeT0iNzE1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMxNzMyNGEiPldoZXJlIGFyZSB0aGUgLi4uPyDihpIgVGhleeKAmXJlIGFib3ZlIC8gdW5kZXIgLyBvbiAuLi48L3RleHQ+PHRleHQgeD0iOTAiIHk9Ijc0NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMTczMjRhIj5XaG9zZSAuLi4gaXMgdGhpcz8g4oaSIEl04oCZcyBNYWnigJlzLjwvdGV4dD48dGV4dCB4PSI5MCIgeT0iNzc1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMxNzMyNGEiPklzIHRoaXMgeW91ciAuLi4/IOKGkiBZZXMsIGl0IGlzLiAvIE5vLCBpdCBpc27igJl0LjwvdGV4dD48cmVjdCB4PSI1NSIgeT0iMTQ1NSIgd2lkdGg9Ijg5MCIgaGVpZ2h0PSI1NSIgcng9IjE4IiBmaWxsPSIjZmZmMWE4Ii8+PHRleHQgeD0iNTAwIiB5PSIxNDkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTkiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiM2YzUyMDAiPk5o4bubOiBsaWtlICsgVi1pbmc7IENvdWxkIHlvdSB0ZWxsIG1lIHRoZSB3YXkgdG8gLi4uPyA9IGjhu49pIMSRxrDhu51uZyBs4buLY2ggc+G7sS48L3RleHQ+PC9zdmc+"><div class="posterCap">Ảnh 2. Nghề nghiệp tương lai – phòng học – hoạt động và đồ dùng ở trường</div></div>
+          <div class="posterCard"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjE1NTAiIHZpZXdCb3g9IjAgMCAxMDAwIDE1NTAiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNlNmY3ZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmY5ZTgiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiByeD0iMzYiIGZpbGw9InVybCgjYmcpIi8+PHJlY3QgeD0iMzAiIHk9IjI4IiB3aWR0aD0iOTQwIiBoZWlnaHQ9IjEwNSIgcng9IjI2IiBmaWxsPSIjMGY1ZDk5Ii8+PHRleHQgeD0iNTAwIiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSJ3aGl0ZSI+TeG6qlUgQ8OCVSAxMeKAkzE5OiBRVcOBIEtI4buoIOKAoiBL4bq+IEhP4bqgQ0gg4oCiIFPhu6hDIEtI4buORTwvdGV4dD48dGV4dCB4PSI1MDAiIHk9IjEwOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIwIiBmaWxsPSIjZGZmNGZmIj5QYXN0IGFjdGl2aXRpZXMg4oCiIFRldCDigKIgRXZlbnRzIOKAoiBIZWFsdGh5IGxpZmVzdHlsZSDigKIgV2VhdGhlciDigKIgU3RvcmllczwvdGV4dD48cmVjdCB4PSI1NSIgeT0iMTUwIiB3aWR0aD0iODkwIiBoZWlnaHQ9IjE2NSIgcng9IjIyIiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiNiZGRiZWMiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9Ijg1IiB5PSIxOTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzBkNGQ4MiI+MTHigJMxMy4gSG/huqF0IMSR4buZbmcgdHJvbmcgcXXDoSBraOG7qTwvdGV4dD48dGV4dCB4PSI5MCIgeT0iMjI4IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMxNzMyNGEiPldlcmUgeW91IGF0IHRoZSAuLi4geWVzdGVyZGF5PyDihpIgWWVzLCB3ZSB3ZXJlLiAvIE5vLCB3ZSB3ZXJlbuKAmXQuPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIyNTgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzE3MzI0YSI+RGlkIHRoZXkgZ28gdG8gLi4uPyDihpIgWWVzLCB0aGV5IGRpZC4gLyBObywgdGhleSBkaWRu4oCZdC48L3RleHQ+PHRleHQgeD0iOTAiIHk9IjI4OCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMTczMjRhIj5XaGF0IGRpZCB5b3UgLyB5b3VyIGZhbWlseSBkbyAuLi4/IOKGkiBXZSAuLi4gLyBUaGV5IC4uLjwvdGV4dD48cmVjdCB4PSI1NSIgeT0iMzMzIiB3aWR0aD0iODkwIiBoZWlnaHQ9IjEzNCIgcng9IjIyIiBmaWxsPSIjZWVmOWZmIiBzdHJva2U9IiNiZGRiZWMiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9Ijg1IiB5PSIzNzMiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzBkNGQ4MiI+MTQuIEvhur8gaG/huqFjaCBk4buLcCBU4bq/dDwvdGV4dD48dGV4dCB4PSI5MCIgeT0iNDExIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMxNzMyNGEiPldpbGwgeW91IC4uLiBmb3IgVGV0PyDihpIgWWVzLCBJIHdpbGwuIC8gTm8sIEkgd29u4oCZdC48L3RleHQ+PHRleHQgeD0iOTAiIHk9IjQ0MSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMTczMjRhIj5XaGVyZSB3aWxsIHlvdSBnbyBhdCBUZXQ/IOKGkiBJ4oCZbGwgZ28gdG8gLi4uPC90ZXh0PjxyZWN0IHg9IjU1IiB5PSI0ODUiIHdpZHRoPSI4OTAiIGhlaWdodD0iMTM0IiByeD0iMjIiIGZpbGw9IiNmZmY2ZTYiIHN0cm9rZT0iI2JkZGJlYyIgc3Ryb2tlLXdpZHRoPSIzIi8+PHRleHQgeD0iODUiIHk9IjUyNSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMGQ0ZDgyIj4xNS4gSG/huqF0IMSR4buZbmcgLyDEkeG7kyDEg24gdHJvbmcgc+G7sSBraeG7h248L3RleHQ+PHRleHQgeD0iOTAiIHk9IjU2MyIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMTczMjRhIj5XaGF0IHdpbGwgeW91IGRvIG9uIC4uLj8g4oaSIFdl4oCZbGwgLi4uPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI1OTMiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzE3MzI0YSI+V2hhdCBmb29kIC8gZHJpbmtzIHdpbGwgeW91IGhhdmUgYXQgdGhlIHBhcnR5PyDihpIgV2XigJlsbCBoYXZlIC4uLjwvdGV4dD48cmVjdCB4PSI1NSIgeT0iNjM3IiB3aWR0aD0iODkwIiBoZWlnaHQ9IjE2NSIgcng9IjIyIiBmaWxsPSIjZjRlZmZmIiBzdHJva2U9IiNiZGRiZWMiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9Ijg1IiB5PSI2NzciIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzBkNGQ4MiI+MTbigJMxNy4gTOG7kWkgc+G7kW5nICZhbXA7IHPhu6ljIGto4buPZTwvdGV4dD48dGV4dCB4PSI5MCIgeT0iNzE1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMxNzMyNGEiPkhvdyBkb2VzIGhlIC8gc2hlIHN0YXkgaGVhbHRoeT8g4oaSIEhlIC8gU2hlIC4uLjwvdGV4dD48dGV4dCB4PSI5MCIgeT0iNzQ1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMxNzMyNGEiPkhvdyBvZnRlbiBkb2VzIGhlIC8gc2hlIC4uLj8g4oaSIFR3aWNlIGEgd2Vlay48L3RleHQ+PHRleHQgeD0iOTAiIHk9Ijc3NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMTczMjRhIj5XaGF04oCZcyB0aGUgbWF0dGVyPyDihpIgSSBoYXZlIGEgLi4uICAvICBZb3Ugc2hvdWxkIC4uLjwvdGV4dD48cmVjdCB4PSI1NSIgeT0iODIwIiB3aWR0aD0iODkwIiBoZWlnaHQ9IjE2NSIgcng9IjIyIiBmaWxsPSIjZWVmYmYyIiBzdHJva2U9IiNiZGRiZWMiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9Ijg1IiB5PSI4NjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzBkNGQ4MiI+MTjigJMxOS4gVGjhu51pIHRp4bq/dCAmYW1wOyBjw6J1IGNodXnhu4duPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI4OTgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzE3MzI0YSI+SG934oCZcyB0aGUgd2VhdGhlciBpbiAuLi4gaW4gc3VtbWVyIC8gd2ludGVyPyDihpIgSXTigJlzIC4uLjwvdGV4dD48dGV4dCB4PSI5MCIgeT0iOTI4IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMxNzMyNGEiPldoYXQgZG8geW91IHVzdWFsbHkgd2VhciBpbiAuLi4/IOKGkiBJIHdlYXIgLi4uPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI5NTgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzE3MzI0YSI+V2hvIGFyZSB0aGUgbWFpbiBjaGFyYWN0ZXJzPyAvIEhvdyBkaWQgc2hlIGNvb2s/IOKGkiBTaGUgY29va2VkIHdlbGwuPC90ZXh0PjxyZWN0IHg9IjU1IiB5PSIxNDU1IiB3aWR0aD0iODkwIiBoZWlnaHQ9IjU1IiByeD0iMTgiIGZpbGw9IiNmZmYxYTgiLz48dGV4dCB4PSI1MDAiIHk9IjE0OTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzZjNTIwMCI+UXXDoSBraOG7qTogZGlkICsgViBuZ3V5w6puIHRo4buDOyB0xrDGoW5nIGxhaTogd2lsbCArIFYgbmd1ecOqbiB0aOG7gy48L3RleHQ+PC9zdmc+"><div class="posterCap">Ảnh 3. Quá khứ – Tết – sự kiện – sức khỏe – thời tiết – câu chuyện</div></div>
+          <div class="posterCard"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjE1NTAiIHZpZXdCb3g9IjAgMCAxMDAwIDE1NTAiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNlNmY3ZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmY5ZTgiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiByeD0iMzYiIGZpbGw9InVybCgjYmcpIi8+PHJlY3QgeD0iMzAiIHk9IjI4IiB3aWR0aD0iOTQwIiBoZWlnaHQ9IjEwNSIgcng9IjI2IiBmaWxsPSIjMGY1ZDk5Ii8+PHRleHQgeD0iNTAwIiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSJ3aGl0ZSI+TeG6qlUgQ8OCVSAyMOKAkzIyOiBEVSBM4buKQ0gg4oCiIEtIT+G6ok5HIEPDgUNIIOKAoiBL4buyIE5HSOG7iDwvdGV4dD48dGV4dCB4PSI1MDAiIHk9IjEwOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIwIiBmaWxsPSIjZGZmNGZmIj5QbGFjZXMg4oCiIFRyYW5zcG9ydCDigKIgT3BpbmlvbnMg4oCiIERpc3RhbmNlIOKAoiBTdW1tZXIgcGxhbnM8L3RleHQ+PHJlY3QgeD0iNTUiIHk9IjE1MCIgd2lkdGg9Ijg5MCIgaGVpZ2h0PSIxMzQiIHJ4PSIyMiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjYmRkYmVjIiBzdHJva2Utd2lkdGg9IjMiLz48dGV4dCB4PSI4NSIgeT0iMTkwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMwZDRkODIiPjIwLiDEkOG7i2EgxJFp4buDbSBtdeG7kW4gdOG7m2kgJmFtcDsgcGjGsMahbmcgdGnhu4duPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIyMjgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzE3MzI0YSI+V2hlcmUgZG8geW91IHdhbnQgdG8gdmlzaXQ/IOKGkiBJIHdhbnQgdG8gdmlzaXQgLi4uPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIyNTgiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzE3MzI0YSI+SG93IGNhbiBJIGdldCB0byAuLi4/IOKGkiBZb3UgY2FuIGdldCB0aGVyZSBieSBidXMgLyB0cmFtIC8gLi4uPC90ZXh0PjxyZWN0IHg9IjU1IiB5PSIzMDIiIHdpZHRoPSI4OTAiIGhlaWdodD0iMTY1IiByeD0iMjIiIGZpbGw9IiNlZWY5ZmYiIHN0cm9rZT0iI2JkZGJlYyIgc3Ryb2tlLXdpZHRoPSIzIi8+PHRleHQgeD0iODUiIHk9IjM0MiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMGQ0ZDgyIj4yMS4gUXVhbiDEkWnhu4NtICZhbXA7IGtob+G6o25nIGPDoWNoPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIzODAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzE3MzI0YSI+V2hhdCBkbyB5b3UgdGhpbmsgb2YgLi4uPyDihpIgSSB0aGluayBpdOKAmXMgZXhjaXRpbmcgLyBpbXByZXNzaXZlIC4uLjwvdGV4dD48dGV4dCB4PSI5MCIgeT0iNDEwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMxNzMyNGEiPkhvdyBmYXIgaXMgaXQgZnJvbSBBIHRvIEI/IOKGkiBJdOKAmXMgYWJvdXQgLi4uIGtpbG9tZXRyZXMuPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI0NDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzE3MzI0YSI+V2hhdCBpcyB0aGUgZGlzdGFuY2UgYmV0d2VlbiBBIGFuZCBCPyDihpIgSXTigJlzIGFib3V0IC4uLiBraWxvbWV0cmVzLjwvdGV4dD48cmVjdCB4PSI1NSIgeT0iNDg1IiB3aWR0aD0iODkwIiBoZWlnaHQ9IjE5NiIgcng9IjIyIiBmaWxsPSIjZmZmNmU2IiBzdHJva2U9IiNiZGRiZWMiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9Ijg1IiB5PSI1MjUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzBkNGQ4MiI+MjIuIEvhu7Mgbmdo4buJIGjDqDwvdGV4dD48dGV4dCB4PSI5MCIgeT0iNTYzIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMxNzMyNGEiPldoZXJlIGFyZSB5b3UgZ29pbmcgdG8gdmlzaXQgdGhpcyBzdW1tZXI/PC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI1OTMiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzE3MzI0YSI+4oaSIEnigJltIGdvaW5nIHRvIHZpc2l0IC4uLjwvdGV4dD48dGV4dCB4PSI5MCIgeT0iNjIzIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMxNzMyNGEiPldoYXQgYXJlIHlvdSBnb2luZyB0byBkbyB0aGlzIHN1bW1lcj88L3RleHQ+PHRleHQgeD0iOTAiIHk9IjY1MyIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMTczMjRhIj7ihpIgSeKAmW0gZ29pbmcgdG8gLi4uPC90ZXh0PjxyZWN0IHg9IjU1IiB5PSI2OTkiIHdpZHRoPSI4OTAiIGhlaWdodD0iMTY1IiByeD0iMjIiIGZpbGw9IiNmNGVmZmYiIHN0cm9rZT0iI2JkZGJlYyIgc3Ryb2tlLXdpZHRoPSIzIi8+PHRleHQgeD0iODUiIHk9IjczOSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMGQ0ZDgyIj5DaGVja2xpc3QgY2jhu41uIG3huqt1IGPDonU8L3RleHQ+PHRleHQgeD0iOTAiIHk9Ijc3NyIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMTczMjRhIj5OxqFpIGNo4buRbiDihpIgV2hlcmUgfCBuZ8aw4budaSDihpIgV2hvIHwgbMO9IGRvIOKGkiBXaHk8L3RleHQ+PHRleHQgeD0iOTAiIHk9IjgwNyIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMTczMjRhIj5LaG/huqNuZyBjw6FjaCDihpIgSG93IGZhciB8IHThuqduIHN14bqldCDihpIgSG93IG9mdGVuPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI4MzciIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzE3MzI0YSI+S+G6vyBob+G6oWNoIHTGsMahbmcgbGFpIOKGkiB3aWxsIC8gYmUgZ29pbmcgdG8gdGhlbyBt4bqrdSBj4bunYSBiw6BpPC90ZXh0PjxyZWN0IHg9IjU1IiB5PSIxNDU1IiB3aWR0aD0iODkwIiBoZWlnaHQ9IjU1IiByeD0iMTgiIGZpbGw9IiNmZmYxYTgiLz48dGV4dCB4PSI1MDAiIHk9IjE0OTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzZjNTIwMCI+SMOjeSB4w6FjIMSR4buLbmggbG/huqFpIHRow7RuZyB0aW4gY+G6p24gdHLhuqMgbOG7nWkgdHLGsOG7m2MgcuG7k2kgY2jhu41uIMSRw7puZyBt4bqrdSBjw6J1LjwvdGV4dD48L3N2Zz4="><div class="posterCap">Ảnh 4. Du lịch – phương tiện – quan điểm – khoảng cách – kế hoạch hè</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-ex1"></section>
+  <section class="view" id="view-ex2"></section>
+  <section class="view" id="view-ex3"></section>
+
+  <section class="view" id="view-quiz100">
+    <div class="section">
+      <div class="secHead">
+        <h2>Quiz 100 câu – Some Common Structures</h2>
+        <p>100 câu bổ trợ được tạo thêm để luyện sâu 22 mẫu câu; 60 câu gốc giữ riêng trong Exercise 1–3.</p>
+      </div>
+      <div class="secBody">
+        <div class="topicGrid">
+          <div class="topicCard"><b>20 câu</b>Cá nhân – sở thích – quốc tịch</div>
+          <div class="topicCard"><b>20 câu</b>Thời gian rảnh – trường học – nghề nghiệp</div>
+          <div class="topicCard"><b>20 câu</b>Quá khứ – chuyến đi</div>
+          <div class="topicCard"><b>20 câu</b>Tương lai – sức khỏe – thời tiết – truyện</div>
+          <div class="topicCard"><b>20 câu</b>Du lịch – khoảng cách – kế hoạch hè</div>
+        </div>
+
+        <div class="quizBox">
+          <div class="quizMeta"><span id="quizCounter"></span><span id="quizTopic"></span></div>
+          <div class="progress"><div id="quizBar"></div></div>
+          <div class="quizPrompt" id="quizPrompt"></div>
+          <div class="options" id="quizOptions"></div>
+          <div class="feedback" id="quizFeedback"></div>
+          <div class="actions">
+            <button class="btn primary" id="quizCheck">Kiểm tra</button>
+            <button class="btn secondary" id="quizNext">Câu tiếp →</button>
+            <button class="btn secondary" id="quizRestart">Làm lại 100 câu</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-weak">
+    <div class="section">
+      <div class="secHead">
+        <h2>Luyện chủ đề của những câu sai</h2>
+        <p>App tự nhận diện nhóm cấu trúc em hay sai rồi tạo tối đa 20 câu bổ trợ.</p>
+      </div>
+      <div class="secBody">
+        <div id="weakSummary" class="notice">Chưa có dữ liệu lỗi sai. Hãy làm bài trước.</div>
+        <div style="margin-top:12px"><button class="btn primary" id="startWeak">Tạo bộ luyện chủ đề yếu</button></div>
+
+        <div class="quizBox" id="weakQuiz" style="display:none;margin-top:18px">
+          <div class="quizMeta"><span id="weakCounter"></span><span id="weakTopic"></span></div>
+          <div class="progress"><div id="weakBar"></div></div>
+          <div class="quizPrompt" id="weakPrompt"></div>
+          <div class="options" id="weakOptions"></div>
+          <div class="feedback" id="weakFeedback"></div>
+          <div class="actions">
+            <button class="btn primary" id="weakCheck">Kiểm tra</button>
+            <button class="btn secondary" id="weakNext">Câu tiếp →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-errors">
+    <div class="section">
+      <div class="secHead"><h2>Sổ câu sai</h2><p>Chỉ hiển thị những câu em đã làm sai.</p></div>
+      <div class="secBody" id="errorBook"></div>
+    </div>
+  </section>
+
+</main>
+</div>
+</div>
+
+<script>
+const ORIGINAL = [{"id": "e1-1", "exercise": 1, "number": 1, "type": "choice", "prompt": "______ are you going to visit this summer? – Ha Long Bay.", "answer": "Where", "explanation": "Ha Long Bay là nơi chốn → <b>Where</b>.", "topic": "travel", "options": ["What", "Where", "How", "Who"]}, {"id": "e1-2", "exercise": 1, "number": 2, "type": "choice", "prompt": "______ do you think of Hoan Kiem Lake? – It’s very impressive.", "answer": "What", "explanation": "Mẫu câu: <b>What do you think of ...?</b>", "topic": "travel", "options": ["What", "Where", "Who", "How"]}, {"id": "e1-3", "exercise": 1, "number": 3, "type": "choice", "prompt": "Who are the ______ in this story? – They are the turtle and the hare.", "answer": "characters", "explanation": "Mẫu câu hỏi nhân vật: <b>main characters</b>.", "topic": "future_health", "options": ["actors", "images", "people", "characters"]}, {"id": "e1-4", "exercise": 1, "number": 4, "type": "choice", "prompt": "Where ______ they go last weekend?", "answer": "did", "explanation": "last weekend → Past Simple → <b>did</b>.", "topic": "past", "options": ["will", "are", "did", "do"]}, {"id": "e1-5", "exercise": 1, "number": 5, "type": "choice", "prompt": "What would you like to be in the future? –", "answer": "I want to be a pilot.", "explanation": "Câu hỏi về nghề tương lai → câu B phù hợp nhất.", "topic": "school_free", "options": ["I like a parrot.", "I want to be a pilot.", "I will be at home.", "I’d like coffee."]}, {"id": "e1-6", "exercise": 1, "number": 6, "type": "choice", "prompt": "What did you ______ yesterday? – I sang and danced.", "answer": "do", "explanation": "Mẫu: <b>What did you do yesterday?</b>", "topic": "past", "options": ["go", "do", "stay", "live"]}, {"id": "e1-7", "exercise": 1, "number": 7, "type": "choice", "prompt": "______ will you go at Tet? – We’ll go to our hometown.", "answer": "Where", "explanation": "Hỏi nơi sẽ đi → <b>Where</b>.", "topic": "future_health", "options": ["When", "Why", "Where", "What"]}, {"id": "e1-8", "exercise": 1, "number": 8, "type": "choice", "prompt": "What’s your ______? – It’s 30 Huynh Thuc Khang Street.", "answer": "address", "explanation": "Địa chỉ → <b>address</b>.", "topic": "personal", "options": ["address", "name", "number", "live"]}, {"id": "e1-9", "exercise": 1, "number": 9, "type": "choice", "prompt": "What’s she ______? – She’s friendly and funny.", "answer": "like", "explanation": "Mẫu hỏi tính cách: <b>What’s she like?</b>", "topic": "personal", "options": ["liking", "likes", "like", "look like"]}, {"id": "e1-10", "exercise": 1, "number": 10, "type": "choice", "prompt": "Where is the globe? – It’s ______ the teacher’s table.", "answer": "on", "explanation": "Vị trí trên mặt bàn → <b>on</b>.", "topic": "school_free", "options": ["on", "in", "at", "of"]}, {"id": "e1-11", "exercise": 1, "number": 11, "type": "choice", "prompt": "______ the music room? – It’s on the third floor.", "answer": "Where’s", "explanation": "Mẫu: <b>Where’s the music room?</b>", "topic": "school_free", "options": ["Where", "What’s", "Where’s", "Who"]}, {"id": "e1-12", "exercise": 1, "number": 12, "type": "choice", "prompt": "What school activity does she like? – She likes ______ sports.", "answer": "playing", "explanation": "Sau <b>like</b> dùng V-ing trong mẫu của bài.", "topic": "school_free", "options": ["plays", "playing", "play", "played"]}, {"id": "e1-13", "exercise": 1, "number": 13, "type": "choice", "prompt": "Could you tell me the ______ to the computer room, please?", "answer": "way", "explanation": "Cụm cố định: <b>tell me the way to ...</b>", "topic": "school_free", "options": ["street", "path", "road", "way"]}, {"id": "e1-14", "exercise": 1, "number": 14, "type": "choice", "prompt": "What’s your ______ sport?", "answer": "favourite", "explanation": "Mẫu: What’s your <b>favourite</b> sport?", "topic": "personal", "options": ["like", "favourite", "good", "hobby"]}, {"id": "e1-15", "exercise": 1, "number": 15, "type": "choice", "prompt": "______ will you do on Teachers’ Day?", "answer": "What", "explanation": "Hỏi hoạt động sẽ làm → <b>What</b>.", "topic": "future_health", "options": ["When", "How", "Where", "What"]}, {"id": "e1-16", "exercise": 1, "number": 16, "type": "choice", "prompt": "Is this ______ bike?", "answer": "your", "explanation": "Trước danh từ bike dùng tính từ sở hữu <b>your</b>.", "topic": "school_free", "options": ["you", "your", "yours", "you’re"]}, {"id": "e1-17", "exercise": 1, "number": 17, "type": "choice", "prompt": "______ you at the zoo yesterday?", "answer": "Were", "explanation": "Với to be ở quá khứ: <b>Were you ...?</b>", "topic": "past", "options": ["Will", "Are", "Did", "Were"]}, {"id": "e1-18", "exercise": 1, "number": 18, "type": "choice", "prompt": "Do you live in this building? – Yes, I ______.", "answer": "do", "explanation": "Câu hỏi dùng Do → trả lời <b>Yes, I do</b>.", "topic": "personal", "options": ["am", "do", "did", "can"]}, {"id": "e1-19", "exercise": 1, "number": 19, "type": "choice", "prompt": "What do you ______ doing in your free time?", "answer": "like", "explanation": "Mẫu: What do you <b>like doing</b> ...?", "topic": "school_free", "options": ["should", "can", "like", "want"]}, {"id": "e1-20", "exercise": 1, "number": 20, "type": "choice", "prompt": "What nationality is she? – She’s ______.", "answer": "Japanese", "explanation": "Sau She’s cần quốc tịch: <b>Japanese</b>.", "topic": "personal", "options": ["Japan", "Japanese", "Canada", "Korea"]}, {"id": "e2-1", "exercise": 2, "number": 1, "type": "text", "prompt": "How drinks will you have at the party?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "How many drinks will you have at the party?", "explanation": "drinks là danh từ đếm được số nhiều → <b>How many drinks</b>.", "topic": "future_health", "accepted": ["How many drinks will you have at the party?"]}, {"id": "e2-2", "exercise": 2, "number": 2, "type": "text", "prompt": "Where will you go on Tet?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "Where will you go at Tet?", "explanation": "Mẫu trong bài dùng <b>at Tet</b>.", "topic": "future_health", "accepted": ["Where will you go at Tet?"]}, {"id": "e2-3", "exercise": 2, "number": 3, "type": "text", "prompt": "What did your family do in Cat Ba?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "What did your family do in Cat Ba?", "explanation": "Câu trong bản quét không cho thấy lỗi ngữ pháp rõ ràng; app giữ nguyên thay vì tự đoán sửa.", "topic": "past", "accepted": ["What did your family do in Cat Ba?"], "source_note": "Nguồn yêu cầu 'one mistake', nhưng câu số 3 trong bản quét hiện tại trông đã đúng; app không tự bịa lỗi."}, {"id": "e2-4", "exercise": 2, "number": 4, "type": "text", "prompt": "Did you ate seafood yesterday?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "Did you eat seafood yesterday?", "explanation": "Sau <b>Did</b> dùng V nguyên thể → eat.", "topic": "past", "accepted": ["Did you eat seafood yesterday?"]}, {"id": "e2-5", "exercise": 2, "number": 5, "type": "text", "prompt": "They did go to Ba Na Hills last week.<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "They went to Ba Na Hills last week.", "explanation": "Trong bài tập quá khứ đơn cơ bản, câu khẳng định dùng V2: <b>went</b>.", "topic": "past", "accepted": ["They went to Ba Na Hills last week."]}, {"id": "e2-6", "exercise": 2, "number": 6, "type": "text", "prompt": "Who’s textbooks are those?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "Whose textbooks are those?", "explanation": "<b>Whose</b> = của ai; Who’s = Who is.", "topic": "school_free", "accepted": ["Whose textbooks are those?"]}, {"id": "e2-7", "exercise": 2, "number": 7, "type": "text", "prompt": "Who he likes dancing?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "Who likes dancing?", "explanation": "Hỏi chủ ngữ → <b>Who + V-s/es</b>; bỏ he.", "topic": "school_free", "accepted": ["Who likes dancing?"]}, {"id": "e2-8", "exercise": 2, "number": 8, "type": "text", "prompt": "Where the computer room?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "Where is the computer room?", "explanation": "Thiếu động từ to be: <b>Where is ...?</b>", "topic": "school_free", "accepted": ["Where is the computer room?"]}, {"id": "e2-9", "exercise": 2, "number": 9, "type": "text", "prompt": "Why would you like to a musician?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "Why would you like to be a musician?", "explanation": "Mẫu: would like <b>to be</b> + nghề nghiệp.", "topic": "school_free", "accepted": ["Why would you like to be a musician?"]}, {"id": "e2-10", "exercise": 2, "number": 10, "type": "text", "prompt": "What does she like doing at her free time?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "What does she like doing in her free time?", "explanation": "Cụm đúng: <b>in her free time</b>.", "topic": "school_free", "accepted": ["What does she like doing in her free time?"]}, {"id": "e2-11", "exercise": 2, "number": 11, "type": "text", "prompt": "He’s from Vietnamese.<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "He’s from Vietnam.", "explanation": "Sau <b>from</b> dùng tên quốc gia: Vietnam.", "topic": "personal", "accepted": ["He’s from Vietnam."]}, {"id": "e2-12", "exercise": 2, "number": 12, "type": "text", "prompt": "Where were they go last week?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "Where did they go last week?", "explanation": "Động từ thường ở Past Simple → <b>did + V-inf</b>.", "topic": "past", "accepted": ["Where did they go last week?"]}, {"id": "e2-13", "exercise": 2, "number": 13, "type": "text", "prompt": "Did you take a boat trip? – Yes, I didn’t.<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "Did you take a boat trip? – Yes, I did.", "explanation": "Câu hỏi Did → câu trả lời khẳng định <b>Yes, I did</b>.", "topic": "past", "accepted": ["Did you take a boat trip? – Yes, I did."]}, {"id": "e2-14", "exercise": 2, "number": 14, "type": "text", "prompt": "Where will you do on Children’s Day?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "What will you do on Children’s Day?", "explanation": "Hỏi hoạt động → <b>What</b>, không phải Where.", "topic": "future_health", "accepted": ["What will you do on Children’s Day?"]}, {"id": "e2-15", "exercise": 2, "number": 15, "type": "text", "prompt": "What’s food will you have at the party?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "What food will you have at the party?", "explanation": "Không dùng What’s trước danh từ food trong cấu trúc này.", "topic": "future_health", "accepted": ["What food will you have at the party?"]}, {"id": "e2-16", "exercise": 2, "number": 16, "type": "text", "prompt": "Where does he stay healthy? – He goes jogging.<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "How does he stay healthy? – He goes jogging.", "explanation": "Hỏi cách giữ khỏe → <b>How</b>.", "topic": "future_health", "accepted": ["How does he stay healthy? – He goes jogging."]}, {"id": "e2-17", "exercise": 2, "number": 17, "type": "text", "prompt": "How often she do judo?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "How often does she do judo?", "explanation": "she ở Present Simple → <b>does + S + V-inf</b>.", "topic": "future_health", "accepted": ["How often does she do judo?"]}, {"id": "e2-18", "exercise": 2, "number": 18, "type": "text", "prompt": "What the matter with you?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "What’s the matter with you?", "explanation": "Mẫu cố định: <b>What’s the matter?</b>", "topic": "future_health", "accepted": ["What’s the matter with you?"]}, {"id": "e2-19", "exercise": 2, "number": 19, "type": "text", "prompt": "How’s the weather like in Ha Noi in winter?<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "How’s the weather in Ha Noi in winter?", "explanation": "Theo đúng mẫu của bài: <b>How’s the weather in ...?</b>", "topic": "future_health", "accepted": ["How’s the weather in Ha Noi in winter?"]}, {"id": "e2-20", "exercise": 2, "number": 20, "type": "text", "prompt": "You should going to the doctor.<br><span class='subline'>Tìm lỗi và viết lại câu đúng.</span>", "answer": "You should go to the doctor.", "explanation": "Sau should dùng V nguyên thể → <b>go</b>.", "topic": "future_health", "accepted": ["You should go to the doctor."]}, {"id": "e3-1", "exercise": 3, "number": 1, "type": "text", "prompt": "and / brother. / little / downtown / parents / with / live / my / my / I<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "I live downtown with my parents and my little brother.", "explanation": "Sắp xếp: S + V + nơi chốn + with + người.", "topic": "personal", "accepted": ["I live downtown with my parents and my little brother."]}, {"id": "e3-2", "exercise": 3, "number": 2, "type": "text", "prompt": "I / my / the / free / time, / In / Internet. / like / surfing<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "In my free time, I like surfing the Internet.", "explanation": "Cụm mở đầu: <b>In my free time</b>; like + V-ing.", "topic": "school_free", "accepted": ["In my free time, I like surfing the Internet."]}, {"id": "e3-3", "exercise": 3, "number": 3, "type": "text", "prompt": "were / yesterday. / We / the / centre / at / sports<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "We were at the sports centre yesterday.", "explanation": "Past be: We were + place + time.", "topic": "past", "accepted": ["We were at the sports centre yesterday."]}, {"id": "e3-4", "exercise": 3, "number": 4, "type": "text", "prompt": "Turn / pass / after / right / library. / you / the<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "Turn right after you pass the library.", "explanation": "Mẫu chỉ đường: Turn right after ...", "topic": "school_free", "accepted": ["Turn right after you pass the library."]}, {"id": "e3-5", "exercise": 3, "number": 5, "type": "text", "prompt": "school. / always / does / her / She / after / homework<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "She always does her homework after school.", "explanation": "always đứng trước động từ chính does.", "topic": "school_free", "accepted": ["She always does her homework after school."]}, {"id": "e3-6", "exercise": 3, "number": 6, "type": "text", "prompt": "I’d / be / like / to / write / stories. / I’d / because / like / writer / a / to<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "I’d like to be a writer because I’d like to write stories.", "explanation": "Mẫu nghề tương lai + lý do: I’d like to be ... because ...", "topic": "school_free", "accepted": ["I’d like to be a writer because I’d like to write stories."]}, {"id": "e3-7", "exercise": 3, "number": 7, "type": "text", "prompt": "We / posters / have / the / on / colourful / walls.<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "We have colourful posters on the walls.", "explanation": "have + object + place.", "topic": "school_free", "accepted": ["We have colourful posters on the walls."]}, {"id": "e3-8", "exercise": 3, "number": 8, "type": "text", "prompt": "are / your / there / in / area? / How / many / seasons<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "How many seasons are there in your area?", "explanation": "How many + plural noun + are there ...?", "topic": "future_health", "accepted": ["How many seasons are there in your area?"]}, {"id": "e3-9", "exercise": 3, "number": 9, "type": "text", "prompt": "Did / they / picnic / a / in / last / park / the / have / Sunday?<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "Did they have a picnic in the park last Sunday?", "explanation": "Past question: Did + S + V-inf ...?", "topic": "past", "accepted": ["Did they have a picnic in the park last Sunday?"]}, {"id": "e3-10", "exercise": 3, "number": 10, "type": "text", "prompt": "music / room, / me / please? / the / tell / the / to / way / Could / you<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "Could you tell me the way to the music room, please?", "explanation": "Mẫu hỏi đường lịch sự.", "topic": "school_free", "accepted": ["Could you tell me the way to the music room, please?"]}, {"id": "e3-11", "exercise": 3, "number": 11, "type": "text", "prompt": "museum? / visit / want / Do / to / you / the<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "Do you want to visit the museum?", "explanation": "Do + S + want to + V ...?", "topic": "travel", "accepted": ["Do you want to visit the museum?"]}, {"id": "e3-12", "exercise": 3, "number": 12, "type": "text", "prompt": "This / a / match / will / stadium. / the / we / weekend, / football / at / watch<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "This weekend, we will watch a football match at the stadium.", "explanation": "Time + S + will + V + object + place.", "topic": "future_health", "accepted": ["This weekend, we will watch a football match at the stadium."]}, {"id": "e3-13", "exercise": 3, "number": 13, "type": "text", "prompt": "Hoi An? / far / from / to / Da Nang / it / is / How<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "How far is it from Da Nang to Hoi An?", "explanation": "Mẫu hỏi khoảng cách: <b>How far is it from A to B?</b>", "topic": "travel", "accepted": ["How far is it from Da Nang to Hoi An?"]}, {"id": "e3-14", "exercise": 3, "number": 14, "type": "text", "prompt": "His / playing / school / activity / is / favourite / hide-and-seek.<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "His favourite school activity is playing hide-and-seek.", "explanation": "Possessive + favourite school activity + be + V-ing.", "topic": "school_free", "accepted": ["His favourite school activity is playing hide-and-seek."]}, {"id": "e3-15", "exercise": 3, "number": 15, "type": "text", "prompt": "think / like / reading / it’s / interesting. / books / because / I<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "I like reading books because I think it’s interesting.", "explanation": "like + V-ing + because + opinion.", "topic": "school_free", "accepted": ["I like reading books because I think it’s interesting."]}, {"id": "e3-16", "exercise": 3, "number": 16, "type": "text", "prompt": "and / the / pictures / beautiful / decorate / house / at / flowers / with / Tet. / I’ll<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "I’ll decorate the house with beautiful flowers and pictures at Tet.", "explanation": "will + V + object + with ... + at Tet.", "topic": "future_health", "accepted": ["I’ll decorate the house with beautiful flowers and pictures at Tet."]}, {"id": "e3-17", "exercise": 3, "number": 17, "type": "text", "prompt": "your / healthy? / does / stay / How / grandmother<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "How does your grandmother stay healthy?", "explanation": "How + does + S + V-inf ...?", "topic": "future_health", "accepted": ["How does your grandmother stay healthy?"]}, {"id": "e3-18", "exercise": 3, "number": 18, "type": "text", "prompt": "Sue / shouldn’t / has / eat / she / ice-cream. / sore throat, / so / a<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "Sue has a sore throat, so she shouldn’t eat ice-cream.", "explanation": "health problem + so + should/shouldn’t advice.", "topic": "future_health", "accepted": ["Sue has a sore throat, so she shouldn’t eat ice-cream."]}, {"id": "e3-19", "exercise": 3, "number": 19, "type": "text", "prompt": "in / The / castle. / a / beautiful / is / princess / a / about / huge / story<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "The story is about a beautiful princess in a huge castle.", "explanation": "The story is about + character + place.", "topic": "future_health", "accepted": ["The story is about a beautiful princess in a huge castle."]}, {"id": "e3-20", "exercise": 3, "number": 20, "type": "text", "prompt": "Why / visit / to / Phuong / Pagoda? / does / Thien Mu / want<br><span class='subline'>Sắp xếp thành câu đúng.</span>", "answer": "Why does Phuong want to visit Thien Mu Pagoda?", "explanation": "Why + does + S + want to + V ...?", "topic": "travel", "accepted": ["Why does Phuong want to visit Thien Mu Pagoda?"]}];
+const QUIZ = [{"id": "q1", "topic": "personal", "prompt": "Can you tell me about ___?", "options": ["yourself", "you", "yours", "your"], "answer": "yourself", "explanation": "Mẫu: Can you tell me about yourself?"}, {"id": "q2", "topic": "personal", "prompt": "My name ___ Linh.", "options": ["is", "are", "am", "be"], "answer": "is", "explanation": "My name is ..."}, {"id": "q3", "topic": "personal", "prompt": "I ___ in class 5A.", "options": ["am", "is", "are", "be"], "answer": "am", "explanation": "I am in class ..."}, {"id": "q4", "topic": "personal", "prompt": "My birthday is ___ April.", "options": ["in", "on", "at", "from"], "answer": "in", "explanation": "Tháng → in April."}, {"id": "q5", "topic": "personal", "prompt": "What’s your favourite ___?", "options": ["sport", "sporting", "sports is", "play"], "answer": "sport", "explanation": "Mẫu hỏi sở thích."}, {"id": "q6", "topic": "personal", "prompt": "Football ___ my favourite sport.", "options": ["is", "are", "am", "be"], "answer": "is", "explanation": "Football is ..."}, {"id": "q7", "topic": "personal", "prompt": "Do you live in this building? – Yes, I ___.", "options": ["do", "am", "did", "can"], "answer": "do", "explanation": "Do ↔ do."}, {"id": "q8", "topic": "personal", "prompt": "What’s your ___? – It’s 25 Tran Phu Street.", "options": ["address", "nationality", "character", "weekend"], "answer": "address", "explanation": "Hỏi địa chỉ."}, {"id": "q9", "topic": "personal", "prompt": "Where’s he from? – He’s ___ Japan.", "options": ["from", "in", "at", "of"], "answer": "from", "explanation": "be from + country."}, {"id": "q10", "topic": "personal", "prompt": "What nationality is she? – She’s ___.", "options": ["Vietnamese", "Vietnam", "Viet Nam country", "from Vietnam"], "answer": "Vietnamese", "explanation": "Cần từ chỉ quốc tịch."}, {"id": "q11", "topic": "personal", "prompt": "What’s she like? – She’s ___.", "options": ["friendly", "Japan", "at home", "a doctor"], "answer": "friendly", "explanation": "Hỏi tính cách."}, {"id": "q12", "topic": "personal", "prompt": "Which question asks about personality?", "options": ["What’s he like?", "Where is he from?", "What does he like?", "How old is he?"], "answer": "What’s he like?", "explanation": "What’s ... like? = tính cách/đặc điểm."}, {"id": "q13", "topic": "personal", "prompt": "Which answer fits 'Where are you from?'", "options": ["I’m from Hanoi.", "I’m friendly.", "I like football.", "I’m a pupil."], "answer": "I’m from Hanoi.", "explanation": "Hỏi quê quán."}, {"id": "q14", "topic": "personal", "prompt": "Which answer fits 'What’s your favourite food?'", "options": ["Pho is my favourite.", "I’m from Vietnam.", "It’s 10 kilometres.", "I’m fine."], "answer": "Pho is my favourite.", "explanation": "Hỏi món ăn yêu thích."}, {"id": "q15", "topic": "personal", "prompt": "Which phrase asks for an address?", "options": ["What’s your address?", "Where are you from?", "What’s she like?", "What do you do?"], "answer": "What’s your address?", "explanation": "Đúng mẫu."}, {"id": "q16", "topic": "personal", "prompt": "She’s ___ and funny.", "options": ["friendly", "Japan", "from", "address"], "answer": "friendly", "explanation": "Tính từ chỉ tính cách."}, {"id": "q17", "topic": "personal", "prompt": "I live ___ 30 Tran Hung Dao Street.", "options": ["at", "in", "on", "from"], "answer": "at", "explanation": "Địa chỉ cụ thể → at."}, {"id": "q18", "topic": "personal", "prompt": "My birthday is ___ the 5th of May.", "options": ["on", "in", "at", "from"], "answer": "on", "explanation": "Ngày cụ thể → on."}, {"id": "q19", "topic": "personal", "prompt": "Which word means 'quốc tịch'?", "options": ["nationality", "address", "personality", "favourite"], "answer": "nationality", "explanation": "nationality = quốc tịch."}, {"id": "q20", "topic": "personal", "prompt": "Which is the best self-introduction?", "options": ["My name’s Nam. I’m in class 5A.", "Where is Nam?", "What nationality is she?", "Turn right."], "answer": "My name’s Nam. I’m in class 5A.", "explanation": "Đúng kiểu giới thiệu bản thân."}, {"id": "q21", "topic": "school_free", "prompt": "What do you like ___ in your free time?", "options": ["doing", "do", "did", "does"], "answer": "doing", "explanation": "like + V-ing."}, {"id": "q22", "topic": "school_free", "prompt": "I like ___ the Internet.", "options": ["surfing", "surf", "surfed", "surfs"], "answer": "surfing", "explanation": "like + V-ing."}, {"id": "q23", "topic": "school_free", "prompt": "What do you do ___ the weekend?", "options": ["at", "in", "on the", "from"], "answer": "at", "explanation": "at the weekend."}, {"id": "q24", "topic": "school_free", "prompt": "What would you like to be ___ the future?", "options": ["in", "on", "at", "from"], "answer": "in", "explanation": "in the future."}, {"id": "q25", "topic": "school_free", "prompt": "I’d like to be ___ writer.", "options": ["a", "an", "the", "some"], "answer": "a", "explanation": "a writer."}, {"id": "q26", "topic": "school_free", "prompt": "Why would you like to be a writer? – Because I’d like to ___ stories.", "options": ["write", "writing", "wrote", "writes"], "answer": "write", "explanation": "would like to + V."}, {"id": "q27", "topic": "school_free", "prompt": "Where’s the music room? – It’s ___ the third floor.", "options": ["on", "in", "at", "to"], "answer": "on", "explanation": "on the third floor."}, {"id": "q28", "topic": "school_free", "prompt": "Could you tell me the ___ to the library?", "options": ["way", "street", "road only", "go"], "answer": "way", "explanation": "tell me the way to ..."}, {"id": "q29", "topic": "school_free", "prompt": "Go upstairs and turn ___.", "options": ["left", "lefting", "to left", "the lefting"], "answer": "left", "explanation": "Turn left."}, {"id": "q30", "topic": "school_free", "prompt": "What school activity does she like? – She likes ___ sports.", "options": ["playing", "play", "plays", "played"], "answer": "playing", "explanation": "likes + V-ing."}, {"id": "q31", "topic": "school_free", "prompt": "Why does he like playing games? – Because he thinks it’s ___.", "options": ["fun", "a way", "Japanese", "far"], "answer": "fun", "explanation": "Lý do/ý kiến."}, {"id": "q32", "topic": "school_free", "prompt": "Where are the pictures? – They’re ___ the table.", "options": ["above", "whose", "favourite", "from"], "answer": "above", "explanation": "Giới từ vị trí."}, {"id": "q33", "topic": "school_free", "prompt": "Whose pen is this? – It’s ___.", "options": ["Mai’s", "Mai", "Mails", "Mai is"], "answer": "Mai’s", "explanation": "Sở hữu."}, {"id": "q34", "topic": "school_free", "prompt": "Is this your book? – Yes, ___.", "options": ["it is", "I do", "it does", "this is"], "answer": "it is", "explanation": "Is this...? → Yes, it is."}, {"id": "q35", "topic": "school_free", "prompt": "Which question asks for a school activity?", "options": ["What school activity does he like?", "Where is he from?", "How far is it?", "What’s the matter?"], "answer": "What school activity does he like?", "explanation": "Đúng mẫu."}, {"id": "q36", "topic": "school_free", "prompt": "Which sentence asks the way politely?", "options": ["Could you tell me the way to the computer room, please?", "Where you go?", "How school?", "Turn what?"], "answer": "Could you tell me the way to the computer room, please?", "explanation": "Mẫu hỏi đường lịch sự."}, {"id": "q37", "topic": "school_free", "prompt": "I often ___ my bike at the weekend.", "options": ["ride", "rides", "riding", "rode"], "answer": "ride", "explanation": "I + V nguyên thể."}, {"id": "q38", "topic": "school_free", "prompt": "She ___ reading and dancing.", "options": ["likes", "like", "liking", "liked every"], "answer": "likes", "explanation": "She + likes."}, {"id": "q39", "topic": "school_free", "prompt": "His favourite school activity is ___ hide-and-seek.", "options": ["playing", "play", "played", "plays"], "answer": "playing", "explanation": "be + playing ..."}, {"id": "q40", "topic": "school_free", "prompt": "We have colourful posters ___ the walls.", "options": ["on", "in", "at", "from"], "answer": "on", "explanation": "on the walls."}, {"id": "q41", "topic": "past", "prompt": "Were you at the cinema yesterday? – Yes, we ___.", "options": ["were", "did", "are", "was"], "answer": "were", "explanation": "Were ↔ were."}, {"id": "q42", "topic": "past", "prompt": "Were you at the cinema yesterday? – No, we ___.", "options": ["weren’t", "didn’t", "aren’t", "wasn’t"], "answer": "weren’t", "explanation": "Were ↔ weren’t."}, {"id": "q43", "topic": "past", "prompt": "Where ___ you yesterday?", "options": ["were", "did", "are", "was"], "answer": "were", "explanation": "Where were you...?"}, {"id": "q44", "topic": "past", "prompt": "We ___ at the sports centre yesterday.", "options": ["were", "are", "did", "was"], "answer": "were", "explanation": "We were."}, {"id": "q45", "topic": "past", "prompt": "What ___ you do yesterday?", "options": ["did", "were", "do", "are"], "answer": "did", "explanation": "Past Simple question."}, {"id": "q46", "topic": "past", "prompt": "We ___ chess yesterday.", "options": ["played", "play", "plays", "playing"], "answer": "played", "explanation": "Past Simple."}, {"id": "q47", "topic": "past", "prompt": "Did they go to Ba Na Hills? – Yes, they ___.", "options": ["did", "were", "do", "are"], "answer": "did", "explanation": "Did ↔ did."}, {"id": "q48", "topic": "past", "prompt": "Where did they ___ last weekend?", "options": ["go", "went", "going", "goes"], "answer": "go", "explanation": "Sau did → V-inf."}, {"id": "q49", "topic": "past", "prompt": "They ___ to Sa Pa last weekend.", "options": ["went", "go", "goed", "going"], "answer": "went", "explanation": "go → went."}, {"id": "q50", "topic": "past", "prompt": "What did they do there? – They ___ trees.", "options": ["planted", "plant", "plants", "planting"], "answer": "planted", "explanation": "Past affirmative."}, {"id": "q51", "topic": "past", "prompt": "Did you swim yesterday? – Yes, I ___.", "options": ["did", "was", "do", "can"], "answer": "did", "explanation": "Did ↔ did."}, {"id": "q52", "topic": "past", "prompt": "I ___ with my father yesterday.", "options": ["swam", "swim", "swimmed", "swimming"], "answer": "swam", "explanation": "swim → swam."}, {"id": "q53", "topic": "past", "prompt": "What did your family ___ in Ha Long?", "options": ["do", "did", "doing", "does"], "answer": "do", "explanation": "Sau did → do."}, {"id": "q54", "topic": "past", "prompt": "We ___ a boat trip around the bay.", "options": ["took", "take", "taken", "taking"], "answer": "took", "explanation": "take → took."}, {"id": "q55", "topic": "past", "prompt": "Which is correct?", "options": ["Did they have a picnic?", "Did they had a picnic?", "Were they have a picnic?", "Do they had a picnic?"], "answer": "Did they have a picnic?", "explanation": "Did + V-inf."}, {"id": "q56", "topic": "past", "prompt": "Which is correct?", "options": ["Where did they go?", "Where did they went?", "Where were they go?", "Where they did go?"], "answer": "Where did they go?", "explanation": "Past question."}, {"id": "q57", "topic": "past", "prompt": "Last Sunday, we ___ at home.", "options": ["were", "are", "did", "was"], "answer": "were", "explanation": "we were."}, {"id": "q58", "topic": "past", "prompt": "Yesterday, she ___ seafood.", "options": ["ate", "eat", "eated", "eating"], "answer": "ate", "explanation": "eat → ate."}, {"id": "q59", "topic": "past", "prompt": "Did you take a boat trip? – No, I ___.", "options": ["didn’t", "wasn’t", "don’t", "aren’t"], "answer": "didn’t", "explanation": "Did → didn’t."}, {"id": "q60", "topic": "past", "prompt": "Which time phrase signals the past?", "options": ["last weekend", "next weekend", "this summer", "tomorrow"], "answer": "last weekend", "explanation": "last weekend = quá khứ."}, {"id": "q61", "topic": "future_health", "prompt": "Will you make banh chung for Tet? – Yes, I ___.", "options": ["will", "do", "am", "did"], "answer": "will", "explanation": "Will ↔ will."}, {"id": "q62", "topic": "future_health", "prompt": "Where will you go ___ Tet?", "options": ["at", "on", "in", "from"], "answer": "at", "explanation": "at Tet."}, {"id": "q63", "topic": "future_health", "prompt": "I’ll ___ to my grandparents’ house.", "options": ["go", "went", "going", "goes"], "answer": "go", "explanation": "will + V-inf."}, {"id": "q64", "topic": "future_health", "prompt": "What will you do ___ Children’s Day?", "options": ["on", "in", "at", "from"], "answer": "on", "explanation": "on Children’s Day."}, {"id": "q65", "topic": "future_health", "prompt": "We’ll sing, dance and ___ a party.", "options": ["have", "has", "had", "having"], "answer": "have", "explanation": "will + V-inf."}, {"id": "q66", "topic": "future_health", "prompt": "What food will you ___ at the party?", "options": ["have", "having", "had", "has"], "answer": "have", "explanation": "will + V-inf."}, {"id": "q67", "topic": "future_health", "prompt": "How does he stay ___?", "options": ["healthy", "health", "healthily only", "healthing"], "answer": "healthy", "explanation": "stay + adjective."}, {"id": "q68", "topic": "future_health", "prompt": "He does morning exercise every ___.", "options": ["day", "days", "daily is", "morning exercise"], "answer": "day", "explanation": "every day."}, {"id": "q69", "topic": "future_health", "prompt": "How often does he play badminton? – ___ a week.", "options": ["Twice", "Two time", "Second", "Double"], "answer": "Twice", "explanation": "Twice a week."}, {"id": "q70", "topic": "future_health", "prompt": "What’s the matter? – I have a ___.", "options": ["toothache", "healthy", "winter", "character"], "answer": "toothache", "explanation": "Health problem."}, {"id": "q71", "topic": "future_health", "prompt": "You should ___ to the dentist.", "options": ["go", "going", "went", "goes"], "answer": "go", "explanation": "should + V-inf."}, {"id": "q72", "topic": "future_health", "prompt": "How’s the weather in Hanoi in summer? – It’s very ___.", "options": ["hot", "coat", "winter", "Japanese"], "answer": "hot", "explanation": "Weather adjective."}, {"id": "q73", "topic": "future_health", "prompt": "What do you usually wear in winter? – I wear a ___.", "options": ["jumper", "toothache", "castle", "bus"], "answer": "jumper", "explanation": "Clothing."}, {"id": "q74", "topic": "future_health", "prompt": "Who are the main ___ in the story?", "options": ["characters", "addresses", "nationalities", "distances"], "answer": "characters", "explanation": "main characters."}, {"id": "q75", "topic": "future_health", "prompt": "How did she cook? – She cooked ___.", "options": ["well", "good", "friendly", "Japanese"], "answer": "well", "explanation": "Adverb describes cook."}, {"id": "q76", "topic": "future_health", "prompt": "The story is about a beautiful princess in a huge ___.", "options": ["castle", "address", "sports centre", "toothache"], "answer": "castle", "explanation": "Story place."}, {"id": "q77", "topic": "future_health", "prompt": "Sue has a sore throat, so she shouldn’t ___ ice-cream.", "options": ["eat", "eating", "ate", "eats"], "answer": "eat", "explanation": "shouldn’t + V-inf."}, {"id": "q78", "topic": "future_health", "prompt": "How many seasons are there ___ your area?", "options": ["in", "on", "at", "from"], "answer": "in", "explanation": "in your area."}, {"id": "q79", "topic": "future_health", "prompt": "Which question asks for health advice?", "options": ["What’s the matter?", "Where are you from?", "How far is it?", "Whose pen is this?"], "answer": "What’s the matter?", "explanation": "Health problem structure."}, {"id": "q80", "topic": "future_health", "prompt": "Which structure asks frequency?", "options": ["How often does he play badminton?", "How far is it?", "What nationality is he?", "Where will you go?"], "answer": "How often does he play badminton?", "explanation": "How often = tần suất."}, {"id": "q81", "topic": "travel", "prompt": "Where do you want to ___?", "options": ["visit", "visiting", "visited", "visits"], "answer": "visit", "explanation": "want to + V."}, {"id": "q82", "topic": "travel", "prompt": "I want to visit ___ Kiem Lake.", "options": ["Hoan", "How", "Who", "Whose"], "answer": "Hoan", "explanation": "Hoan Kiem Lake."}, {"id": "q83", "topic": "travel", "prompt": "How can I get ___ Hoan Kiem Lake?", "options": ["to", "at", "from", "of"], "answer": "to", "explanation": "get to + place."}, {"id": "q84", "topic": "travel", "prompt": "You can get there ___ bus.", "options": ["by", "on", "in", "with"], "answer": "by", "explanation": "by bus."}, {"id": "q85", "topic": "travel", "prompt": "What do you think ___ Hoi An Old Town?", "options": ["of", "at", "on", "from"], "answer": "of", "explanation": "think of."}, {"id": "q86", "topic": "travel", "prompt": "I think it’s ___.", "options": ["exciting", "distance", "kilometres", "from"], "answer": "exciting", "explanation": "Opinion adjective."}, {"id": "q87", "topic": "travel", "prompt": "How far is it ___ our school to Ho Guom Walking Streets?", "options": ["from", "at", "of", "on"], "answer": "from", "explanation": "from A to B."}, {"id": "q88", "topic": "travel", "prompt": "It’s about two ___.", "options": ["kilometres", "kilometre is", "distance", "far"], "answer": "kilometres", "explanation": "Distance measure."}, {"id": "q89", "topic": "travel", "prompt": "What is the ___ between A and B?", "options": ["distance", "favourite", "nationality", "address"], "answer": "distance", "explanation": "distance between."}, {"id": "q90", "topic": "travel", "prompt": "Where are you going to visit this ___?", "options": ["summer", "yesterday", "last week", "ago"], "answer": "summer", "explanation": "Future plan."}, {"id": "q91", "topic": "travel", "prompt": "I’m going to ___ Ha Long Bay.", "options": ["visit", "visited", "visiting only", "visits"], "answer": "visit", "explanation": "be going to + V-inf."}, {"id": "q92", "topic": "travel", "prompt": "What are you going to ___ this summer?", "options": ["do", "did", "doing", "does"], "answer": "do", "explanation": "going to + V-inf."}, {"id": "q93", "topic": "travel", "prompt": "I’m going to visit an eco-___.", "options": ["farm", "nationality", "matter", "distance"], "answer": "farm", "explanation": "eco-farm."}, {"id": "q94", "topic": "travel", "prompt": "Which asks for an opinion?", "options": ["What do you think of Hoi An?", "How far is Hoi An?", "Where is Hoi An from?", "Whose Hoi An is it?"], "answer": "What do you think of Hoi An?", "explanation": "Opinion structure."}, {"id": "q95", "topic": "travel", "prompt": "Which asks for distance?", "options": ["How far is it from A to B?", "How often is A to B?", "How old is A to B?", "How much is A to B?"], "answer": "How far is it from A to B?", "explanation": "Distance."}, {"id": "q96", "topic": "travel", "prompt": "Which asks for transport?", "options": ["How can I get to the museum?", "What nationality is the museum?", "How old is the museum?", "What’s the matter with the museum?"], "answer": "How can I get to the museum?", "explanation": "Transport/directions."}, {"id": "q97", "topic": "travel", "prompt": "Could you tell me the way ___ the music room?", "options": ["to", "of", "at", "from"], "answer": "to", "explanation": "the way to."}, {"id": "q98", "topic": "travel", "prompt": "Turn right after you ___ the library.", "options": ["pass", "passes", "passed every", "passing is"], "answer": "pass", "explanation": "after you pass."}, {"id": "q99", "topic": "travel", "prompt": "Why does Phuong want to ___ Thien Mu Pagoda?", "options": ["visit", "visiting", "visited", "visits"], "answer": "visit", "explanation": "want to + V."}, {"id": "q100", "topic": "travel", "prompt": "How far is it from Da Nang ___ Hoi An?", "options": ["to", "at", "of", "in"], "answer": "to", "explanation": "from A to B."}];
+const STORE_KEY = "someCommonStructures15V1";
+
+let store = JSON.parse(localStorage.getItem(STORE_KEY) || '{"answers":{},"wrong":{},"quizIndex":0}');
+
+const topicName = {
+  personal:"Cá nhân – sở thích – quốc tịch",
+  school_free:"Thời gian rảnh – trường học – nghề nghiệp",
+  past:"Quá khứ – chuyến đi",
+  future_health:"Tương lai – sức khỏe – thời tiết – truyện",
+  travel:"Du lịch – khoảng cách – kế hoạch"
+};
+
+const exTitles = {
+  1:"Circle the correct answers",
+  2:"Find one mistake in each sentence",
+  3:"Reorder the words to make correct sentences"
+};
+
+function normalize(v){
+  return String(v||"").trim().toLowerCase()
+    .replace(/[’‘`]/g,"'")
+    .replace(/\s+/g," ")
+    .replace(/\s+([.,!?])/g,"$1");
+}
+
+function getQuestion(id){
+  return ORIGINAL.find(q=>q.id===id) || QUIZ.find(q=>q.id===id);
+}
+
+function save(){
+  localStorage.setItem(STORE_KEY,JSON.stringify(store));
+  updateStats(); renderWeakSummary(); renderErrors();
+}
+
+function updateStats(){
+  const vals=Object.values(store.answers||{});
+  const correct=vals.filter(x=>x.correct).length;
+  const weak=new Set(Object.keys(store.wrong||{}).map(id=>getQuestion(id)?.topic).filter(Boolean));
+
+  doneStat.textContent=vals.length;
+  correctStat.textContent=correct;
+  accStat.textContent=vals.length ? Math.round(correct/vals.length*100)+"%" : "0%";
+  weakStat.textContent=weak.size;
+}
+
+function feedback(id,kind,msg){
+  const e=document.getElementById(id);
+  e.className="feedback "+kind;
+  e.innerHTML=msg;
+}
+
+function mark(q,val,ok){
+  store.answers[q.id]={value:val,correct:ok,topic:q.topic};
+  if(ok) delete store.wrong[q.id]; else store.wrong[q.id]=true;
+  save();
+}
+
+function hintFor(q){
+  if(q.topic==="personal") return "Xác định đang hỏi tên, địa chỉ, sở thích, quê quán, quốc tịch hay tính cách.";
+  if(q.topic==="school_free") return "Nhìn mẫu: like + V-ing; would like to + V; Where’s...?; tell me the way to...";
+  if(q.topic==="past") return "Quá khứ: was/were hoặc did + V nguyên thể; câu khẳng định dùng V2.";
+  if(q.topic==="future_health") return "Tìm từ khóa: will, How often, What’s the matter, weather, story...";
+  if(q.topic==="travel") return "Du lịch: want to visit, How can I get to...?, What do you think of...?, How far...?";
+  return "Xác định loại thông tin mà câu hỏi cần trước.";
+}
+
+/* Views */
+function showView(name){
+  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+  document.getElementById("view-"+name).classList.add("active");
+  document.querySelectorAll(".navBtn").forEach(b=>b.classList.toggle("active",b.dataset.view===name));
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll(".navBtn").forEach(b=>b.onclick=()=>showView(b.dataset.view));
+
+/* Original exercises */
+const byEx={};
+ORIGINAL.forEach(q=>(byEx[q.exercise]??=[]).push(q));
+
+function originalCard(q){
+  let input="";
+  if(q.type==="choice"){
+    input='<div class="options">'+q.options.map((o,i)=>
+      `<div class="option" data-q="${q.id}" data-v="${o}" onclick="pickOriginal('${q.id}',this)">
+        <b>${String.fromCharCode(65+i)}.</b> ${o}
+      </div>`).join("")+'</div>';
+  }else{
+    input=`<input class="textInput" id="in-${q.id}" data-id="${q.id}" placeholder="Nhập đáp án...">`;
+  }
+
+  const note=q.source_note ? `<div class="sourceWarn">⚠ ${q.source_note}</div>` : "";
+
+  return `<div class="qCard"><div class="qRow">
+    <div class="num">${q.number}</div>
+    <div class="qMain">
+      <div class="prompt">${q.prompt}</div>${note}${input}
+      <div class="actions">
+        <button class="btn primary" onclick="checkOriginal('${q.id}')">Kiểm tra</button>
+        <button class="btn hintBtn" onclick="showHint('${q.id}')">Gợi ý</button>
+      </div>
+      <div class="feedback" id="fb-${q.id}"></div>
+    </div>
+  </div></div>`;
+}
+
+function buildExercise(ex){
+  document.getElementById("view-ex"+ex).innerHTML=`
+  <div class="section">
+    <div class="secHead"><h2>Exercise ${ex}</h2><p>${exTitles[ex]}</p></div>
+    <div class="secBody">
+      <div class="notice">Mục này chỉ hiển thị Exercise ${ex} trong tài liệu.</div>
+      <div class="exerciseList" style="margin-top:14px">${byEx[ex].map(originalCard).join("")}</div>
+      <div class="bigActions">
+        <button class="btn primary" onclick="checkWhole(${ex})">Kiểm tra toàn bài</button>
+        <span id="score-${ex}"></span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function pickOriginal(id,el){
+  document.querySelectorAll(`[data-q="${id}"]`).forEach(x=>x.classList.remove("sel"));
+  el.classList.add("sel");
+}
+
+function originalValue(q){
+  if(q.type==="choice"){
+    const e=document.querySelector(`.option.sel[data-q="${q.id}"]`);
+    return e ? e.dataset.v : "";
+  }
+  return document.getElementById("in-"+q.id).value;
+}
+
+function acceptedCorrect(q,v){
+  if(q.accepted && q.accepted.length) return q.accepted.some(a=>normalize(a)===normalize(v));
+  return normalize(q.answer)===normalize(v);
+}
+
+function checkOriginal(id){
+  const q=getQuestion(id), v=originalValue(q);
+  if(!normalize(v)){ feedback("fb-"+id,"hint","Hãy nhập hoặc chọn đáp án trước."); return false; }
+
+  const ok=acceptedCorrect(q,v);
+  mark(q,v,ok);
+  if(ok) feedback("fb-"+id,"ok",`✅ <b>Đúng!</b><br>${q.explanation}`);
+  else feedback("fb-"+id,"bad",`❌ <b>Chưa đúng.</b><br>Đáp án mẫu: <b>${q.answer}</b><br>${q.explanation}`);
+  return ok;
+}
+
+function showHint(id){
+  const q=getQuestion(id);
+  feedback("fb-"+id,"hint","💡 "+hintFor(q));
+}
+
+function checkWhole(ex){
+  let done=0,correct=0;
+  byEx[ex].forEach(q=>{
+    const v=originalValue(q);
+    if(normalize(v)){ done++; if(checkOriginal(q.id)) correct++; }
+  });
+  document.getElementById("score-"+ex).innerHTML=`<b>${correct}/${byEx[ex].length}</b> đúng · đã làm ${done}/${byEx[ex].length}`;
+}
+
+/* Quiz */
+let qi=Number(store.quizIndex||0), qSel="", qChecked=false;
+
+function renderQuiz(){
+  if(qi<0 || qi>=QUIZ.length) qi=0;
+  const q=QUIZ[qi]; qSel=""; qChecked=false;
+  quizCounter.textContent=`Câu ${qi+1} / 100`;
+  quizTopic.textContent=topicName[q.topic]||q.topic;
+  quizBar.style.width=(qi/100*100)+"%";
+  quizPrompt.innerHTML=q.prompt;
+  quizOptions.innerHTML=q.options.map((o,i)=>
+    `<div class="option" data-v="${o}" onclick="pickQuiz(this)">
+      <b>${String.fromCharCode(65+i)}.</b> ${o}
+    </div>`).join("");
+  quizFeedback.className="feedback"; quizFeedback.innerHTML="";
+}
+
+function pickQuiz(el){
+  document.querySelectorAll("#quizOptions .option").forEach(x=>x.classList.remove("sel"));
+  el.classList.add("sel"); qSel=el.dataset.v;
+}
+
+function checkQuiz(){
+  const q=QUIZ[qi];
+  if(!qSel){ feedback("quizFeedback","hint","Hãy chọn một đáp án."); return; }
+  const ok=normalize(qSel)===normalize(q.answer);
+  mark(q,qSel,ok); qChecked=true;
+  if(ok) feedback("quizFeedback","ok",`✅ <b>Chính xác!</b><br>${q.explanation}`);
+  else feedback("quizFeedback","bad",`❌ <b>Chưa đúng.</b><br>Đáp án: <b>${q.answer}</b><br>${q.explanation}`);
+  quizBar.style.width=((qi+1)/100*100)+"%";
+}
+function nextQuiz(){ qi=(qi+1)%QUIZ.length; store.quizIndex=qi; save(); renderQuiz(); }
+
+quizCheck.onclick=checkQuiz;
+quizNext.onclick=nextQuiz;
+quizRestart.onclick=()=>{ qi=0; store.quizIndex=0; save(); renderQuiz(); };
+
+/* Weak practice */
+let weakSet=[],wi=0,wSel="",wChecked=false;
+
+function wrongTopics(){
+  const c={};
+  Object.keys(store.wrong||{}).forEach(id=>{
+    const q=getQuestion(id); if(q?.topic) c[q.topic]=(c[q.topic]||0)+1;
+  });
+  return c;
+}
+
+function renderWeakSummary(){
+  const c=wrongTopics(), ks=Object.keys(c);
+  if(!ks.length){ weakSummary.innerHTML="Chưa có dữ liệu lỗi sai. Hãy làm bài trước."; return; }
+  weakSummary.innerHTML="<b>Chủ đề cần luyện:</b><br>"+
+    ks.sort((a,b)=>c[b]-c[a]).map(k=>`<span class="weakChip">${topicName[k]||k} · ${c[k]} lỗi</span>`).join("");
+}
+
+function startWeakSet(){
+  const ks=Object.keys(wrongTopics());
+  if(!ks.length){ alert("Chưa có câu sai để xác định chủ đề yếu."); return; }
+  weakSet=QUIZ.filter(q=>ks.includes(q.topic)).sort(()=>Math.random()-.5).slice(0,20);
+  wi=0; weakQuiz.style.display="block"; renderWeak();
+}
+function renderWeak(){
+  const q=weakSet[wi]; wSel=""; wChecked=false;
+  weakCounter.textContent=`Câu ${wi+1} / ${weakSet.length}`;
+  weakTopic.textContent=topicName[q.topic]||q.topic;
+  weakBar.style.width=(wi/weakSet.length*100)+"%";
+  weakPrompt.innerHTML=q.prompt;
+  weakOptions.innerHTML=q.options.map((o,i)=>`<div class="option" data-v="${o}" onclick="pickWeak(this)">
+      <b>${String.fromCharCode(65+i)}.</b> ${o}</div>`).join("");
+  weakFeedback.className="feedback"; weakFeedback.innerHTML="";
+}
+function pickWeak(el){
+  document.querySelectorAll("#weakOptions .option").forEach(x=>x.classList.remove("sel"));
+  el.classList.add("sel"); wSel=el.dataset.v;
+}
+function checkWeak(){
+  const q=weakSet[wi];
+  if(!wSel){ feedback("weakFeedback","hint","Hãy chọn đáp án."); return; }
+  const ok=normalize(wSel)===normalize(q.answer);
+  mark(q,wSel,ok); wChecked=true;
+  if(ok) feedback("weakFeedback","ok",`✅ <b>Đúng!</b><br>${q.explanation}`);
+  else feedback("weakFeedback","bad",`❌ <b>Chưa đúng.</b><br>Đáp án: <b>${q.answer}</b><br>${q.explanation}`);
+}
+function nextWeak(){ if(!weakSet.length)return; wi=(wi+1)%weakSet.length; renderWeak(); }
+
+startWeak.onclick=startWeakSet; weakCheck.onclick=checkWeak; weakNext.onclick=nextWeak;
+
+/* Error notebook */
+function renderErrors(){
+  const ids=Object.keys(store.wrong||{});
+  if(!ids.length){ errorBook.innerHTML='<div class="notice">Chưa có câu sai nào.</div>'; return; }
+  errorBook.innerHTML=ids.map(id=>{
+    const q=getQuestion(id); if(!q)return "";
+    return `<div class="errorItem">
+      <b>${q.id.startsWith("q")?"Quiz":"Exercise "+q.exercise} · ${topicName[q.topic]||"Tổng hợp"}</b>
+      <div style="margin-top:6px">${q.prompt}</div>
+      <div style="margin-top:6px"><b>Đáp án đúng:</b> ${q.answer}</div>
+      <div>${q.explanation}</div>
+    </div>`;
+  }).join("");
+}
+
+/* Enter support */
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter") return;
+
+  if(e.target.classList.contains("textInput")){
+    e.preventDefault(); checkOriginal(e.target.dataset.id); return;
+  }
+
+  const active=document.querySelector(".view.active")?.id;
+  if(active==="view-quiz100"){ e.preventDefault(); qChecked ? nextQuiz() : checkQuiz(); }
+  if(active==="view-weak" && weakQuiz.style.display!=="none"){ e.preventDefault(); wChecked ? nextWeak() : checkWeak(); }
+});
+
+/* Reset */
+resetAll.onclick=()=>{
+  if(confirm("Xóa toàn bộ tiến độ và sổ lỗi?")){
+    localStorage.removeItem(STORE_KEY); location.reload();
+  }
+};
+
+/* Build */
+for(let i=1;i<=3;i++) buildExercise(i);
+updateStats(); renderWeakSummary(); renderErrors(); renderQuiz();
+</script>
+</body>
+</html>
