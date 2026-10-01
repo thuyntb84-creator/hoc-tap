@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IELTS Food Vocabulary Lab — Band 8.5+</title>
+<style>
+:root{
+  --bg:#f4f8f7; --card:#ffffff; --ink:#16324a; --muted:#637585;
+  --green:#0f8b7d; --green2:#dff4ef; --orange:#ef6c4d; --orange2:#ffe9e3;
+  --blue:#315b7d; --line:#d9e4e8; --good:#1b8f5a; --bad:#c84444;
+  --shadow:0 12px 30px rgba(24,52,72,.10);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#eef7f4 0,#f7f8f4 100%);color:var(--ink)}
+header{padding:28px 18px 18px;text-align:center}
+header h1{margin:0;font-size:clamp(28px,5vw,52px);letter-spacing:-1.3px}
+header h1 span{color:var(--green)}
+header p{margin:8px 0 0;color:var(--muted)}
+.wrap{max-width:1180px;margin:auto;padding:0 16px 50px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:var(--shadow)}
+.stat b{font-size:24px}.stat small{display:block;color:var(--muted);margin-top:4px}
+nav{display:flex;gap:8px;flex-wrap:wrap;position:sticky;top:0;z-index:5;background:rgba(244,248,247,.92);backdrop-filter:blur(12px);padding:12px 0}
+nav button,.btn{border:0;border-radius:999px;padding:11px 16px;font-weight:700;cursor:pointer;background:#e6eef2;color:var(--ink)}
+nav button.active,.btn.primary{background:var(--ink);color:white}
+.btn.green{background:var(--green);color:#fff}.btn.orange{background:var(--orange);color:#fff}
+.panel{display:none;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:var(--shadow)}
+.panel.active{display:block}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.cardbox{border:2px solid #dce7e9;border-radius:24px;min-height:330px;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;background:linear-gradient(145deg,#fff,#f8fbfa);cursor:pointer}
+.word{font-size:clamp(28px,5vw,48px);font-weight:900;color:var(--green)}
+.ipa{color:var(--muted);font-size:18px;margin-top:10px}.meaning{font-size:25px;font-weight:800;margin:14px 0}.example{font-size:18px;line-height:1.55}
+.pill{display:inline-block;background:var(--green2);color:#09695f;padding:6px 10px;border-radius:999px;font-weight:800;font-size:13px}
+.controls{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
+.q{font-size:24px;font-weight:900;margin:10px 0 18px}.options{display:grid;gap:10px}
+.option{padding:15px;border:2px solid var(--line);border-radius:15px;cursor:pointer;background:#fff;text-align:left;font-weight:700}
+.option:hover{border-color:#9eb8c0}.option.correct{border-color:var(--good);background:#ebf8f1}.option.wrong{border-color:var(--bad);background:#fff0f0}
+.feedback{margin-top:14px;padding:14px;border-radius:14px;background:#f5f8fa;line-height:1.55}
+input[type=text],textarea{width:100%;padding:14px;border:2px solid var(--line);border-radius:14px;font-size:17px;outline:none}
+input:focus,textarea:focus{border-color:var(--green)}
+.matchgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.matchcol{display:grid;gap:8px}.matchitem{padding:12px;border:2px solid var(--line);border-radius:12px;background:white;cursor:pointer}
+.matchitem.sel{border-color:var(--orange);background:var(--orange2)}
+.matchitem.done{opacity:.4;pointer-events:none}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}
+th{position:sticky;top:60px;background:#f2f7f6;z-index:2}
+.tag{display:inline-block;background:var(--orange2);color:#b54f36;padding:3px 8px;border-radius:999px;font-size:12px;font-weight:800}
+.progress{height:10px;background:#e7eef0;border-radius:999px;overflow:hidden}.progress>div{height:100%;background:linear-gradient(90deg,var(--green),#55bba8);width:0%}
+.speak-card{background:linear-gradient(145deg,#f9fffd,#eef8f4);border:1px solid #d9e9e4;border-radius:20px;padding:18px}
+.hidden{display:none!important}
+@media(max-width:780px){.stats{grid-template-columns:1fr 1fr}.grid2,.matchgrid{grid-template-columns:1fr}.panel{padding:16px}th:nth-child(3),td:nth-child(3){display:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="pill">IELTS SPEAKING • TOPIC: FOOD</div>
+  <h1>Food Vocabulary <span>Lab</span></h1>
+  <p>50 cụm từ Band 8.5+ • Flashcards • Quiz • Matching • Spelling • Speaking • Sổ từ sai</p>
+</header>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><b id="knownCount">0</b><small>Đã thuộc</small></div>
+    <div class="stat"><b id="wrongCount">0</b><small>Từ sai cần ôn</small></div>
+    <div class="stat"><b id="streak">0</b><small>Chuỗi đúng</small></div>
+    <div class="stat"><b id="accuracy">0%</b><small>Độ chính xác</small></div>
+  </div>
+
+  <nav id="tabs">
+    <button class="active" data-tab="flash">Flashcards</button>
+    <button data-tab="quiz">Quiz</button>
+    <button data-tab="spell">Spelling</button>
+    <button data-tab="match">Matching</button>
+    <button data-tab="speak">Speaking</button>
+    <button data-tab="weak">Từ sai</button>
+    <button data-tab="list">50 từ</button>
+  </nav>
+
+  <section id="flash" class="panel active">
+    <div class="progress"><div id="flashProg"></div></div>
+    <p id="flashPos" style="color:var(--muted);font-weight:700"></p>
+    <div id="flashCard" class="cardbox" title="Bấm để lật thẻ"></div>
+    <div class="controls">
+      <button class="btn" onclick="prevFlash()">← Trước</button>
+      <button class="btn orange" onclick="markFlash(false)">Chưa nhớ</button>
+      <button class="btn green" onclick="markFlash(true)">Đã nhớ ✓</button>
+      <button class="btn" onclick="nextFlash()">Tiếp →</button>
+    </div>
+  </section>
+
+  <section id="quiz" class="panel">
+    <div class="pill">CHỌN NGHĨA / CỤM TỪ ĐÚNG</div>
+    <div id="quizQ" class="q"></div>
+    <div id="quizOptions" class="options"></div>
+    <div id="quizFeedback" class="feedback hidden"></div>
+    <div class="controls"><button class="btn primary" onclick="nextQuiz()">Câu tiếp theo ↵</button></div>
+  </section>
+
+  <section id="spell" class="panel">
+    <div class="pill">SPELLING</div>
+    <div id="spellPrompt" class="q"></div>
+    <input id="spellInput" type="text" placeholder="Gõ cụm từ tiếng Anh rồi nhấn Enter..." autocomplete="off">
+    <div id="spellFeedback" class="feedback hidden"></div>
+    <div class="controls">
+      <button class="btn primary" onclick="checkSpell()">Kiểm tra ↵</button>
+      <button class="btn" onclick="nextSpell()">Bỏ qua</button>
+    </div>
+  </section>
+
+  <section id="match" class="panel">
+    <div class="pill">MATCHING 5 CẶP / LƯỢT</div>
+    <p>Chọn một cụm tiếng Anh rồi chọn nghĩa tiếng Việt tương ứng.</p>
+    <div id="matchGrid" class="matchgrid"></div>
+    <div id="matchFeedback" class="feedback">Đúng 0/5</div>
+    <div class="controls"><button class="btn primary" onclick="newMatch()">Vòng mới</button></div>
+  </section>
+
+  <section id="speak" class="panel">
+    <div class="grid2">
+      <div>
+        <div class="pill">IELTS SPEAKING PART 1</div>
+        <div id="speakQ" class="q"></div>
+        <div class="speak-card">
+          <b>Khung trả lời 3 bước:</b>
+          <p>1. Trả lời trực tiếp → 2. Giải thích → 3. Thêm ví dụ/chi tiết cá nhân.</p>
+          <p><b>Mục tiêu:</b> dùng ít nhất <span class="tag">3 collocations</span> từ bộ 50 từ.</p>
+        </div>
+        <div class="controls" style="justify-content:flex-start">
+          <button class="btn primary" onclick="newSpeak()">Câu khác</button>
+          <button class="btn green" onclick="showModel()">Xem mẫu Band 8+</button>
+        </div>
+      </div>
+      <div>
+        <label><b>Viết câu trả lời của em:</b></label>
+        <textarea id="speakAns" rows="9" placeholder="Ví dụ: I have a particular fondness for..."></textarea>
+        <div id="model" class="feedback hidden"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="weak" class="panel">
+    <div class="pill">WEAK WORDS</div>
+    <h2>Sổ từ sai của em</h2>
+    <p id="weakHint">Các từ làm sai sẽ tự động xuất hiện ở đây.</p>
+    <div id="weakList"></div>
+    <div class="controls" style="justify-content:flex-start">
+      <button class="btn orange" onclick="practiceWeak()">Luyện lại từ sai</button>
+      <button class="btn" onclick="clearWeak()">Xóa sổ từ sai</button>
+    </div>
+  </section>
+
+  <section id="list" class="panel">
+    <div class="pill">FULL LIST</div>
+    <h2>50 từ/cụm từ chủ đề Food</h2>
+    <div style="overflow:auto"><table>
+      <thead><tr><th>#</th><th>Từ / cụm từ</th><th>IPA</th><th>Nghĩa</th><th>Ví dụ</th></tr></thead>
+      <tbody id="vocabTable"></tbody>
+    </table></div>
+  </section>
+</div>
+
+<script>
+const vocab = [
+["have a particular fondness for","/ˈfɒndnəs/","đặc biệt yêu thích","I have a particular fondness for Vietnamese cuisine."],
+["be fairly open-minded about food","/ˌəʊpən ˈmaɪndɪd/","khá cởi mở về đồ ăn","I’m fairly open-minded when it comes to food."],
+["rich in flavour","/rɪtʃ ɪn ˈfleɪvə/","đậm đà hương vị","I prefer dishes that are rich in flavour."],
+["packed with flavour","/pækt wɪð ˈfleɪvə/","đầy hương vị","Vietnamese street food is usually packed with flavour."],
+["bursting with flavour","/ˈbɜːstɪŋ/","cực kỳ đậm vị","The soup is bursting with flavour."],
+["fresh ingredients","/freʃ ɪnˈɡriːdiənts/","nguyên liệu tươi","I normally cook with fresh ingredients."],
+["locally sourced ingredients","/ˈləʊkəli sɔːst/","nguyên liệu có nguồn gốc địa phương","I appreciate restaurants that use locally sourced ingredients."],
+["authentic cuisine","/ɔːˈθentɪk kwɪˈziːn/","ẩm thực chính gốc","I enjoy trying authentic local cuisine."],
+["Asian cuisine","/ˈeɪʒən kwɪˈziːn/","ẩm thực châu Á","Asian cuisine appeals to me the most."],
+["culinary tradition","/ˈkʌlɪnəri trəˈdɪʃən/","truyền thống ẩm thực","Food reflects a country's culinary traditions."],
+["culinary experience","/ˈkʌlɪnəri ɪkˈspɪəriəns/","trải nghiệm ẩm thực","Travelling gives me new culinary experiences."],
+["acquire a taste for","/əˈkwaɪə ə teɪst/","dần dần thích một món","I’ve acquired a taste for spicy food."],
+["have a sweet tooth","/swiːt tuːθ/","hảo ngọt","I have a bit of a sweet tooth."],
+["savoury food","/ˈseɪvəri/","đồ ăn mặn","I tend to prefer savoury food to desserts."],
+["comfort food","/ˈkʌmfət fuːd/","món ăn đem lại cảm giác dễ chịu","Noodle soup is my go-to comfort food."],
+["home-cooked meal","/ˌhəʊm ˈkʊkt/","bữa cơm nhà","I’d choose a home-cooked meal over fast food."],
+["homemade food","/ˌhəʊmˈmeɪd/","đồ ăn tự làm","Homemade food tends to be healthier."],
+["wholesome meal","/ˈhəʊlsəm/","bữa ăn lành mạnh, bổ dưỡng","I usually go for something wholesome."],
+["nutritious diet","/njuːˈtrɪʃəs/","chế độ ăn giàu dinh dưỡng","I try to maintain a nutritious diet."],
+["well-balanced diet","/ˌwel ˈbælənst/","chế độ ăn cân bằng","A well-balanced diet is important for teenagers."],
+["nutritional value","/njuːˈtrɪʃənəl ˈvæljuː/","giá trị dinh dưỡng","I pay more attention to nutritional value nowadays."],
+["highly processed food","/ˈhaɪli ˈprəʊsest/","thực phẩm chế biến nhiều","I try to cut down on highly processed food."],
+["junk food","/ˈdʒʌŋk fuːd/","đồ ăn không lành mạnh","I eat junk food occasionally."],
+["fast-food outlet","/ˈfɑːst fuːd ˌaʊtlet/","cửa hàng đồ ăn nhanh","There are loads of fast-food outlets near my school."],
+["cut down on","/kʌt daʊn ɒn/","cắt giảm","I’m trying to cut down on sugary food."],
+["moderate my intake of","/ˈmɒdəreɪt maɪ ˈɪnteɪk/","kiểm soát lượng tiêu thụ","I try to moderate my intake of sugar."],
+["indulge in","/ɪnˈdʌldʒ ɪn/","tự thưởng, thỏa thích ăn","I occasionally indulge in some chocolate cake."],
+["crave","/kreɪv/","thèm","I sometimes crave something spicy."],
+["satisfy a craving","/ˈsætɪsfaɪ ə ˈkreɪvɪŋ/","thỏa cơn thèm","Street food is perfect when I want to satisfy a craving."],
+["tempting","/ˈtemptɪŋ/","hấp dẫn, khiến muốn ăn","Freshly baked bread is incredibly tempting."],
+["mouth-watering","/ˈmaʊθ ˌwɔːtərɪŋ/","ngon đến chảy nước miếng","The food looked absolutely mouth-watering."],
+["appetising","/ˈæpɪtaɪzɪŋ/","trông ngon miệng","The dish looks extremely appetising."],
+["flavourful","/ˈfleɪvəfəl/","đậm vị","I like simple but flavourful dishes."],
+["bland","/blænd/","nhạt nhẽo","I’m not keen on food that tastes bland."],
+["tangy","/ˈtæŋi/","có vị chua mạnh dễ chịu","I really like tangy sauces."],
+["spicy","/ˈspaɪsi/","cay","I’m quite fond of spicy food."],
+["aromatic","/ˌærəˈmætɪk/","thơm","Vietnamese dishes often contain aromatic herbs."],
+["tender","/ˈtendə/","mềm","I prefer meat when it’s tender and juicy."],
+["crispy","/ˈkrɪspi/","giòn","I love crispy fried chicken."],
+["experiment with ingredients","/ɪkˈsperɪment/","thử nghiệm nguyên liệu","I enjoy experimenting with different ingredients."],
+["put together a meal","/pʊt təˈɡeðə/","chuẩn bị, kết hợp thành một bữa ăn","I can put together a simple meal quite quickly."],
+["whip up a meal","/wɪp ʌp/","nhanh chóng nấu một món","I can usually whip up something simple after school."],
+["turn simple ingredients into…","","biến nguyên liệu đơn giản thành…","I enjoy turning simple ingredients into something delicious."],
+["be quite confident in the kitchen","","khá tự tin trong bếp","I’m quite confident in the kitchen now."],
+["follow a recipe","/ˈresəpi/","làm theo công thức","I used to follow recipes very closely."],
+["cook from scratch","/frəm skrætʃ/","tự nấu từ đầu bằng nguyên liệu cơ bản","I prefer cooking from scratch."],
+["eat out","/iːt aʊt/","ăn ngoài","My family eats out once or twice a month."],
+["grab a quick bite","/ɡræb ə kwɪk baɪt/","ăn nhanh một chút","I sometimes grab a quick bite after school."],
+["broaden my palate","/ˈbrɔːdən maɪ ˈpælət/","mở rộng khẩu vị","Travelling has helped me broaden my palate."],
+["experience a culture through food","","trải nghiệm văn hóa qua ẩm thực","Food is a great way to experience another culture."]
+];
+
+let state = JSON.parse(localStorage.getItem("foodLabState")||'{"known":[],"wrong":[],"correct":0,"total":0,"streak":0}');
+function save(){localStorage.setItem("foodLabState",JSON.stringify(state)); updateStats();}
+function updateStats(){
+  knownCount.textContent=state.known.length; wrongCount.textContent=state.wrong.length;
+  streak.textContent=state.streak; accuracy.textContent=state.total?Math.round(state.correct/state.total*100)+"%":"0%";
+}
+document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("#tabs button").forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active"); document.getElementById(b.dataset.tab).classList.add("active");
+  if(b.dataset.tab==="weak") renderWeak();
+});
+
+let fi=0, flipped=false;
+function renderFlash(){
+  const v=vocab[fi]; flashPos.textContent=`${fi+1}/50`;
+  flashProg.style.width=((fi+1)/50*100)+"%";
+  flashCard.innerHTML = flipped ?
+   `<div><div class="meaning">${v[2]}</div><div class="example">${v[3]}</div><p class="ipa">${v[1]}</p><span class="pill">Bấm để quay lại</span></div>` :
+   `<div><div class="word">${v[0]}</div><div class="ipa">${v[1]}</div><p style="color:var(--muted)">Đoán nghĩa trước khi lật thẻ</p></div>`;
+}
+flashCard.onclick=()=>{flipped=!flipped;renderFlash()}
+function nextFlash(){fi=(fi+1)%vocab.length;flipped=false;renderFlash()}
+function prevFlash(){fi=(fi-1+vocab.length)%vocab.length;flipped=false;renderFlash()}
+function markFlash(ok){
+ const w=vocab[fi][0];
+ if(ok){if(!state.known.includes(w))state.known.push(w); state.wrong=state.wrong.filter(x=>x!==w);}
+ else{if(!state.wrong.includes(w))state.wrong.push(w); state.known=state.known.filter(x=>x!==w);}
+ save(); nextFlash();
+}
+
+let qi, qanswer;
+function rand(n){return Math.floor(Math.random()*n)}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function nextQuiz(){
+ quizFeedback.classList.add("hidden");
+ qi=rand(vocab.length); qanswer=vocab[qi][2]; quizQ.textContent=`“${vocab[qi][0]}” nghĩa là gì?`;
+ let choices=shuffle([qanswer,...shuffle(vocab.filter((_,i)=>i!==qi)).slice(0,3).map(x=>x[2])]);
+ quizOptions.innerHTML=choices.map(x=>`<button class="option">${x}</button>`).join("");
+ [...quizOptions.children].forEach(btn=>btn.onclick=()=>answerQuiz(btn,btn.textContent===qanswer));
+}
+function answerQuiz(btn,ok){
+ [...quizOptions.children].forEach(x=>x.style.pointerEvents="none");
+ state.total++;
+ if(ok){btn.classList.add("correct");state.correct++;state.streak++; state.wrong=state.wrong.filter(x=>x!==vocab[qi][0]);}
+ else{btn.classList.add("wrong");state.streak=0;if(!state.wrong.includes(vocab[qi][0]))state.wrong.push(vocab[qi][0]);
+ [...quizOptions.children].find(x=>x.textContent===qanswer)?.classList.add("correct");}
+ quizFeedback.innerHTML=`<b>${ok?"✓ Chính xác":"✗ Chưa đúng"}</b><br>${vocab[qi][3]}<br><small>Ghi nhớ: ${vocab[qi][0]} = ${vocab[qi][2]}</small>`;
+ quizFeedback.classList.remove("hidden");save();
+}
+
+let si;
+function nextSpell(){si=rand(vocab.length);spellPrompt.innerHTML=`Viết cụm từ tiếng Anh:<br><span style="color:var(--green)">${vocab[si][2]}</span>`;spellInput.value="";spellFeedback.classList.add("hidden");spellInput.focus()}
+function norm(s){return s.toLowerCase().trim().replace(/[’‘]/g,"'").replace(/\s+/g," ")}
+function checkSpell(){
+ let ok=norm(spellInput.value)===norm(vocab[si][0]); state.total++;
+ if(ok){state.correct++;state.streak++;state.wrong=state.wrong.filter(x=>x!==vocab[si][0]);}
+ else{state.streak=0;if(!state.wrong.includes(vocab[si][0]))state.wrong.push(vocab[si][0]);}
+ spellFeedback.innerHTML= ok?`<b style="color:var(--good)">✓ Chính xác!</b><br>${vocab[si][3]}`:
+ `<b style="color:var(--bad)">✗ Đáp án:</b> <strong>${vocab[si][0]}</strong><br>${vocab[si][3]}`;
+ spellFeedback.classList.remove("hidden");save();
+}
+
+let mselE=null,mselV=null,mset=[],mcount=0;
+function newMatch(){
+ mset=shuffle(vocab).slice(0,5);mcount=0;mselE=mselV=null;matchFeedback.textContent="Đúng 0/5";
+ const eng=shuffle(mset.map(x=>({t:x[0],k:x[0]}))), vie=shuffle(mset.map(x=>({t:x[2],k:x[0]})));
+ matchGrid.innerHTML=`<div class="matchcol" id="engCol">${eng.map(x=>`<div class="matchitem" data-k="${x.k}">${x.t}</div>`).join("")}</div>
+ <div class="matchcol" id="vieCol">${vie.map(x=>`<div class="matchitem" data-k="${x.k}">${x.t}</div>`).join("")}</div>`;
+ [...engCol.children].forEach(x=>x.onclick=()=>{[...engCol.children].forEach(y=>y.classList.remove("sel"));x.classList.add("sel");mselE=x;tryMatch()});
+ [...vieCol.children].forEach(x=>x.onclick=()=>{[...vieCol.children].forEach(y=>y.classList.remove("sel"));x.classList.add("sel");mselV=x;tryMatch()});
+}
+function tryMatch(){
+ if(!mselE||!mselV)return;
+ if(mselE.dataset.k===mselV.dataset.k){mselE.classList.add("done");mselV.classList.add("done");mcount++;matchFeedback.textContent=`Đúng ${mcount}/5`;mselE=mselV=null;}
+ else{const w=mselE.dataset.k;if(!state.wrong.includes(w))state.wrong.push(w);setTimeout(()=>{mselE?.classList.remove("sel");mselV?.classList.remove("sel");mselE=mselV=null},400);save();}
+}
+
+const speakQs=[
+"What kind of food do you like?","Do you like cooking?","How often do you eat out?","What food did you enjoy as a child?",
+"Do you prefer home-cooked food or restaurant food?","Is there any food you dislike?","Have your eating habits changed recently?",
+"Do you like trying food from other countries?","What is a popular dish in your hometown?","Do you think you have a healthy diet?"
+];
+const models=[
+"I’m fairly open-minded when it comes to food, but I have a particular fondness for Asian cuisine. I especially enjoy dishes that are rich in flavour and made with fresh ingredients.",
+"Yes, quite a lot. I enjoy experimenting with ingredients and turning simple ingredients into something flavourful. I’m not an expert, but I’m becoming quite confident in the kitchen.",
+"I don’t eat out very often because I generally prefer a home-cooked meal. Still, I occasionally grab a quick bite when I’m busy or meet friends at the weekend.",
+"When I was younger, my go-to comfort food was fried rice. It was simple, filling and usually packed with flavour, so I never really got tired of it.",
+"I’d usually choose a home-cooked meal because I have more control over the ingredients. I also find homemade food more wholesome and suitable for a well-balanced diet.",
+"I’m not particularly keen on bland food. I tend to prefer dishes that are aromatic, spicy or slightly tangy because they’re much more interesting to eat.",
+"Yes, definitely. I’ve started paying more attention to nutritional value and I’m trying to cut down on highly processed food, especially sugary snacks.",
+"Absolutely. Trying authentic cuisine helps me broaden my palate, and I think food is one of the easiest ways to experience a culture.",
+"Pho is probably one of the best-known dishes where I live. It’s aromatic, flavourful and made with fresh herbs, so it’s popular with both locals and visitors.",
+"I try to maintain a reasonably well-balanced diet. I eat plenty of fresh food and moderate my intake of junk food, although I still indulge in desserts occasionally."
+];
+let spi=0;
+function newSpeak(){spi=rand(speakQs.length);speakQ.textContent=speakQs[spi];model.classList.add("hidden");speakAns.value=""}
+function showModel(){model.innerHTML=`<b>Mẫu Band 8+:</b><br>${models[spi]}`;model.classList.remove("hidden")}
+
+function renderWeak(){
+ if(!state.wrong.length){weakList.innerHTML="<p>Chưa có từ nào trong sổ sai. Hãy làm Quiz hoặc Spelling.</p>";return}
+ weakList.innerHTML=state.wrong.map(w=>{let v=vocab.find(x=>x[0]===w);return `<div class="feedback"><b>${v[0]}</b> — ${v[2]}<br><small>${v[3]}</small></div>`}).join("");
+}
+function clearWeak(){state.wrong=[];save();renderWeak()}
+function practiceWeak(){
+ if(!state.wrong.length){alert("Chưa có từ sai để luyện.");return}
+ document.querySelector('[data-tab="spell"]').click();
+ let candidates=vocab.map((v,i)=>state.wrong.includes(v[0])?i:-1).filter(i=>i>=0);
+ si=candidates[rand(candidates.length)];spellPrompt.innerHTML=`Luyện từ sai:<br><span style="color:var(--green)">${vocab[si][2]}</span>`;spellInput.value="";spellFeedback.classList.add("hidden");
+}
+
+vocabTable.innerHTML=vocab.map((v,i)=>`<tr><td>${i+1}</td><td><b>${v[0]}</b></td><td>${v[1]}</td><td>${v[2]}</td><td>${v[3]}</td></tr>`).join("");
+
+document.addEventListener("keydown",e=>{
+ if(e.key==="Enter"){
+   const active=document.querySelector(".panel.active").id;
+   if(active==="spell") checkSpell();
+   if(active==="quiz" && !quizFeedback.classList.contains("hidden")) nextQuiz();
+ }
+});
+
+updateStats();renderFlash();nextQuiz();nextSpell();newMatch();newSpeak();
+</script>
+</body>
+</html>
